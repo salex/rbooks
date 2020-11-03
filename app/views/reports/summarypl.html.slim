@@ -1,0 +1,38 @@
+.w3-container.w3-white.min-height
+  .w3-row-padding
+    .s5.w3-col.fs8
+      .strong 
+        = "Profit & Loss For Period Covering #{params[:from] ||= Date.today.beginning_of_year} to #{params[:to] ||= Date.today}"
+        button.lime-link-button.w3-right.noprint[onclick="goBack()"] Back Page
+
+      = profit_loss_report(@report)
+
+
+    .s6.w3-col
+      table.smalltable7.fs8.w90p
+        caption.fs7 = "Account Summary - From: #{params[:from] || Date.today.beginning_of_year}  To: #{params[:to] || Date.today}"
+        tr
+          td.strong Account
+          th BBegin
+          th Debits
+          th Credits
+          th P/L
+          th EBalance
+        - tree = tree_summary(@summary)
+        - tree.each do |id|
+          - acct = @summary[id]
+          tr
+            td.strong[class="p#{acct[:level]}"]=  acct[:name]
+            td.tright = to_money acct[:beginning]
+            td.tright = to_money acct[:debits]
+            td.tright = to_money acct[:credits]
+            td.tright = to_money acct[:diff]
+            td.tright = to_money acct[:ending]
+
+
+javascript:
+  function goBack() {
+    window.history.back();
+  }
+
+

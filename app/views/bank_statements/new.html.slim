@@ -1,0 +1,9 @@
+.w3-container.w3-white.min-height
+  .w3-row.w3-margin
+    .w3-col.s2
+    .w3-col.s5
+      == render partial: 'form', locals:{header:'New Bank Statement'}
+    .w3-col.s5
+       = link_to 'Cancel/Index', bank_statements_path
+
+

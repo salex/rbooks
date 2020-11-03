@@ -1,0 +1,110 @@
+.w3-row.w3-margin
+  .s4.w3-col
+    h3 Books
+    p.annotate Books allow multiple sets of account (different checking accounts), or if you wish, archive accounts by year.
+    p Action icons
+    ul.actions
+      li
+        i class="fas fa-database" 
+        span.indent Open/Switch to new set of accounts(Book)
+      li
+        i class="fas fa-eye" 
+        span.indent Show Book details
+      li
+        i class="fas fa-edit" 
+        span.indent Edit Book
+      li
+        i class="fas fa-trash w3-text-red" 
+        span.indent Delete/Destroy book. CAUTION This will destroy all associated Accounts, Entries and Splits
+
+    p The'New Book' Button will create a new book with default accounts
+
+  .s8.w3-col
+
+
+    table.smalltable7
+      thead
+        tr
+          th Name
+          th Last Updated
+          / th Assets
+          / th Equity
+          / th Liabilities
+          / th Income
+          / th Expenses
+          / th Checking
+          / th Savings
+          th Actions
+     
+      tbody
+        - @books.each do |book|
+          tr
+            td = book.name
+            td = book.updated_at.to_date
+            / td = book.assets
+            / td = book.equity
+            / td = book.liabilities
+            / td = book.income
+            / td = book.expenses
+            / td = book.checking
+            / td = book.savings
+            td.actions
+
+              = link_to books_open_path(book)
+                i class="fas fa-database"
+              = link_to book do
+                i class="fas fa-eye"
+              = link_to edit_book_path(book) do
+                i class="fas fa-edit"
+              = link_to book, data: { confirm: 'Are you sure? This will destroy all Accounts, Entries, Spits, and Statements' }, method: :delete do
+                i class="fas fa-trash w3-text-red"
+
+            / td = link_to 'Show', book
+            / td = link_to 'Edit', edit_book_path(book)
+            / td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+
+    br
+
+    = link_to 'New Book', new_book_path, class:'blue-link-button round'
+
+
+
+/ h1 Listing books
+
+/ table
+/   thead
+/     tr
+/       th Name
+/       th Root
+/       th Assets
+/       th Equity
+/       th Liabilities
+/       th Income
+/       th Expenses
+/       th Checking
+/       th Savings
+/       th Settings
+/       th
+/       th
+/       th
+
+/   tbody
+/     - @books.each do |book|
+/       tr
+/         td = book.name
+/         td = book.root
+/         td = book.assets
+/         td = book.equity
+/         td = book.liabilities
+/         td = book.income
+/         td = book.expenses
+/         td = book.checking
+/         td = book.savings
+/         td = book.settings
+/         td = link_to 'Show', book
+/         td = link_to 'Edit', edit_book_path(book)
+/         td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+
+/ br
+
+/ = link_to 'New Book', new_book_path

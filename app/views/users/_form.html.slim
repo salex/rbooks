@@ -1,0 +1,50 @@
+= form_for(@user) do |f|
+
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this entry from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+  .w3-row
+    .actions.s12.w3-col
+      = f.submit :submit
+
+  .w3-row
+    .s8.w3-col
+      .field
+        = f.label :username
+        = f.text_field :username
+      .field
+        = f.label :email
+
+        = f.text_field :email
+      .field
+        = f.label :full_name
+        = f.text_field :full_name
+      / - unless @user.reset_token.present?
+      .field
+        = f.label :default_book
+        = f.text_field :default_book
+      
+      .field
+        = f.label :password
+        = f.password_field :password
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+      / - else
+        / = f.text_field :reset_token, as:"hidden", text_field_html: {value: @user.reset_token}
+    .s4.w3-col
+      label Roles
+      - checkboxes = role_checkboxes('super')
+      - checkboxes.each do |b|
+        .m3.columns
+          = check_box_tag 'user[roles][]', b[0],b[1]
+          |&nbsp;
+          = b[0]
+      
+      .f-clear
+      br
+
+

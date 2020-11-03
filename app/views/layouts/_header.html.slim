@@ -1,0 +1,13 @@
+ .w3-bar.malty 
+  .w3-row
+    .w3-col.m3
+      span.indent.small-caps.strong RBooks
+    .w3-col.m6
+      .w3-center 
+        .box 
+          span.small-caps.strong  RBooks 
+          span - (RubyOnRails Books or ouRBooks)
+        .small-caps  Doing More For Semi-Accountants
+    - if @current_user.present?
+      .w3-col.m3.w3-center
+        .box = session[:full_name]

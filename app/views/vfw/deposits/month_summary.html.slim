@@ -1,0 +1,144 @@
+.w3-container.w3-white.min-height
+  .w3-row-padding
+    .show-links.s12.w3-col.noprint
+      = link_to 'Weekly', weekly_deposits_path, class: "button bbutton"
+      |&nbsp;&nbsp;
+      = link_to 'ShowAll', deposits_path, class: "button bbutton"
+      / = link_to 'PDF', deposit_path(@deposit,format: :pdf)
+    / h6.strong Deposit Summary
+    / - else
+  .w3-row-padding
+
+    .s12.w3-col
+        
+      / - revenue = Revenue.new(params[:date])
+      / - donations,dsummary = revenue.month_donations
+      / - month_sales = revenue.month_sales
+
+      table.smalltable7
+        caption= "Month Deposits"
+        tr
+          th Date
+          th SalesR
+          th Cash
+          th Credit
+          th CashP
+          th Tips
+          th Out
+          th Expect
+          th Sales D
+          th O/U
+          th Other D
+          th Total
+        - @deposits.each do |deposit|
+          tr
+            td = deposit.date
+            td.tright = dmoney deposit.sales_revenue
+            td.tright = dmoney deposit.cash_sales
+            td.tright = dmoney deposit.credit_sales
+            td.tright = dmoney deposit.cash_payments
+            td.tright = dmoney deposit.tips_paid
+            td.tright = dmoney deposit.cash_out
+            td.tright = dmoney deposit.cash_expected
+            td.tright = dmoney deposit.sales_deposit
+            td.tright = dmoney deposit.over_under
+            td.tright = dmoney deposit.other_deposit
+            td.tright = dmoney deposit.total_deposit
+        - dids = @deposits.pluck(:id)
+        - totals = Vfw::Deposit.deposit_totals(dids)
+        tr
+          td.tright.strong Totals
+          td.tright = dmoney totals[:sales_revenue]
+          td.tright = dmoney totals[:cash_sales]
+          td.tright = dmoney totals[:credit_sales]
+          td.tright = dmoney totals[:cash_payments]
+          td.tright = dmoney totals[:tips_paid]
+          td.tright = dmoney totals[:cash_out]
+          td.tright = dmoney totals[:cash_expected]
+          td.tright = dmoney totals[:sales_deposit]
+          td.tright = dmoney totals[:over_under]
+          td.tright = dmoney totals[:other_deposit]
+          td.tright = dmoney totals[:total_deposit]
+
+
+    .s7.w3-col
+      - obj = Vfw::OtherRevenue.fund_type_acct
+      - other_sum = {}
+      table.smalltable7
+        caption Month Donations
+        tr
+          th Date
+          th Item
+          th Amount
+          th Remarks
+        - other_revenue = Vfw::OtherRevenue.where(deposit_id:dids)
+        - other_revenue.each do |arr|
+          - if other_sum.has_key?(arr.item)
+            - other_sum[arr.item] += arr.amount
+          - else
+            - other_sum[arr.item] = arr.amount
+          tr
+            td= arr.deposit.date
+            td = "#{arr.item}:#{obj[:pointer][arr.item][:acct]}"
+            td.text-right = dmoney arr.amount
+            td.w08 = arr.remarks
+   
+    .s5.w3-col
+      table.smalltable7
+        -tot = 0.0
+        caption Month Donations Summary
+        - other_sum.each do |k,v|
+          tr
+            - tot += v
+            td =  "#{k}:#{obj[:pointer][k][:acct]}"
+            td.text-right = dmoney v
+        tr
+          td.strong Total
+          td.strong.text-right = dmoney tot
+
+
+      table.smalltable7
+        caption Month Revenue Sales (Deposits)
+        tr 
+          th Dept
+          th Quanity
+          th Amount
+        - tot = 0.0
+        - obj = Vfw::SalesRevenue.sales_revenue_totals(dids)
+        - obj.each do |k,v|
+          - tot += v[:amount]
+          tr
+            td = k.capitalize
+            td.text-right = v[:quanity]
+            td.text-right = dmoney v[:amount]
+        tr
+          td.strong Total
+          th
+          td.tright.strong = dmoney tot
+
+    .w3-row.w3-row-padding
+      .s1.w3-col
+      .s10.w3-col.annotate 
+        p
+        p We have reviewed that attached Post ledgers, Bank Statements, Bills and Receipts are in accordance to Post, Departments and National By-Laws requirements. We certify those requirements have been met to the best of our knowledge and belief.
+      .s1.w3-col
+      p
+      .s4.w3-col
+        p
+        p
+        p __________________________
+        p Commander
+      .s4.w3-col
+        p
+        p
+        p __________________________
+        p Quartermaster
+      
+      .s4.w3-col
+        p
+        p
+        p __________________________
+        p Date
+
+  
+

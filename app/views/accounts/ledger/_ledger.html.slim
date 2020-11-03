@@ -1,0 +1,93 @@
+-  if  params[:date].present?
+  - date =  Date.parse(params[:date]).beginning_of_month
+- else
+  - date = from ||= Date.today
+- if account.placeholder
+  - lines = account.children_ledger(from,to)
+- else
+  - lines = account.account_ledger(from,to)
+- if to.present?
+  - caption = "#{account.account_type} Account #{account.name} Ledger from: #{date} to: #{to}"
+- else
+  - caption = "#{account.account_type} Account #{account.name} Ledger for: #{date.to_formatted_s(:month_and_year)}"
+- summary = lines.pop
+table.small-table7
+  tr
+    th Range Summary
+    td.w3-right-align Total Debits(+):
+    td.tleft.under =imoney summary[:checking][:db]
+    td.w3-right-align Total Credits(-):
+    td.tleft.under =imoney summary[:checking][:cr]
+    td.w3-right-align Difference:
+    td.tleft.under =imoney summary[:balance]
+
+
+table.small-table7[data-controller="sortTable toggleSplits"]
+  caption
+    .box = caption
+  thead#sort_header
+    tr
+      th.w10.sortable[data-action="click->sortTable#sortBy"]
+        i.fas.fa-sort.noprint
+        / - if policy(account).trustee?
+        - if true
+          |Date-
+          i class="fas fa-edit " 
+          |&nbsp;&nbsp;Dup
+        - else
+          |Date
+      th.sortable[data-action="click->sortTable#sortBy"]
+        i.fas.fa-sort.noprint
+        |Num
+      th.w30.sortable[data-action="click->sortTable#sortBy"]
+        i.fas.fa-sort.noprint
+        |Desc
+      th.w15r.sortable[data-action="click->sortTable#sortBy"]
+        i.fas.fa-sort.noprint
+        |Account
+      th.sortable[data-action="click->sortTable#sortBy"]
+        i.fas.fa-sort.noprint
+        |R
+      th Debits
+      th Credits
+      th Balance
+  - lines.reverse.each_with_index do |row,i|
+    tr
+      td 
+        - if row[:id].present? && true
+          / policy(account).trustee?
+          = link_to(row[:date], edit_entry_path(row[:id]),class:['blue-link'])
+          |&nbsp;&nbsp; 
+
+          = link_to entries_duplicate_path(row[:id]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
+            i class="fas fa-copy noprint blue-link"
+        - else
+          = row[:date]
+      td = row[:numb]
+      td = row[:desc] 
+      - if row[:memo] == "- Split Transaction -"
+        td.toggle-splits.blue-link[data-action="click->toggleSplits#toggle"] = "- Split Transaction -"
+        td 
+      - else 
+        td = params[:split_reg].present? ? nil : row[:memo]
+        td = params[:split_reg].present? ? nil : row[:r] 
+      td.w3-right-align = row[:checking][:db].zero? ? nil : imoney(row[:checking][:db])
+      td.w3-right-align = row[:checking][:cr].zero? ? nil : imoney(row[:checking][:cr])
+      - if row[:id].blank?
+        td.w3-right-align = to_money(row[:balance])
+      - else
+        td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance])
+    - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
+      tbody.split-rows[data-target="toggleSplits.tbody"]
+        - row[:details].each do |d|
+          tr.snowSelectedBackground
+            td
+            td = d[:action]
+            td = d[:memo]
+            td = d[:name]
+            td = d[:r]
+            td.w3-right-align = d[:db].zero? ? nil : imoney(d[:db])
+            td.w3-right-align = d[:cr].zero? ? nil : imoney(d[:cr])
+            td
+ 
+br

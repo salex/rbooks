@@ -1,0 +1,10 @@
+.w3-container.w3-white.min-height
+  .w3-row.w3-margin
+    .w3-col.s2 &nbsp;
+    .w3-col.s4
+      == render partial: 'form', locals:{header:'Edit account'}
+    .w3-col.s6
+      => link_to 'Cancel/Show', @bank_statement, class: 'lime-link-button'
+    
+      =< link_to 'Cancel/Index', bank_statements_path, class: 'lime-link-button'
+

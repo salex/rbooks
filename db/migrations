@@ -1,0 +1,13 @@
+rails g scaffold Book name root assets equity liabilities income expenses checking savings settings:text --no-scaffold-stylesheet
+
+rails g scaffold User email:uniq username:uniq full_name roles password:digest default_book:integer --no-scaffold-stylesheet
+
+rails g scaffold Account uuid book:references name account_type code description placeholder:boolean contra:boolean parent_id:integer level:integer --no-scaffold-stylesheet
+
+rails g scaffold Entry book:references numb post_date:date description fit_id lock_version:integer --no-scaffold-stylesheet
+
+rails g scaffold Split account:references entry:references memo action reconcile_state reconcile_date:date amount:integer lock_version:integer --no-scaffold-stylesheet
+
+rails g scaffold Deposit date:date sales_revenue:float other_revenue:float cash_sales:float credit_sales:float tips_paid:float sales_deposit:float other_deposit:float total_deposit:float cash_out:float
+
+rails g model Revenue deposit.references type item quanity:float amount:float remarks

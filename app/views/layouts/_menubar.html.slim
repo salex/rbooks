@@ -1,0 +1,70 @@
+ .sticky-menu
+  .w3-black.w3-bar.noprint
+    / <button class="w3-button w3-left w3-large" onclick="w3_open()">☰</button>
+
+
+    / = link_to "Home", root_path, class:"w3-bar-item w3-button"
+    / = link_to "About", welcome_about_path, class:"w3-bar-item w3-button" 
+    = link_to "Home", root_path, class:"w3-bar-item w3-button"
+
+    - if current_user.blank?
+      = link_to "About", about_about_path, class: "w3-bar-item w3-button"
+      .w3-right
+        .w3-right
+          - flash.each do |name, msg|
+            - if msg.is_a?(String)
+              .flash-box.w3-padding.w3-animate-right[data-controller="flashIt" data-target="flashIt.flashBox" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"]
+                = content_tag :span, content_tag(:strong,msg)
+
+        .w3-right
+          span.w3-bar-item.w3-button.w3-right = link_to "Login", login_path 
+
+
+    -else
+      = link_to "Books", books_path, class:"w3-bar-item w3-button"
+      = link_to "Accounts", accounts_path, class:"w3-bar-item w3-button"
+
+      .w3-dropdown-hover
+        button.w3-button
+         | Links
+         i.fa.fa-caret-down
+        .w3-dropdown-content.w3-bar-block.w3-card-4
+          = link_to "Bank Statements", bank_statements_path, class:"w3-bar-item w3-button gbtn" 
+          = link_to "Bank(OFX) Trans", latest_ofxes_path, class:"w3-bar-item w3-button gbtn" 
+          = link_to "Checking Balance", checking_balance_reports_path, class:"w3-bar-item w3-button gbtn" 
+          = link_to "Reports", reports_path, class:"w3-bar-item w3-button gbtn" 
+          / = link_to "Deposits",weekly_deposits_path, class:"w3-bar-item w3-button  gbtn" 
+          / = link_to "Sales Items/Inventory",sales_items_path, class:"w3-bar-item w3-button gbtn" 
+          = link_to "Entry Search",entries_filter_index_path, class:"w3-bar-item w3-button gbtn" 
+          = link_to "About", about_about_path, class:"w3-bar-item w3-button gbtn" 
+          - if current_user.is_super?
+            = link_to "Users", users_path, class:"w3-bar-item w3-button gbtn" 
+      .w3-right
+        .w3-right
+          - flash.each do |name, msg|
+            - if msg.is_a?(String)
+              .flash-box.w3-padding.w3-animate-right[data-controller="flashIt" data-target="flashIt.flashBox" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"]
+                = content_tag :span, content_tag(:strong,msg)
+        .w3-right
+          span.w3-bar-item.w3-button.w3-right = link_to "Logout", logout_path
+          span.w3-bar-item.w3-button.w3-right = link_to "Profile", profile_path
+
+    / - if @current_user.present?
+    /   span.w3-bar-item.w3-button.w3-right = link_to "Logout", logout_path
+    /   span.w3-bar-item.w3-button.w3-right = link_to "Profile", profile_path
+    / - else
+    /   span.w3-bar-item.w3-button.w3-right = link_to "Login", login_path
+    / / - if Current.post_visitor
+    / /   span.w3-bar-item.w3-button.w3-right = link_to "Exit Vist", exit_visit_post_path(Current.post)
+    - if session[:recent].present?
+      .w3-row-padding.recent-ledgers.w3-text-white[style="margin-bottom:4px;"]
+        span &nbsp; Recent Ledgers: &nbsp
+        - session[:recent].each do |k,v|
+         = link_to v,account_path(k),class:'gold-link-button w3-text-black' 
+
+
+
+
+
+
+

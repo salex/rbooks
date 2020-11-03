@@ -1,0 +1,37 @@
+p#notice = notice
+
+.field
+  label Uuid:
+  = @account.uuid
+.field
+  label Book:
+  = @account.book
+.field
+  label Name:
+  = @account.name
+.field
+  label Account type:
+  = @account.account_type
+.field
+  label Code:
+  = @account.code
+.field
+  label Description:
+  = @account.description
+.field
+  label Placeholder:
+  = @account.placeholder
+.field
+  label Contra:
+  = @account.contra
+.field
+  label Parent:
+  = @account.parent_id
+.field
+  label Level:
+  = @account.level
+
+=> link_to 'Edit', edit_account_path(@account)
+'|
+=< link_to 'Back', accounts_path
+p this is ledger show from the actions views

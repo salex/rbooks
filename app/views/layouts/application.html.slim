@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title RBooks
+    = csrf_meta_tags
+    = csp_meta_tag
+    
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+    body
+      header.noprint
+        == render 'layouts/header'
+      = render 'layouts/menubar'
+
+      / - flash.each do |name, msg|
+      /   - if msg.is_a?(String)
+      /     .w3-container.w3-display-container[data-controller="hide-parent" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'} noprint"]
+      /       button.w3-button.w3-large.w3-display-topright[data-target="hidder" data-action="click->hide-parent#clicked"] &times;
+      /       = content_tag :h4, content_tag(:strong,msg)
+
+      .w3-container
+        == yield
+

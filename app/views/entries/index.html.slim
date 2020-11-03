@@ -1,0 +1,31 @@
+h1 Listing entries
+
+table
+  thead
+    tr
+      th Book
+      th Numb
+      th Post date
+      th Description
+      th Fit
+      th Lock version
+      th
+      th
+      th
+
+  tbody
+    - @entries.each do |entry|
+      tr
+        td = entry.book
+        td = entry.numb
+        td = entry.post_date
+        td = entry.description
+        td = entry.fit_id
+        td = entry.lock_version
+        td = link_to 'Show', entry
+        td = link_to 'Edit', edit_entry_path(entry)
+        td = link_to 'Destroy', entry, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Entry', new_entry_path

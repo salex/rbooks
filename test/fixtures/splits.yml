@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  entry: one
+  memo: MyString
+  action: MyString
+  reconcile_state: MyString
+  reconcile_date: 2020-10-28
+  amount: 1
+  lock_version: 1
+
+two:
+  account: two
+  entry: two
+  memo: MyString
+  action: MyString
+  reconcile_state: MyString
+  reconcile_date: 2020-10-28
+  amount: 1
+  lock_version: 1

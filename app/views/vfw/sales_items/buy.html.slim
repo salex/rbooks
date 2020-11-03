@@ -1,0 +1,38 @@
+.w3-container.w3-white.min-height
+  = form_for @sales_item, url: bought_sales_item_path(@sales_item),method: :patch do |f|
+    - if @sales_item.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@sales_item.errors.count, "error")} prohibited this sales_item from being saved:"
+        ul
+          - @sales_item.errors.full_messages.each do |message|
+            li = message
+    p Purchase price is price per (bottles, cases). Size is ML for Liquor and cases for Beer
+    .form-fields
+      .actions = f.submit
+
+      .field
+        label Name:
+        span = @sales_item.name
+      .field
+        label Type:
+        span = @sales_item.type
+      .field
+        label QOH:
+        span = @sales_item.quanity
+      .field
+        = f.label :purchase_price
+        = f.text_field :purchase_price
+      - if @sales_item.type == "Liquor"
+        .field
+          = f.label :size
+          = f.number_field :size
+        .field
+          = f.label :Bottles
+          = f.number_field :bottles
+
+      -else
+        .field
+          = f.label :cases
+          = f.number_field :cases
+
+    = link_to "Cancel", index_path(@sales_item), class:'cancel-button'

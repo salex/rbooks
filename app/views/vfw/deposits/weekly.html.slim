@@ -1,0 +1,31 @@
+.w3-container.w3-white.min-height
+  .w3-row.w3-margin-top
+    h6.strong.s2.w3-col
+      |Last 5 weekly deposits
+    .m10.w3-col
+      = link_to "List Deposits", deposits_path, class: "lime-link-button"
+      = link_to "Month Summary", month_summary_deposits_path, class: "blue-link-button"
+      = link_to "Last Month Summary", month_summary_deposits_path(date:(Date.today - 1.month)), class: "lime-link-button"
+      / = link_to "Beer Inventory", beer_edit_deposits_path, class: "lime-link-button"
+      / = link_to "Liquor Inventory", liquor_edit_deposits_path, class: "lime-link-button"
+
+      / = link_to "Sales Items", sales_items_path, class: "lime-link-button"
+
+
+  hr
+  .w3-row-padding
+    - @deposits.each_with_index do |deposit,i|
+      - range = (deposit.date - 6.days)..deposit.date
+      / - sales_dates = deposit.daily_sales.pluck(:date)
+      .m9.w3-col
+        table.w3-table-all
+          th.strong 
+            =  range
+            |&nbsp;&nbsp;
+          - color = deposit.sales_revenues.count > 0 ? 'lime-link-button' : 'grey-link-button'
+
+          td[class="#{color}"] 
+            = link_to 'Sales Revenue',edit_deposit_path(deposit), class:'block-link'
+          - color = deposit.other_revenues.count > 0 ?  'lime-link-button' : 'grey-link-button'
+          td[class="#{color}"] = link_to "Non-Sales Revenue",edit_other_deposit_path(deposit), class:'block-link'
+          td[class="#{color}"] = link_to "Summary",deposit_path(deposit), class:'block-link'

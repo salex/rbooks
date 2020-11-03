@@ -1,0 +1,19 @@
+.w3-container.w3-white.min-height.scaffold
+
+  .w3-row-padding
+    p Pick a menu-items-detail.cvs and inventory_details files from your downloads
+    = form_with url: '/sales_items/downloaded', method: :patch do |f|
+
+      .s6.w3-col
+        .field
+          = f.label :item_details
+          = f.file_field :item_details
+      .s6.w3-col
+        .field
+          = f.label :inv_details
+          = f.file_field :inv_details
+
+
+      hr
+      = f.submit "Save Downloads"
+

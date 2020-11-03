@@ -1,0 +1,29 @@
+.w3-container.w3-white.min-height
+  p#notice = notice
+
+  p
+    strong Book:
+    = @bank_statement.book
+  p
+    strong Statement date:
+    = @bank_statement.statement_date
+  p
+    strong Beginning balance:
+    = @bank_statement.beginning_balance
+  p
+    strong Ending balance:
+    = @bank_statement.ending_balance
+  p
+    strong Ofx data:
+    = text_area_tag(nil,@bank_statement.ofx_data)
+    / = @bank_statement.ofx_data
+  p
+    strong Hash data:
+    = @bank_statement.hash_data
+  p
+    strong Reconciled date:
+    = @bank_statement.reconciled_date
+
+  => link_to 'Edit', edit_bank_statement_path(@bank_statement), class: 'lime-link-button'
+  
+  =< link_to 'Back', bank_statements_path, class: 'blue-link-button'

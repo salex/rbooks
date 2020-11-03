@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  root: MyString
+  assets: MyString
+  equity: MyString
+  liabilities: MyString
+  income: MyString
+  expenses: MyString
+  checking: MyString
+  savings: MyString
+  settings: null
+
+two:
+  name: MyString
+  root: MyString
+  assets: MyString
+  equity: MyString
+  liabilities: MyString
+  income: MyString
+  expenses: MyString
+  checking: MyString
+  savings: MyString
+  settings: null

@@ -1,0 +1,16 @@
+.w3-row.w3-margin
+  .w3-col.s6
+    table.show-table
+      = show_table_row("Name:", @book.name)
+      = show_table_row("Root:", @book.root)
+      = show_table_row("Assets:", @book.assets)
+      = show_table_row("Equity:", @book.equity)
+      = show_table_row("Liabilities:", @book.liabilities)
+      = show_table_row("Income:", @book.income)
+      = show_table_row("Expenses:", @book.expenses)
+      = show_table_row("Checking:", @book.checking)
+      = show_table_row("Savings:", @book.savings)
+  .s2.w3-col.text-right
+
+    = link_to 'Edit', edit_book_path(@book), class: 'lime-link-button'
+    = link_to 'Back', books_path, class: 'lime-link-button'

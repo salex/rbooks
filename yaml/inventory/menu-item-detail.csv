@@ -1,0 +1,153 @@
+Item Name,Item UPC,Item Price,Cost,Markup,Revenue Class,Department,Status
+Amaretto,,3.5,0.63,455.55555555555554,Liquor,Liqueur,Active
+Bacardi Rum,,4.25,0.7,507.14285714285717,Liquor,Rum & Tequila,Active
+Blue Curracao,,3.5,0.48,629.1666666666666,Liquor,Liqueur,Active
+Blush Wine,,3.5,1.35,159.25925925925927,Wine,Wine,Active
+Bud Light,,2.5,0.94,165.95744680851064,Beer,Beer,Active
+Bud Light Lime,,2.75,1.17,135.04273504273505,Beer,Beer,Active
+Budweiser,,2.5,0.94,165.95744680851064,Beer,Beer,Active
+Bush NA,,2,1,100,Beer,Beer,Active
+Buttershots,,3.5,0.5,600,Liquor,Liqueur,Active
+Canadian Club,,4.25,0.7,507.14285714285717,Liquor,Whiskey,Active
+Captain Morgan,,4.25,0.78,444.87179487179486,Liquor,Rum & Tequila,Active
+Carolan Irish,,4.25,0.64,564.0625,Liquor,Liqueur,Active
+Club Soda,,1,0,0,Beverage,Beverages,Active
+Coffee: Decaf,,0.5,0,0,Beverage,Beverages,Active
+Coffee: Regular,,0.5,0,0,Beverage,Beverages,Active
+Coke,,1,0,0,Beverage,Beverages,Active
+Coke Zero,,1,0,0,Beverage,Beverages,Active
+Coors Light,,2.5,1.25,100,Beer,Beer,Active
+Corona Extra,,2.75,1.25,120,Beer,Beer,Active
+Corona Light,,2.75,1,175,Beer,Beer,Active
+Crackers,,0.75,0,0,Food,Bar Snacks,Active
+Cream de Banana,,3.5,0.5,600,Liquor,Liqueur,Active
+Creme de Cacao,,3.5,0.5,600,Liquor,Liqueur,Active
+Creme de Menthe,,3.5,0.5,600,Liquor,Liqueur,Active
+Crown Royal,,4.75,1.4,239.28571428571428,Liquor,Whiskey,Active
+Crown Royal Apple,,4.75,1.43,232.16783216783216,Liquor,Whiskey,Active
+Diet Coke,,1,0,0,Beverage,Beverages,Active
+Diet Dr Pepper,,1,0,0,Beverage,Beverages,Active
+Diet Pepsi,,1,0,0,Beverage,Beverages,Active
+Dr Pepper,,1,0,0,Beverage,Beverages,Active
+Fireball,,4.25,0.81,424.69135802469134,Liquor,Liqueur,Active
+Gentleman Jack,,5.25,1.45,262.0689655172414,Liquor,Whiskey,Active
+Ginger Ale,,1,0,0,Beverage,Beverages,Active
+Hot Damn,,3.5,0.57,514.0350877192983,Liquor,Liqueur,Active
+Jack Danial’s,,4.75,1.22,289.344262295082,Liquor,Whiskey,Active
+Jack Danial’s Fire,,4.75,1.28,271.09375,Liquor,Whiskey,Active
+Jack Danial’s Honey,,4.75,1.22,289.344262295082,Liquor,Whiskey,Active
+Jagermeister,,4.75,1.15,313.04347826086956,Liquor,Liqueur,Active
+Jamison,,5.25,1.44,264.5833333333333,Liquor,Whiskey,Active
+Jim Beam,,4.25,0.85,400,Liquor,Whiskey,Active
+Jim Beam Fire,,4.25,0.89,377.5280898876405,Liquor,Whiskey,Active
+Jim Bean Peach,,3.5,1.43,144.75524475524475,Liquor,Whiskey,Active
+Jose Cuervo Gold,,4.75,1.03,361.1650485436893,Liquor,Rum & Tequila,Active
+Jose Cuervo Silver,,4.75,1.03,361.1650485436893,Liquor,Rum & Tequila,Active
+Juice Cranberry,,1,0,0,Beverage,Beverages,Active
+Juice Lemonade,,1,0,0,Beverage,Beverages,Active
+Juice Orange,,1,0,0,Beverage,Beverages,Active
+Juice Pineapple,,1,0,0,Beverage,Beverages,Active
+Juice Tomato,,1,0,0,Beverage,Beverages,Active
+Kuhlua,,4,1.15,247.82608695652175,Liquor,Liqueur,Active
+Large Chips,,1,0,0,Food,Bar Snacks,Active
+Lime/Straw Rita,,2,1,100,Beer,Beer,Active
+Long island,,4.25,0.33,1187.878787878788,Liquor,Whiskey,Active
+Malibu Coconut,,4.25,0.74,474.3243243243243,Liquor,Rum & Tequila,Active
+Malibu Mango,,4.25,0.74,474.3243243243243,Liquor,Rum & Tequila,Active
+Marker’s Mark,,5.25,1.48,254.72972972972974,Liquor,Whiskey,Active
+Michelob Ultra,,2.75,1.03,166.9902912621359,Beer,Beer,Active
+Miller High Life,,2.5,0.81,208.64197530864197,Beer,Beer,Active
+Miller Light,,2.5,0.94,165.95744680851064,Beer,Beer,Active
+Miller MGD,,2.5,0.89,180.8988764044944,Beer,Beer,Active
+Misc 1.00,,1,0,0,Food,Bar Snacks,Active
+Misc 1.25,,1.25,0,0,Food,Bar Snacks,Active
+Misc 2.00,,2,0,0,Food,Bar Snacks,Active
+Misc Liquor,,3.5,0,0,Liquor,Whiskey,Active
+Mt Dew,,1,0,0,Beverage,Beverages,Active
+Natural Light,,2.5,1.16,115.51724137931033,Beer,Beer,Active
+New Amsterdam Red Berry,,4.25,0.64,564.0625,Liquor,Gin & Vodka,Active
+Peach Schnapps,,3.5,0.46,660.8695652173913,Liquor,Liqueur,Active
+Peppermint Schnapps,,3.5,0.46,660.8695652173913,Liquor,Liqueur,Active
+Pepsi,,1,0,0,Beverage,Beverages,Active
+Pinnacle Whipped Cream,,4.25,0.79,437.9746835443038,Liquor,Gin & Vodka,Active
+Propel,,2,0,0,Beverage,Beverages,Active
+Red Bull,,2,0,0,Beverage,Beverages,Active
+Red Wine,,3.5,135,-97.4074074074074,Wine,Wine,Active
+Ritas Tropical,,3,1.25,140,Beer,Beer,Active
+R&R,,3.5,0.5,600,Liquor,Whiskey,Active
+Seagram’s 7 Crown,,3.5,0.55,536.3636363636364,Liquor,Whiskey,Active
+Seagram’s Gin,,3.5,0.55,536.3636363636364,Liquor,Gin & Vodka,Active
+Seagram’s VO,,4.25,0.81,424.69135802469134,Liquor,Whiskey,Active
+Segrams’s Cooler,,3,1.25,140,Beer,Beer,Active
+Small Chips,,0.5,0,0,Food,Bar Snacks,Active
+Smirnoff,,4.25,0.67,534.3283582089553,Liquor,Gin & Vodka,Active
+Smirnoff Carmel,,4.25,0.74,474.3243243243243,Liquor,Gin & Vodka,Active
+Smirnoff Vanilla,,4.25,0.74,474.3243243243243,Liquor,Gin & Vodka,Active
+Sour Apple,,3.5,0.48,629.1666666666666,Liquor,Liqueur,Active
+Southern Comfort,,4.25,0.78,444.87179487179486,Liquor,Whiskey,Active
+Sprite,,1,0,0,Beverage,Beverages,Active
+Tito's Handmade,,4.25,1,325,Liquor,Gin & Vodka,Active
+Tonic,,1,0,0,Beverage,Beverages,Active
+Triple Sec,,0.5,0.5,0,Liquor,Liqueur,Active
+Vermoth,,3.5,0.5,600,Liquor,Liqueur,Active
+Water,,1,0,0,Beverage,Beverages,Active
+Well Bourbon,,3.5,0.48,629.1666666666666,Liquor,Whiskey,Active
+Well Coffee (Chapala),,3.5,0.49,614.2857142857143,Liquor,Liqueur,Active
+Well Gin,,3.5,0.31,1029.032258064516,Liquor,Gin & Vodka,Active
+Well Liqueur (E&J),,3.5,0.64,446.875,Liquor,Liqueur,Active
+Well Rum (Aristocrat),,3.5,0.31,1029.032258064516,Liquor,Rum & Tequila,Active
+Well Scotch(Usher/100),,3.5,0.7,400,Liquor,Whiskey,Active
+Well Tequila (Montezuma),,3.5,0,0,Liquor,Rum & Tequila,Active
+Well Vodka (Aristocrat),,3.5,0.31,1029.032258064516,Liquor,Gin & Vodka,Active
+Well Whiskey,,3.5,0.55,536.3636363636364,Liquor,Whiskey,Active
+White Wine,,3.5,1.35,159.25925925925927,Wine,Wine,Active
+Wild Turkey,,4.75,1.18,302.5423728813559,Liquor,Whiskey,Active
+Yuengling,,2.75,1.02,169.6078431372549,Beer,Beer,Active
+1,,0,0,0,Liquor,1,Inactive
+10,,0,0,0,Liquor,1,Inactive
+11,,0,0,0,Liquor,1,Inactive
+2,,0,0,0,Liquor,1,Inactive
+3,,0,0,0,Liquor,1,Inactive
+4,,0,0,0,Liquor,1,Inactive
+5,,0,0,0,Liquor,1,Inactive
+6,,0,0,0,Liquor,1,Inactive
+7,,0,0,0,Liquor,1,Inactive
+8,,0,0,0,Liquor,1,Inactive
+9,,0,0,0,Liquor,1,Inactive
+Alabama Slammer,,4.5,0,0,Liquor,Cocktails,Inactive
+Bahama Mama,,4.5,0,0,Liquor,Cocktails,Inactive
+Baileys,,4.25,1.29,229.45736434108528,Liquor,Liqueur,Inactive
+Black Russian,,4.5,0,0,Liquor,Cocktails,Inactive
+Bloody Mary,,4.5,0,0,Liquor,Cocktails,Inactive
+Buttery Nipple,,3.5,0,0,Liquor,Cocktails,Inactive
+Cadillac Margarita,,5.75,0,0,Liquor,Cocktails,Inactive
+Chocolate Cake,,4.5,0,0,Liquor,Cocktails,Inactive
+Corona Lite,,2.75,1,175,Beer,Beer,Inactive
+Cosmopolitan,,4.5,0,0,Liquor,Cocktails,Inactive
+Creamsicle,,4.5,0,0,Liquor,Cocktails,Inactive
+Daiquiri,,4.5,0,0,Liquor,Cocktails,Inactive
+Dewars,,4.75,1.33,257.14285714285717,Liquor,Whiskey,Inactive
+Fuzzy Navel,,3.5,0,0,Liquor,Cocktails,Inactive
+George Dickle,,4.25,0.92,361.95652173913044,Liquor,Whiskey,Inactive
+Jolly Rancher,,3.5,0,0,Liquor,Cocktails,Inactive
+Kamikaze,,4.5,0,0,Liquor,Cocktails,Inactive
+Lemon Drop,,4.5,0,0,Liquor,Cocktails,Inactive
+Long Island Iced Tea,,5.75,0,0,Liquor,Cocktails,Inactive
+Margarita,,4.5,0,0,Liquor,Cocktails,Inactive
+Martini,,4.5,0,0,Liquor,Cocktails,Inactive
+Midori Sour,,3.5,0,0,Liquor,Cocktails,Inactive
+Mudslide,,4.5,0,0,Liquor,Cocktails,Inactive
+Old Fashioned,,4.5,0,0,Liquor,Cocktails,Inactive
+Pina Colada,,4.5,0,0,Liquor,Cocktails,Inactive
+Red Headed Slut,,4.75,0,0,Liquor,Cocktails,Inactive
+Sex On Beach,,4.5,0,0,Liquor,Cocktails,Inactive
+Sour Apple Martini,,4.5,0,0,Liquor,Cocktails,Inactive
+Strawberry Colada,,4.75,0,0,Liquor,Cocktails,Inactive
+Strawberry Daiquiri,,4.5,0,0,Liquor,Cocktails,Inactive
+Strawberry Margarita,,4.5,0,0,Liquor,Cocktails,Inactive
+Surfer on Acid,,4.75,0,0,Liquor,Cocktails,Inactive
+Tequila Sunrise,,3.5,0,0,Liquor,Cocktails,Inactive
+Tom Collins,,4,0,0,Liquor,Cocktails,Inactive
+Whiskey Sour,,4,0,0,Liquor,Cocktails,Inactive
+White Russian,,4.5,0,0,Liquor,Cocktails,Inactive
+Woo Woo,,4.5,0,0,Liquor,Cocktails,Inactive

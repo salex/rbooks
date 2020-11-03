@@ -1,0 +1,36 @@
+.w3-container.w3-border.w3-white.min-height
+  .strong Update Profile
+  = form_for(@user, url: update_profile_user_path(@user), method: :patch) do |f|
+    - if @user.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@user.errors.count, "error")} prohibited this entry from being saved:"
+        ul
+          - @user.errors.full_messages.each do |message|
+            li = message
+    .w3-row.s12.w3-col
+      .form-inputs.s6.w3-col
+        .field
+          = f.label :username
+          = f.text_field :username
+        .field
+          = f.label :email
+          = f.text_field :email
+        .field
+          = f.label :full_name
+          = f.text_field :full_name
+        .field
+          = f.label :default_book
+          = f.select("default_book", Book.all.collect {|b| [ b.name, b.id ] }, { include_blank: true },class:'w30p')
+
+        .annotate You may change your password below. Leave blank if just updating eMail or Username.
+        .field
+          = f.label :password
+          = f.password_field :password
+        .field
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+    .w3-row
+      .s3.w3-col
+        = f.submit 'Update Profile',class:'button radius small strong'
+      .s3.w3-col
+        = link_to "Cancel", root_path,class:'cancel-button'

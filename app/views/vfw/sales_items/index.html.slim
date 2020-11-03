@@ -1,0 +1,70 @@
+.w3-container.w3-white.min-height
+  .w3-row-padding.noprint
+    h3.w3-col.s3 = "Listing #{request.path.gsub('/',' ').gsub('_',' ').split.map { |x| x.capitalize }.join(" ")} "
+    .w3-col.s9.w3-padding 
+      = link_to "Sales Items",sales_items_path, class:'lime-link-button round w3-padding' 
+
+      = link_to "Liquor",liquor_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "Beer",beer_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "Wine",wine_sales_items_path, class:'lime-link-button round w3-padding' 
+
+      = link_to "Beverage",beverage_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "Food",food_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "Liquor Inv",liquor_inventory_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "Beer Inv",beer_inventory_sales_items_path, class:'lime-link-button round w3-padding' 
+      = link_to "POS Update",pos_download_sales_items_path, class:'lime-link-button round w3-padding' 
+
+
+  - tcost = 0
+
+  table.small-table7[data-controller="sortTable"]
+    thead
+      tr
+        th[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |Name
+        th Type
+        th Price
+        th Cost
+        th[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |Department
+        / th Markup
+        th Quanity
+        th Alert
+        th Size
+        th Cases
+        th Btls
+        th Btls1
+        th Btls2
+        th Percent
+        th Actions
+
+    tbody
+      - @sales_items.each do |sales_item|
+        - tcost += sales_item.cost * sales_item.quanity
+        tr
+          td = sales_item.name
+          td = sales_item.type
+          td = sales_item.price
+          td = sales_item.cost
+          td = sales_item.department
+          / td = sales_item.markup
+          td = sales_item.quanity
+          - if sales_item.alert >= sales_item.quanity
+            td.w3-text-red = sales_item.alert
+          - else
+            td = sales_item.alert
+          td = sales_item.size
+          td = sales_item.cases
+          td = sales_item.bottles
+          td = sales_item.bottles_1
+          td = sales_item.bottles_2
+          td = sales_item.percent
+          td 
+            = link_to icon('fas fa-eye'),  sales_item_path(sales_item), title: 'Show it', class: 'btn-icon  w3-text-blue mr-4'
+            = link_to icon('fas fa-edit'), edit_sales_item_path(sales_item), title: 'Edit it', class: 'btn-icon warning mr-4 w3-text-orange'
+            = link_to icon('fas fa-trash'),  sales_item_path(sales_item), title: 'Destroy it', class: ' btn-icon mr-4 w3-text-red', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+            = link_to icon('far fa-shopping-cart'),buy_sales_item_path(sales_item),class: 'btn-icon  w3-text-blue mr-4'
+  p.strong = "Total Cost/Inventory Value: #{tcost.round(2)}"
+

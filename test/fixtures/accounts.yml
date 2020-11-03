@@ -1,0 +1,62 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  book: one
+  name: MyString
+  account_type: MyString
+  code: MyString
+  description: MyString
+  placeholder: false
+  contra: false
+  parent_id: 1
+  level: 1
+
+one1:
+  uuid: MyString1
+  book: one
+  name: MyString
+  account_type: MyString
+  code: MyString
+  description: MyString
+  placeholder: false
+  contra: false
+  parent_id: one
+  level: 1
+
+one2:
+  uuid: MyString2
+  book: one
+  name: MyString
+  account_type: MyString
+  code: MyString
+  description: MyString
+  placeholder: false
+  contra: false
+  parent_id: one1
+  level: 1
+
+one3:
+  uuid: MyString3
+  book: one
+  name: MyString
+  account_type: MyString
+  code: MyString
+  description: MyString
+  placeholder: false
+  contra: false
+  parent_id: 1
+  level: 1
+
+
+two:
+  uuid: MyString
+  book: two
+  name: MyString
+  account_type: MyString
+  code: MyString
+  description: MyString
+  placeholder: false
+  contra: false
+  parent_id: 1
+  level: 1

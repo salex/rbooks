@@ -1,0 +1,39 @@
+.w3-container.w3-white.min-height
+  /p = @inv.inspect
+  = form_with url: liquor_update_sales_items_path,method: :patch,data:{controller:'inventory'} do |form|
+    div.noprint
+      button.noprint = form.submit
+      = link_to "Cancel", sales_items_path, class:'cancel-button noprint indent'
+      span.indent.w3-right-align.blue-link[onclick="window.print()"] Print
+    table.small-table7
+      tr
+        th Item
+        th QOH
+        th Alert
+        th Size (ml)
+        th Bottles
+        th Percent
+        th Total
+        th &#10003;
+      - @liquor.each do |item|
+        tr
+          td = item.name
+          td
+            = item.quanity
+            = hidden_field_tag("[liquor][#{item.id}][quanity]",item.quanity)
+          td
+            = item.alert
+            = hidden_field_tag("[liquor][#{item.id}][alert]",item.alert)
+          td= text_field_tag("[liquor][#{item.id}][size]",item.size, data:{target:'inventory.size',action:'change->inventory#updateLiquor'},style:'width:100px;', class:'tright')
+          td= text_field_tag("[liquor][#{item.id}][bottles]",nil,
+            data:{target:'inventory.bottles',action:'change->inventory#updateLiquor'})
+          td
+            - opt = []
+            - 0.step(100,5){|x| opt << x}
+            = text_field_tag("[liquor][#{item.id}][percent]",nil,
+             data:{target:'inventory.percent' ,action:'change->inventory#updateLiquor'})
+
+          td= text_field_tag("[liquor][#{item.id}][total]",item.total,data:{target:'inventory.total'},style:'width:100px;', class:'tright')
+          td= check_box_tag("[ckd]",0,false,data:{target:'inventory.ckd'})
+
+

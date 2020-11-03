@@ -1,0 +1,27 @@
+= form_for @bank_statement do |f|
+  - if @bank_statement.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@bank_statement.errors.count, "error")} prohibited this bank_statement from being saved:"
+      ul
+        - @bank_statement.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :book
+    = @bank_statement.book.name
+  .field
+    = f.label :statement_date
+    = f.text_field(:statement_date,data:{controller:'flatpickr'} )
+  .field
+    = f.label :beginning_balance
+    = f.number_field :beginning_balance
+  .field
+    = f.label :ending_balance
+    = f.number_field :ending_balance
+  / .field
+  /   = f.label :ofx_data
+  /   = f.text_area :ofx_data
+  .field
+    = f.label :reconciled_date
+    = f.text_field :reconciled_date,data:{controller:'flatpickr'} 
+  .actions = f.submit

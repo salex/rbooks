@@ -1,0 +1,105 @@
+Item Name,Department Name,Quantity on Hand,Alert Threshold
+Amaretto,Liqueur,40.000,0
+Bacardi Rum,Rum & Tequila,27.000,20.00
+Baileys,Liqueur,0.000,0
+Blue Curracao,Liqueur,19.000,0
+Bud Light,Beer,0.000,48.00
+Bud Light Lime,Beer,8.000,20.00
+Budweiser,Beer,0.000,24.00
+Bush NA,Beer,2.000,6.00
+Buttershots,Liqueur,20.000,0
+Canadian Club,Whiskey,16.000,10.00
+Captain Morgan,Rum & Tequila,21.000,20.00
+Carolan Irish,Liqueur,20.000,0
+Club Soda,Beverages,0.000,0
+Coffee: Decaf,Beverages,0.000,0
+Coffee: Regular,Beverages,0.000,0
+Coke,Beverages,0.000,0
+Coke Zero,Beverages,0.000,0
+Coors Light,Beer,0.000,48.00
+Corona Extra,Beer,92.000,24.00
+Corona Light,Beer,0.000,10.00
+Crackers,Bar Snacks,0.000,0
+Cream de Banana,Liqueur,51.000,0
+Creme de Cacao,Liqueur,34.000,0
+Creme de Menthe,Liqueur,34.000,0
+Crown Royal,Whiskey,1.000,14.00
+Crown Royal Apple,Whiskey,0.000,14.00
+Dewars,Whiskey,3.000,6.00
+Diet Coke,Beverages,0.000,0
+Diet Dr Pepper,Beverages,0.000,0
+Diet Pepsi,Beverages,0.000,0
+Dr Pepper,Beverages,0.000,0
+Fireball,Liqueur,0.000,14.00
+Gentleman Jack,Whiskey,0.000,0
+George Dickle,Whiskey,3.000,14.00
+Ginger Ale,Beverages,0.000,0
+Hot Damn,Liqueur,5.000,0
+Jack Danial’s,Whiskey,0.000,14.00
+Jack Danial’s Fire,Whiskey,0.000,14.00
+Jack Danial’s Honey,Whiskey,0.000,14.00
+Jagermeister,Liqueur,0.000,14.00
+Jamison,Whiskey,0.000,14.00
+Jim Beam,Whiskey,0.000,14.00
+Jim Beam Fire,Whiskey,34.000,0
+Jim Bean Peach,Whiskey,13.000,12.00
+Jose Cuervo Gold,Rum & Tequila,19.000,20.00
+Jose Cuervo Silver,Rum & Tequila,0.000,20.00
+Juice Cranberry,Beverages,0.000,0
+Juice Lemonade,Beverages,0,0
+Juice Orange,Beverages,0.000,0
+Juice Pineapple,Beverages,0.000,0
+Juice Tomato,Beverages,0.000,0
+Kuhlua,Liqueur,0.000,0
+Large Chips,Bar Snacks,0.000,0
+Lime/Straw Rita,Beer,33.000,12.00
+Long island,Whiskey,27.000,0
+Malibu Coconut,Rum & Tequila,0.000,20.00
+Malibu Mango,Rum & Tequila,22.000,10.00
+Marker’s Mark,Whiskey,11.000,10.00
+Michelob Ultra,Beer,0.000,36.00
+Miller High Life,Beer,0.000,24.00
+Miller Light,Beer,0.000,48.00
+Miller MGD,Beer,31.000,12.00
+Misc 1.00,Bar Snacks,0.000,0
+Misc 1.25,Bar Snacks,0.000,0
+Misc 2.00,Bar Snacks,0.000,0
+Misc Liquor,Whiskey,0.000,0
+Mt Dew,Beverages,0.000,0
+Natural Light,Beer,0.000,24.00
+New Amsterdam Red Berry,Gin & Vodka,20.000,10.00
+Peach Schnapps,Liqueur,39.000,14.00
+Peppermint Schnapps,Liqueur,48.000,0
+Pepsi,Beverages,0.000,0
+Pinnacle Whipped Cream,Gin & Vodka,21.000,10.00
+Propel,Beverages,0.000,0
+Red Bull,Beverages,0.000,0
+Ritas Tropical,Beer,15.000,12.00
+R&R,Whiskey,16.000,8.00
+Seagram’s 7 Crown,Whiskey,16.000,14.00
+Seagram’s Gin,Gin & Vodka,30.000,0
+Seagram’s VO,Whiskey,33.000,14.00
+Segrams’s Cooler,Beer,0.000,24.00
+Small Chips,Bar Snacks,0.000,0
+Smirnoff,Gin & Vodka,12.000,20.00
+Smirnoff Carmel,Gin & Vodka,4.000,0
+Smirnoff Vanilla,Gin & Vodka,12.000,0
+Sour Apple,Liqueur,48.000,0
+Southern Comfort,Whiskey,54.000,10.00
+Sprite,Beverages,0.000,0
+Tito's Handmade,Gin & Vodka,0.000,10.00
+Tonic,Beverages,0.000,0
+Triple Sec,Liqueur,23.000,0
+Vermoth,Liqueur,20.000,0
+Water,Beverages,0.000,0
+Well Bourbon,Whiskey,0.000,25.00
+Well Coffee (Chapala),Liqueur,25.000,10.00
+Well Gin,Gin & Vodka,26.000,0
+Well Liqueur (E&J),Liqueur,12.000,0
+Well Rum (Aristocrat),Rum & Tequila,0.000,20.00
+Well Scotch(Usher/100),Whiskey,26.000,10.00
+Well Tequila (Montezuma),Rum & Tequila,0.000,20.00
+Well Vodka (Aristocrat),Gin & Vodka,0.000,14.00
+Well Whiskey,Whiskey,26.000,14.00
+Wild Turkey,Whiskey,10.000,14.00
+Yuengling,Beer,46.000,24.00

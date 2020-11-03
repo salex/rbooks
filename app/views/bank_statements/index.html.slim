@@ -1,0 +1,35 @@
+.w3-container.w3-white.min-height
+  h3 Bank Statements
+  table.smalltable7
+    thead
+      tr
+        th Book
+        th Statement date
+        th Beginning balance
+        th Ending balance
+        th Reconciled date
+        th Actions
+
+    tbody
+      - @bank_statements.each do |bank_statement|
+        tr
+          td = bank_statement.book.name
+          td = bank_statement.statement_date
+          td.text-right = Ledger.to_money(bank_statement.beginning_balance)
+          td.text-right = Ledger.to_money(bank_statement.ending_balance)
+          td = bank_statement.reconciled_date
+          td.actions
+            = link_to ofxes_path do
+              i[aria-hidden="true" class="fa fa-upload"]
+            = link_to bank_statement do
+              i class="fas fa-eye"
+            = link_to edit_bank_statement_path(bank_statement) do
+              i class="fas fa-edit"
+            = link_to '<i class="far fa-credit-card" aria-hidden="true"></i>'.html_safe, reconcile_bank_statement_path(bank_statement)
+
+            = link_to bank_statement, data: { confirm: 'Are you sure?' }, method: :delete do
+              i class="fas fa-trash w3-text-red"
+
+  br
+
+  = link_to 'New Bank statement', new_bank_statement_path,class:'lime-link-button'

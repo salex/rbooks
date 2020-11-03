@@ -1,0 +1,23 @@
+
+.field
+  label Email:
+  = @user.email
+.field
+  label Username:
+  = @user.username
+.field
+  label Full name:
+  = @user.full_name
+.field
+  label Roles:
+  = @user.roles
+.field
+  label Password:
+  = @user.password
+.field
+  label Default book:
+  = @user.default_book
+
+=> link_to 'Edit', edit_user_path(@user)
+'|
+=< link_to 'Back', users_path

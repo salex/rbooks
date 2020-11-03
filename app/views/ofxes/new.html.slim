@@ -1,0 +1,19 @@
+.w3-container.w3-white.min-height.scaffold
+
+  .w3-row-padding
+    .s5.w3-col
+      = form_for @ofx do |f|
+        - if @ofx.errors.any?
+          #error_explanation
+            h2 = "#{pluralize(@ofx.errors.count, "error")} prohibited this bank_statement from being saved:"
+            ul
+              - @ofx.errors.full_messages.each do |message|
+                li = message
+
+        .field
+          = f.label :key
+          = f.file_field :text_field
+
+        hr
+        = f.submit
+

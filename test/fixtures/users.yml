@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyStringOne
+  username: MyStringOne
+  full_name: MyStringOne
+  roles: []
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  default_book: 1
+
+two:
+  email: MyStringTwo
+  username: MyStringTwo
+  full_name: MyStringTwo
+  roles: []
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  default_book: 1

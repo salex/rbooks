@@ -1,0 +1,35 @@
+.w3-row-padding.w3-ios-light-grey
+  .w3-col.s3
+
+    h4.strong 
+      |Reconcile Bank Account 
+  .w3-col.s9
+    p= link_to 'Cancel/List', bank_statements_path, class:'lime-link-button'
+.w3-container.w3-white.min-height
+  .w3-row
+    .w3-col.s5
+      strong Bank Balance:
+      strong Begin:&nbsp;
+      = imoney(@reconcile.bank_beginning_balance)
+      strong &nbsp;End:&nbsp;
+      = imoney(@reconcile.bank_ending_balance)
+    .w3-col.s5
+      strong Checkbook Balance:
+      strong Begin:&nbsp;
+      = imoney(@reconcile.checking_beginning_balance)
+      strong &nbsp;End:&nbsp;
+      = imoney(@reconcile.checking_ending_balance)
+
+
+    .w3-col.s2
+      strong Closing Date:
+      = @reconcile.closing_date
+
+  #ajax_balance
+    div[data-controller="remoteUpdate" data-target="remoteUpdate.refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
+      = render partial: 'bank_statements/reconcile'
+
+    / #partial[data-controller="bankReconcile"]
+    /   = render partial: 'bank_statements/reconcile'
+
+   

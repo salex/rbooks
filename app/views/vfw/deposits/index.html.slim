@@ -1,0 +1,46 @@
+.w3-container.w3-white.min-height
+  h4.strong Listing deposits
+
+  table.smalltable7
+    thead
+      tr
+        th Date
+        th Sales Rev
+        th Other Rev
+        th Cash Sales
+        th Credit Sales
+        th Tips Paid
+        th Sales Dep
+        th Other Dep
+        th Total Dep
+        th Cash out
+        th Actions
+       
+
+    tbody
+      - @deposits.each do |deposit|
+        tr
+          td = deposit.date
+          td.tright = deposit.sales_revenue
+          td.tright = deposit.other_revenue
+          td.tright = deposit.cash_sales
+          td.tright = deposit.credit_sales
+          td.tright = deposit.tips_paid
+          td.tright = deposit.sales_deposit
+          td.tright = deposit.other_deposit
+          td.tright = deposit.total_deposit
+          td.tright = deposit.cash_out
+          td.actions 
+            = link_to deposit_path(deposit) do
+              i class="fas fa-eye blue-link"
+            = link_to edit_deposit_path(deposit) do
+              i class="fas fa-edit blue-link"
+            = link_to deposit_path(deposit), data: { confirm: 'Are you sure? ' }, method: :delete do
+              i class="fas fa-trash w3-text-red"
+            / = link_to 'Show', deposit, class:'blue-link'
+            / = link_to 'Edit', edit_deposit_path(deposit), class:'blue-link'
+            / = link_to 'Destroy', deposit, data: { confirm: 'Are you sure?' }, method: :delete, class:'blue-link'
+
+  br
+
+  = link_to 'New Deposit', new_deposit_path

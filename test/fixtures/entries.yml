@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  numb: MyString
+  post_date: 2020-10-28
+  description: MyString
+  fit_id: MyString
+  lock_version: 1
+
+two:
+  book: two
+  numb: MyString
+  post_date: 2020-10-28
+  description: MyString
+  fit_id: MyString
+  lock_version: 1

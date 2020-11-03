@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>webkit bug</title>
+    <style type="text/css">
+      body {
+        font-size: 1.2rem;
+      }
+      table.pdf{
+        width:100%;
+        border-collapse: collapse;
+      }
+       table.pdf th {
+        text-align: left;
+      }
+
+      table.pdf td, table.pdf th {
+        padding: 0.2rem;
+        margin:0;
+
+      }
+      table.pdf tr:nth-of-type(even) {
+        background-color:#f9f9f9!important;
+      }
+      table.pdf th.w48{width: 48%;}
+      table.pdf th.w13{width: 13%;}
+      table.pdf th.shrink {font-size: 0.6rem!important;}
+      table.pdf.borders th,table.pdf.borders td {
+        border:solid 1px #ccc!important;
+      }
+
+
+
+
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <table class="pdf borders">
+      <tr>
+        <th class="w48">regular</th>
+        <th class="w13 shrink">shrink one</th>
+        <th class="w13 shrink">shrink two</th>
+        <th class="w13 shrink">shrink three</th>
+        <th class="w13 shrink">shrink four</th>
+      </tr>
+      <tr>
+        <td>some description</td>
+        <td>1022.22</td>
+        <td>2022.22</td>
+        <td>3022.22</td>
+        <td>4022.22</td>
+
+      </tr>
+      <tr>
+        <td>some description</td>
+        <td>1022.22</td>
+        <td>2022.22</td>
+        <td>3022.22</td>
+        <td>4022.22</td>
+
+      </tr>
+      <tr>
+        <td>some description</td>
+        <td>1022.22</td>
+        <td>2022.22</td>
+        <td>3022.22</td>
+        <td>4022.22</td>
+
+      </tr>
+
+
+  </body>
+</html>

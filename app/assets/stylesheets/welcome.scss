@@ -1,0 +1,198 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+// body {background-color: #0F3E61;}
+.min-height{min-height: 85vh;}
+
+.strong {font-weight: bold;}
+
+.w3-ios-light-grey {color:#000;background-color:#ceced2}
+$malt: #991A1E;
+$vfw_gold: #A79055;
+$dark-blue: #0F3E61;
+
+.w100 {width:100%;}
+.w10p {width:10%;}
+.w15p {width:15%;}
+
+.w20p {width:20%;}
+.w25p {width:25%;}
+.w05p {width: 5%}
+.w30p {width:30%!important;}
+.w40p {width:40%;}
+.w70p {width:70%!important;}
+.w80p {width:80%;}
+.w90p {width:90%!important;}
+.w15 {width:15px;}
+.w20 {width:20px;}
+.mbtn{
+  background-color: lighten($malt,20%);
+  color:#ddd;
+  margin-bottom: 2px;
+}
+.gbtn{
+  background-color: $vfw_gold;
+  color:#fff;
+  margin-bottom: 2px;
+}
+.blue-background{background-color: #0F3E61;}
+.malty {background-color: $malt;color:#ddd;}
+.lgoldey,.lite-goldey  {background-color: lighten($vfw_gold,20);color:#333;}
+.goldey {background-color: $vfw_gold;color:#f8f8f8;}
+.strong {font-weight: bold;}
+.text-center {text-align: center!important;}
+.text-right,.tright {text-align: right!important;}
+
+.indent {margin-left:8px;}
+
+.sticky-menu {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+span.annotate, div.annotate, dd.annotate, dl.annotate, li.annnotate ,p.annotate{
+  font-style: italic;
+  font-size: calc(0.5rem + 0.5vw);
+  line-height: calc(0.5rem + 0.5vw);
+  font-weight: normal;
+
+}
+img.image-fit{
+  max-width:100%;
+  height:auto;
+}
+span.indent {margin-right:16px;}
+.small-caps {
+  font-variant: small-caps;
+}
+
+table.small-table7, table.smalltable7 {
+  border-collapse: collapse;
+  width: 100%;
+  // height: 75vh;
+  // overflow: auto;
+  thead.fixed {
+    z-index: 2;
+    th {
+      position: -webkit-sticky; 
+      position: sticky;
+      background-color: #eee;
+      top: 0;
+    }
+  }
+  tr:nth-of-type(even) {
+    background-color:lighten(#A79055,42%);
+  }
+  td, th {
+    // font-size: 0.8rem;
+    padding: 0.2rem;
+    margin:0;
+    // font-size: 1.2vw;
+    // line-height:1.3vw;
+    border:solid 1px #aaa;
+    // background-color: white;
+    // text-align: center;
+  }
+  td.actions{
+    a {padding-right: 2rem!important;}
+  }
+  td {
+    &.p0{ padding-left: 0rem;}
+    &.p1{ padding-left: 1rem;}
+    &.p2{ padding-left: 2rem;}
+    &.p3{ padding-left: 3rem;}
+    &.p4{ padding-left: 4rem;}
+    &.p5{ padding-left: 5rem;}
+    &.malt{ background-color: #ddd;}
+  }
+}
+
+.show-table th{text-align: right;}
+
+.show-fields label, .form-fields label, .field label {
+  width:20%;
+  display:inline-block!important;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 8px;
+  &.half{
+    width:40%;
+
+  }
+}
+
+dl.show{
+  dd{
+    width:20%;
+    display:inline-block;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 8px;
+  }
+  dt{
+    display:inline-block;
+  }
+  dd{
+    break-before:always;
+  }
+  &.half{
+    dd{
+      width:40%;
+    }
+  }
+}
+
+hr.underline {
+  margin:3px;
+  background-color:#eee;
+  border: solid 1px #ccc;
+}
+
+
+
+.field label {
+   font-weight: bold;
+   margin-right: 2rem;
+   display: block;
+}
+.field input {
+  &:disabled{
+    background-color: #d8d8d8;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0; }
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff; }
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square; }
+
+// label {
+//   display: block; }
+

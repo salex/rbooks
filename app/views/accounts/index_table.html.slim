@@ -1,0 +1,48 @@
+.w3-container.w3-white.min-height
+  .w3-row.w3-margin
+    .s3.w3-col
+      h3 Accounts
+    .s7.w3-col
+      = link_to 'Account Type View', accounts_path, class: ['lime-link-button',:small]
+      span.annotate.indent Displays less information and divided by Account Types
+
+  table.small-table7
+    thead.fixed
+      tr
+        th Name
+        th Type
+        th Lev
+        th PID
+        th Code
+        th Description
+        th Placeholder
+        th Contra
+        - if true
+
+          th Actions
+
+    tbody
+      - @accounts.each do |account|
+        tr
+          td class="p#{account.level} #{'strong' if account.placeholder}" =  link_to( account.name,account_path(account.id) )
+          td = account.account_type
+          td = account.level
+          th = account.parent_id
+          td = account.code
+          td = account.description
+          td= account.placeholder
+          td= account.contra
+          - if true
+            / @current_user.is_admin?
+
+            td.actions
+              = link_to account do
+                i class="fas fa-eye"
+
+              = link_to edit_account_path(account) do
+                i class="fas fa-edit"
+
+              = link_to new_account_path(parent_id:account.id) do
+                i class="fas fa-plus-square"
+
+

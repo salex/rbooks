@@ -1,0 +1,13 @@
+.w3-container.w3-white
+  h4.strong 
+    |Editing Audit Report Configuration 
+    span.inheader
+      button.green=> link_to 'Cancel/Show', reports_path,class:'cancel-button'
+
+  .w3-row
+    .w3-col.s6
+      .callout.alert.strong.z1 
+        h5 Cancel if you don't know what you are doing!
+      = form_for(@vfwcashconfig,url: update_config_reports_path,method: 'patch')
+        .box= submit_tag
+        .box= text_area_tag :yaml,@vfwcashconfig,rows:30,cols:100

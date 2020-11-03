@@ -1,0 +1,28 @@
+.w3-container.w3-white.min-height.scaffold
+  .w3-row-padding
+    .w3-col.s3
+      h3 OFX Transactions
+    .w3-col.s9
+      p = link_to("New OFX Upload", new_ofx_path,class:'lime-link-button')
+  table.w3-table-all
+    thead
+      tr
+        th Date
+        th TRange
+        th FRange
+        th.tright Ending Bal
+        th Actions
+  
+    tbody
+      - @ofxes.each do |ofx|
+        tr
+          td = ofx.statement_date
+          td = ofx.hash_data[:date_range] ||= ofx.hash_data[:tran_range]
+          td = ofx.hash_data[:fit_range]
+          td.tright = ofx.hash_data[:balance].blank? ? 0 : Ledger.money(ofx.hash_data[:balance])
+          td.actions
+            = link_to 'Show', ofx
+            = link_to 'Update', edit_ofx_path(ofx)
+
+  br
+

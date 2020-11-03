@@ -1,0 +1,45 @@
+---
+:checking_acct: Checking
+:savings_acct: Savings
+:cash_acct: Cash
+:current_assets: Assets
+:qm:
+  :name: Steven V Alex
+  :address: 405 Karaway Hls
+  :city: Gadsden AL, 35901
+:post:
+  :name: Wilson Parris
+  :post: VFW Post 8600
+  :numb: 8600
+  :address: 817 Rainbow Dr
+  :city: Gadsden AL, 35901
+  :department: Alabama
+:operations:
+  - - a. Have required payroll deductions been made?
+    - 'Yes'
+  - - b. Have payments been made to the proper State & Federal agencies this quarter?
+    - 'Yes'
+  - - c. Have Sales Taxes been collected and paid?
+    - 'Yes'
+  - - d. Are Club employees bonded?
+    - 'Yes'
+  - - e. Amount of outstanding bills?
+    - 0
+  - - f. Value of Real Estate?
+    - 57840000
+  - - g. Amount of Liability Insurance?
+    - 30000000
+  - - h. Owed on Mortgages and Loans?
+    - 0
+  - - i. Value of Personal Property?
+    - 4948000
+  - - j. Amount of Property Insurance?
+    - 34470000
+:date: '2020-01-14'
+:bond:
+  :name: Tallman Insurance Agency
+  :amount: 5000000
+  :to: '2020-08-31'
+:checking:
+  :balance:  4030664
+  :outstanding: 101505

@@ -1,0 +1,204 @@
+.w3-container.w3-white.min-height
+  .w3-row
+    .s12.w3-col.noprint
+      => link_to 'Edit Sales', edit_deposit_path(@deposit)
+      '|
+      => link_to 'Edit Other', edit_other_deposit_path(@deposit)
+      '|
+      => link_to 'Weekly', weekly_deposits_path
+      '|
+      => link_to 'Deposits List', deposits_path
+      '|
+      = link_to "Print Page", '#', onclick: "window.print();" 
+    
+
+
+  .w3-row
+    .s4.w3-col
+      h5 Deposit Details
+      table.smalltable7
+        tr
+          td.tright Date
+          td = @deposit.date
+        tr
+          td.strong[colspan="2"] Sales Revenue
+        tr
+          td.tright Cash Sales+
+          td.tright = dmoney @deposit.cash_sales
+        tr
+          td.tright Credit Sales+
+          td.tright = dmoney @deposit.credit_sales
+        tr
+          td.tright Sales Revenue=
+          td.tright = dmoney @deposit.sales_revenue
+        tr
+          td.tright Cash Payments
+          td.tright = dmoney @deposit.cash_payments
+        tr
+          td.tright Tip Paid-
+          td.tright = dmoney @deposit.tips_paid
+        tr
+          td.tright Cash Out-
+          td.tright = dmoney @deposit.cash_out
+        tr
+          td.tright Cash Expected=
+          td.tright = dmoney @deposit.cash_expected
+        tr
+          td.tright Cash Counted/Sales Deposit
+          td.tright = dmoney @deposit.sales_deposit
+        tr
+          td.tright Over/Under
+          td.tright = dmoney @deposit.over_under
+        tr
+          td.strong[colspan="2"] Other Revenue
+        tr
+          td.tright Other Deposit
+          td.tright = dmoney @deposit.other_deposit
+        tr
+          td.tright Total Deposit(s) (1 or 2)
+          td.tright = dmoney @deposit.total_deposit
+    .s8.w3-col
+      .w3-row-padding
+        .s5.w3-col
+          h5 Sales by Revenue Class
+          table.smalltable7
+            tr
+              td Class
+              td Quanity
+              td Amount
+            - tot = 0.0
+            - @deposit.sales_revenues.each do |r|
+              tr
+                td = r.item
+                td.tright = r.quanity
+                td.tright = dmoney r.amount
+                -tot += r.amount ||= 0
+            tr
+              td.strong Total
+              td
+              td.tright.strong = dmoney tot
+          h5 Cash Out
+          table.smalltable7
+            tr
+              td Amount
+              td Remarks
+            - @deposit.cash_outs.each do |r|
+              tr
+                td.tright = dmoney( r.amount ||= 0.0)
+                td = r.remarks
+        .s7.w3-col
+          h5 Other Revenue Details
+          - tot = 0.0
+          table.smalltable7
+            tr
+              td Item
+              td Amount
+              td Remarks
+            - @deposit.other_revenues.each do |r|
+              tr
+                td = r.item
+                td.tright = dmoney r.amount
+                td = r.remarks
+                - tot += r.amount
+
+            tr
+              td.strong Total
+              td.tright.strong = dmoney tot
+              td
+
+          h5 Sales Deposit Ledger
+          - ledger = @deposit.sales_ledger_deposit
+          - debits = 0.0
+          - credits = 0.0
+          table.smalltable7
+            tr
+              th Account
+              th Increase(d)
+              th Decrease(c)
+            - ledger[:debits].each do |l|
+              tr
+                td= l[0]
+                td.tright= dmoney l[1]
+                td.tright= l[2]
+                - debits += l[1]
+            - ledger[:credits].each do |l|
+              tr
+                td= l[0]
+                td.tright= l[1]
+                td.tright= dmoney l[2]
+                - credits += l[2]
+
+            tr
+              th.strong Balance
+              td.tright= dmoney debits
+              td.tright= dmoney credits
+
+
+
+          
+          h5 Other Deposit Ledger
+          - ledger = @deposit.other_ledger_deposit
+          - debits = 0.0
+          - credits = 0.0
+
+          table.smalltable7
+            tr
+              th Account
+              th Increase(d)
+              th Decrease(c)
+            - ledger[:debits].each do |l|
+              tr
+                td= l[0]
+                td.tright= dmoney l[1]
+                td.tright= l[2]
+                - debits += l[1]
+            - ledger[:credits].each do |l|
+              tr
+                td= l[0]
+                td.tright= l[1]
+                td.tright=  dmoney l[2]
+                - credits += l[2]
+
+            tr
+              th.strong Balance
+              td.tright= dmoney debits
+              td.tright= dmoney credits
+
+          h5 Combined Deposit Ledger
+          - ledger = @deposit.combined_ledger_deposit
+          - debits = 0.0
+          - credits = 0.0
+
+          table.smalltable7
+            tr
+              th Account
+              th Increase(d)
+              th Decrease(c)
+            - ledger[:debits].each do |l|
+              tr
+                td= l[0]
+                td.tright= dmoney l[1]
+                td.tright= l[2]
+                - debits += l[1]
+            - ledger[:credits].each do |l|
+              tr
+                td= l[0]
+                td.tright= l[1]
+                td.tright=  dmoney l[2]
+                - credits += l[2]
+
+            tr
+              th.strong Balance
+              td.tright= dmoney debits
+              td.tright= dmoney credits
+
+
+  / = @deposit.sales_revenue
+  / = @deposit.other_revenue
+  / = @deposit.cash_sales
+  / = @deposit.credit_sales
+  / = @deposit.tips_paid
+  / = @deposit.sales_deposit
+  / = @deposit.other_deposit
+  / = @deposit.total_deposit
+  / = @deposit.cash_out

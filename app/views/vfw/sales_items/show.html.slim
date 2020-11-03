@@ -1,0 +1,20 @@
+.w3-container.w3-white.min-height
+  table.show-table
+    = show_table_row('Name:',@sales_item.name)
+    = show_table_row('Type:',@sales_item.type)
+    = show_table_row('Price:',@sales_item.price)
+    = show_table_row('Cost:',@sales_item.cost)
+    = show_table_row('Department:',@sales_item.department)
+    = show_table_row('Markup:',@sales_item.markup)
+    = show_table_row('Quanity:',@sales_item.quanity)
+    = show_table_row('Alert:',@sales_item.alert)
+    = show_table_row('Size:',@sales_item.size)
+    = show_table_row('Cases:',@sales_item.cases)
+    = show_table_row('Bottles:',@sales_item.bottles)
+    = show_table_row('Bottles 1:',@sales_item.bottles_1)
+    = show_table_row('Bottles 2:',@sales_item.bottles_2)
+    = show_table_row('Percent:',@sales_item.percent)
+
+  => link_to 'Edit', edit_sales_item_path(@sales_item)
+  '|
+  =< link_to 'Back', index_path(@sales_item)

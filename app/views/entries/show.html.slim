@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Book:
+  = @entry.book
+p
+  strong Numb:
+  = @entry.numb
+p
+  strong Post date:
+  = @entry.post_date
+p
+  strong Description:
+  = @entry.description
+p
+  strong Fit:
+  = @entry.fit_id
+p
+  strong Lock version:
+  = @entry.lock_version
+
+=> link_to 'Edit', edit_entry_path(@entry)
+'|
+=< link_to 'Back', entries_path

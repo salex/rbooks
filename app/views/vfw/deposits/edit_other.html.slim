@@ -1,0 +1,43 @@
+.w3-container.w3-white.min-height
+
+  #other_revenue.w3-container = form_for(@deposit, method: :patch, url: update_other_deposit_path,data:{controller:'deposit'}) do |f|
+      - if @deposit.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@deposit.errors.count, "error")} prohibited this deposit from being saved:"
+          ul
+            - @deposit.errors.full_messages.each do |message|
+              li = message
+
+      .w3-row.w3-margin
+        .form-actions.s3.w3-col
+          = f.submit "Update Other Income", class:''
+          |&nbsp;
+          = link_to "Cancel", weekly_deposits_path, class:'cancel-button'
+        .s4.w3-col &nbsp;
+        .s3.w3-col
+          h6.strong Total Other Revenue
+        .s2.w3-col
+          = text_field_tag :total_other_revenue, nil, disabled:true, class:'w10',data:{target:'deposit.otherSum'}
+      .w3-row.w3-margin.bpad4
+        .m1.s12.w3-col.padb-4
+          strong Delete
+        .m2.samll-12.w3-col.padb-4
+          strong Item
+        .m2.samll-12.w3-col.padb-4
+          strong Amount
+        .m3.samll-12.w3-col.padb-4
+          strong Remarks
+
+
+      = f.fields_for :other_revenues do |d|
+        .w3-row.w3-margin 
+          .m1.s12.w3-col.padb-4
+            = d.check_box :_destroy
+            = d.hidden_field :id
+          .m2.samll-12.w3-col.padb-4
+            = d.select :item, options_for_select(Vfw::OtherRevenue.items_select,d.object.item)
+          .m2.samll-12.w3-col.padb-4
+            = d.text_field :amount, class: 'other-revenue-amount w10',data:{target:'deposit.otherRevenue',action:'change->deposit#otherChange'}
+          .m3.samll-12.w3-col.padb-4
+            = d.text_field :remarks, class: :bpad4
+

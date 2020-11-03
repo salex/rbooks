@@ -1,0 +1,66 @@
+/ \[\:(\w+)\]
+div
+  span.indent
+    strong Reconciled:
+    = imoney(@checking_balance.reconciled_balance)
+  span.indent
+    strong Cleared:
+    = imoney(@checking_balance.cleared_balance)
+  span.indent
+    strong Uncleared:
+    = imoney(@checking_balance.uncleared_balance)
+  span.indent
+    strong Ending:
+    = imoney(@checking_balance.balance)
+  span.indent
+    strong Bank/Closing:
+    = to_money(@checking_balance.closing_balance)
+  span.indent
+    strong Difference:
+    = to_money(@checking_balance.closing_balance - @checking_balance.balance )
+
+
+.w3-row.w3-padding
+  .s6.w3-col.w3-padding
+    table.smalltable7
+      caption Cleared Checking Account Transactions
+      - @checking_balance.cleared_entries.each do |x|
+        tr
+          td = x.post_date
+          td.unclear-splits.malt  = link_to(x.reconciled,
+            split_unclear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance),
+            method: :patch,remote:true)
+
+          / td.unclear-splits.malt 
+          /   span[data-target="checkingBalance.reconcile" data-action="click->checkingBalance#unclearSplits"] = x.reconciled
+          /   = hidden_field_tag(:entry_id,x.id,data:{target: :entry_id})
+          td = x.numb
+          td.w22 = x.description
+          td.tright = imoney(x.amount)
+      tr
+        td.strong.tright[colspan="4"] Cleared Balance
+        td.strong.tright = to_money(@checking_balance.cleared_balance)
+
+ 
+
+  .s6.w3-col.w3-padding
+
+    table.smalltable7.wrb
+      caption Uncleared Checking Account Transactions
+      - @checking_balance.uncleared_entries.each do |x|
+        tr
+          td = x.post_date
+          td.clear-splits.malt  = link_to(x.reconciled,
+            split_clear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance),
+            method: :patch,remote:true)
+
+
+          / td.clear-splits.malt
+          /   span[data-target="checkingBalance.reconcile" data-action="click->checkingBalance#clearSplits"] = x.reconciled
+          /   = hidden_field_tag(:entry_id,x.id,data:{target: :entry_id})
+          td = x.numb
+          td.w22 = x.description
+          td.tright = imoney(x.amount)
+      tr
+        td.strong.tright[colspan="4"] Uncleared Balance
+        td.strong.tright = to_money(@checking_balance.uncleared_balance)

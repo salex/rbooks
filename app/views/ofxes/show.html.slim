@@ -1,0 +1,101 @@
+.w3-container.w3-white.min-height
+  .w3-row-padding-x
+    #ledger.cell[data-controller="ofx" data-controller-entryID="" data-controller-fitID=""]
+      / #btModal.reveal data-reveal="" 
+      /   p If your recongnize the Entry as a reapeating Entry, select a matching name in the folloing pulldown and click the Duplicate Match button and it will duplicate that transaction with the information from the bank statement.
+      /   button.close-button aria-label=("Close modal") data-close="" type="button" 
+      /     span aria-hidden="true"  &times;
+      /   = form_with url: search_ofx_path(1), method: :patch
+      /     = select_tag "search",options_for_select(@ofx.dup_entries),prompt:'Select'
+      /     = hidden_field_tag :entry_id, 1
+      /     = hidden_field_tag :fit_id, ''
+      /     button#submit_ofx_search_tag Duplicate Match
+      / button.w3-button.w3-black onclick="document.getElementById('id01').style.display='block'"  Open Modal
+      #id01.w3-modal[data-target="ofx.modal"]
+        .w3-modal-content.w3-card-4
+          header.w3-container.w3-teal
+            span.w3-button.w3-display-topright onclick="document.getElementById('id01').style.display='none'"  &times;
+            h2 About OFX Bank Transaction
+          .w3-container
+            p If your recongnize the Entry as a reapeating Entry, search for a matching name in the following search field and click the Duplicate Match button and it will duplicate a new Entry with the information from the bank statement. You can then save the Entry if it validates. You can also Cancel the Entry if you picked the wrong match.
+            div.w3-left[data-controller="autocomplete" 
+               data-autocomplete-url="/entries/entry_search" data-autocomplete-min-length="2"]
+               input[type="text" data-target="autocomplete.input" placeholder="Entry Description Search" data-action="change->ofx#showSearched" style="width:300px;margin-right:8px;"]
+               input[type="hidden" name="entry_id" data-target="autocomplete.hidden ofx.hidden" ]
+               input[type="hidden" name="fit_id" data-target="ofx.fitID" ]
+
+               .w3-right.lime-link-button.w3-hide[data-target="ofx.showButton" data-action="click->ofx#dupSearched" data-entryID="" data-fitID=""] Duplicate Match
+               ul.w3-ul.w3-border[data-target="autocomplete.results"]
+
+          footer.w3-container.w3-teal
+            p Modal Footer
+
+
+
+
+      button = link_to 'List All',ofxes_path, class:'blue-link-button'
+      table.small-table7.sortable
+        - @ofx.update_data(true)
+        - balance = @ofx.hash_data[:balance]
+        - bbalance = @ofx.hash_data[:beginning_balance] ||= 0
+
+        - posted_date = @ofx.statement_date
+        caption = "Bank Balances - Begining: #{imoney bbalance} | Ending:#{imoney balance} -  Posted on: #{posted_date}"
+        thead#sort_header
+          tr
+            th.strong.sortable.w8
+              i.fas.fa-sort
+              |Date
+            th.strong.sortable
+              i.fas.fa-sort
+              |Numb
+            th.strong.w25.sortable
+              i.fas.fa-sort
+              |Memo
+            th.strong.sortable 
+              i.fas.fa-sort
+              |FitId
+            td.strong.w25 Entry
+            th.strong.sortable 
+              i.fas.fa-sort
+              |Amount
+            td.strong Balance
+        
+        tbody id="entrys"
+          -rbal = balance 
+          / + @account.transactions.last.amount_in_pennies
+          -@account.transactions.each do |bt|
+            / - entry = bt.entry
+            / - bt.check_number = '' if bt.check_number >'8999'
+            tr
+              td = bt.posted_at.to_date
+              td = bt.check_number
+              td = bt.memo
+              td = bt.fit_id
+              / = entry.description if entry.present?
+              - if bt.ref_number.present?
+                - entry = Entry.find(bt.ref_number)
+                td = link_to "#{entry.id} - #{entry.description}", entry_path(entry)
+              - else
+                - if bt.payee.present?
+                  td
+                    |Possible Link(s)&nbsp;
+                    - bt.payee[bt.fit_id].each do |e|
+                      button[class="blue-link"]
+                        = link_to "#{e[:enumb]} #{e[:description][0..19]} -#{e[:post_date]}",link_ofx_path(bt.fit_id, entry:e[:entry_id])
+                -else
+                  td 
+                    / - params ={amount:bt.amount_in_pennies,date:bt.posted_at.to_date,description:bt.name,memo:bt.memo,numb:bt.check_number}
+                    = link_to( "NewEntry", new_entry_ofx_path(id:bt.fit_id,amount:bt.amount_in_pennies,date:bt.posted_at.to_date,description:bt.name,memo:bt.memo,numb:bt.check_number,type_tran:bt.type),class:"lime-link-button")
+                    button.lime-link-button[data-action="click->ofx#openModal" data-fitid="#{bt.fit_id}"] Search Entries
+
+
+              td.tright = imoney(bt.amount_in_pennies)
+
+              td.tright = imoney rbal
+            - rbal -= bt.amount_in_pennies
+          tr
+            td.tright.strong[colspan="6"] Beginning Balance
+            td.tright = imoney bbalance
+
+  
