@@ -21,11 +21,11 @@ production:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: rbooks_production
 
-# staging:
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   database: rbooks_staging
+staging:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: rbooks_staging
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
