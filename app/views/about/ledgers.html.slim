@@ -1,0 +1,14 @@
+#about.w3-container.w3-white.min-height.about
+  .w3-row.
+    .w3-col.s9
+      h5.strong About Reports
+      / = image_tag('split_ledger.png')
+    .w3-col.s3
+      h5.strong About Reports
+      button#pager.green.w90.toggler[data-url="#page1"] x
+      button.green.w90.toggler[data-url="#page2"] y
+      button.green.w90.toggler[data-url="#page3"] z
+
+      = render partial:'links'
+
+  .w3-row.

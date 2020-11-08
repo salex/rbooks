@@ -36,6 +36,16 @@ Rails.application.routes.draw do
       end    
     end
 
+    resources :vfw do
+      collection do
+        get :trustee_audit
+        get :audit
+        get :edit_config
+        patch :update_config
+      end
+    end
+
+
   end
 
 
@@ -73,6 +83,7 @@ Rails.application.routes.draw do
   resources :users  do
     collection do
       post :signin
+      post :test_signin
     end
     member do
       patch :update_profile
@@ -141,23 +152,12 @@ Rails.application.routes.draw do
 
 
 
-
-  # resources :vfw do
-  #   collection do
-  #     get :trustee_audit
-  #     get :audit
-  #     get :edit_config
-  #     patch :update_config
-  #   end
-  # end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
  
   get 'login', to: 'users#login', as: 'login'
   get 'logout', to: 'users#logout', as: 'logout'
   get 'profile', to: 'users#profile'
-
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

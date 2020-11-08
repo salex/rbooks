@@ -1,11 +1,12 @@
-.w3-container.w3-white.min-height
+.w3-container.min-height[style="background-color:#ffffcc"]
   .w3-row.w3-margin-top
     h6.strong.s2.w3-col
       |Last 5 weekly deposits
     .m10.w3-col
-      = link_to "List Deposits", deposits_path, class: "lime-link-button"
-      = link_to "Month Summary", month_summary_deposits_path, class: "blue-link-button"
-      = link_to "Last Month Summary", month_summary_deposits_path(date:(Date.today - 1.month)), class: "lime-link-button"
+      span.w3-black.w3-padding-small
+        = link_to "List Deposits", deposits_path, class: "gold-link-button  w3-text-black"
+        = link_to "Month Summary", month_summary_deposits_path, class: "gold-link-button  w3-text-black"
+        = link_to "Last Month Summary", month_summary_deposits_path(date:(Date.today - 1.month)), class: "gold-link-button  w3-text-black"
       / = link_to "Beer Inventory", beer_edit_deposits_path, class: "lime-link-button"
       / = link_to "Liquor Inventory", liquor_edit_deposits_path, class: "lime-link-button"
 
@@ -25,7 +26,8 @@
           - color = deposit.sales_revenues.count > 0 ? 'lime-link-button' : 'grey-link-button'
 
           td[class="#{color}"] 
-            = link_to 'Sales Revenue',edit_deposit_path(deposit), class:'block-link'
+            = link_to 'Sales Revenue',edit_deposit_path(deposit)
           - color = deposit.other_revenues.count > 0 ?  'lime-link-button' : 'grey-link-button'
-          td[class="#{color}"] = link_to "Non-Sales Revenue",edit_other_deposit_path(deposit), class:'block-link'
-          td[class="#{color}"] = link_to "Summary",deposit_path(deposit), class:'block-link'
+          td[class="#{color}"] = link_to "Non-Sales Revenue",edit_other_deposit_path(deposit)
+          td[class="#{color}"] = link_to "Summary",deposit_path(deposit)
+  h6.strong Go to List Deposits for Deposit older the 5 weeks

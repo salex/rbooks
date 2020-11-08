@@ -5,7 +5,7 @@ module Vfw
     # GET /sales_items
     # GET /sales_items.json
     def index
-      @sales_items = Vfw::SalesItem.order(:name)
+      @sales_items = SalesItem.order(:name)
     end
 
     def liquor
@@ -60,12 +60,16 @@ module Vfw
 
     def bought
       case @sales_item.type
-      when "Beer"
+      when @sales_item.type.include?("Beer")
         @sales_item.buy_beer(sales_item_params)
         rpath = beer_sales_items_path
-      when "Liquor"
+        puts "DDDDDDDDDDDD   #{rpath}"
+      when @sales_item.type.include?("Liquor")
         @sales_item.buy_liquor(sales_item_params)
         rpath = liquor_sales_items_path
+      else
+        puts "DDDDDDDDDDDD   #{rpath}"
+
       end
       respond_to do |format|
         if @sales_item.save
@@ -101,18 +105,18 @@ module Vfw
       respond_to do |format|
         if @sales_item.update(sales_item_params)
           case @sales_item.type
-          when 'Liquor'
+          when 'Vfw::Liquor'
             format.html { redirect_to liquor_sales_items_path, notice: 'Liquor item was successfully updated.' }
-          when 'Beer'
+          when 'Vfw::Beer'
             format.html { redirect_to beer_sales_items_path, notice: 'Beer item was successfully updated.' }
-          when 'Bevrage'
+          when 'Vfw::Bevrage'
             format.html { redirect_to beverage_sales_items_path, notice: 'Beverage item was successfully updated.' }
-          when 'Food'
+          when 'Vfw::Food'
             format.html { redirect_to food_sales_items_path, notice: 'Food item was successfully updated.' }
-          when 'Wine'
+          when 'Vfw::Wine'
             format.html { redirect_to wine_sales_items_path, notice: 'Wine item was successfully updated.' }
           else  
-            format.html { redirect_to @sales_item, notice: 'Sales item was successfully updated.' }
+            format.html { redirect_to sales_items_path, notice: 'Sales item was successfully updated.' }
             format.json { render :show, status: :ok, location: @sales_item }
           end
         else
@@ -193,7 +197,7 @@ module Vfw
 
       # Only allow a list of trusted parameters through.
       def sales_item_params
-        params.require(:sales_item).permit(:name, :type, :price, :cost, :department, 
+        params.require(:vfw_sales_item).permit(:name, :type, :price, :cost, :department, 
           :markup, :quanity, :alert, :size, :cases, :bottles, :bottles_1, :bottles_2, :percent, :total, :purchase_price)
       end
   end

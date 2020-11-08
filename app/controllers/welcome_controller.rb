@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
   def home
-    session.delete(:tree_ids)
     if Current.book
       render template: 'welcome/book'
     else

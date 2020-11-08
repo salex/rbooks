@@ -31,6 +31,7 @@ Diet Pepsi,,1,0,0,Beverage,Beverages,Active
 Dr Pepper,,1,0,0,Beverage,Beverages,Active
 Fireball,,4.25,0.81,424.69135802469134,Liquor,Liqueur,Active
 Gentleman Jack,,5.25,1.45,262.0689655172414,Liquor,Whiskey,Active
+George Dickle,,4.25,0.92,361.95652173913044,Liquor,Whiskey,Active
 Ginger Ale,,1,0,0,Beverage,Beverages,Active
 Hot Damn,,3.5,0.57,514.0350877192983,Liquor,Liqueur,Active
 Jack Danial’s,,4.75,1.22,289.344262295082,Liquor,Whiskey,Active
@@ -101,7 +102,6 @@ Well Tequila (Montezuma),,3.5,0,0,Liquor,Rum & Tequila,Active
 Well Vodka (Aristocrat),,3.5,0.31,1029.032258064516,Liquor,Gin & Vodka,Active
 Well Whiskey,,3.5,0.55,536.3636363636364,Liquor,Whiskey,Active
 White Wine,,3.5,1.35,159.25925925925927,Wine,Wine,Active
-Wild Turkey,,4.75,1.18,302.5423728813559,Liquor,Whiskey,Active
 Yuengling,,2.75,1.02,169.6078431372549,Beer,Beer,Active
 1,,0,0,0,Liquor,1,Inactive
 10,,0,0,0,Liquor,1,Inactive
@@ -128,7 +128,6 @@ Creamsicle,,4.5,0,0,Liquor,Cocktails,Inactive
 Daiquiri,,4.5,0,0,Liquor,Cocktails,Inactive
 Dewars,,4.75,1.33,257.14285714285717,Liquor,Whiskey,Inactive
 Fuzzy Navel,,3.5,0,0,Liquor,Cocktails,Inactive
-George Dickle,,4.25,0.92,361.95652173913044,Liquor,Whiskey,Inactive
 Jolly Rancher,,3.5,0,0,Liquor,Cocktails,Inactive
 Kamikaze,,4.5,0,0,Liquor,Cocktails,Inactive
 Lemon Drop,,4.5,0,0,Liquor,Cocktails,Inactive
@@ -150,4 +149,5 @@ Tequila Sunrise,,3.5,0,0,Liquor,Cocktails,Inactive
 Tom Collins,,4,0,0,Liquor,Cocktails,Inactive
 Whiskey Sour,,4,0,0,Liquor,Cocktails,Inactive
 White Russian,,4.5,0,0,Liquor,Cocktails,Inactive
+Wild Turkey,,4.75,1.18,302.5423728813559,Liquor,Whiskey,Inactive
 Woo Woo,,4.5,0,0,Liquor,Cocktails,Inactive

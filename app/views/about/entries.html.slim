@@ -1,0 +1,108 @@
+#about.w3-container.w3-white.min-height.about[data-controller="aboutPager"]
+  .w3-row
+    .w3-col.s9
+      h5.strong About Entry Ledgers
+      = image_tag('split_ledger.png',class:'image-fit')
+    .w3-col.s3
+      h5.strong About Entries
+      .w3-card-2.w3-bar-block.w100
+        .w3-bar-item
+          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page1"] Entry Ledger
+        .w3-bar-item
+          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page2"] Entry Section
+        .w3-bar-item
+          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page3"] Splits Section
+        = render partial:'links'
+
+
+      / h5.strong About Entries
+      / button#pager.green.w90.toggler[data-url="#page1"] Entry Ledger
+      / button.green.w90.toggler[data-url="#page2"] Entry Ledger
+      / button.green.w90.toggler[data-url="#page3"] Splits Section
+
+      / = render partial:'links'
+
+  .w3-row
+
+    #page1.w3-col.s12[data-target="aboutPager.page"]
+      .w3-row
+
+        .w3-col.s6
+          p The Entry Ledger is the only way to edit or create Entries and their associated Splits. The form has numerous features to assure that the Entry is valid before saving it. The ledger updates both the Entry and any Splits for that entry. There are six sections in the form.
+          ul
+            li Button bar. The top bar button bar contains link buttons to preform some action
+            li Ledger Table Header. Since that table contains attributes from both the Entry and the Splits, the column may contain different information on each row. The Transfer header my contain link to Helper actions.
+            li Entry Attributes. The light blue shaded row that contains the Date, Number and Description attributes 
+            li Splits. The tan shaded rows
+            li Deleted Splits. Any splits that will be removed from the database. 
+            li Submit button and Balance status
+        .w3-col.s6
+          p <strong>Button Bar</strong> Several buttons may appear in the Button Bar depending on the state of the Entry.
+          ul
+            li Validate - Button runs the validation check and is rarely used since validations are run if any required element is changed. Duplicating and entry from Bank Transactions, will be valid, but you must either change a required field (green shaded columns) or click the Validate button.
+            li Delete Entry - You can delete an entry made in error if it has not been reconciled or cleared
+            li Void Entry - You can void an entry if it has not been reconciled or cleared
+            li Cancel - You can cancel an entry (new or edit) at any time, no changes will be make
+          p <strong>Submit</strong> The submit button is disabled if the entry is invalid (not balanced or missing a required field)
+
+           
+        
+    #page2.w3-col.s12.w3-hide[data-target="aboutPager.page"]
+      .w3-row
+        .w3-col.s6
+          h6.strong Entry Section
+          p The entry section (light blue row background) contains three field
+          dl.indent
+            dt Date - required
+            dd Entering the date field will bring up a Date Picker defaulting to the entry date. You can use the picker to change the date, enter the date with the keyboard in YYYY-MM-DD format, or pressing the + or - key to increment/decrement the date.
+            dt Description - required
+            dd Enter a clear short description of the transaction. Be consistent in the first few words. If this is a reoccurring transaction, you can use the Entry search in the tile bar to search for recent entries starting with the first few words.
+        .w3-col.s6
+          dl.indent
+            dt Numb - optional
+            dd 
+              |The Numb field in the Entry line (first line with Date) is historically used for a check number. You can use the += or the _- key to increment or decrement a Numb, or increment/decrement the last number entered in that field. Since I do a lot of debit card or web transactions, it has been expanded to include a key and a number. 'c2845' could represent a check number and 'w88' could represent a web transaction. As in GnuCash, there are no checks on the field, you can have duplicates.
+
+
+    #page3.w3-col.s12.w3-hide[data-target="aboutPager.page"]
+      .w3-row
+        .w3-col.s6
+          h6.strong Entry Splits Section 
+          p The Splits section (tan row background color) 6 data field and a field under the Date header that depends on the split state
+          ul
+            li If the date field has a check box and a <i class=" fas fa-minus-square"></i> icon, the split exist and can be deleted. Checking the check box will move it the the Deleted Splits section. If a valid form is submitted, that split will be deleted. You can move the split back to the splits section by un-checking the check box.
+            li If the date field has a scissors <i class=" fas fa-cut"></i> icon, the slit has not been saved and can be cut. Useful if you duplicate a entry with more than two splits, but some may not apply to this entry.
+          dl.indent
+            dt Numb
+            dd The numb field for a split is actually saved in a field named 'action'. It is optional
+            dt Description
+            dd The description field is named 'memo' in splits. It is optional but documents the transfer/account.
+            dt Transfer
+            dd The transfer field is a pull down with all account names. Placeholder accounts cannot be selected. The names are in inverse account name order. If you click on the pull down and start typing the web browser will search for the first matching account name.
+            dt R or Reconciled
+            dd Displays the reconciled state. If the field contains 'n' clicking on it will change it to 'c'  on the screen and in a hidden field. Clicking it again will change to to 'n'. You can only toggle between n and c.
+
+
+        .w3-col.s6
+          dl.indent
+        
+            dt Increase and Decrease field (or Debits Credits for Accountants!)
+            dd Much like GnuCash, RCash will try to keep your entries balanced. (sum of increases is equal to the sum of decreases)
+            dd There is a button in the transfer header that will clear all increases and decreases, again useful if you've duplicated an Entry
+            dd 
+              ul
+                li Entering a number in the decrease column  will enter the same number in the increase column on the next blank(scratch) or incomplete split line. Entered numbers will be converted to a fixed numbers and to pennies in a hidden field.
+                li An incomplete line is where the  account is set but increase and decrease fields are blank.
+                li A scratch line has no account but has a number
+                li A blank line has no account or number
+                li If there are less than two blank lines a new line will be added. (there is also a button in transfer header that will do the same)
+                li If a number entered contains a + or - sign, an arithmetic expression is calculated
+                li if you put numbers in both the Increase and Decrease they will be summed and sets the result in correct column
+                li If all required fields are entered (including Account) and the Balance is 0, the Entry can be updated.
+                li Whew!
+       
+
+
+      
+    / #page4.w3-col.s12[data-target="aboutPager.page"]
+    /   p page4

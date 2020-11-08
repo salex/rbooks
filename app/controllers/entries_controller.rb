@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy, :duplicate]
-
+  before_action :require_book
   # GET /entries
   # GET /entries.json
   def index
@@ -87,54 +87,7 @@ class EntriesController < ApplicationController
     end
   end
 
-
- 
-  # def entry_search
-  #   @entries = current_book.auto_search(params)
-  #   puts "it be searching #{@entries.count}"
-  #   if @entries
-  #     render partial:'entries/search_results'
-  #   end
-  # end
-
-
-
-  # def search
-  #   if params[:commit] == "Search Split Amount"
-  #     entries = current_book.contains_amount_query(params[:words])
-  #   elsif params[:commit] == "Search Entry Number"
-  #     entries = current_book.contains_number_query(params[:words])
-  #   elsif params[:how].present? && params[:how] == 'any'
-  #     entries = current_book.contains_any_word_query(params[:words])
-  #   elsif  params[:how].present? && params[:how] == 'all'
-  #     entries = current_book.contains_all_words_query(params[:words])
-  #   else
-  #     entries = current_book.contains_match_query(params[:words])
-  #   end
-  #   @lines = Book.entries_ledger(entries)
-  #   render partial: '/entries/search'
-  # end
-
-  # def void
-  #   not_reconciled = @entry.splits.where(reconcile_state:['y','c']).count.zero?
-  #   message = ''
-  #   respond_to do |format|
-  #     if not_reconciled
-  #       splits = @entry.splits.update_all(reconcile_state:'v',amount:0)
-  #       format.html { redirect_to redirect_path, notice: 'Entry was successfully voided.' }
-  #     else
-  #       format.html { redirect_to redirect_path, alert: 'Entry was not voided. Splits reconciled or cleared. - Unclear or create reversing entry if reconciled' }
-  #     end
-  #   end
-  # end
-
-
-
   private
-    def require_book
-      redirect_to(books_path, alert:'Current Book is required') if current_book.blank?
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def redirect_path
       if @bank_dup.present?

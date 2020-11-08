@@ -29,7 +29,7 @@ module Vfw
           sales_items[si[keys[:name]]][:price] = si[keys[:price]].to_f
           sales_items[si[keys[:name]]][:cost] = si[keys[:cost]].to_f
           sales_items[si[keys[:name]]][:markup] = si[keys[:markup]].to_f
-          sales_items[si[keys[:name]]][:type] = si[keys[:type]]
+          sales_items[si[keys[:name]]][:type] = "Vfw::" + si[keys[:type]]
           sales_items[si[keys[:name]]][:department] = si[keys[:department]]
           sales_items[si[keys[:name]]][:quanity] = 0
           sales_items[si[keys[:name]]][:alert] = 0
@@ -46,7 +46,7 @@ module Vfw
       end
       sales_items.each do |k,v|
         case v[:type]
-        when 'Liquor'
+        when 'Vfw::Liquor'
           l = Liquor.find_by(name:k)
           if l.blank?
             v[:size] = 1000
@@ -58,7 +58,7 @@ module Vfw
             l.save
           end
     
-        when 'Beer'
+        when 'Vfw::Beer'
           b = Beer.find_by(name:k)
 
           if b.blank?
@@ -71,7 +71,7 @@ module Vfw
             b.save
           end
       
-        when 'Beverage'
+        when 'Vfw::Beverage'
           b = Beverage.find_by(name:k)
           if b.blank?
             Beverage.create(v)
@@ -79,7 +79,7 @@ module Vfw
             b.update(v)
           end
       
-        when 'Food'
+        when 'Vfw::Food'
           f = Food.find_by(name:k)
           if f.blank?
             Food.create(v)
@@ -87,7 +87,7 @@ module Vfw
             f.update(v)
           end
 
-        when 'Wine'
+        when 'Vfw::Wine'
           f = Wine.find_by(name:k)
           if f.blank?
             Wine.create(v)

@@ -1,0 +1,145 @@
+.w3-row.w3-white.pdf
+  .w3-col.s3
+    = image_tag('vfw_logo2.jpg',width:200)
+  .w3-col.s1 &nbsp;
+  .w3-col.s8
+    h3.strong TRUSTEES' REPORT OF AUDIT of
+    p
+      | The Books and Records of the Quartermaster and Adjutant of:  <strong><u>#{@config.post.name} #{@config.post.post}</u></strong> Department of <strong><u>#{@config.post.department}</u></strong> for Fiscal Quarter ending:     <strong><u>#{@range.last}</u></strong> (Fiscal Quarter    <strong><u> #{@range}</u></strong>)
+
+  .w3-col.s12
+    - asset_obj = assets(@summary)
+    - fc = asset_obj.funds
+
+    table.pdf.borders
+      tr
+        th.w48.text-left FUNDS
+        td.strong.hshrink.w13.text-left = "#{fc + 3}. Net Quater Beginning Cash Balance"
+        td.strong.hshrink.w13.text-left = "#{fc + 4}. Receipts During Quarter"
+        td.strong.hshrink.w13.text-left = "#{fc + 5}. Expenditures During Quarter"
+        td.strong.hshrink.w13.text-left = "#{fc + 6}. Net Quater Beginning Cash Balance"
+        / (style="font-size:7pt;")
+        / (style="font-size:6pt;")
+        / (style="font-size:6pt;")
+        / (style="font-size:6pt;")
+      - asset_obj.checking[:children].sort.each_with_index do |c,i|
+        tr
+          td = "#{i+1}. #{@summary[c][:description]}"
+          td.text-right = money(@summary[c][:beginning])
+          td.text-right = money(@summary[c][:debits])
+          td.text-right = money(@summary[c][:credits])
+          td.text-right = money(@summary[c][:ending])
+   
+      tr
+        td = "#{fc+1}. #{asset_obj.savings.description}"
+        td.text-right = money(asset_obj.savings.beginning)
+        td.text-right = money(asset_obj.savings.debits)
+        td.text-right = money(asset_obj.savings.credits)
+        td.text-right = money(asset_obj.savings.ending)
+      tr
+        td = "#{fc+2}. #{asset_obj.pcash.description}"
+        td.text-right = money(asset_obj.pcash.beginning)
+        td.text-right = money(asset_obj.pcash.debits)
+        td.text-right = money(asset_obj.pcash.credits)
+        td.text-right = money(asset_obj.pcash.ending)
+      tr
+        td.text-right = "#{fc+7}. Totals - #{asset_obj.total.description}"
+        td.text-right = money(asset_obj.total.beginning)
+        td.text-right = money(asset_obj.total.debits)
+        td.text-right = money(asset_obj.total.credits)
+        td.text-right = "#{fc+8}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{money(asset_obj.total.ending)}".html_safe
+
+
+    div = "<strong>Notice: </strong>#{@config.notice}".html_safe
+  .w3-col.s6
+    .border
+      .hbox
+        h5 = "#{fc+9}. OPERATIONS"
+  
+      table.pdf
+        - rows = @config.operations
+        - rows.each do |r|
+          - r[1] = money(r[1],'$') if r[1].class == Integer
+
+          tr
+            td = r[0]
+            td.text-right = r[1]
+ 
+
+  .w3-col.s6
+    .border
+      .hbox
+        h5 = "#{fc+10}. RECONCILIATION OF FUND BALANCES"
+      table.pdf
+        - ab = @config.checking.balance - @config.checking.outstanding
+        - t1 = ab+ asset_obj.bcash
+        - bond = asset_obj.bsave
+        - t2 = t1 + bond
+        - diff = t2 - asset_obj.btotal
+        - tot_label = diff.zero? ? "Total" : "Out of Balance (#{money(diff)}) - Total"
+        tr
+          td Checking Account Balance
+          td.text-right = money @config.checking.balance
+          td 
+        tr
+          td Less Outstand Checks
+          td.text-right = money @config.checking.outstanding
+          td 
+        tr
+          td.text-right(colspan="2") Actual Balance
+          td.text-right = money ab
+        
+        tr
+          td.text-right(colspan="2") Savings Account Balance
+          td.text-right  = money 0
+        tr
+          td.text-right(colspan="2") Cash on Hand
+          td.text-right =  money asset_obj.bcash
+        tr
+          td.text-right(colspan="2") Total Current
+          td.text-right = money asset_obj.btotal
+        tr
+          td.text-right(colspan="2") Bonds and Investments
+          td.text-right = money asset_obj.bsave
+        tr
+          - if diff.zero?
+            td.text-right(colspan="2") = tot_label
+            td.text-right = money t2
+          - else
+            td.cred.text-right(colspan="2") = tot_label
+            td.cred.text-right = money t2
+
+
+    .certify
+      div &nbsp;
+      h6.strong = "#{fc+11}. TRUSTEEs' and COMMANDER's CERTIFICATE OF AUDIT"
+      p.strong = "Date: #{@config.date}"
+
+  .w3-col.s12
+    div &nbsp;
+    p This is to certify that we (or qualified accountants) have audited the books and records of the Adjutant & Quartermaster of <strong><u> #{@config.post.post} </u></strong> (District/County Council/Post No.) For the Fiscal Quarter ending <strong><u> #{@range.last} </u></strong> in accordance of the National By-Laws and this Report is a true and correct statement thereof to the best of our knowledge and belief. All Vouchers and checks have been examined and found to be properly approved and checks properly signed.
+
+  .w3-col.s3
+    div.strong Post Quartermaster:
+  .w3-col.s3
+    div.strong Name and Address
+    dl
+      dd= @config.qm.name
+      dd= @config.qm.address
+      dd= @config.qm.city
+
+  .w3-col.s6
+    p.strong Signed _____________________________________ Trustee
+    p.strong Signed _____________________________________ Trustee
+    p.strong Signed _____________________________________ Trustee
+
+
+  .w3-col.s12
+    p This is to certify that the Office of the Quartermaster is Bonded with <strong><u> #{@config.bond.name} </u></strong> in the amount of <strong><u> $#{money(@config.bond.amount)} </u></strong> until <strong><u> #{@config.bond.to} </u></strong>, and that this Audit is correctly made out to the best of my knowledge and belief.
+  .w3-col.s6 &nbsp;
+  .w3-col.s6
+    p.strong Signed _____________________________________ Commander
+  
+
+  
+

@@ -1,0 +1,54 @@
+#about.w3-container.w3-white.min-height
+  .w3-row.about
+    .w3-col.s9
+      h5.strong About RCash
+      p RCash is a Web based double entry accounting application.
+
+      p The about link buttons to the right will provide some detail on the the areas listed. This page is just an overview of the look, feel and flow of the application.
+      .w3-row.w3-row-padding
+        .w3-col.s6
+          p <strong>Buttons, Buttons, Buttons</strong> There are many, maybe too many! Almost all links use Buttons or Icons instead of an Anchors (the blue words on most web sites)
+          
+          div
+            button.lime-link-button Lime Link Button
+            button.blue-link-button Blue Link Button
+            button.grey-link-button Grey Link Button
+            button.action-button Action Button
+            button.cancel-button Cancel Button
+            span.blue-link Blue Link
+        
+            form
+              = submit_tag 'Submit Button'
+          h5.strong icons
+          ul
+            li <i class="fas fa-edit"></i> - Edit
+            li <i class="fas fa-eye"></i> - Show
+            li <i class="fas fa-plus-square"></i> - Add/New
+            li <i class="fa fa-copy"> </i> - Duplicate
+            li <i class="fas fa-sort"></i> - Sort
+            li <i class="fa fa-trash-alt"></i> - Destroy
+            li <i class="far fa-credit-card"></i> - Reconcile
+            li
+              i.far.fa-question-circle 
+              |&nbsp;- Tool Tip Help
+
+        .w3-col.s6
+          h5.strong Flow
+          ul
+            li Click Login in tile bar
+            li Click Account in title bar to list accounts
+            li Click on Account name to open a ledger
+            li Optionally select a ledger in Recent Ledgers to open ledgers
+            li Optionally - enter a partial entry description in the Entry Search field in the title bar then click the search button to display a ledger with entries starting with those words or filtered by any words.
+            li Click Edit(date) or Duplicate icon to open Split Leger for that Entry/Transaction
+            li Click Links in title bar and select reports, balances and other stuff
+
+
+    .w3-col.s3
+      / h5.strong RCash About Pages
+      .w3-row
+
+        .w3-col.s12
+          = render partial:'links'
+
+         

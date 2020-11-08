@@ -1,4 +1,4 @@
-= form_for @sales_item do |f|
+= form_for @sales_item, url: sales_item_path(@sales_item) do |f|
   - if @sales_item.errors.any?
     #error_explanation
       h2 = "#{pluralize(@sales_item.errors.count, "error")} prohibited this sales_item from being saved:"
@@ -49,3 +49,5 @@
       = f.label :percent
       = f.number_field :percent
   .actions = f.submit
+
+p = @sales_item.inspect

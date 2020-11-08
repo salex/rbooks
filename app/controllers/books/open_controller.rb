@@ -2,7 +2,6 @@ class Books::OpenController < BooksController
 
   def show
     session[:book_id] = @book.id
-    # session[:tree_ids] = @book.settings[:tree_ids]
     session.delete(:recent)
     checking_account = @book.checking_acct
     leafs = checking_account.leaf.sort

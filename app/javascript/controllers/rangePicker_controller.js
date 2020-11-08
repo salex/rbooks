@@ -93,6 +93,13 @@ export default class extends Controller {
     location.assign(url)
   }
 
+  selectButtonURL(){
+    const button = event.target
+    var url = button.dataset.url
+    location.assign(url)
+  }
+
+
   selectAuditConfig(){
     const button = event.target
     var url = button.dataset.url

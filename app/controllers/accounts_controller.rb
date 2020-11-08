@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
   before_action :require_book
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
+
   # GET /accounts
   # GET /accounts.json
   def index
@@ -19,7 +20,6 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-
     @parent = Current.book.accounts.find_by(id:params[:parent_id])
     @account = Current.book.accounts.new(uuid:SecureRandom.uuid,parent_id:@parent.id,level:@parent.level+1)
   end
@@ -70,14 +70,6 @@ class AccountsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def require_book
-      if Current.book.blank?
-        redirect_to(books_path, alert:'Current Book is required') 
-      else
-        @book = Current.book
-      end
-    end
-
     def set_param_date
       @today = Date.today
       if params[:date].present?
@@ -94,7 +86,7 @@ class AccountsController < ApplicationController
     end
 
     def set_account
-      @account = @book.accounts.find_by(id:params[:id])
+      @account = Current.book.accounts.find_by(id:params[:id])
       redirect_to( accounts_path, alert:'Account not found for Current Book') if @account.blank?
     end
 

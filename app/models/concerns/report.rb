@@ -10,7 +10,7 @@ class Report
     equity = book.equity_acct
     today = Date.today
 
-    puts "Where a re going work #{assets.inspect}"
+    puts "Where are going work #{assets.inspect}"
     # @from = options[:from].nil? ? today.beginning_of_year  : Ledger.set_date(options[:from])
     # @to = options[:to].nil? ? today.end_of_year  : Ledger.set_date(options[:to])
 

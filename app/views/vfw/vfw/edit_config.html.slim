@@ -1,0 +1,13 @@
+.w3-container.w3-white
+  h4.strong 
+    |Editing11 Audit Report Configuration 
+    span.inheader
+      button.green=> link_to 'Cancel/Show', vfw_index_path,class:'cancel-button'
+
+  .w3-row
+    .w3-col.s6
+      .callout.alert.strong.z1 
+        h5 Cancel if you don't know what you are doing!
+      = form_with(url: update_config_vfw_index_path,method: 'patch')
+        .box= submit_tag
+        .box= text_area_tag :yaml,@vfwcashconfig,rows:30,cols:100

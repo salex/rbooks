@@ -11,7 +11,7 @@ class Book < ApplicationRecord
 
   def build_tree
     new_tree = []
-    troot = self.accounts.find_by(uuid:root)
+    troot = self.accounts.find_by(uuid:self.root)
     troot.walk_tree(0,new_tree)
     new_tree.each do |a| 
       if a.level_changed?

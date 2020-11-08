@@ -1,25 +1,38 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  root: MyString
-  assets: MyString
-  equity: MyString
-  liabilities: MyString
-  income: MyString
-  expenses: MyString
-  checking: MyString
-  savings: MyString
-  settings: null
+b1:
+  # :id: 1
+  :name: Default
+  :root: 7bb50f3e-038b-48f2-9052-081023ecc13b
+  :assets: 483865ef-a5be-47d4-9925-e18dbdc804fd
+  :equity: 20161b79-c6d3-43f4-9ce2-af0f69233185
+  :liabilities: 395990a7-0fe4-49fb-8921-586d28792a8a
+  :income: ff5b3fab-4e1c-42c0-9082-57240e98860a
+  :expenses: 3f162bb2-bed5-47eb-8f58-16b87d163912
+  :checking: c8c3096e-d58d-477b-a896-56208e3c2601
+  :savings: a1958d82-89a0-42bf-b593-1e0a353b7401
+  :settings: null
 
-two:
-  name: MyString
-  root: MyString
-  assets: MyString
-  equity: MyString
-  liabilities: MyString
-  income: MyString
-  expenses: MyString
-  checking: MyString
-  savings: MyString
-  settings: null
+# one:
+#   name: MyString
+#   root: root
+#   assets: MyString
+#   equity: MyString
+#   liabilities: MyString
+#   income: MyString
+#   expenses: MyString
+#   checking: MyString
+#   savings: MyString
+#   settings: null
+
+# two:
+#   name: MyString
+#   root: MyString
+#   assets: MyString
+#   equity: MyString
+#   liabilities: MyString
+#   income: MyString
+#   expenses: MyString
+#   checking: MyString
+#   savings: MyString
+#   settings: null

@@ -1,14 +1,14 @@
 .w3-container.w3-white.min-height
   h1 Editing sales_item
   -case @sales_item.type
-  -when 'Liquor'
+  -when 'Vfw::Liquor'
     == render 'form_liquor'
-  -when 'Beer'
+  -when 'Vfw::Beer'
     == render 'form_beer'
   -else
     == render 'form'
 
-  => link_to 'Show', @sales_item
+  => link_to 'Show', sales_item_path(@sales_item)
   '|
   =< link_to 'Back', sales_items_path
 

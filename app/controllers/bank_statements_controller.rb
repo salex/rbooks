@@ -117,11 +117,9 @@ class BankStatementsController < ApplicationController
 
 
   private
-    def require_book
-      redirect_to(books_path, alert:'Current Book is required') if current_book.blank?
-    end
 
     # Use callbacks to share common setup or constraints between actions.
+
     def set_bank_statement
       @bank_statement = current_book.bank_statements.find_by(id:params[:id])
     end

@@ -63,6 +63,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def test_signin
+    user = User.first
+    book = Book.first
+    session[:user_id] = user.id
+    session[:full_name] = user.full_name
+    session[:book_id] = book.id
+    session[:recent]= {}
+    redirect_to root_url, notice: "Logged in! #{session[:book_id]}"
+  end
+
+
   def signin
     user = User.find_by_username(params[:email].downcase) || User.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password])

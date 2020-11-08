@@ -1,13 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # include UsersHelper
-  # makes sign_out abailable
+  include UsersHelper
+  # makes sign_out and deny access available
 
   before_action :current_book
   before_action :current_user
   # before_action :session_expiry
   # before_action :config_set
-  
+
+  def require_book
+    if Current.user.blank?
+      deny_access
+    else
+      redirect_to(books_path, alert:'Current Book is required') if Current.book.blank?
+    end
+  end
+  helper_method :require_book
 
   def current_user
     @current_user ||= User.find_by(id:session[:user_id]) if session[:user_id]
@@ -19,8 +27,6 @@ class ApplicationController < ActionController::Base
   def current_book
     if session[:book_id]
       @current_book ||= Book.find_by(id:session[:book_id])
-    # else
-    #   @current_book ||= Book.first
     end
     Current.book =@current_book 
     if @current_book.present? && @current_book.settings.blank?
@@ -31,11 +37,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_book
 
   def tree_ids
-    # tree_id control account options
     if session[:recent].blank?
+      # ????
       session[:recent] = {}
     end
-    # the session[:tree_ids] is destroyed with any account change that resets settings
     @tree_ids = current_book.settings[:tree_ids]
   end
   helper_method :tree_ids
