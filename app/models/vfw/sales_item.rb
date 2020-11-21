@@ -1,6 +1,6 @@
 module Vfw
   class SalesItem < ApplicationRecord
-    #   self.inheritance_column = nil
+    # self.inheritance_column = nil
 
     require 'csv'
 

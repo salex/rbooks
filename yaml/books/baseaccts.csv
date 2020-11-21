@@ -1,0 +1,11 @@
+type,full_name,name,code,description,color,notes,commoditym,commodityn,hidden,tax,place_holder
+ASSET,Assets,Assets,,Assets,,,USD,CURRENCY,F,F,T
+ASSET,Assets:Current Assets,Current Assets,,Current Assets,,,USD,CURRENCY,F,F,T
+CASH,Assets:Current Assets:Cash in Wallet,Cash in Wallet,,Cash in Wallet,,,USD,CURRENCY,F,F,F
+BANK,Assets:Current Assets:Checking Account,Checking Account,,Checking Account,,,USD,CURRENCY,F,F,F
+LIABILITY,Liabilities,Liabilities,,Liabilities,,,USD,CURRENCY,F,F,T
+CREDIT,Liabilities:Credit Card,Credit Card,,Credit Card,,,USD,CURRENCY,F,F,F
+INCOME,Income,Income,,Income,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses,Expenses,,Expenses,,,USD,CURRENCY,F,F,T
+EQUITY,Equity,Equity,,Equity,,,USD,CURRENCY,F,F,T
+EQUITY,Equity:Opening Balances,Opening Balances,,Opening Balances,,,USD,CURRENCY,F,F,F

@@ -1,9 +1,9 @@
 .w3-container.w3-white.min-height
   /p = @inv.inspect
-  = form_with url: beer_update_sales_items_path,method: :patch,data:{controller:'inventory',target:'inventory.beer'} do |form|
+  = form_with url: beer_update_vfw_sales_items_path,method: :patch,data:{controller:'inventory',target:'inventory.beer'} do |form|
     div.noprint
       button.noprint = form.submit
-      = link_to "Cancel", sales_items_path, class:'cancel-button noprint indent'
+      = link_to "Cancel", vfw_sales_items_path, class:'cancel-button noprint indent'
       span.indent.w3-right-align.blue-link[onclick="window.print()"] Print
 
     table.small-table7.w70p

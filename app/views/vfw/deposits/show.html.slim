@@ -1,13 +1,13 @@
 .w3-container.w3-white.min-height
   .w3-row
     .s12.w3-col.noprint
-      => link_to 'Edit Sales', edit_deposit_path(@deposit)
+      => link_to 'Edit Sales', edit_vfw_deposit_path(@deposit)
       '|
-      => link_to 'Edit Other', edit_other_deposit_path(@deposit)
+      => link_to 'Edit Other', edit_other_vfw_deposit_path(@deposit)
       '|
-      => link_to 'Weekly', weekly_deposits_path
+      => link_to 'Weekly', weekly_vfw_deposits_path
       '|
-      => link_to 'Deposits List', deposits_path
+      => link_to 'Deposits List', vfw_deposits_path
       '|
       = link_to "Print Page", '#', onclick: "window.print();" 
     

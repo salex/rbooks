@@ -1,0 +1,24 @@
+.w3-container.w3-white.min-height
+  h4.strong Create New Book with Tree Structure
+  = form_for @book do |f|
+    - if @book.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+        ul
+          - @book.errors.full_messages.each do |message|
+            li = message
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :tree
+      = f.text_field :root
+    
+
+    .actions 
+      = f.submit
+      = link_to icon('fas fa-arrow-left','Cancel and Return to Setup Options'), books_setup_index_path,
+      class: 'btn btn-icon icon-left btn-warning w3-margin'
+  h3 = "Account Tree (#{params[:option]})"
+  = render partial:'tree'

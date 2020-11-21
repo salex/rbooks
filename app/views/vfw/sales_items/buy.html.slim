@@ -1,5 +1,5 @@
 .w3-container.w3-white.min-height
-  = form_for @sales_item, url: bought_sales_item_path(@sales_item),method: :patch do |f|
+  = form_for @sales_item, url: bought_vfw_sales_item_path(@sales_item),method: :patch do |f|
     - if @sales_item.errors.any?
       #error_explanation
         h2 = "#{pluralize(@sales_item.errors.count, "error")} prohibited this sales_item from being saved:"
@@ -22,7 +22,7 @@
       .field
         = f.label :purchase_price
         = f.text_field :purchase_price
-      - if @sales_item.type == "Liquor"
+      - if @sales_item.type.include?("Liquor")
         .field
           = f.label :size
           = f.number_field :size
@@ -35,4 +35,4 @@
           = f.label :cases
           = f.number_field :cases
 
-    = link_to "Cancel", sales_items_path, class:'cancel-button'
+    = link_to "Cancel", vfw_sales_items_path, class:'cancel-button'

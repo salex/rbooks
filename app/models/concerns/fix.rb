@@ -58,6 +58,73 @@ module Fix
 
   end
 
+  class BizzAccts
+    require 'csv'
+    def parse(next_book, next_account)
+      acct_path = Rails.root.join('yaml/bizz.csv')
+      accts = CSV.parse(File.read(acct_path))
+      keys = accts.delete_at(0)
+      type = 0
+      full_name = 1
+      name_desc = 2
+      placeholder = 11
+      id = next_account
+      book_id = next_book
+      last_level = 0
+      this_type = ''
+      parent_id = next_account
+      parent_ids = [nil,next_account]
+      accounts = [{type:'ROOT',name:'Root Account',level:0, parent_id:nil,id:id,placeholder:true}]
+      accts.each_with_index do |a,idx|
+        this_level = a[full_name].split(':').count
+        this_id = idx + 1 + id
+        if this_level == 1
+          # we have a root child
+          this_type = a[type]
+          this_parent_id = next_account
+          parent_ids[this_level] = this_id
+          accounts << {type:this_type,name:a[name_desc],level:1, parent_id:this_parent_id,id:this_id,placeholder:true}
+
+        elsif this_level == last_level
+          # we have a sibling of the last acct that could be a parent
+          this_type = a[type]
+          this_parent_id = parent_ids[this_level -1]
+          parent_ids[this_level] = this_id
+          accounts << {type:this_type,name:a[name_desc],level:this_level, parent_id:this_parent_id,id:this_id,placeholder:false}
+
+        elsif this_level > last_level
+          # we have a new branch with level > 1
+          this_type = a[type]
+          this_parent_id = parent_ids[last_level]
+          parent_ids[this_level] = this_id
+          accounts << {type:this_type,name:a[name_desc],level:this_level, parent_id:this_parent_id,id:this_id,placeholder:false}
+
+        elsif this_level < last_level
+          # we have a new branch with level > 1
+          this_type = a[type]
+          this_parent_id = parent_ids[this_level -1]
+          parent_ids[this_level] = this_id
+          accounts << {type:this_type,name:a[name_desc],level:this_level, parent_id:this_parent_id,id:this_id,placeholder:false}
+
+        end
+        last_level = this_level
+      end
+      # accounts
+      trees = {next_account => []}
+      accounts.each do |a|
+        if trees.has_key?(a[:parent_id])
+          trees[a[:parent_id]] << a[:id]
+        else
+          trees[a[:parent_id]] = [a[:id]]
+        end
+      end
+      trees.delete(nil)
+      return [accounts,trees]
+    end
+    
+  end
+
+
   class Fixtures
     def self.to_fixture
       fixtures = {}
@@ -87,21 +154,6 @@ module Fix
         afixtures[key] = {id:a.id,uuid:a.uuid,book:'b1',parent_id:parent,name:a.name,account_type:a.account_type,
           placeholder:a.placeholder,level:a.level}
       end
-      # entries = Entry.order(:post_date).reverse_order.select(:id, :numb, :post_date, :description, :fit_id).limit(10)
-      # efixtures = {}
-      # sfixtures = {}
-
-      # entries.each do |e|
-      #   key = ('e'+e.id.to_s)
-      #   efixtures[key] = {id:e.id,numb:e.numb,post_date: e.post_date,description:e.description,fit_id: e.fit_id}
-      #   e.splits.each do |s|
-      #     key = ('s'+s.id.to_s)
-      #     sacct = ('a'+s.account_id.to_s)
-      #     sentry = ('e'+s.entry_id.to_s)
-      #     sfixtures[key] = {id:s.id,entry:sentry,account:sacct,memo:s.memo,action:s.action,
-      #       reconcile_state:s.reconcile_state,reconcile_date:s.reconcile_date,amount:s.amount}
-      #   end
-      # end
       fixtures[:book] = bfixtures
       fixtures[:account] = afixtures
       # fixtures[:entry] = efixtures

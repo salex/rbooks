@@ -1,0 +1,36 @@
+.w3-container.w3-white.min-height
+  .w3-row.w3-margin
+    .s8.w3-col
+      h3 Setup Book Options
+      p Books are nothing more than a named set of Accounts in the form of an Account tree. Typically there will only be one Book, but there can be more.
+      ul
+        li If your using RBooks for personal accounts, you may have one set of Books for yourself and another for a spouse.
+        li You may wish to keep Books by a fiscal year for a business. This would require Closing a Book when all transactions or finalized as of the closing date, and a new Book started that only contains EQUITY accounts (opening balances and retained earning)
+
+      p Book only contain a name and pointer methods to the basic ROOT accounts {ROOT ASSET LIABILITY EQUITY INCOME EXPENSE} and optionally to BANK accounts.
+
+      p It also contains settings attributes that are set (computed) on opening a Book and only changed if any account record is changed. Typically, once a set of accounts (Book) is setup, it seldom changes and the Book.settings hash/attributes are available in @current_book or Current.book
+
+      p There are four setup options, you can preview and then create a new Book with those options. These options use an 'account_tree' export file from GNUCash that define type Account Trees. This include:
+      ul 
+        li A common business account setup
+        li A common personal account setup
+        li A base account setup that only contains root level accounts and bank accounts. Used if you want to set up accounts that are drastically different form the common setup
+        li Clone the Current Book tree. (Closeing year)
+      p After the Book and Accounts are setup, you can modify the tree structure before adding any transactions
+
+
+    .s4.w3-col
+      h3 Preview Setup Book Options
+      p = link_to icon('fas fa-eye',"Setup Common Bussiness Accounting"),  books_setup_path('bizzaccts'), class: 'btn btn-icon icon-left btn-success w3-margin'
+
+      p = link_to icon('fas fa-eye',"Setup Common Personal Accounting"),  books_setup_path('commaccts'), class: 'btn btn-icon icon-left btn-success w3-margin'
+     
+      p = link_to icon('fas fa-eye',"Setup Base Accounting"),  books_setup_path('baseaccts'), class: 'btn btn-icon icon-left btn-success w3-margin'
+      p = link_to icon('fas fa-eye',"Clone Current Book/Accounts"),  books_setup_path('clone'), class: 'btn btn-icon icon-left btn-success w3-margin'
+
+      
+
+      / p = link_to "Setup Common Bussiness Accounting", books_setup_path('bizzaccts')
+      / p = link_to "Setup Common Personal Accounting", books_setup_path('commaccts')
+      / p = link_to "Setup Base Accounting", books_setup_path('baseaccts')

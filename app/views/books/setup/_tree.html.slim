@@ -1,0 +1,25 @@
+table.small-table7
+   thead.fixed
+     tr
+       th Name
+       th Type
+       th Lev
+       th PID
+       th Desc
+       th PH
+       th ID
+       / - if true
+
+       /   th Actions
+
+   tbody
+     - @accounts.each do |account|
+       - placeholder = @tree.present? ? @tree.has_key?(account[:id]) : account[:placeholder]
+       tr
+         td class="p#{account[:level]} #{'strong' if placeholder}" = account[:name]
+         td = account[:account_type]
+         td = account[:level]
+         th = account[:parent_id]
+         td = account[:description]
+         td = placeholder
+         td = account[:id]

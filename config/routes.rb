@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  scope module: 'vfw' do
+  # scope module: 'vfw' do
+  namespace :vfw do
     resources :sales_items do
       collection do
         get :liquor
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
       end    
     end
 
-    resources :vfw do
+    resources :audit do
       collection do
         get :trustee_audit
         get :audit
@@ -44,8 +45,6 @@ Rails.application.routes.draw do
         patch :update_config
       end
     end
-
-
   end
 
 
@@ -66,9 +65,10 @@ Rails.application.routes.draw do
   namespace :books do
     resources :importyaml, only: [:new,:create]
     resources :open, only: :show
+    resources :setup, only: [:show, :index, :new]
   end
 
-  resources :books
+  resources :books, except:[:new]
 
   namespace :accounts do
     resources :bank, only: :index
@@ -158,6 +158,7 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login', as: 'login'
   get 'logout', to: 'users#logout', as: 'logout'
   get 'profile', to: 'users#profile'
+  get 'vfw',to: "vfw/audit#index"
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

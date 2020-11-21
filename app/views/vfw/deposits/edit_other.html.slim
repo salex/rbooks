@@ -1,6 +1,6 @@
 .w3-container.w3-white.min-height
 
-  #other_revenue.w3-container = form_for(@deposit, method: :patch, url: update_other_deposit_path,data:{controller:'deposit'}) do |f|
+  #other_revenue.w3-container = form_for(@deposit, method: :patch, url: update_other_vfw_deposit_path,data:{controller:'deposit'}) do |f|
       - if @deposit.errors.any?
         #error_explanation
           h2 = "#{pluralize(@deposit.errors.count, "error")} prohibited this deposit from being saved:"
@@ -12,7 +12,7 @@
         .form-actions.s3.w3-col
           = f.submit "Update Other Income", class:''
           |&nbsp;
-          = link_to "Cancel", weekly_deposits_path, class:'cancel-button'
+          = link_to "Cancel", weekly_vfw_deposits_path, class:'cancel-button'
         .s4.w3-col &nbsp;
         .s3.w3-col
           h6.strong Total Other Revenue

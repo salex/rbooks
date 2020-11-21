@@ -21,6 +21,10 @@ class Account < ApplicationRecord
     self.book.get_settings # fires method that resets settings in Rails.application.config.x.settings
   end
 
+  def destroyable?
+    self.children.blank? && self.entries.blank?
+  end
+
   def parent
     Account.find(self.parent_id) unless root_account?
   end

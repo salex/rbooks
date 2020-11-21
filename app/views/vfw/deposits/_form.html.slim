@@ -1,4 +1,4 @@
-#weekly = form_for @deposit,url:deposit_path(@deposit), data:{controller:'deposit'} do |f|
+#weekly = form_for @deposit,url:vfw_deposit_path(@deposit), data:{controller:'deposit'} do |f|
   .w3-row-padding
 
     - if @deposit.errors.any?

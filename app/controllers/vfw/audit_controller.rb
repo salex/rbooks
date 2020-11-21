@@ -1,5 +1,5 @@
 module Vfw
-  class VfwController < ApplicationController
+  class AuditController < ApplicationController
     before_action :require_book
 
     def index

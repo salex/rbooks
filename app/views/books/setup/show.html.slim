@@ -1,0 +1,51 @@
+.w3-container.w3-white.min-height
+  div.w3-padding
+    = link_to icon('fas fa-arrow-left','Return to Setup Options'), books_setup_index_path,
+    class: 'btn btn-icon icon-left btn-success w3-margin'
+    = link_to icon('fas fa-plus','Setup New Book with this Account Tree structure'), new_books_setup_path(option:params[:id]), class: 'btn btn-icon icon-left btn-success w3-margin'
+
+  .w3-row
+
+    .s8.w3-col.w3-padding
+      h3 = "Account Tree (#{params[:id]})"
+      = render partial:'tree'
+      / table.small-table7
+      /   thead.fixed
+      /     tr
+      /       th Name
+      /       th Type
+      /       th Lev
+      /       th PID
+      /       th Desc
+      /       th PH
+      /       th ID
+      /       / - if true
+
+      /       /   th Actions
+
+      /   tbody
+      /     - @accounts.each do |account|
+      /       - placeholder = @tree.has_key?(account[:id])
+      /       tr
+      /         td class="p#{account[:level]} #{'strong' if placeholder}" = account[:name]
+      /         td = account[:type]
+      /         td = account[:level]
+      /         th = account[:parent_id]
+      /         td = account[:description]
+      /         td = placeholder
+      /         td = account[:id]
+    .s4.w3-col.w3-padding
+      / = link_to 'Account Type View', accounts_path, class: ['lime-link-button',:small]
+      h3  Description
+      div All Trees must include:
+      ul
+        li A ROOT account
+        li Branches which must include the basic accounting equation account type of [ASSET, LIABILITY, EQUITY, INCOME, EXPENSE]. These branches are at level 1.
+        li Leaves/Leafs - These are the end point of a branch where Entries (transactions) are entered. If a branch has not leafs (children) it is considered a leaf.
+      div After level 1 accounts, there are some options
+      ul
+        li ASSET accounts may have branches that include Account types of BANK or CASH. BANK accounts usually means that there is a Bank Account statement that should have a Reconcile process.These accounts are typically placed in a Current Assets branch
+        li LIABILITY accounts may have braches that include an account type of CREDIT. Again a statement usually comes into play.
+
+
+

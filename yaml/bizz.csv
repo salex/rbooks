@@ -1,0 +1,76 @@
+type,full_name,name,code,description,color,notes,commoditym,commodityn,hidden,tax,place_holder
+ASSET,Assets,Assets,,Assets,,,USD,CURRENCY,F,F,T
+ASSET,Assets:Current Assets,Current Assets,,Current Assets,,,USD,CURRENCY,F,F,T
+CASH,Assets:Current Assets:Petty Cash,Petty Cash,,Petty Cash,,,USD,CURRENCY,F,F,F
+BANK,Assets:Current Assets:Checking Account,Checking Account,,Checking Account,,,USD,CURRENCY,F,F,F
+BANK,Assets:Current Assets:Savings Account,Savings Account,,Savings Account,,,USD,CURRENCY,F,F,F
+RECEIVABLE,Assets:Accounts Receivable,Accounts Receivable,,Accounts Receivable,,,USD,CURRENCY,F,F,F
+LIABILITY,Liabilities,Liabilities,,Liabilities,,,USD,CURRENCY,F,F,T
+CREDIT,Liabilities:Credit Card,Credit Card,,Credit Card,,,USD,CURRENCY,F,F,F
+PAYABLE,Liabilities:Accounts Payable,Accounts Payable,,Accounts Payable,,,USD,CURRENCY,F,F,F
+INCOME,Income,Income,,Income,,,USD,CURRENCY,F,F,T
+INCOME,Income:Interest Income,Interest Income,,Interest Income,,,USD,CURRENCY,F,F,F
+INCOME,Income:Other Income,Other Income,,Other Income,,,USD,CURRENCY,F,F,F
+INCOME,Income:Reimbursed Expenses,Reimbursed Expenses,,Reimbursed Expenses,,,USD,CURRENCY,F,F,F
+INCOME,Income:Sales,Sales,,Sales,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses,Expenses,,Expenses,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Adjustment,Adjustment,,Adjustment,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Auto,Auto,,Auto,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Auto:Fees,Fees,,Fees,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Auto:Gas,Gas,,Gas,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Auto:Parking,Parking,,Parking,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Auto:Repair and Maintenance,Repair and Maintenance,,Repair and Maintenance,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Bank Service Charge,Bank Service Charge,,Bank Service Charge,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Books,Books,,Books,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Cash Discounts,Cash Discounts,,Cash Discounts,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Charity,Charity,,Charity,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Depreciation,Depreciation,,Depreciation,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Dining,Dining,,Dining,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Dues and Subscriptions,Dues and Subscriptions,,Dues and Subscriptions,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Education,Education,,Education,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Equipment Rental,Equipment Rental,,Equipment Rental,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Insurance,Insurance,,Insurance,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Insurance:Disability Insurance,Disability Insurance,,Disability Insurance,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Insurance:Liability Insurance,Liability Insurance,,Liability Insurance,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Insurance:Workers Comp,Workers Comp,,Workers Comp,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Licenses and Permits,Licenses and Permits,,Licenses and Permits,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Miscellaneous,Miscellaneous,,Miscellaneous,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Office Supplies,Office Supplies,,Office Supplies,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Outside Services,Outside Services,,Outside Services,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Payroll Expenses,Payroll Expenses,,Payroll Expenses,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Postage and Delivery,Postage and Delivery,,Postage and Delivery,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Printing and Reproduction,Printing and Reproduction,,Printing and Reproduction,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Professional Fees,Professional Fees,,Professional Fees,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Professional Fees:Accounting,Accounting,,Accounting,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Professional Fees:Legal Fees,Legal Fees,,Legal Fees,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Rent,Rent,,Rent,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Repairs,Repairs,,Repairs,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Repairs:Building Repairs,Building Repairs,,Building Repairs,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Repairs:Computer Repairs,Computer Repairs,,Computer Repairs,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Repairs:Equipment Repairs,Equipment Repairs,,Equipment Repairs,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Repairs:Janitorial Expenses,Janitorial Expenses,,Janitorial Expenses,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes,Taxes,,Taxes,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Taxes:Emp-FICA,Emp-FICA,,Employer SS/Med,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:Federal,Federal,,Federal,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:FICA,FICA,,SS/Med,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:FUTA,FUTA,,FUTA,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:Local,Local,,Local,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:Other Tax,Other Tax,,Other Tax,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:Property,Property,,Property,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Taxes:State/Province,State/Province,,State/Province,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Travel and Entertainment,Travel and Entertainment,,Travel and Entertainment,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Travel and Entertainment:Entertainment,Entertainment,,Entertainment,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Travel and Entertainment:Meals,Meals,,Meals,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Travel and Entertainment:Travel,Travel,,Travel,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities,Utilities,,Utilities,,,USD,CURRENCY,F,F,T
+EXPENSE,Expenses:Utilities:Cable,Cable,,Cable,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Cell Phone,Cell Phone,,Cell Phone,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Electric,Electric,,Electric,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Garbage collection,Garbage collection,,Garbage collection,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Gas,Gas,,Gas,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Internet,Internet,,Internet,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Phone,Phone,,Phone,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Utilities:Water,Water,,Water,,,USD,CURRENCY,F,F,F
+EQUITY,Equity,Equity,,Equity,,,USD,CURRENCY,F,F,T
+EQUITY,Equity:Opening Balances,Opening Balances,,Opening Balances,,,USD,CURRENCY,F,F,F
+EQUITY,Equity:Retained Earnings,Retained Earnings,,Retained Earnings,,,USD,CURRENCY,F,F,F
