@@ -4,7 +4,7 @@ Is a Rails Double Entry Accounting application for Semi-Accountants.
 
 I am not an Accountant nor a real Rails developer, just a hobbyist programmer who has used that knowledge to solve many *unique* problems over the last 50 years. Unique maybe a little strong, but I'm sure not many have had to developed applications that tracked how may times an Aircraft crew threw something (people, tank, pallet) out of the back of a C-130. Then there is developing a job screening process for companies building a new factory.  They seemed unique at the time, but they are just *bean* counting, sorting, filtering processes.
 
-RBooks is the forth iteration of developing something to help *me* accomplish a job I volunteered for, a Quartermaster of a Veterans of Foreign Wars (VFW) post. One of the responsibilities of a Quartermaster is keeping the accounting books. This started of with a paper ledger that lasted about 3 months. I then moved to a GNUCash application (basically an Open Source version of QuickBooks). Then to a Ruby CLI application that used a copy of the GNUCash database to produce VFW specific reports. Then through 3 versions of a standalone RoR accounting application that put GNUCash to sleep. I use the term Simi-Accountant in that we do use an Accounting Service for taxes, etc, but I have to provide them the basic information (ledgers, statements, receipts, etc.). RBooks helps me keep the stuff straight.
+RBooks is the forth iteration of developing something to help *me* accomplish a job I volunteered for, a Quartermaster of a Veterans of Foreign Wars (VFW) post. One of the responsibilities of a Quartermaster is keeping the accounting books. This started of with a paper ledger that lasted about 3 months. I then moved to a GNUCash application (basically an Open Source version of QuickBooks). Then to a Ruby CLI application that used a copy of the GNUCash database to produce VFW specific reports. Then through 3 versions of a standalone RoR accounting application that put GNUCash to sleep. I use the term Semi-Accountant in that we do use an Accounting Service for taxes, etc, but I have to provide them the basic information (POS reports,ledgers, statements, receipts, etc.). RBooks helps me keep the stuff straight.
 
 Enough history - RBooks implement the basic accounting equation
 
@@ -32,7 +32,7 @@ end
 The basic number one rule of accounting is that the accounting equation must balance.
 * If you buy something, you must decrease an Asset and increase an Expense
 * If you sell something, you must increase an Asset and decrease a Income
-* Since Accounts are assbackwards, they use the terms Debit and Credit!
+* Since Accountants are assbackwards, they use the terms Debit and Credit!
 
 RBooks updates these models through Ledgers, which is just an Entry with at least two splits, one increasing some account and another decreasing another.
 
@@ -58,8 +58,12 @@ Current attributes:
   *  gem 'ofx', '~> 0.3.1' , github: 'annacruz/ofx', branch: 'master'
   *  gem 'font-awesome-sass', '~> 5.12.0'
 
-I consider RBooks somewhere between QuickBooks and Quicken. You can balance/reconcile a checkbook but also get many other feature not available in Quicken. It does not deal with Invoices or Purchase Orders and some other QuickBooks features, but it works for me.
+I consider RBooks somewhere between QuickBooks and Quicken. You can balance/reconcile a checkbook but also get many other features not available in Quicken. It does not deal with Invoices or Purchase Orders and some other QuickBooks features, but it works for me.
 
 There are a few VFW name-spaced optional models (Deposit, Inventory, Revenue and SalesItem) that illustrate how to add features that are specific to your needs.
+
+You can see what some of the pages (e.g., ledger) look like in the /app/images directory
+
+
 
 
