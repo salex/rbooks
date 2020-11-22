@@ -8,7 +8,7 @@ RBooks is the forth iteration of developing something to help *me* accomplish a 
 
 Enough history - RBooks implement the basic accounting equation
 
-**** <b>Assets - Liabilities = Equity + (Income - Expenses)</b>
+#### <b>Assets - Liabilities = Equity + (Income - Expenses)</b>
 
 It does this using classic accounting models
 
@@ -60,6 +60,6 @@ Current attributes:
 
 I consider RBooks somewhere between QuickBooks and Quicken. You can balance/reconcile a checkbook but also get many other feature not available in Quicken. It does not deal with Invoices or Purchase Orders and some other QuickBooks features, but it works for me.
 
-There is a VFW namespace that are optional but illistrate how to add features that are specific to your needs.
+There are a few VFW name-spaced optional models (Deposit, Inventory, Revenue and SalesItem) that illustrate how to add features that are specific to your needs.
 
 
