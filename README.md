@@ -1,10 +1,14 @@
-# RBooks or {ou}RBooks or {Ro}RBooks
+## RBooks or {ou}RBooks or {Ro}RBooks
 
 Is a Rails Double Entry Accounting application for Semi-Accountants.
+
+#### A little history
 
 I am not an Accountant nor a real Rails developer, just a hobbyist programmer who has used that knowledge to solve many *unique* problems over the last 50 years. Unique maybe a little strong, but I'm sure not many have had to developed applications that tracked how may times an Aircraft crew threw something (people, tank, pallet) out of the back of a C-130. Then there is developing a job screening process for companies building a new factory.  They seemed unique at the time, but they are just *bean* counting, sorting, filtering processes.
 
 RBooks is the forth iteration of developing something to help *me* accomplish a job I volunteered for, a Quartermaster of a Veterans of Foreign Wars (VFW) post. One of the responsibilities of a Quartermaster is keeping the accounting books. This started of with a paper ledger that lasted about 3 months. I then moved to a GNUCash application (basically an Open Source version of QuickBooks). Then to a Ruby CLI application that used a copy of the GNUCash database to produce VFW specific reports. Then through 3 versions of a standalone RoR accounting application that put GNUCash to sleep. I use the term Semi-Accountant in that we do use an Accounting Service for taxes, etc, but I have to provide them the basic information (POS reports,ledgers, statements, receipts, etc.). RBooks helps me keep the stuff straight.
+
+#### Overview
 
 Enough history - RBooks implement the basic accounting equation
 
@@ -46,7 +50,7 @@ The Account model is a Tree with a Root account being the parent of the basic el
 * Family - all descendants
 
 
-Current attributes:
+#### Current attributes:
 
 * Ruby version - 2.6.5
 * Rails version - 6.0.3.4
@@ -64,6 +68,20 @@ There are a few VFW name-spaced optional models (Deposit, Inventory, Revenue and
 
 You can see what some of the pages (e.g., ledger) look like in the /app/images directory
 
+#### Installation or setup
+
+*  clone repository into a directory then cd into it
+*  bundle.install
+*  bin/rails db:setup
+*  bin/rails s
+
+`db:setup` should create a new database and load the schema, then call seeds.db
+
+`seeds.db` should create a new user 'reviewer' with a password 'letmein'
+
+There is a fair 'About' link that gives a little more details on how things work.
+
+Hope it works!
 
 
 

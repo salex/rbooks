@@ -22,14 +22,18 @@ module Books
     end
 
     def create_book_tree
-      next_book = Book.maximum(:id) + 1
-      file_name = self.root
-      self.root = nil
-      self.id = next_book
+      if self.id.present?
+        file_name="commaccts"
+        # a new book is sent from seed with id=1 and name = review
+      else
+        next_book = Book.maximum(:id) + 1
+        file_name = self.root
+        self.id = next_book
+        self.root = nil
+      end
       self.save # got book with only id
       arr = Books::Setup.parse_csv(file_name+'.csv')
       @accounts = arr[0]
-
       @accounts.each do |acct|
         new_acct = self.accounts.new(acct)
         new_acct.uuid =  SecureRandom.uuid
