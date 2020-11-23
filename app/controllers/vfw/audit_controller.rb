@@ -15,7 +15,7 @@ module Vfw
       yaml = params[:yaml].gsub(/\r\n?/, "\n")
       respond_to do |format|
         if  Audit.new.put_audit_config(yaml)
-          format.html { redirect_to  vfw_index_path, notice: 'Truestee Audit Confiuration saved' }
+          format.html { redirect_to  "/vfw", notice: 'Truestee Audit Confiuration saved' }
         else
           format.html { render :edit_config }
         end

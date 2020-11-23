@@ -125,7 +125,7 @@ module Vfw
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def deposit_params
-        params.require(:deposit).permit(:date, :sales_revenue, :other_revenue, :cash_sales, :credit_sales, 
+        params.require(:vfw_deposit).permit(:date, :sales_revenue, :other_revenue, :cash_sales, :credit_sales, 
           :tips_paid, :sales_deposit, :other_deposit, :total_deposit, :cash_out,
           other_revenues_attributes:[:id,:_destroy,:type,:item,:amount,:remarks],
           sales_revenues_attributes:[:id,:item,:quanity,:amount],

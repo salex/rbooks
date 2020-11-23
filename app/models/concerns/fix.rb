@@ -42,8 +42,10 @@ module Fix
 
     def fix_revenue_type
       Fix::Revenue.all.each do |r|
-        r.type = "Vfw::"+r.type
-        r.save
+        if !r.type.include?('Vfw::')
+          r.type = "Vfw::"+r.type
+          r.save
+        end
       end
     end
 
@@ -53,7 +55,7 @@ module Fix
           r.type = "Vfw::"+r.type
           r.save
         end
-        end
+      end
     end
 
   end
