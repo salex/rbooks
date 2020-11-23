@@ -10,7 +10,7 @@ RBooks is the forth iteration of developing something to help *me* accomplish a 
 
 #### Overview
 
-Enough history - RBooks implement the basic accounting equation
+Enough history - RBooks implements the basic accounting equation
 
 #### <b>Assets - Liabilities = Equity + (Income - Expenses)</b>
 
@@ -77,7 +77,7 @@ You can see what some of the pages (e.g., ledger) look like in the /app/images d
 
 `db:setup` should create a new database and load the schema, then call seeds.db
 
-`seeds.db` should create a new user 'reviewer' with a password 'letmein'
+`seeds.db` should create a new user 'reviewer' with a password 'letmein' then it will create a new book 
 
 There is a fair 'About' link that gives a little more details on how things work.
 

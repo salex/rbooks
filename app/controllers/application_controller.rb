@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_book
   before_action :current_user
-  # before_action :session_expiry
-  # before_action :config_set
+  before_action :session_expiry
 
   def require_book
     if Current.user.blank?
@@ -66,6 +65,33 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :require_admin
+
+  def session_expiry
+    if current_user.present? && session[:expires_at].present?
+      get_session_time_left
+      unless @session_time_left > 0
+        if @current_user.present?
+          # sign_out and redirect for new login
+          sign_out
+          deny_access 'Your session has timed out. Please log back in.'
+        else
+          # just kill session and start a new one
+          sign_out
+        end
+      end
+    else
+      # expire all sessions, even if not user to midnight
+      session[:expires_at] = Time.now + 30.minutes
+    end
+
+  end
+  
+  def get_session_time_left
+    expire_time = Time.parse(session[:expires_at]) || Time.now
+    @session_time_left = (expire_time - Time.now).to_i
+    @expires_at = expire_time.strftime("%I:%M:%S%p")
+  end
+
 
 
 end
