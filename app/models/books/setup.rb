@@ -23,7 +23,7 @@ module Books
 
     def create_book_tree
       if self.id.present?
-        file_name="commaccts"
+        file_name="bizzaccts"
         # a new book is sent from seed with id=1 and name = review
       else
         next_book = Book.maximum(:id) + 1
@@ -86,8 +86,8 @@ module Books
 
     def self.parse_csv(csv_file)
       acct_path = Rails.root.join("yaml/books/#{csv_file}")
-      next_book = Book.maximum(:id) + 1
-      next_account = Account.maximum(:id) + 1
+      next_book = Book.maximum(:id).nil? ? 1 : Book.maximum(:id) + 1
+      next_account = Account.maximum(:id).nil? ? 1 : Account.maximum(:id) + 1
       accts = CSV.parse(File.read(acct_path))
       keys = accts.delete_at(0)
       type = 0

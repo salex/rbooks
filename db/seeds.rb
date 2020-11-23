@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-book = Books::Setup.new(id:1,name:'BasicAccts')
+book = Books::Setup.new(id:1,name:'BizzAccts')
 book.create_book_tree
 #creates a new book with only basic accounts
 
