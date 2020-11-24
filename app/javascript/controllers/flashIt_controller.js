@@ -5,12 +5,12 @@ export default class extends Controller {
 
   connect() {
     this.closeFlashIt()
-    console.log('flashit')
+    console.log('flashit1')
   }
 
   closeFlashIt(){
     var box = this.flashBoxTarget
-    console.log('flashit')
+    console.log('flashit2')
     setTimeout(function () {
       box.style.display = 'none'
     }, 10000);
