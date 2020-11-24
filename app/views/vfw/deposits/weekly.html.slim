@@ -7,10 +7,10 @@
         = link_to "List Deposits", vfw_deposits_path, class: "gold-link-button  w3-text-black"
         = link_to "Month Summary", month_summary_vfw_deposits_path, class: "gold-link-button  w3-text-black"
         = link_to "Last Month Summary", month_summary_vfw_deposits_path(date:(Date.today - 1.month)), class: "gold-link-button  w3-text-black"
-      / = link_to "Beer Inventory", beer_edit_vfw_deposits_path, class: "lime-link-button"
-      / = link_to "Liquor Inventory", liquor_edit_vfw_deposits_path, class: "lime-link-button"
+      = link_to "Beer Inventory", beer_inventory_vfw_sales_items_path, class: "lime-link-button"
+      = link_to "Liquor Inventory", liquor_inventory_vfw_sales_items_path, class: "lime-link-button"
 
-      / = link_to "Sales Items", sales_items_path, class: "lime-link-button"
+      = link_to "Sales Items", vfw_sales_items_path, class: "lime-link-button"
 
 
   hr

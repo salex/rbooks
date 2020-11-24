@@ -4,17 +4,10 @@
       = link_to 'Weekly', weekly_vfw_deposits_path, class: "button bbutton"
       |&nbsp;&nbsp;
       = link_to 'ShowAll', vfw_deposits_path, class: "button bbutton"
-      / = link_to 'PDF', deposit_path(@deposit,format: :pdf)
-    / h6.strong Deposit Summary
-    / - else
   .w3-row-padding
 
     .s12.w3-col
         
-      / - revenue = Revenue.new(params[:date])
-      / - donations,dsummary = revenue.month_donations
-      / - month_sales = revenue.month_sales
-
       table.smalltable7
         caption= "Month Deposits"
         tr

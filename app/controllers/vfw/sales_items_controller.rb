@@ -47,12 +47,12 @@ module Vfw
 
     def liquor_update
       Liquor.update_liquor(liquor_params)
-      redirect_to liquor_sales_items_path, notice:'Liquor inventory updated'
+      redirect_to liquor_vfw_sales_items_path, notice:'Liquor inventory updated'
     end
 
     def beer_update
       Beer.update_beer(beer_params)
-      redirect_to beer_sales_items_path, notice:'Beer inventory updated'
+      redirect_to beer_vfw_sales_items_path, notice:'Beer inventory updated'
     end
 
     def buy
@@ -62,11 +62,11 @@ module Vfw
       case @sales_item.type
       when @sales_item.type.include?("Beer")
         @sales_item.buy_beer(sales_item_params)
-        rpath = beer_sales_items_path
+        rpath = beer_vfw_sales_items_path
         puts "DDDDDDDDDDDD   #{rpath}"
       when @sales_item.type.include?("Liquor")
         @sales_item.buy_liquor(sales_item_params)
-        rpath = liquor_sales_items_path
+        rpath = liquor_vfw_sales_items_path
       else
         puts "DDDDDDDDDDDD   #{rpath}"
 
@@ -106,17 +106,17 @@ module Vfw
         if @sales_item.update(sales_item_params)
           case @sales_item.type
           when 'Vfw::Liquor'
-            format.html { redirect_to liquor_sales_items_path, notice: 'Liquor item was successfully updated.' }
+            format.html { redirect_to liquor_vfw_sales_items_path, notice: 'Liquor item was successfully updated.' }
           when 'Vfw::Beer'
-            format.html { redirect_to beer_sales_items_path, notice: 'Beer item was successfully updated.' }
+            format.html { redirect_to beer_vfw_sales_items_path, notice: 'Beer item was successfully updated.' }
           when 'Vfw::Bevrage'
-            format.html { redirect_to beverage_sales_items_path, notice: 'Beverage item was successfully updated.' }
+            format.html { redirect_to beverage_vfw_sales_items_path, notice: 'Beverage item was successfully updated.' }
           when 'Vfw::Food'
-            format.html { redirect_to food_sales_items_path, notice: 'Food item was successfully updated.' }
+            format.html { redirect_to food_vfw_sales_items_path, notice: 'Food item was successfully updated.' }
           when 'Vfw::Wine'
-            format.html { redirect_to wine_sales_items_path, notice: 'Wine item was successfully updated.' }
+            format.html { redirect_to wine_vfw_sales_items_path, notice: 'Wine item was successfully updated.' }
           else  
-            format.html { redirect_to sales_items_path, notice: 'Sales item was successfully updated.' }
+            format.html { redirect_to vfw_sales_items_path, notice: 'Sales item was successfully updated.' }
             format.json { render :show, status: :ok, location: @sales_item }
           end
         else
