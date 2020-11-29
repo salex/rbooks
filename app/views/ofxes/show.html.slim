@@ -34,7 +34,7 @@
 
 
       button = link_to 'List All',ofxes_path, class:'blue-link-button'
-      table.small-table7.sortable
+      table.small-table7[data-controller="sortTable"]
         - @ofx.update_data(true)
         - balance = @ofx.hash_data[:balance]
         - bbalance = @ofx.hash_data[:beginning_balance] ||= 0
@@ -43,20 +43,20 @@
         caption = "Bank Balances - Begining: #{imoney bbalance} | Ending:#{imoney balance} -  Posted on: #{posted_date}"
         thead#sort_header
           tr
-            th.strong.sortable.w8
+            th.strong.w8[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Date
-            th.strong.sortable
+            th.strong[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Numb
-            th.strong.w25.sortable
+            th.strong.w25[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Memo
-            th.strong.sortable 
+            th.strong[data-action="click->sortTable#sortBy"] 
               i.fas.fa-sort
               |FitId
             td.strong.w25 Entry
-            th.strong.sortable 
+            th.strong[data-action="click->sortTable#sortBy"] 
               i.fas.fa-sort
               |Amount
             td.strong Balance

@@ -13,7 +13,7 @@ export default class extends Controller {
   static targets = [ ]
 
   connect() {
-  // console.log('Hello, sortTable!')
+    // console.log('Hello, sortTable!')
   }
 
   sortBy(){

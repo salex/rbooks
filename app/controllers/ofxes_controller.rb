@@ -66,12 +66,16 @@ class OfxesController < ApplicationController
 
   def link
     # authorize Entry, :trustee?
-    entry = current_book.entries.find(params[:entry])
-    if entry.fit_id.present?
+    entry = current_book.entries.find_by(id:params[:entry])
+    if entry.blank?
+      redirect_to latest_ofxes_path, alert:  "ERROR Entry to link to was not found!."
+      #this should not happen, but just in case
+    elsif entry.fit_id.present?
       redirect_to latest_ofxes_path, alert:  "The Entry has already been linked!."
     else
       entry.link_ofx_transaction(params[:id])
-      head :ok
+      # head :ok
+      redirect_to latest_ofxes_path, notice: "Entry Linked to OFX fit_id"
     end
 
   end

@@ -43,7 +43,7 @@ class Ofx < BankStatement
     self.hash_data = fields
     # self.date = to
     if set_ref
-      set_encleared_entries
+      set_uncleared_entries
       set_ref_number
       set_linked_entries
      end
@@ -66,7 +66,7 @@ class Ofx < BankStatement
   end
 
 
-  def set_encleared_entries
+  def set_uncleared_entries
     banking = Bank.new
     self.uncleared_entries = banking.all_uncleared_entries
   end
