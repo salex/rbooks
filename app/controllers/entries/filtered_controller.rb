@@ -10,7 +10,7 @@ class Entries::FilteredController < ApplicationController
     elsif  params[:how].present? && params[:how] == 'all'
       entries = current_book.contains_all_words_query(params[:words])
     else
-      entries = current_book.contains_match_query(params[:words])
+      entries = current_book.contains_match_query(params[:words], params[:show_all])
     end
     @lines = Book.entries_ledger(entries)
     render partial: '/entries/actions/filtered'

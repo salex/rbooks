@@ -186,7 +186,7 @@ class Book < ApplicationRecord
 
   def contains_match_query(match,all=nil)
     query = self.entries.where(Entry.arel_table[:description].matches("%#{match}%")).order(:post_date).reverse_order
-    return query if all.present?
+    return query if all.present? && all == "1"
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
     query.where(id:uids).order(:post_date).reverse_order

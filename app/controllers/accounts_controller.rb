@@ -12,6 +12,8 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    set_recent if params[:toggle].present?
+
     @date = Date.today
     set_param_date
     session[:current_acct] = @account.id
@@ -68,6 +70,7 @@ class AccountsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_param_date
@@ -88,6 +91,14 @@ class AccountsController < ApplicationController
     def set_account
       @account = Current.book.accounts.find_by(id:params[:id])
       redirect_to( accounts_path, alert:'Account not found for Current Book') if @account.blank?
+    end
+
+    def set_recent
+      if session[:recent] && session[:recent].has_key?(@account.id.to_s)
+        session[:recent].delete(@account.id.to_s) 
+      else
+        session[:recent][@account.id.to_s] = @account.name
+      end
     end
 
     # Only allow a list of trusted parameters through.

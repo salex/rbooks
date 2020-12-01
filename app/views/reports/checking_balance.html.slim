@@ -1,11 +1,11 @@
 
 .w3-container.w3-white.min-height[data-controller="remoteUpdate"]
-  .w3-row[data-controller="simpleToggle"]
+  .w3-row[data-controller="toggle" data-toggle-class="w3-hide"]
     .s4.w3-col
       h4.strong
         = "Checking Account(s) Balances"
         |&nbsp;&nbsp;
-        span[data-action="click->simpleToggle#toggle"]
+        span[data-action="click->toggle#toggle"]
           i.fa.fa-question-circle
           i Help
     .s3.w3-col
@@ -19,7 +19,7 @@
     .s1.w3-col
       button.w3-button.w3-blue-gray[data-action="click->remoteUpdate#rebalance"] Refresh
 
-    .w3-col.s12.w3-hide[data-target="simpleToggle.kids"]
+    .w3-col.s12.w3-hide[data-target="toggle.content"]
       p This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
       ul
         li Reconciled balance: The balance of all reconciled Checking account entries on the closure date.

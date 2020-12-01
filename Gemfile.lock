@@ -53,6 +53,8 @@ GEM
     activerecord (6.0.3.4)
       activemodel (= 6.0.3.4)
       activesupport (= 6.0.3.4)
+    activerecord_where_assoc (1.1.1)
+      activerecord (>= 4.1.0)
     activestorage (6.0.3.4)
       actionpack (= 6.0.3.4)
       activejob (= 6.0.3.4)
@@ -250,6 +252,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord_where_assoc (~> 1.0)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug

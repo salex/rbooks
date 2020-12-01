@@ -71,4 +71,5 @@ gem 'ofx', '~> 0.3.1' , github: 'annacruz/ofx', branch: 'master'
 # gem 'pundit'
 
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'activerecord_where_assoc', '~> 1.0'
 
