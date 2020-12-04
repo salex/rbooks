@@ -58,7 +58,7 @@ div[data-controller="blueBackground"]
     #summary.toggleMe.w3-show.s12.w3-col
 
       .w3-row.w3-margin
-        .w3-col.s4
+        .w3-col.s4[style="max-height:20vh;overflow:scroll;"]
           .strong =  "Account Summary (#{@today})"
           = summary_list(@account)
 
@@ -81,9 +81,9 @@ div[data-controller="blueBackground"]
   #ajax.w3-container.w3-white
     - last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
     - if @from.blank?
-      - @from = last_tran.beginning_of_month
-      - @to = @from.end_of_month
-      - @from -= 5.days
+      - @from = last_tran - 10.days
+      - @to = @today.end_of_month
+
 
     #Ledger
       = render partial: 'accounts/ledger/ledger', locals:{from:@from,to:@to,account:@account}

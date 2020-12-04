@@ -86,6 +86,8 @@ class AccountsController < ApplicationController
       if params[:to].present?
         @to = Ledger.set_date(params[:to])
       end
+
+      # puts "FFFFFRRRRRRROOOOOO<<<<#{@from}"
     end
 
     def set_account

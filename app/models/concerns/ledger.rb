@@ -44,13 +44,19 @@ module Ledger
   end
 
   def self.ledger_entries(family,range)
-    entry_ids = Entry.where(post_date: range)
-      .joins(:splits)
-      .where(post_date: range, splits: { account_id: family })
-      .select('entries.id')
-      .distinct
+    # entry_ids = Entry.where(post_date: range)
+    #   .joins(:splits)
+    #   .where(post_date: range, splits: { account_id: family })
+    #   .select('entries.id')
+    #   .distinct
 
-    Entry.where(id: entry_ids).includes(:splits).order(:post_date,:numb)
+    # Entry.where(id: entry_ids).includes(:splits).order(:post_date,:numb)
+
+    Entry.where_assoc_exists(:splits,{ account_id: family})
+      .where(post_date: range)
+      .includes(:splits)
+      .order(:post_date, :numb).distinct
+
   end
 
   def self.entries_ledger(entries)
@@ -65,13 +71,11 @@ module Ledger
       # p "EEEEEE #{t.splits.count}"
       t.splits.each do |s|
         details = s.details
-
-        # if kids.include?(details[:aguid]) 
-          line[:checking][:db] += details[:db]
-          line[:checking][:cr] += details[:cr]
-          bal += details[:cr] 
-          line[:balance] = bal
-          line[:r] = details[:r]
+        line[:checking][:db] += details[:db]
+        line[:checking][:cr] += details[:cr]
+        bal += details[:cr] 
+        line[:balance] = bal
+        line[:r] = details[:r]
         line[:details] << details
       end
       lines << line

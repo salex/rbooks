@@ -32,7 +32,7 @@
             - if types.present?
               - types[t].each do |account|
                 tr
-                  td class="p#{account.level} #{'strong' if account.placeholder}" =  link_to( account.name,account_path(account.id) )
+                  td class="p#{account.level} #{'strong' if account.placeholder}" =  link_to( account.name,account_path(account.id),class:'blue-link' )
                   td = account.account_type
                   td = account.description
 

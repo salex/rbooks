@@ -41,8 +41,17 @@ class Account < ApplicationRecord
   end
 
   def last_entry_date
-    max = Entry.all.joins(:splits).where(splits: {account_id:self.leaf << self.id}).maximum(:post_date)
-    return max.present? ? max : Date.today.beginning_of_year
+    me_and_the_family = self.family.pluck(:id) << self.id
+    s = Split.where(account_id:me_and_the_family).last
+    if s.present?
+      s.entry.post_date
+    else
+      Date.today.beginning_of_year
+    end
+    # last_date = s.entry.post_date 
+    # puts me_and_the_family
+    # max = Entry.all.joins(:splits).where(splits: {account_id:self.leaf << self.id}).maximum(:post_date)
+    # return max.present? ? max : Date.today.beginning_of_year
   end
 
 
@@ -133,31 +142,13 @@ class Account < ApplicationRecord
 
   Some of these balances are probably not needed unless your trying to answer some stupid question
 
-  starting_balance(date)
-  ending_balance(date)
+  there are some alias methods link starting.. ending.. which are on balance_on 
 
 =end
 
 
     def balance
       bal = self.splits.sum(:amount)  * self.flipper
-    end
-
-    def starting_balance(date)
-      # the balance at the beginning of a date
-      date = Ledger.set_date(date)
-      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lt(date)).sum(:amount) * self.flipper
-    end
-
-    def ending_balance(date)
-      # the balance at the end of a date (could just add day to date and call starting_balance)
-      date = Ledger.set_date(date)
-      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lteq(date)).sum(:amount) * self.flipper
-    end
-
-    def closing_balance_on(date)
-      date = Ledger.set_date(date)
-      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lteq(date)).sum(:amount) * self.flipper
     end
 
     def balance_on(date)
@@ -171,19 +162,14 @@ class Account < ApplicationRecord
       self.splits.joins(:entry).where(entries: {post_date:[from..to]}).sum(:amount) * self.flipper
     end
 
+    alias starting_balance_on balance_on
+    alias ending_balance_on balance_on
+    alias closing_balance_on balance_on
+
     def children_balance
       bal = 0
       self.children.each do |child|
         bal += child.balance
-      end
-      bal
-    end
-
-    def closing_children_balance_on(date)
-      date = Ledger.set_date(date)
-      bal = 0
-      self.children.each do |child|
-        bal += child.closing_balance_on(date)
       end
       bal
     end
@@ -207,24 +193,11 @@ class Account < ApplicationRecord
       bal
     end
 
+    alias closing_children_balance_on children_balance_on
+
     def family_balance
       bal = balance
       bal += family_child_balance
-    end
-
-    def family_child_balance
-      bal = 0
-      self.children.each do |child|
-        bal += child.balance
-        bal += child.family_child_balance
-      end
-      bal
-    end
-
-    def closing_family_balance_on(date)
-      date = Ledger.set_date(date)
-      bal = closing_balance_on(date)
-      bal += closing_family_child_balance_on(date)
     end
 
     def family_balance_on(date)
@@ -233,12 +206,18 @@ class Account < ApplicationRecord
       bal += family_child_balance_on(date)
     end
 
-    def closing_family_child_balance_on(date)
+    def family_balance_between(from,to)
       date = Ledger.set_date(date)
+      bal = balance_between(from,to)
+      bal += family_child_balance_between(from,to)
+    end
+
+
+    def family_child_balance
       bal = 0
       self.children.each do |child|
-        bal += child.closing_balance_on(date)
-        bal += child.closing_family_child_balance_on(date)
+        bal += child.balance
+        bal += child.family_child_balance
       end
       bal
     end
@@ -253,12 +232,6 @@ class Account < ApplicationRecord
       bal
     end
 
-    def family_balance_between(from,to)
-      date = Ledger.set_date(date)
-      bal = balance_between(from,to)
-      bal += family_child_balance_between(from,to)
-    end
-
     def family_child_balance_between(from,to)
       from = Ledger.set_date(from)
       to = Ledger.set_date(to)
@@ -270,7 +243,6 @@ class Account < ApplicationRecord
       bal
     end
 
-    ##
     # Summaries and ledgers
 
     def family_summary(from,to)
@@ -320,7 +292,7 @@ class Account < ApplicationRecord
     def summary(from,to)
       from = Ledger.set_date(from)
       to = Ledger.set_date(to)
-      beginning = self.starting_balance(from) * self.flipper
+      beginning = self.balance_on(from) * self.flipper
       splits = self.splits.joins(:entry).where(entries: {post_date:[from..to]})
       debits = splits.where(splits.arel_table[:amount].gt(0)).sum(:amount) 
       diff = splits.sum(:amount) * self.flipper
