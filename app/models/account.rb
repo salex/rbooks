@@ -41,20 +41,16 @@ class Account < ApplicationRecord
   end
 
   def last_entry_date
-    me_and_the_family = self.family.pluck(:id) << self.id
-    s = Split.where(account_id:me_and_the_family).last
-    if s.present?
-      s.entry.post_date
+    me_and_the_family = self.family << self
+    e = Entry.where_assoc_exists(:splits,{ account_id: me_and_the_family})
+    .includes(:splits)
+    .order(:post_date).last
+    if e.present?
+      e.post_date
     else
       Date.today.beginning_of_year
     end
-    # last_date = s.entry.post_date 
-    # puts me_and_the_family
-    # max = Entry.all.joins(:splits).where(splits: {account_id:self.leaf << self.id}).maximum(:post_date)
-    # return max.present? ? max : Date.today.beginning_of_year
   end
-
-
 
   def walk_tree(level,new_tree)
     self.level = level

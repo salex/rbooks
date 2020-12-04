@@ -59,6 +59,12 @@ module Ledger
 
   end
 
+  def self.last_entry_date(family)
+    Entry.where_assoc_exists(:splits,{ account_id: family})
+    .includes(:splits)
+    .order(:post_date).last.post_date
+  end
+
   def self.entries_ledger(entries)
     bal = @balance ||= 0
     # kjdfjd = kljdfldj
