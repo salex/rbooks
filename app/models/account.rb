@@ -40,9 +40,16 @@ class Account < ApplicationRecord
 
   end
 
+  def family_tree_ids
+    # Only used in last_entry_date to get the lall entries for the family and me
+    # if self is a leaf (no childre) it will be an array [:id]
+    # if self has children it will be array [:id,e0.id, e1.id, etc]
+    self.family.pluck(:id) << self.id
+  end
+
+
   def last_entry_date
-    me_and_the_family = self.family << self
-    e = Entry.where_assoc_exists(:splits,{ account_id: me_and_the_family})
+    e = Entry.where_assoc_exists(:splits,{ account_id: family_tree_ids})
     .includes(:splits)
     .order(:post_date).last
     if e.present?
@@ -139,6 +146,10 @@ class Account < ApplicationRecord
   Some of these balances are probably not needed unless your trying to answer some stupid question
 
   there are some alias methods link starting.. ending.. which are on balance_on 
+
+  By default: if an account has children, you can't create and entry using that account under normal circumstances
+  If you decide to split an account and don't place it under a new parent there could be entries in a placeholder
+  this is allowed in gnucash, I don't allow anyting to be added, but entries will exist and will balance
 
 =end
 

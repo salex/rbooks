@@ -34,27 +34,28 @@ class Entry < ApplicationRecord
     reconcile_state.include?('c')
   end
 
-  def set_banking_attributes
-    # banking attributes only really needed with reconciling a bank account
-    banking_splits = self.splits.where(account_id:Current.book.settings[:checking_ids])
-    if banking_splits.present?
-      reconcile_state = banking_splits.pluck(:reconcile_state).uniq
-      self.amount = banking_splits.sum(:amount)
-      case reconcile_state
-      when %w{v}
-        self.reconciled = 'v'
-      when %w{y}
-        self.reconciled = 'y'
-      when %w{n}
-        self.reconciled = 'n'
-      when %w{c}
-        self.reconciled = 'c'
-      else
-        self.reconciled = '?'
-        # this is an error, have not seen it happen. any blank state should be set to 'n'
-      end
-    end
-  end
+  # THIS WAS REPLACE BY METHOD IN BANK CLASS
+  # def set_banking_attributes
+  #   # banking attributes only really needed with reconciling a bank account
+  #   banking_splits = self.splits.where(account_id:Current.book.settings[:checking_ids])
+  #   if banking_splits.present?
+  #     reconcile_state = banking_splits.pluck(:reconcile_state).uniq
+  #     self.amount = banking_splits.sum(:amount)
+  #     case reconcile_state
+  #     when %w{v}
+  #       self.reconciled = 'v'
+  #     when %w{y}
+  #       self.reconciled = 'y'
+  #     when %w{n}
+  #       self.reconciled = 'n'
+  #     when %w{c}
+  #       self.reconciled = 'c'
+  #     else
+  #       self.reconciled = '?'
+  #       # this is an error, have not seen it happen. any blank state should be set to 'n'
+  #     end
+  #   end
+  # end
 
   def duplicate
     new_entry = self.dup

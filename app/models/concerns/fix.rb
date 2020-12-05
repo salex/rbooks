@@ -10,6 +10,11 @@ module Fix
     self.inheritance_column = nil
   end
 
+  class Stash < ApplicationRecord
+    self.inheritance_column = nil
+  end
+
+
   class Fixes
 
     def fix_uuids(book_id)
