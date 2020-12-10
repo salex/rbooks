@@ -93,7 +93,7 @@ class AccountsController < ApplicationController
       else
         last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
         @from = last_tran.beginning_of_month
-        @to = @today
+        @to = @from.end_of_month
       end
 
     end
