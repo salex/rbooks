@@ -79,10 +79,10 @@ div[data-controller="blueBackground"]
               = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/split_register_pdf/#{@account.id}")),prompt:"Split Register PDF",data:{action:'rangePicker#selectSplit'},class:'entry-select w3-select')
                  
   #ajax.w3-container.w3-white
-    - last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
-    - if @from.blank?
-      - @from = last_tran - 10.days
-      - @to = @today.end_of_month
+    / - last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
+    / - if @from.blank?
+    /   - @from = last_tran - 10.days
+    /   - @to = @today.end_of_month
 
 
     #Ledger

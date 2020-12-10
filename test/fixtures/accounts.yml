@@ -65,7 +65,7 @@ a8:
   id: 8
   uuid: a1958d82-89a0-42bf-b593-1e0a353b7401
   book: b1
-  parent: a1
+  parent: a2
   name: Savings
   account_type: BANK
   placeholder: false

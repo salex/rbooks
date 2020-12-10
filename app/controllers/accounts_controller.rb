@@ -74,20 +74,28 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_param_date
+      # sets datas based on params or last transaction
+      #  parama will only include a date where converted to beginning and end of month
+      #  from will set from and to (or today of to missing)
+      # if parmans not preset with will get last transaction and set to to beginning of monay and to today
       @today = Date.today
       if params[:date].present?
         @date = Ledger.set_date(params[:date])
         @from = @date.beginning_of_month
         @to = @date.end_of_month
-      end
-      if params[:from].present?
+      elsif params[:from].present?
         @from = Ledger.set_date(params[:from])
-      end
-      if params[:to].present?
-        @to = Ledger.set_date(params[:to])
+        if params[:to].present?
+          @to = Ledger.set_date(params[:to])
+        else
+          @to = @today
+        end
+      else
+        last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
+        @from = last_tran.beginning_of_month
+        @to = @today
       end
 
-      # puts "FFFFFRRRRRRROOOOOO<<<<#{@from}"
     end
 
     def set_account

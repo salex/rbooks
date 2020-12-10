@@ -29,9 +29,23 @@
       li Requires a server, either local, virtual, or cloud based (I've run it on a $35 RaspberryPI!)
       li Requires some Technical skills to setup and maintain.
       li ?
-    div.strong Date Test
-    div
-      = text_field_tag('date',nil,data:{controller:'flatpickr'})
+    / div.strong Date Test
+    / div[data-controller="testMe"]
+    /   = text_field_tag('from_date',nil,data:{target:'testMe.from_date', action:'change#doSomething'})
+
+    / div[data-controller="test-me"]
+    /   = text_field_tag('from_date',nil,data:{'test-me-target':'from_date', action:'change#doSomething'})
+
+    / div[data-controller="test-me"]
+    /   = text_field_tag('from_date',nil,data:{test_me_target:'from_date', action:'change#doSomething'})
+
+    / div[data-controller="test-me"]
+    /   = text_field_tag('from_date',nil,data:{testMeTarget:'from_date', action:'change#doSomething'})
+
+
+
+
+
 
 / p = session_inspect
 / p = Current.book.inspect

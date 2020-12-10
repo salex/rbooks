@@ -6,9 +6,13 @@ div[data-controller="blueBackground"]
     #validate.button.w3-button.w3-blue[data-action="click->entryLedger#validate"] Validate
     = link_to('Cancel', session[:current_acct].present? ? account_path(session[:current_acct]) :request.headers['HTTP_REFERER'],
       class:"w3-button w3-yellow")
-    - unless @entry.new_record?
-      button= link_to 'Delete Entry',@entry, data: { confirm: 'Are you sure?' },class:'link-button', method: :delete 
-      button= link_to 'Void Entry',entries_void_path(@entry),class:'link-button', data: { confirm: 'Are you sure?' }, method: :patch 
+    - unless @entry.new_record? || @entry.reconciled?
+      - confirm_msg = @entry.cleared? ? "Entry has been Cleared - Are you sure?" : 'Are you sure?'
+      button= link_to 'Delete Entry',@entry, data: { confirm: confirm_msg },class:'link-button', method: :delete 
+      button= link_to 'Void Entry',entries_void_path(@entry),class:'link-button', data: { confirm: confirm_msg }, method: :patch 
+      - if @entry.fit_id.present?
+        span.w3-right Entry Has FitID
+
   .w3-row
     = form_with model: @entry, data:{target:"entryLedger.theForm",action:'  keypress->entryLedger#preventSubmit'} do |f|
       
@@ -25,6 +29,7 @@ div[data-controller="blueBackground"]
               td.strong.wp10 Date
               td.strong.wp6 Numb &plusmn;
               td.strong Description
+
               td.strong
                 |Transfers&nbsp;&nbsp;&nbsp;
                 = content_tag(:span,'Add Split Row', class:' button link-button',
@@ -76,7 +81,10 @@ div[data-controller="blueBackground"]
         hr.underline
         div style="float:right;"
           span.balanced[data-target="entryLedger.balanced"] Start
-        button.w3-red.w3-large.w3-disabled.w3-round.w3-padding.strong.w3-margin-top[data-target="entryLedger.submit" data-action="click->entryLedger#submitForm" disabled="disabled"] = "#{action_name == 'edit' ? 'Update' : 'Create'} Entry"
+        - if @entry.reconciled?
+          h4.strong.w3-text-red Entry has been reconciled and can't be changed. Use a transfer entry if there was a problem/mistake
+        - else
+          button.w3-red.w3-large.w3-disabled.w3-round.w3-padding.strong.w3-margin-top[data-target="entryLedger.submit" data-action="click->entryLedger#submitForm" disabled="disabled"] = "#{action_name == 'edit' ? 'Update' : 'Create'} Entry"
         #last_numbers[data-target="autoNumber.last_numbers" data-numbers="#{current_book.last_numbers.to_json}"]
   
       
