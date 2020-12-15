@@ -12,7 +12,7 @@ class Entries::FilteredController < ApplicationController
     else
       entries = current_book.contains_match_query(params[:words], params[:show_all])
     end
-    @lines = Book.entries_ledger(entries)
+    @lines = Ledger.entries_ledger(entries)
     render partial: '/entries/actions/filtered'
   end
 end

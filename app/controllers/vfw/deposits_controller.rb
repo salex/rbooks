@@ -56,7 +56,7 @@ module Vfw
     end
 
     def edit_other
-      dcount = @deposit.other_revenues.count
+      dcount = @deposit.other_revenues.length
       cnt = dcount.zero? ? 6 : 2
       cnt.times do
         @deposit.other_revenues.build

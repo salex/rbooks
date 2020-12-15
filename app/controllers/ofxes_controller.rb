@@ -122,7 +122,7 @@ class OfxesController < ApplicationController
 
   def matched
     match_entry = current_book.entries.find(params[:entry_id])
-    if match_entry.splits.count > 2
+    if match_entry.splits.length > 2
       redirect_to latest_ofxes_path, alert:'Sorry, you can\'t duplicate entries with more than 2 splits from Bank Transactions. Deplicate it in the ledger.'
     else
       # @options  = current_book.settings[:acct_sel_opt]
@@ -133,21 +133,6 @@ class OfxesController < ApplicationController
     end
 
   end
-
-  # def search
-  #   match_entry = current_book.entries.where(Entry.arel_table[:description].matches("#{params[:lookup]}%")).order(:post_date).last
-  #   if match_entry.splits.count > 2
-  #     redirect_to latest_ofxes_path, alert:'Sorry, you can\'t duplicate entries with more than 2 splits from Bank Transactions. Deplicate it in the ledger.'
-  #   else
-  #     @options  = current_book.settings[:acct_sel_opt]
-
-  #     bank = Ofx.find_fit_id(params[:id])
-  #     @entry = match_entry.duplicate_with_bank(bank)
-  #     # render plain: "#{new_entry.inspect} #{new_entry.splits.inspect} "
-  #     render template: 'entries/duplicate'
-  #   end
-
-  # end
 
   private
     def require_book

@@ -39,7 +39,7 @@ class Bank
   def reconcile(bank_statement)
     checkbook_balance
     self.statement_range = Ledger.statement_range(self.closing_date)
-    self.checking_ending_balance = checking_account.closing_family_balance_on(self.closing_date)
+    self.checking_ending_balance = checking_account.family_balance_on(self.closing_date)
     self.checking_beginning_balance = checking_account.family_balance_on(statement_range.first)
     self.bank_beginning_balance = bank_statement.beginning_balance
     self.bank_ending_balance = bank_statement.ending_balance ||= 0

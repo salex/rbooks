@@ -356,7 +356,7 @@ class Account < ApplicationRecord
         date = t.post_date
         line = {id: t.id,date: date.strftime("%m/%d/%Y"),numb:t.numb,desc:"#{t.description}",
           checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:0}
-        numb_splits = t.splits.count
+        numb_splits = t.splits.length
         t.splits.each do |s|
           details = s.details
 

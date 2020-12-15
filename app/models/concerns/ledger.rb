@@ -66,6 +66,7 @@ module Ledger
   end
 
   def self.entries_ledger(entries)
+    # this is only for seach ledgers, not account ledgers
     bal = @balance ||= 0
     # kjdfjd = kljdfldj
     lines = [{id: nil,date: nil,numb:nil,desc:"Beginning Balance",
@@ -73,9 +74,10 @@ module Ledger
     entries.each do |t|
       date = t.post_date
       line = {id: t.id,date: date.strftime("%m/%d/%Y"),numb:t.numb,desc:"#{t.description}",
-        checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:0}
+        checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:0,split_cnt:0}
       # p "EEEEEE #{t.splits.count}"
       t.splits.each do |s|
+        line[:split_cnt] += 1
         details = s.details
         line[:checking][:db] += details[:db]
         line[:checking][:cr] += details[:cr]

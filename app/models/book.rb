@@ -167,7 +167,7 @@ class Book < ApplicationRecord
   def contains_any_word_query(words,all=nil)
     words = words.split unless words.class == Array
     words.map!{|v| "%#{v}%"}
-    query = self.entries.where(Entry.arel_table[:description].matches_any(words)).order(:post_date).reverse_order
+    query = self.entries.where(Entry.arel_table[:description].matches_any(words)).includes(:splits).order(:post_date).reverse_order
     return query if all.present?
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
@@ -177,7 +177,7 @@ class Book < ApplicationRecord
   def contains_all_words_query(words,all=nil)
     words = words.split unless words.class == Array
     words.map!{|v| "%#{v}%"}
-    query = self.entries.where(Entry.arel_table[:description].matches_all(words)).order(:post_date).reverse_order
+    query = self.entries.where(Entry.arel_table[:description].matches_all(words)).includes(:splits).order(:post_date).reverse_order
     return query if all.present?
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
@@ -185,7 +185,7 @@ class Book < ApplicationRecord
   end
 
   def contains_match_query(match,all=nil)
-    query = self.entries.where(Entry.arel_table[:description].matches("%#{match}%")).order(:post_date).reverse_order
+    query = self.entries.where(Entry.arel_table[:description].matches("%#{match}%")).includes(:splits).order(:post_date).reverse_order
     return query if all.present? && all == "1"
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
@@ -195,7 +195,7 @@ class Book < ApplicationRecord
   def contains_number_query(match,all=nil)
     # query = self.entries.where('entries.numb like ?',"#{match}%").order(:post_date).reverse_order
     query = self.entries.where(Entry.arel_table[:numb].matches("#{match}%")).order(:numb).reverse_order
-    puts "query.count #{match}  #{query.count}"
+    # puts "query.count #{match}  #{query.count}"
     return query if all.present?
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
@@ -207,37 +207,38 @@ class Book < ApplicationRecord
     eids = Split.where(account_id:bacct_ids).where(amount:match.to_i).pluck(:entry_id).uniq
     # query = self.entries.where('entries.numb like ?',"#{match}%").order(:post_date).reverse_order
     query = self.entries.where(id:eids).order(:post_date).reverse_order
-    puts "query.count #{match}  #{query.count}"
+    # puts "query.count #{match}  #{query.count}"
     return query if all.present?
     p = query.pluck(:description,:id)
     uids = p.uniq{ |s| s.first }.to_h.values
     query.where(id:uids).order(:post_date).reverse_order
   end
 
-  def self.entries_ledger(entries)
-    bal = @balance ||= 0
+  # THIS WAS ALREADY IN LEDGER
+  # def self.entries_ledger(entries)
+  #   bal = @balance ||= 0
 
-    lines = [{id: nil,date: nil,numb:nil,desc:"Beginning Balance",
-        checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:bal}]
-    entries.each do |t|
-      date = t.post_date
-      line = {id: t.id,date: date.strftime("%m/%d/%Y"),numb:t.numb,desc:"#{t.description}",
-        checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:0}
-      t.splits.each do |s|
-        details = s.details
+  #   lines = [{id: nil,date: nil,numb:nil,desc:"Beginning Balance",
+  #       checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:bal}]
+  #   entries.each do |t|
+  #     date = t.post_date
+  #     line = {id: t.id,date: date.strftime("%m/%d/%Y"),numb:t.numb,desc:"#{t.description}",
+  #       checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:0}
+  #     t.splits.each do |s|
+  #       details = s.details
 
-        # if kids.include?(details[:aguid]) 
-          line[:checking][:db] += details[:db]
-          line[:checking][:cr] += details[:cr]
-          bal += details[:cr] 
-          line[:balance] = bal
-          line[:r] = details[:r]
-        line[:details] << details
-      end
-      lines << line
-    end
-    lines
-  end
+  #       # if kids.include?(details[:aguid]) 
+  #         line[:checking][:db] += details[:db]
+  #         line[:checking][:cr] += details[:cr]
+  #         bal += details[:cr] 
+  #         line[:balance] = bal
+  #         line[:r] = details[:r]
+  #       line[:details] << details
+  #     end
+  #     lines << line
+  #   end
+  #   lines
+  # end
 
   def create_book
     book = self

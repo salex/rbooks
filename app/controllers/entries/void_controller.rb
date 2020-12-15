@@ -1,7 +1,7 @@
 class Entries::VoidController < EntriesController
 
   def update
-    not_reconciled = @entry.splits.where(reconcile_state:['y','c']).count.zero?
+    not_reconciled = @entry.splits.where(reconcile_state:['y','c']).length.zero?
     respond_to do |format|
      if not_reconciled
        splits = @entry.splits.update_all(reconcile_state:'v',amount:0)
