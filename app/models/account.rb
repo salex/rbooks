@@ -139,17 +139,20 @@ class Account < ApplicationRecord
   family_balance = balance for the account (only if account is not a placeholder) and the all decendents
 
   each of the balances have extensions
-  on(date) begining balances on the date (entries.post_date < date)
-  on(date,closing) if closing option set, ending balance on date (entries.post_date <= date)
+  on(date) ending balances on the date (entries.post_date <= date)
+  TODO this was a change when there was opeing and closing balalance in icash went to just on I don;t thing there is 
+    a need for opening balalance (whiich is was before) it worked for everyting except renconcile.
+    the todo is just to keep and eye out for problems
   between(from,to) balances between the from and to date
 
   Some of these balances are probably not needed unless your trying to answer some stupid question
+  UPDATE, got rid of most of those with icash > rbooks
 
   there are some alias methods link starting.. ending.. which are on balance_on 
 
   By default: if an account has children, you can't create and entry using that account under normal circumstances
   If you decide to split an account and don't place it under a new parent there could be entries in a placeholder
-  this is allowed in gnucash, I don't allow anyting to be added, but entries will exist and will balance
+  this is allowed in gnucash, I don't allow anyting to be added, but entries that exist and will balance
 
 =end
 
@@ -160,7 +163,7 @@ class Account < ApplicationRecord
 
     def balance_on(date)
       date = Ledger.set_date(date)
-      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lt(date)).sum(:amount) * self.flipper
+      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lteq(date)).sum(:amount) * self.flipper
     end
 
     def balance_between(from,to)
@@ -255,11 +258,11 @@ class Account < ApplicationRecord
     def family_summary(from,to)
       id = self.id
       root = {id => self.summary(from,to)}
-      branches = Account.where(id:self.branches)
+      branches = Account.includes(:book).where(id:self.branches)
       branches.each do |b|
         root[b.id] = b.summary(from,to)
       end
-      leaves = Account.where(id:self.leaf)
+      leaves = Account.includes(:book).where(id:self.leaf)
       leaves.each do |l|
         root[l.id] = l.summary(from,to)
         parent = root[l.id][:parent_id]
