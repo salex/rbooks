@@ -13,8 +13,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     set_recent if params[:toggle].present?
-
-    @date = Date.today
+    @date = Date.today # not used but thinking
     set_param_date
     session[:current_acct] = @account.id
     render template:'accounts/ledger/show'
@@ -75,27 +74,25 @@ class AccountsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_param_date
       # sets datas based on params or last transaction
-      #  parama will only include a date where converted to beginning and end of month
-      #  from will set from and to (or today of to missing)
-      # if parmans not preset with will get last transaction and set to to beginning of monay and to today
+      #  if params include a date from/to converted to beginning and end of month
+      #  if only front will set from and to (or today of to missing)
+      #  if parmans not present will get last transaction and set from to beginning of its month
+      #  if from is in current month, may look back 7 days from from date
       @today = Date.today
-      if params[:date].present?
+      minus7 = @today.day < 8 ? 8  - @today.day : 0 # if in first week of month, look back 7 days
+      if params[:date].present? # from month pulldown
         @date = Ledger.set_date(params[:date])
         @from = @date.beginning_of_month
         @to = @date.end_of_month
-      elsif params[:from].present?
+      elsif params[:from].present? # from date picker(from,to)
         @from = Ledger.set_date(params[:from])
-        if params[:to].present?
-          @to = Ledger.set_date(params[:to])
-        else
-          @to = @today
-        end
+        @to = params[:to].present? ? Ledger.set_date(params[:to]) : @today.end_of_month
       else
-        last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
+        last_tran = @account.last_entry_date ||= @today.beginning_of_year
         @from = last_tran.beginning_of_month
+        @from -= minus7 if Ledger.dates_in_same_month(@today,@from)
         @to = @from.end_of_month
       end
-
     end
 
     def set_account

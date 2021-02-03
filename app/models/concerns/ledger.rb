@@ -14,6 +14,10 @@ module Ledger
     sign+set_zero.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,") # add commas
   end
 
+  def self.dates_in_same_month(date1,date2)
+    date1.month == date2.month && date1.year == date2.year
+  end
+
   def self.to_money(int,sign="")
     self.money(int,sign="")
   end

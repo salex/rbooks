@@ -1,15 +1,5 @@
--  if  params[:date].present?
-  - date =  Date.parse(params[:date]).beginning_of_month
-- else
-  - date = from ||= Date.today
-- if account.placeholder
-  - lines = account.children_ledger(from,to)
-- else
-  - lines = account.account_ledger(from,to)
-- if to.present?
-  - caption = "#{account.account_type} Account #{account.name} Ledger from: #{date} to: #{to}"
-- else
-  - caption = "#{account.account_type} Account #{account.name} Ledger for: #{date.to_formatted_s(:month_and_year)}"
+- lines = account.placeholder ? account.children_ledger(from,to) : account.account_ledger(from,to)
+- caption = "#{account.account_type} Account #{account.name} Ledger from: #{from} to: #{to}"
 - summary = lines.pop
 table.small-table7
   tr
@@ -20,7 +10,6 @@ table.small-table7
     td.tleft.under =imoney summary[:checking][:cr]
     td.w3-right-align Difference:
     td.tleft.under =imoney summary[:balance]
-
 
 table.small-table7[data-controller="sortTable toggleSplits"]
   caption
