@@ -91,7 +91,7 @@ class AccountsController < ApplicationController
         last_tran = @account.last_entry_date ||= @today.beginning_of_year
         @from = last_tran.beginning_of_month
         @from -= minus7 if Ledger.dates_in_same_month(@today,@from)
-        @to = @from.end_of_month
+        @to = @today.end_of_month
       end
     end
 
