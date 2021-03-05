@@ -20,6 +20,8 @@ export default class extends Controller {
   toOption(){
     var toSel = this.toOptionsTarget
     this.toDate.value = toSel.value
+    console.log('toOption')
+
   }
 
   fromOption() {
@@ -29,6 +31,7 @@ export default class extends Controller {
     this.fromDate.value = fromSel.value
     toSel.selectedIndex = fromIndex
     this.toDate.value = toSel.value
+    console.log('fromOption')
   }
 
   selectPDF(){

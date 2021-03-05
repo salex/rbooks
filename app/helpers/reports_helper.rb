@@ -1,70 +1,5 @@
 module ReportsHelper
 
-  # def from_period_select(date_id:nil)
-  #   today = Date.today
-  #   bom = today.beginning_of_month
-  #   bopm = bom - 1.month
-  #   boq = today.beginning_of_quarter
-  #   bopq = boq - 3.months
-  #   boy = today.beginning_of_year
-  #   bopy = boy - 1.year
-  #   qtr1 = boy
-  #   qtr2 = boy + 3.months
-  #   qtr3 = boy + 6.months
-  #   qtr4 = boy + 9.months
-  #   all = Date.new(1970,1,1)
-  #   options = [
-  #     ['Select From Period',nil],
-  #     ['Beginning of Month',bom.to_s],
-  #     ['Beginning of Quarter',boq.to_s],
-  #     ['Beginning of Year',boy.to_s],
-  #     ['Beginning of Prev Month',bopm.to_s],
-  #     ['Beginning of Prev Quarter',bopq.to_s],
-  #     ['Beginning of Prev Year',bopy.to_s],
-  #     ['Quarter 1',qtr1.to_s],
-  #     ['Quarter 2',qtr2.to_s],
-  #     ['Quarter 3',qtr3.to_s],
-  #     ['Quarter 4',qtr4.to_s],
-
-  #     ['All',all.to_s]
-
-  #   ]
-  #   content_tag(:select,options_for_select(options), data:{behavior:'select_from_date',date_id:date_id},id: :from_select)
-  # end
-
-  # def to_period_select(date_id:nil)
-  #   today = Date.today
-  #   eom = today.end_of_month
-  #   eopm = (eom - 1.month).end_of_month
-  #   eoq = today.end_of_quarter
-  #   eopq = eoq - 3.months
-  #   eoy = today.end_of_year
-  #   eopy = eoy - 1.year
-  #   boy = today.beginning_of_year
-  #   qtr1 = boy.end_of_quarter
-  #   qtr2 = (boy + 3.months).end_of_quarter
-  #   qtr3 = (boy + 6.months).end_of_quarter
-  #   qtr4 = (boy + 9.months).end_of_quarter
-
-  #   options = [
-  #     ['Select To Period',nil],
-  #     ['End of Month',eom.to_s],
-  #     ['End of Quarter',eoq.to_s],
-  #     ['End of Year',eoy.to_s],
-  #     ['End of Prev Month',eopm.to_s],
-  #     ['End of Prev Quarter',eopq.to_s],
-  #     ['End of Prev Year',eopy.to_s],
-  #     ['End of Quarter 1',qtr1.to_s],
-  #     ['End of Quarter 2',qtr2.to_s],
-  #     ['End of Quarter 3',qtr3.to_s],
-  #     ['End of Quarter 4',qtr4.to_s],
-
-  #     ['Current Date',today.to_s]
-
-  #   ]
-  #   content_tag(:select,options_for_select(options), data:{behavior:'select_to_date',date_id:date_id}, id: :to_select)
-  # end
-
   def tree_summary(summary)
     @summary = summary
     key = summary.keys.first
@@ -80,8 +15,6 @@ module ReportsHelper
       append_children(c)
     end
   end
-
-
 
   def profit_loss_report(report)
     @level = report['options'][:level].to_i
