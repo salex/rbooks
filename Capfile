@@ -27,13 +27,15 @@ install_plugin Capistrano::SCM::Git
 #   https://github.com/capistrano/passenger
 #
 # require "capistrano/rvm"
+install_plugin Capistrano::Puma  # Default puma tasks
+install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
+install_plugin Capistrano::Puma::Systemd
 require "capistrano/rails/assets"
 require "capistrano/rbenv"
 require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/puma'
-install_plugin Capistrano::Puma  # Default puma tasks
-install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
+
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
