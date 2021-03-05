@@ -13,36 +13,36 @@
       = f.text_field :date, class:'w10',data:{controller:'flatpickr'}
     .m2.w3-col.field
       = f.label :sales_revenue
-      = f.text_field :sales_revenue, class:'w10', disabled: true, data:{target:'deposit.disabled deposit.revenue'}
+      = f.text_field :sales_revenue, class:'w10', disabled: true, data:{deposit_target:'disabled revenue'}
     .m2.w3-col.field
       = f.label :credit_sales
-      = f.text_field :credit_sales, class:'w10', data:{target:'deposit.credit',action:'change->deposit#changed'}
+      = f.text_field :credit_sales, class:'w10', data:{deposit_target:'credit',action:'change->deposit#changed'}
     .m2.w3-col.field
       = f.label :tips_paid
-      = f.text_field :tips_paid, class:'w10', data:{target:'deposit.tips',action:'change->deposit#changed'}
+      = f.text_field :tips_paid, class:'w10', data:{deposit_target:'tips',action:'change->deposit#changed'}
     .m2.w3-col.field
       = f.label :sales_deposit
-      = f.text_field( :sales_deposit, class:'w10', disabled:true, data:{target:'deposit.disabled deposit.salesDeposit'})
+      = f.text_field( :sales_deposit, class:'w10', disabled:true, data:{deposit_target:'disabled salesDeposit'})
     .m2.w3-col.field
       = f.label :submit
-      .actions.w10 = f.submit( disabled:true,s:'submit_button', data:{target:'deposit.disabled'},class:'w3-blue w3-button')
+      .actions.w10 = f.submit( disabled:true,s:'submit_button', data:{deposit_target:'disabled'},class:'w3-blue w3-button')
   .w3-row-padding
     .m4.w3-col.field
       .strong CashPayments (Sales - Credit + Tips)
-      = text_field_tag  "cash_payments", nil, disabled: true, class:'w10', data:{target:'deposit.disabled deposit.cash'}
+      = text_field_tag  "cash_payments", nil, disabled: true, class:'w10', data:{deposit_target:'disabled cash'}
       / = f.text_field :cash_out, class:'w10'
       / / = f.input :payouts, input_html:{ class:'payout_sum'},disabled: true
       .strong Cash Out
-      = f.text_field :cash_out, disabled: true, class:'w10', data:{target:'deposit.disabled deposit.out'}
+      = f.text_field :cash_out, disabled: true, class:'w10', data:{deposit_target:'disabled out'}
 
       .strong Cash Expected (Payments - Tips - Out)
-      = text_field_tag  "cash_expected", nil, disabled: true, class:'w10', data:{target:'deposit.disabled deposit.expected'}
+      = text_field_tag  "cash_expected", nil, disabled: true, class:'w10', data:{deposit_target:'disabled expected'}
 
       .strong Cash Counted 
-      = text_field_tag  "cash_counted", nil, class:'w10', data:{action:'change->deposit#changed',target:'deposit.counted'}
+      = text_field_tag  "cash_counted", nil, class:'w10', data:{action:'change->deposit#changed',deposit_target:'counted'}
 
       .strong Over/Under
-      = text_field_tag  "over_under", nil, disabled:true, class:'w10', data:{target:'deposit.disabled deposit.over_under'}
+      = text_field_tag  "over_under", nil, disabled:true, class:'w10', data:{deposit_target:'disabled over_under'}
       / = f.input :revenue_sales,label:'Cash Counted'
       / = f.input :over_under,label:"OverUnder (corrected)",input_html:{class:'over_under'}
     .m8.w3-col
@@ -66,15 +66,15 @@
               = sales.hidden_field :id
               = sales.object.item
             .s3.w3-col.padb-4
-              = text_field_tag(:net,nil, class:' tright w10', data:{action:'change->deposit#calculate',target:'deposit.net'})
-              = sales.hidden_field(:tax,data:{target:'deposit.tax'})
-              = sales.hidden_field(:average,data:{target:'deposit.price'})
+              = text_field_tag(:net,nil, class:' tright w10', data:{action:'change->deposit#calculate',deposit_target:'net'})
+              = sales.hidden_field(:tax,data:{deposit_target:'tax'})
+              = sales.hidden_field(:average,data:{deposit_target:'price'})
 
             .s3.w3-col.padb-4
-              = sales.text_field( :quanity, class:'sales-quanity tright w10',data:{target:'deposit.quanity',action:'change->deposit#changed'})
+              = sales.text_field( :quanity, class:'sales-quanity tright w10',data:{deposit_target:'quanity',action:'change->deposit#changed'})
             .s3.w3-col.padb-4
               = sales.text_field( :amount, class:'sales-amount tright w10', 
-                data:{action:'change->deposit#changed', target:'deposit.revenueAmount'})
+                data:{action:'change->deposit#changed', deposit_target:'revenueAmount'})
       .w3-row.w3-row-padding.w3-margin
 
         = f.fields_for :cash_outs do |cashout|
@@ -89,7 +89,7 @@
             = cashout.hidden_field :id
           .m3.w3-col
             = cashout.text_field( :amount, class:'cashout-amount w10 tright', 
-              data:{action:'change->deposit#changed', target:'deposit.cashOut'})
+              data:{action:'change->deposit#changed', deposit_target:'cashOut'})
           .m6.w3-col
             = cashout.text_field :remarks, class:'cashout-remarks w25'
 

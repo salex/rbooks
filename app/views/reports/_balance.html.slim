@@ -31,9 +31,6 @@ div
             split_unclear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance),
             method: :patch,remote:true)
 
-          / td.unclear-splits.malt 
-          /   span[data-target="checkingBalance.reconcile" data-action="click->checkingBalance#unclearSplits"] = x.reconciled
-          /   = hidden_field_tag(:entry_id,x.id,data:{target: :entry_id})
           td = x.numb
           td.w22 = x.description
           td.tright = imoney(x.amount)
@@ -55,9 +52,6 @@ div
             method: :patch,remote:true)
 
 
-          / td.clear-splits.malt
-          /   span[data-target="checkingBalance.reconcile" data-action="click->checkingBalance#clearSplits"] = x.reconciled
-          /   = hidden_field_tag(:entry_id,x.id,data:{target: :entry_id})
           td = x.numb
           td.w22 = x.description
           td.tright = imoney(x.amount)

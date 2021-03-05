@@ -129,7 +129,6 @@ class OfxesController < ApplicationController
       bank = Ofx.find_fit_id(params[:fit_id])
       @entry = match_entry.duplicate_with_bank(bank)
       render template:'entries/new'
-
     end
 
   end

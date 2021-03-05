@@ -1,6 +1,6 @@
 #about.w3-container.w3-white.min-height.about
   .w3-row[data-controller="aboutPager"]
-    #page1.w3-col.s10[data-target="aboutPager.page"]
+    #page1.w3-col.s10[data-aboutPager-target="page"]
 
       h5.strong About Banking
       p Banking is a semi-optional feature. If you do not reconcile your bank statements with your account in some fashion, you can skip this section. You might want to look at the Checking Balances area. If you do, there is a Bank Statement feature. Optionally, if your bank's on-line banking has a feature to download transaction using OFX (QuickBooks), there is a Bank Transactions feature.
@@ -42,7 +42,7 @@
             li The process will try to match BankTransaction to unlinked Entries by either check number and/or amount.
           
 
-    #page2.w3-col.s10[data-target="aboutPager.page"]
+    #page2.w3-col.s10[data-aboutPager-target="page"]
 
       h5.strong About Balances
       = image_tag('balance.png',class:'image-fit')
@@ -57,7 +57,7 @@
 
       p All Cleared and Uncleared entries are listed in a table. The cleared table is scrollable
       p You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
-    #page3.w3-col.s10[data-target="aboutPager.page"]
+    #page3.w3-col.s10[data-aboutPager-target="page"]
 
       h5.strong About Statements
       = image_tag('reconcile.png',class:'image-fit')
@@ -73,7 +73,7 @@
             li The major difference is that if the Bank Statement balances (and current date is more than the closing date), a Reconcile button will set the Reconcile_state to reconciled (y).
             li As in the balance page, you can move entries from cleared to uncleared and visa versa.
 
-    #page4.w3-col.s10[data-target="aboutPager.page"]
+    #page4.w3-col.s10[data-aboutPager-target="page"]
       h5.strong About OFX Transactions
       .w3-row
         .w3-col.s8

@@ -1,7 +1,7 @@
 #about.w3-container.w3-white.min-height
   .w3-row.about[data-controller="aboutPager"]
     .w3-col.s10
-      #page1.w3-row-padding.w3-hide[data-target="aboutPager.page"]
+      #page1.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s5
           = hidden_field_tag(:curr_page,'#page1')
           h4.strong About Accounts
@@ -15,7 +15,7 @@
             = link_to 'Account Table View', '#page1', class: :button
             |&nbsp; that provides a more detailed list of accounts and allows for CRUD actions.
           p Clicking on the account name link will open an Account Ledger for that account defaulting to recent or latest entries/transactions. This is really the <strong>Show</strong> view of the account.
-      #page2.w3-row-padding.w3-hide[data-target="aboutPager.page"]
+      #page2.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s8
           h4.strong Account Table View
           = image_tag('acct_table.png',class:'image-fit')
@@ -26,7 +26,7 @@
             li Clicking on the account name or the  <i class="fas fa-eye"></i> icon will open the Account Ledger (show).
             li Clicking on the <i class="fas fa-edit"></i> will open the Edit form for the Account.
             li Clicking on the <i class="fas fa-plus-square"></i> will open the a New form for a new Account. There is not a direct 'Create' action. The new action will only create a new account that will be the child of the parent account selected.
-      #page3.w3-row-padding.w3-hide[data-target="aboutPager.page"]
+      #page3.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s6
           h4.strong Account Attributes
           dl
@@ -56,7 +56,7 @@
           p 
             |When you open a ledger for a Placeholder, it display all entries for the entire family, usually filtered by some date range. You cannot enter new Entries for a Placeholder account. 
             span.annotate Note: GnuCash did not have this restriction. The demo imported transactions from GnuCash and placeholders may have entries. You can't add new Entries but there existence is accounted for in any balances. Optionally you can create a sub account and move those transactions to it.
-      #page4.w3-row-padding.w3-show[data-target="aboutPager.page"]
+      #page4.w3-row-padding.w3-show[data-aboutPager-target="page"]
         .w3-col.s8
           .sticky-menu
             h4.strong Checking Ledger
@@ -67,14 +67,14 @@
             li The Abbreviated ledger only displays one Account transfer. If there is more than one transfer, the account transfer will be '--Split Transaction--'. Clicking on that will show all transfer for that entry.
             li The split ledger show all transfers.
           p <strong>Date Picker - </strong> Ledgers display Entries by a date range (from..to). There are a number of ways to set that range.
-          .w3-row-padding[data-controller="rangePicker"]
+          .w3-row-padding[data-controller="rangepicker"]
             .s8.w3-col
               .strong Filter - Select Period or Pick Date for Report Options
               .w3-row-padding
                 .s7.w3-col.entry-select = from_period_select
-                .s5.w3-col= text_field_tag :from_date, nil,data:{controller:'flatpickr',target:'rangePicker.from_date'},placeholder:'Pick From Date'
+                .s5.w3-col= text_field_tag :from_date, nil,data:{controller:'flatpickr',rangepicker_target:'from_date'},placeholder:'Pick From Date'
                 .s7.w3-col.entry-select= to_period_select
-                .s5.w3-col= text_field_tag :to_date, nil,data:{controller:'flatpickr',target:'rangePicker.to_date'},placeholder:'Pick To Date'
+                .s5.w3-col= text_field_tag :to_date, nil,data:{controller:'flatpickr',rangepicker_target:'to_date'},placeholder:'Pick To Date'
 
           ul
             li The Filter Date Picker has pull downs to select the From and To period. Periods are, months, quarters and years (current and previous). Selecting a From period will set the To period, but you can change the selection. Periods selected populate the Date text field.

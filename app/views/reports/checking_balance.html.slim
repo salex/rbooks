@@ -15,11 +15,11 @@
     .s4.w3-col
       strong Closing Balance 
       = text_field_tag :closing_balance,to_money( @checking_balance.closing_balance),placeholder:'Enter Balance',
-        data:{target:'remoteUpdate.closing_balance'}
+        data:{remoteUpdate_target:'closing_balance'}
     .s1.w3-col
       button.w3-button.w3-blue-gray[data-action="click->remoteUpdate#rebalance"] Refresh
 
-    .w3-col.s12.w3-hide[data-target="toggle.content"]
+    .w3-col.s12.w3-hide[data-toggle-target="content"]
       p This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
       ul
         li Reconciled balance: The balance of all reconciled Checking account entries on the closure date.
@@ -32,7 +32,5 @@
       p All Cleared and Uncleared entries are listed in a table.
       p You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
   #ajax_balance
-    div[ data-target="remoteUpdate.refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
+    div[ data-remoteUpdate-target="refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
       = render partial: 'reports/balance'
-    / #partial[data-controller="checkingBalance"]
-    /   = render partial: 'reports/balance'

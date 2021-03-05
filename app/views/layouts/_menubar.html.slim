@@ -13,7 +13,11 @@
         .w3-right
           - flash.each do |name, msg|
             - if msg.is_a?(String)
-              .flash-box.w3-padding.w3-animate-right[data-controller="flashIt" data-target="flashIt.flashBox" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"]
+              .flash-box.w3-padding.w3-animate-right[
+                data-controller="flashIt" 
+                data-flashIt-target="flashBox" 
+                class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"
+              ]
                 = content_tag :span, content_tag(:strong,msg)
 
         .w3-right
@@ -43,7 +47,11 @@
         .w3-right
           - flash.each do |name, msg|
             - if msg.is_a?(String)
-              .flash-box.w3-padding.w3-animate-right[data-controller="flashIt" data-target="flashIt.flashBox" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"]
+              .flash-box.w3-padding.w3-animate-right[
+                data-controller="flashIt" 
+                data-flashIt-target="flashBox" 
+                class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"
+              ]
                 = content_tag :span, content_tag(:strong,msg)
         .w3-right
           span.w3-bar-item.w3-button.w3-right = link_to "Logout", logout_path

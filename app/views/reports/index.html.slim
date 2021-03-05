@@ -1,18 +1,18 @@
 .w3-container.w3-white.min-height
-  #reports.w3-row.w3-row-padding[data-controller="rangePicker report" data-date="#{Date.today.to_s}"]
+  #reports.w3-row.w3-row-padding[data-controller="rangepicker report" data-date="#{Date.today.to_s}"]
     .w3-col.s5
       h5.strong Under Construction
 
       p Most reports have default options (from-to Dates,level,etc), but you can change those options using the filters provided.
       .w3-card-2.w3-bar-block.w70p
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectSummary" data-url="#{summary_reports_path}"] Account Summary
+          button.lite-goldey.w100[data-action="click->rangepicker#selectSummary" data-url="#{summary_reports_path}"] Account Summary
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectCombo" data-url="#{summary_reports_path}"] Summary & P&L Combo
+          button.lite-goldey.w100[data-action="click->rangepicker#selectCombo" data-url="#{summary_reports_path}"] Summary & P&L Combo
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectPL " data-url="#{profit_loss_reports_path}"] Profit/Loss
+          button.lite-goldey.w100[data-action="click->rangepicker#selectPL " data-url="#{profit_loss_reports_path}"] Profit/Loss
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectPL " data-url="#{trial_balance_reports_path}"] Trial Balance
+          button.lite-goldey.w100[data-action="click->rangepicker#selectPL " data-url="#{trial_balance_reports_path}"] Trial Balance
       / button.w3-btn.malty = link_to "VFW Reports",vfw_index_path
 
 
@@ -25,20 +25,20 @@
         .s6.w3-col
           = from_period_select
           |or 
-          = text_field_tag :from_date, nil,data:{controller:'flatpickr',target:'rangePicker.from_date'},placeholder:'Pick From Date'
+          = text_field_tag :from_date, nil,data:{controller:'flatpickr',rangepicker_target:'from_date'},placeholder:'Pick From Date'
         .s6.w3-col
           = to_period_select
           |or 
-          = text_field_tag :to_date, nil,data:{controller:'flatpickr',target:'rangePicker.to_date'},placeholder:'Pick To Date'
+          = text_field_tag :to_date, nil,data:{controller:'flatpickr',rangepicker_target:'to_date'},placeholder:'Pick To Date'
       .strong Level Filter
       .w3-row.w3-row-padding
         = content_tag(:select,options_for_select([['Select',''],1,2,3,4],1),id: :level_select,class:'w3-select',
-          data:{target:'rangePicker.level'})
+          data:{rangepicker_target:'level'})
 
       .strong Account Filter
       .w3-row.w3-row-padding
         = content_tag(:select,options_for_select(@acct_options,  session[:acct_id] ||= Current.book.checking_acct.id),id: :account_select,
-          data:{target:'rangePicker.account',action:'rangePicker#accountSet'},class:'w3-select')
+          data:{rangepicker_target:'account',action:'rangepicker#accountSet'},class:'w3-select')
 
       .strong Account Ledger PDF Reports
       .w3-row.w3-row-padding
@@ -47,9 +47,9 @@
           / session[:acct_id] ||= Current.book.checking_acct.id
           div.entry-select= select_tag('register_pdf',
             options_for_select(report_select_options( nil,'/reports/register_pdf')),
-            prompt:"-Select Date-",data:{action:'rangePicker#selectPDF'},class:'w3-select')
+            prompt:"-Select Date-",data:{action:'rangepicker#selectPDF'},class:'w3-select')
         .s6.w3-col
           strong Split Account Ledger(pdf)
           div= select_tag('register_pdf',
             options_for_select(report_select_options(nil,'/reports/split_register_pdf')),
-            prompt:"-Select Date-",data:{action:'rangePicker#selectSplit'},class:'w3-select')
+            prompt:"-Select Date-",data:{action:'rangepicker#selectSplit'},class:'w3-select')

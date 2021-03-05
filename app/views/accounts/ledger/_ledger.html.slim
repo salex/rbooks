@@ -67,7 +67,7 @@ table.small-table7[data-controller="sortTable toggleSplits"]
       - else
         td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance])
     - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
-      tbody.split-rows[data-target="toggleSplits.tbody"]
+      tbody.split-rows[data-toggleSplits-target="tbody"]
         - row[:details].each do |d|
           tr.snowSelectedBackground
             td

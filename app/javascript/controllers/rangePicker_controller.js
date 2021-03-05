@@ -12,8 +12,9 @@ export default class extends Controller {
 
   connect() {
     // dates are input objects, not value
-    this.toDate =  this.to_dateTarget
     this.fromDate = this.from_dateTarget
+    this.toDate =  this.to_dateTarget
+
   }
 
   toOption(){

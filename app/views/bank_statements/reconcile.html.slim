@@ -26,10 +26,12 @@
       = @reconcile.closing_date
 
   #ajax_balance
-    div[data-controller="remoteUpdate" data-target="remoteUpdate.refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
+    div[
+      data-controller="remoteUpdate" 
+      data-remoteUpdate-target="refresh" 
+      data-action="ajax:success->remoteUpdate#onSuccess"
+    ]
       = render partial: 'bank_statements/reconcile'
 
-    / #partial[data-controller="bankReconcile"]
-    /   = render partial: 'bank_statements/reconcile'
 
    

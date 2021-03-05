@@ -29,9 +29,6 @@ hr
             unclear_splits_bank_statement_path(x.id),
             method: :patch,remote:true)
 
-          / td.unclear-reconcile.malt 
-          /   span[data-target="bankReconcile.reconcile" data-action="click->bankReconcile#unclearSplits"] = x.reconciled
-          /   = hidden_field_tag(:entry_id,x.id)
           td = x.numb
           td.w22 = x.description
           td.tright = imoney(x.amount)
@@ -57,7 +54,7 @@ hr
             method: :patch,remote:true)
 
           / td.clear-reconcile.malt
-          /   span[data-target="bankReconcile.reconcile" data-action="click->bankReconcile#clearSplits"] = x.reconciled
+          /   span[data-bankReconcile-target='reconcile' data-action="click->bankReconcile#clearSplits"] = x.reconciled
           /   = hidden_field_tag(:entry_id,x.id)
           td = x.numb
           td.w22 = x.description

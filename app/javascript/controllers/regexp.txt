@@ -1,0 +1,9 @@
+data-target=["](\w[^\W]+).([^"]+)["]
+data-\1-target="\2"
+
+data-target=['](\w[^\W]+).([^']+)[']
+data-\1-target='\2'
+
+\{target:'(\w[^\W]+).([^']+)[']
+
+\{target:"(\w[^\W]+).([^"]+)["]

@@ -1,5 +1,5 @@
 .w3-container.w3-white.min-height
-  #reports.w3-row.w3-row-padding[data-controller="rangePicker" data-date="#{Date.today.to_s}"]
+  #reports.w3-row.w3-row-padding[data-controller="rangepicker" data-date="#{Date.today.to_s}"]
     h5.strong Under Construction
 
     .w3-col.s6
@@ -8,11 +8,11 @@
       .w3-card-2.w3-bar-block.w70p
         .strong.indent VFW Reports
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectAuditConfig " data-url="#{edit_config_vfw_audit_index_path}"] Edit Audit Configuration 
+          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditConfig " data-url="#{edit_config_vfw_audit_index_path}"] Edit Audit Configuration 
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectAuditPDF " data-url="#{trustee_audit_vfw_audit_index_path}"] Trustee Audit PDF
+          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditPDF " data-url="#{trustee_audit_vfw_audit_index_path}"] Trustee Audit PDF
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectAuditHTML " data-url="#{audit_vfw_audit_index_path}"] Trustee Audit HTML
+          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditHTML " data-url="#{audit_vfw_audit_index_path}"] Trustee Audit HTML
 
     .w3-col.s6
 
@@ -20,139 +20,10 @@
       .w3-card-2.w3-bar-block.w70p
         .strong.indent VFW Engine
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectButtonURL" data-url="#{weekly_vfw_deposits_path}"] Weekly Sales/Donations/Deposits
+          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{weekly_vfw_deposits_path}"] Weekly Sales/Donations/Deposits
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectButtonURL" data-url="#{vfw_deposits_path}"] Deposits List
+          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{vfw_deposits_path}"] Deposits List
 
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangePicker#selectButtonURL" data-url="#{vfw_sales_items_path}"] Sales Items/Inventory
-
-
-
-
-
-    
-
- 
-    / .s7.w3-col
-    /   .strong Date Filter
-    /   .w3-row.w3-row-padding
-    /     .s6.w3-col
-    /       = from_period_select
-    /       |or 
-    /       = text_field_tag :from_date, nil,data:{controller:'flatpickr',target:'rangePicker.from_date'},placeholder:'Pick From Date'
-    /     .s6.w3-col
-    /       = to_period_select
-    /       |or 
-    /       = text_field_tag :to_date, nil,data:{controller:'flatpickr',target:'rangePicker.to_date'},placeholder:'Pick To Date'
-    /   .strong Level Filter
-    /   .w3-row.w3-row-padding
-    /     = content_tag(:select,options_for_select([['Select',''],1,2,3,4],1),id: :level_select,class:'w3-select',
-    /       data:{target:'rangePicker.level'})
-
-    /   .strong Account Filter
-    /   .w3-row.w3-row-padding
-    /     = content_tag(:select,options_for_select(@acct_options,  session[:acct_id] ||= Current.book.checking_acct.id),id: :account_select,
-    /       data:{target:'rangePicker.account',action:'rangePicker#accountSet'},class:'w3-select')
-
-    /   .strong Account Ledger PDF Reports
-    /   .w3-row.w3-row-padding
-    /     .s6.w3-col
-    /       strong Account Ledger(pdf)
-    /       / session[:acct_id] ||= Current.book.checking_acct.id
-    /       div.entry-select= select_tag('register_pdf',
-    /         options_for_select(report_select_options( nil,'/reports/register_pdf')),
-    /         prompt:"-Select Date-",data:{action:'rangePicker#selectPDF'},class:'w3-select')
-    /     .s6.w3-col
-    /       strong Split Account Ledger(pdf)
-    /       div= select_tag('register_pdf',
-    /         options_for_select(report_select_options(nil,'/reports/split_register_pdf')),
-    /         prompt:"-Select Date-",data:{action:'rangePicker#selectSplit'},class:'w3-select')
-        
-      
-
-
-    / .s8.w3-col
-    /   .wrap
-    /   / .wrap
-    /   /   .strong Level
-    /   / .wrap
-    /   /   = content_tag(:select,options_for_select([['Select',''],1,2,3,4]),id: :level_select,class:'w3-select w30p')
-    /   / p.clearfix
-    /   .box 
-    /   / p.clearfix
-    /   / .strong Select Account
-    /   / .wrap = content_tag(:select,options_for_select(@acct_options),id: :account_select,
-    /   /   data:{target:'rangePicker.account'},class:'w3-select w30p')
-    /   .box
-    /     / button.lime-link-button[data-action="click->rangePicker#selectSummary" data-url="#{summary_reports_path}"] Account Summary
-    /     / button.lime-link-button[data-action="click->rangePicker#selectCombo" data-url="#{summary_reports_path}"] Combo Summary
-    /     / button.lime-link-button = link_to "QM Report", summary_reports_path ,data:{behavior:'select_report_url',combo:true}
-    /   p.clearfix
-    /   p VFW Test Reports - Need to figure out how to add custom reports!
-    /   p Trustee Audit report using Prawn
-    /   span.indent
-    /     button.lime-link-button = link_to "Trustee Audit PDF", trustee_audit_reports_path 
-    /     button.lime-link-button = link_to "Edit Audit Configuration", edit_config_reports_path 
-    /   p Trustee Audit report using html and media print
-    /   span.indent
-    /     button.lime-link-button = link_to "Trustee Audit Print", audit_reports_path
-
- 
-
-      
-
-  / .w3-row.w3-row-padding
-  /   .s12.w3-col
-  /     h5 Under Construction
-
-  /     p canned default report, you can set date or from,to in query string, and level on pl
-  /     p = link_to "Profit/Loss", profit_loss_reports_path
-  /     p = link_to "Trial Balance", trial_balance_reports_path
-
-  /   .w3-row.w3-margin
-  /     .s5.w3-col
-  /       h4.strong
-  /         = "Checking Account(s) Balances"
-  /         span[data-tooltip="" tabindex="1" title="Click Me to show or hide an explanation of this page" data-behavior="toggle_splain"]
-  /           i.far.fa-question-circle
-  /     .s3.w3-col
-  /       strong Closing Date 
-  /       = text_field_tag :closing_date,nil,class:'datepicker-yymm',placeholder:'Pick Date'
-  /     .s3.w3-col
-  /       strong Closing Balance 
-  /       = text_field_tag :closing_balance,nil,placeholder:'Enter Balance'
-  /     .s1.w3-col
-  /       p
-  /       button#refresh_balance.blue Refresh
-
-  / /   .w3-row.w3-margin
-  / /     .s2.w3-col
-  / /     .s5.w3-col
-  / /       .strong Reports Date Picker
-  / /       .w3-row
-  / /         .s6.w3-col
-  / /           = from_period_select
-  / /           |or 
-  / /           = text_field_tag :from_date, nil,class:'datepicker-yymm',placeholder:'Pick From Date'
-  / /         .s6.w3-col
-  / /           = to_period_select
-  / /           |or 
-  / /           = text_field_tag :to_date, nil,class:'datepicker-yymm',placeholder:'Pick To Date'
-  / /     .s5.w3-col
-  / /       .strong Put reports here
-  / /       |Now is the time for all good men to come to the aid of their country!
-  / br
-
-  / / Key:BankStatement-2018-07-01
-
-  / / Date:2018-07-31
-
-  / / Hash data:{"beginning_balance"=>3722938, "ending_balance"=>3489396, "statement_date"=>Tue, 31 Jul 2018}
-
-  / / Statement date:2018-07-31
-
-  / / Beginning balance:37229.38
-
-  / / Ending balance:
+          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{vfw_sales_items_path}"] Sales Items/Inventory
 

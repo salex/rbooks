@@ -15,12 +15,30 @@ div[data-controller="blueBackground"]
           /   button.w3-left= link_to 'New Entry', new_entry_path(account_id:@account.id),class:'link-button'
           /   |&nbsp;&nbsp
           span.indent.w3-left.strong Search
-          div.w3-left[data-controller="autocomplete entrySearch" 
-            data-autocomplete-url="/entries/auto_search" data-autocomplete-min-length="2"]
-            input[type="text" data-target="autocomplete.input" placeholder="Entry Description Search" data-action="change->entrySearch#showSearched" style="width:300px;margin-right:8px;"]
-            input[type="hidden" name="entry_id" data-target="autocomplete.hidden entrySearch.hidden" ]
-            .w3-right.lime-link-button.w3-hide[data-target="entrySearch.showButton" data-action="click->entrySearch#addSearched" data-entryID=""] Duplicate
-            ul.w3-ul.w3-border.w3-dropdown-content.w3-light-grey[data-target="autocomplete.results"]
+          div.w3-left[
+            data-controller="autocomplete entry-search" 
+            data-autocomplete-url="/entries/auto_search" 
+            data-autocomplete-min-length="2"
+            ]
+            input[
+              type="text" 
+              data-autocomplete-target="input" 
+              placeholder="Entry Description Search" 
+              data-action="change->entry-search#showSearched" 
+              style="width:300px;margin-right:8px;"
+            ]
+            input[
+            type="hidden" 
+            name="entry_id" 
+            data-autocomplete-target="hidden"
+            data-entry-search-target="hidden"
+            ]
+            .w3-right.lime-link-button.w3-hide[
+              data-entry-search-target="showButton" 
+              data-action="click->entry-search#addSearched" 
+              data-entryID=""
+            ] Duplicate
+            ul.w3-ul.w3-border.w3-dropdown-content.w3-light-grey[data-autocomplete-target="results"]
 
 
         .m5.w3-col
@@ -63,27 +81,22 @@ div[data-controller="blueBackground"]
           = summary_list(@account)
 
         .s8.w3-col
-          .w3-row-padding[data-controller="rangePicker"]
+          .w3-row-padding[data-controller="rangepicker"]
             .s8.w3-col
               .strong Filter - Select Period or Pick Date for Report Options
               .w3-row
                 .s7.w3-col.entry-select = from_period_select
-                .s5.w3-col= text_field_tag :from_date, nil,data:{controller:'flatpickr',target:'rangePicker.from_date'},placeholder:'Pick From Date'
+                .s5.w3-col= text_field_tag :from_date, nil,data:{rangepicker_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date'
                 .s7.w3-col.entry-select= to_period_select
-                .s5.w3-col= text_field_tag :to_date, nil,data:{controller:'flatpickr',target:'rangePicker.to_date'},placeholder:'Pick To Date'
+                .s5.w3-col= text_field_tag :to_date, nil,data:{rangepicker_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date'
 
             .s4.w3-col
               .strong Report Options
-              = select_tag('register',options_for_select(report_select_options(nil,"/accounts/#{@account.id}")),prompt:"Register",data:{action:'rangePicker#selectLedger'},class:'entry-select w3-select')
-              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/register_pdf/#{@account.id}")),prompt:"Register PDF",data:{action:'rangePicker#selectPDF'},class:'entry-select w3-select')
-              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/split_register_pdf/#{@account.id}")),prompt:"Split Register PDF",data:{action:'rangePicker#selectSplit'},class:'entry-select w3-select')
+              = select_tag('register',options_for_select(report_select_options(nil,"/accounts/#{@account.id}")),prompt:"Register",data:{action:'rangepicker#selectLedger'},class:'entry-select w3-select')
+              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/register_pdf/#{@account.id}")),prompt:"Register PDF",data:{action:'rangepicker#selectPDF'},class:'entry-select w3-select')
+              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/split_register_pdf/#{@account.id}")),prompt:"Split Register PDF",data:{action:'rangepicker#selectSplit'},class:'entry-select w3-select')
                  
   #ajax.w3-container.w3-white
-    / - last_tran = @account.last_entry_date ||= Date.today.beginning_of_year
-    / - if @from.blank?
-    /   - @from = last_tran - 10.days
-    /   - @to = @today.end_of_month
-
 
     #Ledger
       = render partial: 'accounts/ledger/ledger', locals:{from:@from,to:@to,account:@account}

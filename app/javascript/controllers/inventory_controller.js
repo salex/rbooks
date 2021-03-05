@@ -20,8 +20,8 @@ export default class extends Controller {
 
   updateBeer(){
     var beer = event.target 
-    const beerTarget = beer.dataset.target.replace('inventory.','')
-    const beerTargets = eval(`this.${beerTarget}Targets`)
+    const beerTarget = beer.dataset
+    const beerTargets = eval(`this.${beerTarget.inventoryTarget}Targets`)
     this.idx = this.indexOfTargetInTargets(beer,beerTargets)
     // console.log(`w ${this.wbottles} c ${this.cbottles}`)
     this.bottlesTargets[this.idx].value = this.wbottles + this.cbottles
@@ -31,8 +31,8 @@ export default class extends Controller {
 
   updateLiquor(){
     var liquor =  event.target
-    const liquorTarget = liquor.dataset.target.replace('inventory.','')
-    const liquorTargets = eval(`this.${liquorTarget}Targets`)
+    const liquorTarget = liquor.dataset
+    const liquorTargets = eval(`this.${liquorTarget.inventoryTarget}Targets`)
     this.idx = this.indexOfTargetInTargets(liquor,liquorTargets)
     const shots = ((this.size * (this.percent / 100.0)) / 35.5)
     const bottles = ((this.bottles  * this.size) / 35.5)

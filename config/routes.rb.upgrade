@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   # scope module: 'vfw' do
   namespace :vfw do
     resources :sales_items do
@@ -153,7 +152,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  
+ 
   get 'login', to: 'users#login', as: 'login'
   get 'logout', to: 'users#logout', as: 'logout'
   get 'profile', to: 'users#profile'

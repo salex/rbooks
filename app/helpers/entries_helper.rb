@@ -28,7 +28,7 @@ module EntriesHelper
       ['All',all.to_s]
 
     ]
-    content_tag(:select,options_for_select(options),class:'w3-select', data:{target:'rangePicker.fromOptions',action:'change->rangePicker#fromOption',date_id:date_id},id: :from_select)
+    content_tag(:select,options_for_select(options),class:'w3-select', data:{rangepicker_target:'fromOptions',action:'change->rangepicker#fromOption',date_id:date_id},id: :from_select)
   end
 
   def to_period_select(date_id:nil)
@@ -61,7 +61,7 @@ module EntriesHelper
       ['Current Date',today.to_s]
 
     ]
-    content_tag(:select,options_for_select(options),class:'w3-select', data:{target:'rangePicker.toOptions',action:'change->rangePicker#toOption',date_id:date_id}, id: :to_select)
+    content_tag(:select,options_for_select(options),class:'w3-select', data:{rangepicker_target:'toOptions',action:'change->rangepicker#toOption',date_id:date_id}, id: :to_select)
   end
 
 
@@ -104,7 +104,7 @@ module EntriesHelper
     if eid.present?
       (id_hidden + delete +'<i class=" fas fa-minus-square">Del</i>'.html_safe).html_safe
     else
-      (id_hidden + +'<span data-target="entryLedger.deletes"><i data-action="click->entryLedger#cutRow" class="fas fa-cut"></i></span>'.html_safe).html_safe
+      (id_hidden + +'<span data-entryLedger="deletes"><i data-action="click->entryLedger#cutRow" class="fas fa-cut"></i></span>'.html_safe).html_safe
     end
   end
 

@@ -2,7 +2,7 @@
   .w3-row-padding
     .w3-col.m12
     
-      = form_with( url:'/entries/filtered',method: :get, html: {data: { type: "html", action: "ajax:success->entrySearch#onPostSuccess",target:'entrySearch.form' } }) do |form|
+      = form_with( url:'/entries/filtered',method: :get, html: {data: { type: "html", action: "ajax:success->entrySearch#onPostSuccess",entrySearch_target:'form' } }) do |form|
         .w3-row-padding
           .w3-col.m7
             p You can search for entries descriptions and filter search by the radio buttons options. You can also search for a Entry number or search for a Split amount (in pennies!). Entries searches will defaut to the last match. Check the  <strong>Show All</strong> check box to all all matches for basic search without options.
@@ -33,7 +33,7 @@
         button = form.submit "Search Split Amount"
 
 
-  .w3-row-padding[data-target="entrySearch.refresh"]
+  .w3-row-padding[data-entrySearch-target="refresh"]
 
 
 
