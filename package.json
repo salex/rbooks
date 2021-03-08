@@ -8,7 +8,7 @@
     "@rails/webpacker": "4.3.0",
     "flatpickr": "^4.6.6",
     "stimulus": "^2.0.0",
-    "stimulus-autocomplete": "^1.4.0",
+    "stimulus-autocomplete": "^1.4.2",
     "stimulus-flatpickr": "^1.3.3",
     "turbolinks": "^5.2.0"
   },
