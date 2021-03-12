@@ -47,7 +47,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'bullet'
+  # gem 'bullet'
 
 
 end
