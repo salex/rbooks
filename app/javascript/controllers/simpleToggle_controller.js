@@ -1,6 +1,7 @@
 import { Controller } from "stimulus"
 /* Simple toggle can be used to toggle 1 to many elements(kids)
   using w3-show and w3-hide.
+  TODO Not used
 */
 
 export default class extends Controller {

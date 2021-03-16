@@ -16,7 +16,7 @@ div[data-controller="blueBackground"]
           /   |&nbsp;&nbsp
           span.indent.w3-left.strong Search
           div.w3-left[
-            data-controller="autocomplete entry-search" 
+            data-controller="autocomplete entrySearch" 
             data-autocomplete-url="/entries/auto_search" 
             data-autocomplete-min-length="2"
             ]
@@ -24,18 +24,18 @@ div[data-controller="blueBackground"]
               type="text" 
               data-autocomplete-target="input" 
               placeholder="Entry Description Search" 
-              data-action="change->entry-search#showSearched" 
+              data-action="change->entrySearch#showSearched" 
               style="width:300px;margin-right:8px;"
             ]
             input[
             type="hidden" 
             name="entry_id" 
             data-autocomplete-target="hidden"
-            data-entry-search-target="hidden"
+            data-entrySearch-target="hidden"
             ]
             .w3-right.lime-link-button.w3-hide[
-              data-entry-search-target="showButton" 
-              data-action="click->entry-search#addSearched" 
+              data-entrySearch-target="showButton" 
+              data-action="click->entrySearch#addSearched" 
               data-entryID=""
             ] Duplicate
             ul.w3-ul.w3-border.w3-dropdown-content.w3-light-grey[data-autocomplete-target="results"]

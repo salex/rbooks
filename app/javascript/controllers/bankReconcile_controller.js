@@ -1,4 +1,5 @@
 // hideTarget.controller
+// TODO  not used
 import { Controller } from "stimulus"
 import Rails from '@rails/ujs';
 
