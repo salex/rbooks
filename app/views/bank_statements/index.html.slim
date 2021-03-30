@@ -1,5 +1,8 @@
 .w3-container.w3-white.min-height
-  h3 Bank Statements
+  .w3-row
+    h3.w3-col.s2 Bank Statements 
+    - if @bank_statements.first.reconciled_date.present?
+      p.w3-col.s4 = link_to "New Bank Statement",new_bank_statement_path, class:'button'
   table.smalltable7
     thead
       tr
@@ -25,7 +28,7 @@
               i class="fas fa-eye"
             = link_to edit_bank_statement_path(bank_statement) do
               i class="fas fa-edit"
-            = link_to '<i class="far fa-credit-card" aria-hidden="true"></i>'.html_safe, reconcile_bank_statement_path(bank_statement)
+            = link_to '<i class="far fa-credit-card" aria-hidden="true"></i>'.html_safe, reconcile_bank_statement_path(bank_statement) unless bank_statement.reconciled_date.present?
 
             = link_to bank_statement, data: { confirm: 'Are you sure?' }, method: :delete do
               i class="fas fa-trash w3-text-red"

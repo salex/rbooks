@@ -3,7 +3,7 @@
     .w3-col.s3
       h3 OFX Transactions
     .w3-col.s9
-      p = link_to("New OFX Upload", new_ofx_path,class:'lime-link-button')
+      / p = link_to("New OFX Upload", new_ofx_path,class:'lime-link-button')
   table.w3-table-all
     thead
       tr
@@ -11,6 +11,7 @@
         th TRange
         th FRange
         th.tright Ending Bal
+        th Reconciled
         th Actions
   
     tbody
@@ -20,9 +21,10 @@
           td = ofx.hash_data[:date_range] ||= ofx.hash_data[:tran_range]
           td = ofx.hash_data[:fit_range]
           td.tright = ofx.hash_data[:balance].blank? ? 0 : Ledger.money(ofx.hash_data[:balance])
+          td = ofx.reconciled_date
           td.actions
             = link_to 'Show', ofx
-            = link_to 'Update', edit_ofx_path(ofx)
+            = link_to 'Update/Upload', edit_ofx_path(ofx) if ofx.reconciled_date.blank?
 
   br
 

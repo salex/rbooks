@@ -135,7 +135,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :ofxes do
+  resources :ofxes, only:[:index,:show,:edit,:update] do
     member do
       get :link
       get :new_entry

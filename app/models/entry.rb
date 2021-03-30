@@ -34,6 +34,10 @@ class Entry < ApplicationRecord
     reconcile_state.include?('c')
   end
 
+  def has_fit_id?
+    fit_id.present?
+  end
+
   # THIS WAS REPLACE BY METHOD IN BANK CLASS
   # def set_banking_attributes
   #   # banking attributes only really needed with reconciling a bank account

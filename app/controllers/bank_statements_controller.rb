@@ -22,6 +22,8 @@ class BankStatementsController < ApplicationController
       next_month = last_statement.statement_date.end_of_month + 1.day
       statement_range = Ledger.statement_range(next_month)
       bb = last_statement.ending_balance
+    else
+      statement_range = Ledger.statement_range(Date.today)
     end
     @bank_statement = current_book.bank_statements.new(statement_date:statement_range.last,beginning_balance:bb,ending_balance:0)
   end

@@ -1,16 +1,16 @@
-ediv[data-controller="blueBackground"]
+div[data-controller="blueBackground"]
 .w3-row[data-controller="entryLedger"]
   .w3-col.s2
     h5.strong = header
   .w3-col.s10.w3-padding
-    #validate.button.w3-button.w3-blue[data-action="click->entryLedger#validate"] Validate
+    #validate.button.w3-button.w3-blue[data-action="click->entryLedger#check_valid"] Validate
     = link_to('Cancel', session[:current_acct].present? ? account_path(session[:current_acct]) :request.headers['HTTP_REFERER'],
       class:"w3-button w3-yellow")
     - unless @entry.new_record? || @entry.reconciled?
       - confirm_msg = @entry.cleared? ? "Entry has been Cleared - Are you sure?" : 'Are you sure?'
       button= link_to 'Delete Entry',@entry, data: { confirm: confirm_msg },class:'link-button', method: :delete 
       button= link_to 'Void Entry',entries_void_path(@entry),class:'link-button', data: { confirm: confirm_msg }, method: :patch 
-      - if @entry.fit_id.present?
+      - if @entry.has_fit_id?
         span.w3-right Entry Has FitID
 
   .w3-row

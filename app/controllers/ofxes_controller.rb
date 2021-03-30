@@ -6,7 +6,7 @@ class OfxesController < ApplicationController
   end
 
   def latest
-    @ofx = current_book.ofxes.order(:statement_date).last
+    @ofx = current_book.ofxes.where(reconciled_date:nil).order(:statement_date).last
     if @ofx.present?
       @account = @ofx.ofx_account
       render action: :show
@@ -15,18 +15,18 @@ class OfxesController < ApplicationController
     end
   end
 
-  def new
-    # @ofx = current_book.ofxes.new
-    last_statement = current_book.bank_statements.where.not(reconciled_date:nil).order(:reconciled_date).last
-    bb = 0
-    if last_statement.present?
-      next_month = last_statement.statement_date.end_of_month + 1.day
-      statement_range = Ledger.statement_range(next_month)
-      bb = last_statement.ending_balance
-    end
-    @ofx = current_book.ofxes.new(statement_date:statement_range.last,beginning_balance:bb,ending_balance:0)
+  # def new
+  #   # @ofx = current_book.ofxes.new
+  #   last_statement = current_book.bank_statements.where.not(reconciled_date:nil).order(:reconciled_date).last
+  #   bb = 0
+  #   if last_statement.present?
+  #     next_month = last_statement.statement_date.end_of_month + 1.day
+  #     statement_range = Ledger.statement_range(next_month)
+  #     bb = last_statement.ending_balance
+  #   end
+  #   @ofx = current_book.ofxes.new(statement_date:statement_range.last,beginning_balance:bb,ending_balance:0)
 
-  end
+  # end
 
   def show
     @ofx = current_book.ofxes.find(params[:id])
@@ -47,16 +47,16 @@ class OfxesController < ApplicationController
     end
   end
 
-  def create
-    @ofx = current_book.ofxes.new(statement_date:Date.today.beginning_of_month)
-    uploaded_io = params[:ofx][:text_field]
-    if @ofx.upload_io(uploaded_io)
-      redirect_to ofxes_path, notice: "The ofx #{@ofx.key} has been uploaded."
-    else
-       render "new"
-    end
+  # def create
+  #   @ofx = current_book.ofxes.new(statement_date:Date.today.beginning_of_month)
+  #   uploaded_io = params[:ofx][:text_field]
+  #   if @ofx.upload_io(uploaded_io)
+  #     redirect_to ofxes_path, notice: "The ofx #{@ofx.key} has been uploaded."
+  #   else
+  #      render "new"
+  #   end
     
-  end
+  # end
 
   # def destroy
   #   @ofx = Ofx.find(params[:id])
