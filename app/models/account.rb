@@ -163,7 +163,7 @@ class Account < ApplicationRecord
 
     def balance_on(date)
       date = Ledger.set_date(date)
-      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lteq(date)).sum(:amount) * self.flipper
+      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lt(date)).sum(:amount) * self.flipper
     end
 
     def balance_between(from,to)
