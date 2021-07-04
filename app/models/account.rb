@@ -166,6 +166,9 @@ class Account < ApplicationRecord
       self.splits.joins(:entry).where(Entry.arel_table[:post_date].lt(date)).sum(:amount) * self.flipper
     end
 
+  # most  these below balances are no longer used
+    #What the used to do has been replaced by the summary methods (child family)
+
     def balance_between(from,to)
       from = Ledger.set_date(from)
       to = Ledger.set_date(to)
@@ -392,6 +395,5 @@ class Account < ApplicationRecord
           checking:{db:debits,cr:credits},details:[], memo:nil,r:nil,balance:diff}
       lines << summary
     end
-
 
 end
