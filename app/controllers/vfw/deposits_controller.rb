@@ -33,6 +33,17 @@ module Vfw
       render template:'/vfw/deposits/month_summary', layout: 'htmlprint'  
     end
 
+    def quarter_summary
+      if params[:date].present?
+        boq = Date.parse(params[:date]).beginning_of_quarter
+      else
+        boq = Date.today.beginning_of_quarter
+      end
+      eoq = boq.end_of_quarter
+      @deposits = Deposit.where(date:boq..eoq).order(:date)
+      render template:'/vfw/deposits/month_summary', layout: 'htmlprint'  
+    end
+
     # GET /deposits/new
     def new
       @deposit = Deposit.new

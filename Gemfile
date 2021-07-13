@@ -70,7 +70,7 @@ gem 'pg', '~> 1.1'
 gem 'slim-rails'
 gem 'prawn'
 gem 'prawn-table'
-gem 'ofx', '~> 0.3.1' , github: 'annacruz/ofx', branch: 'master'
+gem 'ofx', '~> 0.3.2' , github: 'annacruz/ofx', branch: 'master'
 # gem 'pundit'
 
 gem 'font-awesome-sass', '~> 5.12.0'

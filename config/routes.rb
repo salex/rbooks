@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       collection do
         get :weekly
         get :month_summary
+        get :quarter_summary
+
       end
       member do
         get :edit_other
@@ -71,7 +73,11 @@ Rails.application.routes.draw do
 
   namespace :accounts do
     resources :bank, only: :index
-    resources :ledger, only: :show
+    resources :ledger, only: :show do
+      collection do
+        get :donations
+      end
+    end
     resources :index_table, only: :index
     resources :register_pdf, only: :show
     resources :split_register_pdf, only: :show

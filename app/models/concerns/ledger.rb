@@ -5,6 +5,43 @@ module Ledger
     Date.parse(date) rescue Date.today
   end
 
+  def self.from_to_as_range(from,to)
+    from = Ledger.set_date(from)
+    to = Ledger.set_date(to)
+    from..to
+  end
+
+  def self.donations(range)
+    family = [32,28,29,30,25]
+    donation_entries = ledger_entries(family,range)
+    bal = @balance ||= 0
+    lines = [{id: nil,date: nil,numb:nil,desc:"Beginning Balance",
+        checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:bal}]
+    donation_entries.each do |t|
+      date = t.post_date
+      t.splits.each do |s|
+        if family.include?(s.account_id)
+          line = {id: t.id,date: date.strftime("%m/%d/%Y"),numb:t.numb,desc:"",acct:nil,
+            checking:{db:0,cr:0},details:[],r:nil,balance:0,split_cnt:0}
+          line[:split_cnt] += 1
+          line[:desc] = "#{t.description} - #{s.memo}"
+          details = s.details
+          line[:acct] = details[:name]
+          line[:r] = details[:r]
+          line[:checking][:db] += details[:db]
+          line[:checking][:cr] += details[:cr]
+          bal += details[:cr] 
+          line[:balance] = bal
+          line[:r] = details[:r]
+          lines << line
+        end
+      end
+    end
+    lines
+
+
+  end
+
   def self.money(int,sign="")
     int = 0 if int.blank?
     dollars = int / 100

@@ -1,0 +1,29 @@
+h1 Donations for Current Year
+
+
+table.small-table7
+  caption
+    .box = @range
+  thead#sort_header
+    tr
+      th.w10 Date
+      th Num
+      th.w30 Desc - Memo
+      th.w15 Account
+      th R
+      th Debits
+      th Credits
+      th Balance
+  - @lines.reverse.each_with_index do |row,i|
+    tr
+      td = row[:date]
+      td = row[:numb]
+      td = row[:desc]
+      td = row[:acct]
+      td = row[:r]
+      td.w3-right-align = row[:checking][:db].zero? ? nil : imoney(row[:checking][:db])
+      td.w3-right-align = row[:checking][:cr].zero? ? nil : imoney(row[:checking][:cr])
+      td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance])
+
+/ - @lines.reverse.each do |row|
+/   div = row

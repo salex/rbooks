@@ -8,6 +8,12 @@ class Accounts::LedgerController < AccountsController
     render template:'accounts/actions/ledger'
   end
 
+
+  def donations
+    today = Date.today #- 1.year
+    @range = today.beginning_of_year..today.end_of_year
+    @lines = Ledger.donations(@range)
+  end
  
   # private
   #   # Use callbacks to share common setup or constraints between actions.
