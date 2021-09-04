@@ -163,8 +163,14 @@ class Account < ApplicationRecord
 
     def balance_on(date)
       date = Ledger.set_date(date)
+      self.splits.joins(:entry).where(Entry.arel_table[:post_date].lteq(date)).sum(:amount) * self.flipper
+    end
+
+    def balance_before(date)
+      date = Ledger.set_date(date)
       self.splits.joins(:entry).where(Entry.arel_table[:post_date].lt(date)).sum(:amount) * self.flipper
     end
+
 
   # most  these below balances are no longer used
     #What the used to do has been replaced by the summary methods (child family)
