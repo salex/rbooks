@@ -18,8 +18,8 @@
         tr
           td = bank_statement.book.name
           td = bank_statement.statement_date
-          td.text-right = Ledger.to_money(bank_statement.beginning_balance)
-          td.text-right = Ledger.to_money(bank_statement.ending_balance)
+          td.text-right = to_money(bank_statement.beginning_balance)
+          td.text-right = to_money(bank_statement.ending_balance)
           td = bank_statement.reconciled_date
           td.actions
             = link_to ofxes_path do
