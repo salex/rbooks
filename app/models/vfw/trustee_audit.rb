@@ -26,7 +26,7 @@ class Vfw::TrusteeAudit < Prawn::Document
   end
 
   def money(int,x=nil)
-    Ledger.money(int)
+    Amount.money(int)
   end
 
   def make_pdf
@@ -90,7 +90,7 @@ class Vfw::TrusteeAudit < Prawn::Document
         "#{@funds + 3}.  Net Cash Balances at Beginning of Quarter",
         "#{@funds + 4}.  Receipts During Quarter",
         "#{@funds + 5}.  Expenditures During Quarter",
-        "#{@funds + 5}.  Net Cash Balances at End of Quarter"]
+        "#{@funds + 6}.  Net Cash Balances at End of Quarter"]
       rows << h
       e = make_table rows,:cell_style => {:padding => [1, 2, 2, 1] ,border_color:"777777"},
         :column_widths => [240, 75,75,75,75] do

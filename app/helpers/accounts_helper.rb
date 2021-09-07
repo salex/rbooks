@@ -37,7 +37,6 @@ module AccountsHelper
     }.html_safe
   end
 
-
   def acct_tree(root,p=0)
     html = content_tag(:div, class: 'pl-row') {
       ul_contents = ""
@@ -53,31 +52,7 @@ module AccountsHelper
 
   def node_balance(acct)
     b = acct.family_balance
-    b.zero? ? "" : imoney(b,'$')
-  end
-
-  def imoney(pennies,unit="")
-   return "" if pennies.zero?
-    dollars = pennies / 100
-    cents = (pennies % 100) / 100.0
-    amount = dollars + cents
-    number_to_currency(amount,unit:unit)
-  end
-
-  def money(pennies,unit="")
-   pennies = 0 if pennies.blank?
-    dollars = pennies / 100
-    cents = (pennies % 100) / 100.0
-    amount = dollars + cents
-    number_to_currency(amount,unit:unit)
-  end
-
-
-  def to_money(int)
-    dollars = int / 100
-    cents = (int % 100) / 100.0
-    amt = dollars + cents
-    number_to_currency(amt,unit:'')
+    b.zero? ? "" : to_money(b,'$')
   end
 
   def report_select_options(account_id,url,other=nil)

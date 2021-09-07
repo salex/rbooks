@@ -36,7 +36,7 @@ table.smalltable7
       - if row[:id].blank?
         td.w3-right-align = to_money(row[:balance])
       - else
-        td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance] )
+        td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance] )
     tbody 
       - row[:details].each do |d|
         tr.snowSelectedBackground
@@ -45,7 +45,7 @@ table.smalltable7
           td = d[:memo]
           td = d[:name]
           td = d[:r]
-          td.w3-right-align = d[:db].zero? ? nil : imoney(d[:db])
-          td.w3-right-align = d[:cr].zero? ? nil : imoney(d[:cr])
+          td.w3-right-align = d[:db].zero? ? nil : to_money(d[:db])
+          td.w3-right-align = d[:cr].zero? ? nil : to_money(d[:cr])
           td
 

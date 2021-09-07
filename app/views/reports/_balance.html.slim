@@ -2,16 +2,16 @@
 div
   span.indent
     strong Reconciled:
-    = imoney(@checking_balance.reconciled_balance)
+    = to_money(@checking_balance.reconciled_balance)
   span.indent
     strong Cleared:
-    = imoney(@checking_balance.cleared_balance)
+    = to_money(@checking_balance.cleared_balance)
   span.indent
     strong Uncleared:
-    = imoney(@checking_balance.uncleared_balance)
+    = to_money(@checking_balance.uncleared_balance)
   span.indent
     strong Ending:
-    = imoney(@checking_balance.balance)
+    = to_money(@checking_balance.balance)
   span.indent
     strong Bank/Closing:
     = to_money(@checking_balance.closing_balance)
@@ -33,7 +33,7 @@ div
 
           td = x.numb
           td.w22 = x.description
-          td.tright = imoney(x.amount)
+          td.tright = to_money(x.amount)
       tr
         td.strong.tright[colspan="4"] Cleared Balance
         td.strong.tright = to_money(@checking_balance.cleared_balance)
@@ -54,7 +54,7 @@ div
 
           td = x.numb
           td.w22 = x.description
-          td.tright = imoney(x.amount)
+          td.tright = to_money(x.amount)
       tr
         td.strong.tright[colspan="4"] Uncleared Balance
         td.strong.tright = to_money(@checking_balance.uncleared_balance)

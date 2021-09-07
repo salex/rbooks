@@ -10,15 +10,15 @@
     .w3-col.s5
       strong Bank Balance:
       strong Begin:&nbsp;
-      = imoney(@reconcile.bank_beginning_balance)
+      = to_money(@reconcile.bank_beginning_balance)
       strong &nbsp;End:&nbsp;
-      = imoney(@reconcile.bank_ending_balance)
+      = to_money(@reconcile.bank_ending_balance)
     .w3-col.s5
       strong Checkbook Balance:
       strong Begin:&nbsp;
-      = imoney(@reconcile.checking_beginning_balance)
+      = to_money(@reconcile.checking_beginning_balance)
       strong &nbsp;End:&nbsp;
-      = imoney(@reconcile.checking_ending_balance)
+      = to_money(@reconcile.checking_ending_balance)
 
 
     .w3-col.s2

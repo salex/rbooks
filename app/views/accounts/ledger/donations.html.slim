@@ -21,9 +21,9 @@ table.small-table7
       td = row[:desc]
       td = row[:acct]
       td = row[:r]
-      td.w3-right-align = row[:checking][:db].zero? ? nil : imoney(row[:checking][:db])
-      td.w3-right-align = row[:checking][:cr].zero? ? nil : imoney(row[:checking][:cr])
-      td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance])
+      td.w3-right-align = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
+      td.w3-right-align = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
+      td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance])
 
 / - @lines.reverse.each do |row|
 /   div = row

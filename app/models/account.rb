@@ -181,9 +181,6 @@ class Account < ApplicationRecord
       self.splits.joins(:entry).where(entries: {post_date:[from..to]}).sum(:amount) * self.flipper
     end
 
-    alias starting_balance_on balance_on
-    alias ending_balance_on balance_on
-    alias closing_balance_on balance_on
 
     def children_balance
       bal = 0
@@ -371,7 +368,6 @@ class Account < ApplicationRecord
         numb_splits = t.splits.length
         t.splits.each do |s|
           details = s.details
-
           if kids.include?(details[:acct_id]) 
             # this is a child split line
             debits += details[:db]

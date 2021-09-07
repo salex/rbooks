@@ -62,7 +62,7 @@ class Pdf::Register < Prawn::Document
   end
 
  def money(int)
-   Ledger.money(int)
+   Amount.money(int)
  end
 
 end

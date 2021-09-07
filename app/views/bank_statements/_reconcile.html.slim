@@ -6,7 +6,7 @@
 
     .strong =  "Balances (Checkbook  + Uncleared + Reconciled - Bank)  = Difference "
     .annotate Reconciled balance only applies to bank statements that have already been reconciled.
-    .strong=  "Balances (#{imoney @reconcile.checking_ending_balance} + (#{imoney @reconcile.uncleared_balance*-1}) + (#{imoney @reconcile.range_reconciled_balance*-1}) - #{imoney @reconcile.bank_ending_balance})  = #{to_money difference} "
+    .strong=  "Balances (#{to_money @reconcile.checking_ending_balance} + (#{to_money @reconcile.uncleared_balance*-1}) + (#{to_money @reconcile.range_reconciled_balance*-1}) - #{to_money @reconcile.bank_ending_balance})  = #{to_money difference} "
   .s4.w3-col
       - if difference.zero? && Date.current >= @bank_statement.statement_date
         button.w3-button.w3-blue-gray  = link_to 'Reconcile', update_reconcile_bank_statement_path(@bank_statement)
@@ -18,7 +18,7 @@ hr
   .s6.w3-col.half-constrainer
     p.wrap
       strong Cleared Balance:
-      = imoney(@reconcile.cleared_balance)
+      = to_money(@reconcile.cleared_balance)
 
     table.smalltable7
       caption Cleared Checking Account Transactions
@@ -31,16 +31,16 @@ hr
 
           td = x.numb
           td.w22 = x.description
-          td.tright = imoney(x.amount)
+          td.tright = to_money(x.amount)
 
     p.wrap
       strong Cleared Balance:
-      = imoney(@reconcile.cleared_balance)
+      = to_money(@reconcile.cleared_balance)
 
   .s6.w3-col.half-constrainer
     p.wrap
       strong Uncleared Balance:
-      = imoney(@reconcile.uncleared_balance)
+      = to_money(@reconcile.uncleared_balance)
 
     table.smalltable7.wrb
       caption Uncleared Checking Account Transactions
@@ -58,6 +58,6 @@ hr
           /   = hidden_field_tag(:entry_id,x.id)
           td = x.numb
           td.w22 = x.description
-          td.tright = imoney(x.amount)
+          td.tright = to_money(x.amount)
 
    

@@ -1,4 +1,6 @@
 module Ledger
+  include  ActionView::Helpers::NumberHelper
+
   def self.set_date(date)
     return date if date.class == Date
     return Date.today if date.blank?
@@ -38,25 +40,10 @@ module Ledger
       end
     end
     lines
-
-
-  end
-
-  def self.money(int,sign="")
-    int = 0 if int.blank?
-    dollars = int / 100
-    cents = (int % 100) / 100.0
-    amt = dollars + cents
-    set_zero = sprintf('%.2f',amt) # now have a string to 2 decimals
-    sign+set_zero.gsub(/(\d)(?=(\d{3})+(?!\d))/, "\\1,") # add commas
   end
 
   def self.dates_in_same_month(date1,date2)
     date1.month == date2.month && date1.year == date2.year
-  end
-
-  def self.to_money(int,sign="")
-    self.money(int,sign="")
   end
 
   def self.to_fixed(int)
@@ -85,14 +72,6 @@ module Ledger
   end
 
   def self.ledger_entries(family,range)
-    # entry_ids = Entry.where(post_date: range)
-    #   .joins(:splits)
-    #   .where(post_date: range, splits: { account_id: family })
-    #   .select('entries.id')
-    #   .distinct
-
-    # Entry.where(id: entry_ids).includes(:splits).order(:post_date,:numb)
-
     Entry.where_assoc_exists(:splits,{ account_id: family})
       .where(post_date: range)
       .includes(:splits)

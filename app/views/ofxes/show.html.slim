@@ -44,7 +44,7 @@
         - bbalance = @ofx.hash_data[:beginning_balance] ||= 0
 
         - posted_date = @ofx.statement_date
-        caption = "Bank Balances - Begining: #{imoney bbalance} | Ending:#{imoney balance} -  Posted on: #{posted_date}"
+        caption = "Bank Balances - Begining: #{to_money bbalance} | Ending:#{to_money balance} -  Posted on: #{posted_date}"
         thead#sort_header
           tr
             th.strong.w8[data-action="click->sortTable#sortBy"]
@@ -94,12 +94,12 @@
                     button.lime-link-button[data-action="click->ofx#openModal" data-fitid="#{bt.fit_id}"] Search Entries
 
 
-              td.tright = imoney(bt.amount_in_pennies)
+              td.tright = to_money(bt.amount_in_pennies)
 
-              td.tright = imoney rbal
+              td.tright = to_money rbal
             - rbal -= bt.amount_in_pennies
           tr
             td.tright.strong[colspan="6"] Beginning Balance
-            td.tright = imoney bbalance
+            td.tright = to_money bbalance
 
   

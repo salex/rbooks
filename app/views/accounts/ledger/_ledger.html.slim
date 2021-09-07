@@ -5,11 +5,11 @@ table.small-table7
   tr
     th Range Summary
     td.w3-right-align Total Debits(+):
-    td.tleft.under =imoney summary[:checking][:db]
+    td.tleft.under =to_money summary[:checking][:db]
     td.w3-right-align Total Credits(-):
-    td.tleft.under =imoney summary[:checking][:cr]
+    td.tleft.under =to_money summary[:checking][:cr]
     td.w3-right-align Difference:
-    td.tleft.under =imoney summary[:balance]
+    td.tleft.under =to_money summary[:balance]
 
 table.small-table7[data-controller="sortTable toggleSplits"]
   caption
@@ -60,12 +60,12 @@ table.small-table7[data-controller="sortTable toggleSplits"]
       - else 
         td = params[:split_reg].present? ? nil : row[:memo]
         td = params[:split_reg].present? ? nil : row[:r] 
-      td.w3-right-align = row[:checking][:db].zero? ? nil : imoney(row[:checking][:db])
-      td.w3-right-align = row[:checking][:cr].zero? ? nil : imoney(row[:checking][:cr])
+      td.w3-right-align = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
+      td.w3-right-align = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
       - if row[:id].blank?
         td.w3-right-align = to_money(row[:balance])
       - else
-        td.w3-right-align = row[:balance].zero? ? nil : imoney(row[:balance])
+        td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance])
     - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
       tbody.split-rows[data-toggleSplits-target="tbody"]
         - row[:details].each do |d|
@@ -75,8 +75,8 @@ table.small-table7[data-controller="sortTable toggleSplits"]
             td = d[:memo]
             td = d[:name]
             td = d[:r]
-            td.w3-right-align = d[:db].zero? ? nil : imoney(d[:db])
-            td.w3-right-align = d[:cr].zero? ? nil : imoney(d[:cr])
+            td.w3-right-align = d[:db].zero? ? nil : to_money(d[:db])
+            td.w3-right-align = d[:cr].zero? ? nil : to_money(d[:cr])
             td
  
 br

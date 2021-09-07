@@ -30,8 +30,12 @@ module Vfw
     end
 
     def audit
-      # filepath = Rails.root.join("db/yaml","vfwcash.yaml")
-      bolq = Date.today.beginning_of_quarter - 3.months
+      if params[:date].present?
+        date = Ledger.set_date(params[:date])
+        bolq = date.beginning_of_quarter
+      else
+        bolq = Date.today.beginning_of_quarter - 3.months
+      end
       eolq = bolq.end_of_quarter
       @range = bolq..eolq
       @config = Audit.new.get_audit_config.to_o
