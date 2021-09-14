@@ -1,5 +1,5 @@
 .w3-container.w3-white.min-height
-  #reports.w3-row.w3-row-padding[data-controller="rangepicker" data-date="#{Date.today.to_s}"]
+  #reports.w3-row.w3-row-padding[data-controller="reports" data-date="#{Date.today.to_s}"]
     h5.strong Under Construction
 
     .w3-col.s6
@@ -8,11 +8,11 @@
       .w3-card-2.w3-bar-block.w70p
         .strong.indent VFW Reports
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditConfig " data-url="#{edit_config_vfw_audit_index_path}"] Edit Audit Configuration 
+          button.lite-goldey.w100[data-action="click->reports#selectAuditConfig " data-url="#{edit_config_vfw_audit_index_path}"] Edit Audit Configuration 
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditPDF " data-url="#{trustee_audit_vfw_audit_index_path}"] Trustee Audit PDF
+          button.lite-goldey.w100[data-action="click->reports#selectAuditPDF " data-url="#{trustee_audit_vfw_audit_index_path}"] Trustee Audit PDF
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectAuditHTML " data-url="#{audit_vfw_audit_index_path}"] Trustee Audit HTML
+          button.lite-goldey.w100[data-action="click->reports#selectAuditHTML " data-url="#{audit_vfw_audit_index_path}"] Trustee Audit HTML
 
     .w3-col.s6
 
@@ -20,10 +20,14 @@
       .w3-card-2.w3-bar-block.w70p
         .strong.indent VFW Engine
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{weekly_vfw_deposits_path}"] Weekly Sales/Donations/Deposits
+          button.lite-goldey.w100[data-action="click->reports#selectButtonURL" data-url="#{weekly_vfw_deposits_path}"] Weekly Sales/Donations/Deposits
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{vfw_deposits_path}"] Deposits List
+          button.lite-goldey.w100[data-action="click->reports#selectButtonURL" data-url="#{vfw_deposits_path}"] Deposits List
 
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->rangepicker#selectButtonURL" data-url="#{vfw_sales_items_path}"] Sales Items/Inventory
+          button.lite-goldey.w100[data-action="click->reports#selectButtonURL" data-url="#{vfw_sales_items_path}"] Sales Items/Inventory
+
+        .w3-bar-item
+          button.lite-goldey.w100[data-action="click->reports#selectButtonURL" data-url="#{voucher_vfw_deposits_path}"]  Voucher
+
 

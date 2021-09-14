@@ -1,15 +1,16 @@
-.w3-container.w3-white.min-height
-  .w3-row-padding
-    .show-links.s12.w3-col.noprint
-      = link_to 'Weekly', weekly_vfw_deposits_path, class: "button bbutton"
-      |&nbsp;&nbsp;
-      = link_to 'ShowAll', vfw_deposits_path, class: "button bbutton"
+.w3-container.w3-white
+  - unless @from.present?
+    .w3-row-padding
+      .show-links.s12.w3-col.noprint
+        = link_to 'Weekly', weekly_vfw_deposits_path, class: "button bbutton"
+        |&nbsp;&nbsp;
+        = link_to 'ShowAll', vfw_deposits_path, class: "button bbutton"
   .w3-row-padding
 
     .s12.w3-col
         
       table.smalltable7
-        caption= "Month Deposits"
+        caption.strong= "Month Deposits"
         tr
           th Date
           th SalesR

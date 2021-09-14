@@ -90,29 +90,29 @@ export default class extends Controller {
     url = (`${url}?account=${acct}&combo=true` + this.getFromTo() + this.getLevel())
     location.assign(url)
   }
-  selectAuditPDF(){
-    const button = event.target
-    var url = button.dataset.url
-    location.assign(url)
-  }
+  // selectAuditPDF(){
+  //   const button = event.target
+  //   var url = button.dataset.url
+  //   location.assign(url)
+  // }
 
-  selectButtonURL(){
-    const button = event.target
-    var url = button.dataset.url
-    location.assign(url)
-  }
+  // selectButtonURL(){
+  //   const button = event.target
+  //   var url = button.dataset.url
+  //   location.assign(url)
+  // }
 
 
-  selectAuditConfig(){
-    const button = event.target
-    var url = button.dataset.url
-    location.assign(url)
-  }
-  selectAuditHTML(){
-    const button = event.target
-    var url = button.dataset.url
-    location.assign(url)
-  }
+  // selectAuditConfig(){
+  //   const button = event.target
+  //   var url = button.dataset.url
+  //   location.assign(url)
+  // }
+  // selectAuditHTML(){
+  //   const button = event.target
+  //   var url = button.dataset.url
+  //   location.assign(url)
+  // }
 
   accountSet(){
     const item = event.target

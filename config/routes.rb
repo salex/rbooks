@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         get :weekly
         get :month_summary
         get :quarter_summary
+        get :voucher
 
       end
       member do

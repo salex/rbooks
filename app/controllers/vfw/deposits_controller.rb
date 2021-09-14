@@ -16,7 +16,20 @@ module Vfw
       @deposits = Deposit.order(:date).reverse_order.limit(6)
     end
 
+    def voucher
+      if params[:date].present?
+        @from= Date.parse(params[:date]).beginning_of_month
+      else
+        @from= Date.today.beginning_of_month - 1.month
+      end
+      @to= @from.end_of_month
+      @summary  = Account.find(3).family_summary(@from,@to)
+      level =  1
+      @report = Report.new.profit_loss({from:@from,to:@to,level: level})
+      @deposits = Deposit.where(date:@from..@to).order(:date)
+      # render template:'/vfw/deposits/month_summary', layout: 'htmlprint'  
 
+    end
     # GET /deposits/1
     # GET /deposits/1.json
     def show
