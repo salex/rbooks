@@ -1,0 +1,130 @@
+div[data-controller="blueBackground"]
+.w3-row-padding.w3-ios-light-grey
+  .w3-row.noprint
+    .s12.w3-col.noprint 
+      .w3-row-padding
+        .m2.w3-col
+          - unless @account.placeholder.present?
+            button.w3-left= link_to 'New Entry', new_entry_path(account_id:@account.id),class:'action-button'
+          else
+            span &nbsp;&nbsp
+        
+
+        .m5.w3-col.w3-dropdown-hover
+
+          div
+            strong AutoPickr Demo 
+            i - Just enter a name to search field
+
+            div[
+              data-autopickr-url-value="/entries/auto_search" 
+              data-controller="autopickr"
+              data-autopickr-slen-value="2"
+              class="w3-blue"
+              ]
+              / data-autopickr-button-url-value="/demo/edit"
+
+              / just calling a helper blueBox to set tailwind classes for a simple button
+              div
+                / optional button target to confirm selection
+                span = link_to('Confirm Select  ->',nil,data:{autopickr_target:"button"}, 
+                  class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block w3-hide")
+
+                = text_field_tag(:input,nil,
+                  data:{autopickr_target:"input", action:"autopickr#search" },
+                placeholder:"Search...",class:"w-48 px-1 my-2",autofocus:true)
+
+              div = hidden_field_tag('selected_id',nil,
+                data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
+              ul.text-black.bg-gray-100.max-h-72.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
+
+          / / - unless @account.placeholder.present?
+          / /   button.w3-left= link_to 'New Entry', new_entry_path(account_id:@account.id),class:'link-button'
+          / /   |&nbsp;&nbsp
+          / span.indent.w3-left.strong Search
+          / div.w3-left[
+          /   data-controller="autocomplete entrySearch" 
+          /   data-autocomplete-url="/entries/auto_search" 
+          /   data-autocomplete-min-length="2"
+          /   ]
+          /   input[
+          /     type="text" 
+          /     data-autocomplete-target="input" 
+          /     placeholder="Entry Description Search" 
+          /     data-action="change->entrySearch#showSearched" 
+          /     style="width:300px;margin-right:8px;"
+          /   ]
+          /   input[
+          /   type="hidden" 
+          /   name="entry_id" 
+          /   data-autocomplete-target="hidden"
+          /   data-entrySearch-target="hidden"
+          /   ]
+          /   .w3-right.lime-link-button.w3-hide[
+          /     data-entrySearch-target="showButton" 
+          /     data-action="click->entrySearch#addSearched" 
+          /     data-entryID=""
+          /   ] Duplicate
+          /   ul.w3-ul.w3-border.w3-dropdown-content.w3-light-grey[data-autocomplete-target="results"]
+
+
+        .m5.w3-col
+          .w3-left
+            - if session[:recent][@account.id.to_s].present?
+              i.fa.fa-toggle-on = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
+            - else
+              i.fa.fa-toggle-off = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
+          .w3-left
+            |&nbsp; | &nbsp;
+            i.fa.fa-toggle-off[data-controller="toggler" data-action="click->toggler#toggleChild" data-childClass="toggleMe"]
+              |&nbsp;
+              span[class="blue-link"] Toggle Summary
+.w3-container.w3-white.min-height
+  .w3-row
+    .s12.w3-col
+      span.indent
+        strong Name: 
+        = @account.name
+      span.indent
+        strong Account type: 
+        = @account.account_type
+      span.indent
+        strong Parent: 
+        = @account.parent_id
+      span.indent
+        strong Code: 
+        = @account.code
+      span.indent
+        strong Description: 
+        = @account.description
+      span.indent
+        strong Placeholder: 
+        = @account.placeholder
+    #summary.toggleMe.w3-show.s12.w3-col
+
+      .w3-row.w3-margin
+        .w3-col.s4[style="max-height:20vh;overflow:scroll;"]
+          .strong =  "Account Summary (#{@today})"
+          = summary_list(@account)
+
+        .s8.w3-col
+          .w3-row-padding[data-controller="rangepicker"]
+            .s8.w3-col
+              .strong Filter - Select Period or Pick Date for Report Options
+              .w3-row
+                .s7.w3-col.entry-select = from_period_select
+                .s5.w3-col= text_field_tag :from_date, nil,data:{rangepicker_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date'
+                .s7.w3-col.entry-select= to_period_select
+                .s5.w3-col= text_field_tag :to_date, nil,data:{rangepicker_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date'
+
+            .s4.w3-col
+              .strong Report Options
+              = select_tag('register',options_for_select(report_select_options(nil,"/accounts/#{@account.id}")),prompt:"Register",data:{action:'rangepicker#selectLedger'},class:'entry-select w3-select')
+              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/register_pdf/#{@account.id}")),prompt:"Register PDF",data:{action:'rangepicker#selectPDF'},class:'entry-select w3-select')
+              = select_tag('register_pdf',options_for_select(report_select_options(nil,"/accounts/split_register_pdf/#{@account.id}")),prompt:"Split Register PDF",data:{action:'rangepicker#selectSplit'},class:'entry-select w3-select')
+                 
+  #ajax.w3-container.w3-white
+
+    #Ledger
+      = render partial: 'accounts/ledger/ledger', locals:{from:@from,to:@to,account:@account}
+

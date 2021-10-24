@@ -5,7 +5,7 @@ class Accounts::BankController < AccountsController
   # GET /accounts
   def index
     @accounts = Current.book.accounts.where(account_type:'BANK')
-    render template:'accounts/index'
+    render template:'accounts/index_table'
   end
 
  

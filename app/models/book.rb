@@ -139,7 +139,7 @@ class Book < ApplicationRecord
 
   def auto_search(params)
     desc = params[:q]
-    entry_ids = self.entries.where(Entry.arel_table[:description].matches("#{desc}%"))
+    entry_ids = self.entries.where(Entry.arel_table[:description].matches("%#{desc}%"))
     .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
     filter = {}
     entry_ids.each do |a|
