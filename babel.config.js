@@ -52,7 +52,7 @@ module.exports = function(api) {
         {
           "loose": true 
         }
-      zs],
+      ],
 
       [
         '@babel/plugin-proposal-object-rest-spread',
