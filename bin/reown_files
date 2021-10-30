@@ -8,13 +8,14 @@ sudo chown -R $USER:$USER app
 # Then copy-paste the rest:
 sudo chown -R $USER:$USER bin
 sudo chown -R $USER:$USER config
-sudo chown -R $USER:$USER coverage
+# sudo chown -R $USER:$USER coverage
 sudo chown -R $USER:$USER db
 sudo chown -R $USER:$USER lib
 sudo chown -R $USER:$USER log
 # chown -R $USER:$USER node_modules
 sudo chown -R $USER:$USER public
-sudo chown -R $USER:$USER spec
+# sudo chown -R $USER:$USER spec
+sudo chown -R $USER:$USER test
 sudo chown -R $USER:$USER storage
 sudo chown -R $USER:$USER log
 
