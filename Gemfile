@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3'
@@ -59,7 +59,6 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'sqlite3', '~> 1.4'
-
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -76,3 +75,4 @@ gem 'ofx', '~> 0.3.2' , github: 'annacruz/ofx', branch: 'master'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'activerecord_where_assoc', '~> 1.0'
 
+gem "rubocop", "~> 1.22"
