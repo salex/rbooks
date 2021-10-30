@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# NOTE: Copy-paste into Host OS terminal.
+
+# Just one line first, so you can enter your un/pw:
+sudo chown -R $USER:$USER app
+
+# Then copy-paste the rest:
+sudo chown -R $USER:$USER bin
+sudo chown -R $USER:$USER config
+sudo chown -R $USER:$USER coverage
+sudo chown -R $USER:$USER db
+sudo chown -R $USER:$USER lib
+sudo chown -R $USER:$USER log
+# chown -R $USER:$USER node_modules
+sudo chown -R $USER:$USER public
+sudo chown -R $USER:$USER spec
+sudo chown -R $USER:$USER storage
+sudo chown -R $USER:$USER log
+
+sudo chown -R $USER:$USER Gemfile
+sudo chown -R $USER:$USER Gemfile.lock
+sudo chown -R $USER:$USER package.json
+sudo chown -R $USER:$USER yarn.lock

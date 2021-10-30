@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sudo rm -R tmp/db
