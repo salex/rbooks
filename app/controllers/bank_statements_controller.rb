@@ -6,7 +6,11 @@ class BankStatementsController < ApplicationController
   # GET /bank_statements
   # GET /bank_statements.json
   def index
-    @bank_statements = current_book.bank_statements.order(:statement_date).reverse_order
+    if current_book&.bank_statements&.present?
+      @bank_statements = current_book.bank_statements.order(:statement_date).reverse_order
+    else
+      redirect_to new_bank_statement_path, alert:'There are no Bank Statements; please add one.'
+    end
   end
 
   # GET /bank_statements/1
