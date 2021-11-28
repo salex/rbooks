@@ -1,14 +1,26 @@
- .w3-bar.malty 
-  .w3-row
-    .w3-col.m3
-      = image_tag("favicon.ico",height:32)
-      span.indent.small-caps.strong RBooks
-    .w3-col.m6
-      .w3-center 
-        .box 
-          span.small-caps.strong  RBooks 
-          span - (RubyOnRails Books or ouRBooks)
-        .small-caps  Doing More For Semi-Accountants
+/ .w3-bar.malty 
+/  .w3-row
+/    .w3-col.m3
+/      = image_tag("favicon.ico",height:32,class:'inline')
+/      span.indent.small-caps.strong RBooks
+/    .w3-col.m6
+/      .w3-center 
+/        .box 
+/          span.small-caps.strong  RBooks 
+/          span - (RubyOnRails Books or ouRBooks)
+/        .small-caps  Doing More For Semi-Accountants
+/    - if @current_user.present?
+/      .w3-col.m3.w3-center
+/        .box = session[:full_name]
+
+
+.grid.grid-cols-12.bg-malt.text-white.py-2.font-bold.print:hidden
+  .col-span-3
+    span= image_tag("favicon.ico",size:24,class:'inline')
+    span.indent.small-caps.strong MyBooks
+  .col-span-6
+    .flex.justify-center
+      span.small-caps  Doing More For Semi-Accountants
+  .col-span-3.flex.justify-center
     - if @current_user.present?
-      .w3-col.m3.w3-center
-        .box = session[:full_name]
+      .box = session[:full_name]

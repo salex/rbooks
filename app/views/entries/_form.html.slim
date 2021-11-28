@@ -1,19 +1,27 @@
 div[data-controller="blueBackground"]
-.w3-row[data-controller="entryLedger"]
-  .w3-col.s2
-    h5.strong = header
-  .w3-col.s10.w3-padding
-    #validate.button.w3-button.w3-blue[data-action="click->entryLedger#check_valid"] Validate
-    = link_to('Cancel', session[:current_acct].present? ? account_path(session[:current_acct]) :request.headers['HTTP_REFERER'],
-      class:"w3-button w3-yellow")
-    - unless @entry.new_record? || @entry.reconciled?
-      - confirm_msg = @entry.cleared? ? "Entry has been Cleared - Are you sure?" : 'Are you sure?'
-      button= link_to 'Delete Entry',@entry, data: { confirm: confirm_msg },class:'link-button', method: :delete 
-      button= link_to 'Void Entry',entries_void_path(@entry),class:'link-button', data: { confirm: confirm_msg }, method: :patch 
-      - if @entry.has_fit_id?
-        span.w3-right Entry Has FitID
+div.mt-2.mx-2[data-controller="entryLedger"]
+  .flex.py-2.bg-gray-200.border.border-gray-400
+    div.flex-none.px-2
+      h5.font-bold.text-lg = header
+    div.mx-10.flex-grow.px-2
+      button[class="#{btnInfo} mr-2" data-action="click->entryLedger#check_valid"] Validate
+      button[class="#{btnWarn} mr-2"] = link_to('Cancel', session[:current_acct].present? ? account_path(session[:current_acct]) :request.headers['HTTP_REFERER'],
+        class:"")
+      - unless @entry.new_record? || @entry.reconciled?
+        - confirm_msg = @entry.cleared? ? "Entry has been Cleared - Are you sure?" : 'Are you sure?'
+        button[class="#{btnDanger} mr-2"] = link_to 'Delete Entry',@entry, data: { confirm: confirm_msg }, method: :delete 
+    div.mr-10.flex-none.px-2
+      = content_tag(:button,'Add Split Row', class:"#{btnSuccess} mr-2" ,
+        data:{action:"click->entryLedger#addSplit"}) 
+      = content_tag(:button,'Clear Amounts', class:"#{btnSuccess} mr-2",
+        data:{action:"click->entryLedger#clearAmounts"}) 
 
-  .w3-row
+      - if @entry.has_fit_id?
+        span[title="#{@entry.fit_id}"] 
+          | Entry Has FitID 
+          i[class="fas fa-question"]
+
+  div
     = form_with model: @entry, data:{entryLedger_target:'theForm',action:'  keypress->entryLedger#preventSubmit'} do |f|
       
       - if @entry.errors.any?
@@ -26,25 +34,20 @@ div[data-controller="blueBackground"]
         table.gl-table
           thead
             tr.header-row
-              td.strong.wp10 Date
-              td.strong.wp6 Numb &plusmn;
-              td.strong Description
+              td.font-bold.w-28 Date
+              td.font-bold.w-20 Numb &plusmn;
+              td.font-bold.w-1/4 Description
 
-              td.strong
-                |Transfers&nbsp;&nbsp;&nbsp;
-                = content_tag(:span,'Add Split Row', class:' button link-button',
-                  data:{action:"click->entryLedger#addSplit"}) 
-                = content_tag(:span,'Clear Amounts', class:' button link-button',
-                  data:{action:"click->entryLedger#clearAmounts"}) 
-              td.strong R
-              td.strong.wp9 Increase
-              td.strong.wp9 Decrease
+              td.font-bold Transfers
+              td.font-bold R
+              td.font-bold Increase
+              td.font-bold Decrease
           tbody id="entry"
             tr.entry-row
-              td = f.text_field(:post_date,class:'w8',data:{controller:'flatpickr',action:"change->entryLedger#changed",entryLedger_target:'date'})
-              td = f.text_field(:numb,class:'w5',data:{autoNumber_target:'numb',action:'keydown->autoNumber#keyDown'})
-              td = f.text_area(:description,class:"w22",data:{entryLedger_target:'description',action:"change->entryLedger#changed"})
-              td = f.hidden_field(:fit_id) + content_tag(:div,"Accounts name are in reverse hierarchical order. Select a pulldown and start typing to lookup a name!",class:"annotate")
+              td = f.text_field(:post_date,class:'w-full',data:{controller:'flatpickr',action:"change->entryLedger#changed",entryLedger_target:'date'})
+              td = f.text_field(:numb,class:'w-full',data:{autoNumber_target:'numb',action:'keydown->autoNumber#keyDown'})
+              td = f.text_area(:description,class:"w-full",data:{entryLedger_target:'description',action:"change->entryLedger#changed"})
+              td = f.hidden_field(:fit_id) + tag.div("Accounts name are in reverse hierarchical order. Select a pulldown and start typing to lookup a name!",class:"lg:w-96 annotate")
               td
               td
               td
@@ -63,28 +66,30 @@ div[data-controller="blueBackground"]
                     = f.hidden_field(:id)
                     span[data-entryLedger-target='deletes']
                       i.fas.fa-cut[data-action="click->entryLedger#cutRow"] 
-                td = f.text_field(:action,class:'w5')
-                td = f.text_field(:memo,class:'w22')
+                td = f.text_field(:action,class:'w-full')
+                td = f.text_field(:memo,class:'w-full')
                 td = f.select(:account_id,options_for_select(current_book.settings[:acct_sel_opt_rev],
                   selected: f.object.account_id,disabled:current_book.settings[:dis_opt],include_blank: ''),
-                  {},class:'w3-select',dir:"ltr",data:{entryLedger_target:'transfer',
+                  {},class:'w-full',dir:"ltr",data:{entryLedger_target:'transfer',
                   action:"change->entryLedger#changed"})
                 td 
                   span[data-action='click->entryLedger#reconcile'] = (f.object.reconcile_state ||='n')
-                  div = f.hidden_field(:reconcile_state,value:f.object.reconcile_state ||='n', class:'w1 w3-hide')
-                td = f.text_field(:debit,value:Ledger.to_fixed(f.object.debit),class:'w8 w3-right-align',
+                  div = f.hidden_field(:reconcile_state,value:f.object.reconcile_state ||='n', class:'w1 hidden')
+                td = f.text_field(:debit,value:Ledger.to_fixed(f.object.debit),class:'w-full text-right',
                 data:{entryLedger_target:'debit',action:"click->entryLedger#selectit change->entryLedger#changed" })
-                td = f.text_field(:credit,value:Ledger.to_fixed(f.object.credit),class:'w8  w3-right-align',
+                td = f.text_field(:credit,value:Ledger.to_fixed(f.object.credit),class:'w-full text-right',
                 data:{entryLedger_target:'credit',action:"click->entryLedger#selectit change->entryLedger#changed"})
-                td.w3-hide = f.hidden_field(:amount,class:'',data:{entryLedger_target:'amount'})
+                td.hidden = f.hidden_field(:amount,class:'',data:{entryLedger_target:'amount'})
               - rid += 1
         hr.underline
         div style="float:right;"
           span.balanced[data-entryLedger-target='balanced'] Start
+
         - if @entry.reconciled?
-          h4.strong.w3-text-red Entry has been reconciled and can't be changed. Use a transfer entry if there was a problem/mistake
+          h4.font-bold.text-2xl.text-red-500 Entry has been reconciled and can't be changed. Use a transfer entry if there was a problem/mistake
+
         - else
-          button.w3-red.w3-large.w3-disabled.w3-round.w3-padding.strong.w3-margin-top[data-entryLedger-target='submit' data-action="click->entryLedger#submitForm" disabled="disabled"] = "#{action_name == 'edit' ? 'Update' : 'Create'} Entry"
+          button.bg-w3red.hover:text-white.rounded.p-3.text-xl.font-bold.mt-2[data-entryLedger-target='submit' data-action="click->entryLedger#submitForm" disabled="disabled"] = "#{action_name == 'edit' ? 'Update' : 'Create'} Entry"
         #last_numbers[data-autoNumber-target='last_numbers' data-numbers="#{current_book.last_numbers.to_json}"]
   
       
