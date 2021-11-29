@@ -15,3 +15,5 @@ application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
 application.register('autocomplete', Autocomplete)
 
+import { Modal } from "tailwindcss-stimulus-components"
+application.register('modal', Modal)

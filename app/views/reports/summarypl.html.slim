@@ -1,6 +1,6 @@
 .w3-container.w3-white
   .w3-row-padding
-    .s5.w3-col.fs8
+    .s6.w3-col.fs8
       .strong 
         = "Profit & Loss For Period Covering #{@from || params[:from] ||= Date.today.beginning_of_year} to #{@to || params[:to] ||= Date.today}"
         - unless @deposits.present?

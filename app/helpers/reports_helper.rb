@@ -23,13 +23,13 @@ module ReportsHelper
       concat( tot_row("Income",'',"Increase"))
       @pad = 1
       children(report["Income"][:children])
-      concat(tot_row("Total Income",to_money(report["Income"][:total],"$")))
+      concat(tot_row("Total Income","",to_money(report["Income"][:total],"$")))
       @pad = 0
       concat( tot_row("Expenses",'','Decrease'))
       @pad = 1
       children(report["Expense"][:children])
-      concat( tot_row("Total Expenses",to_money(report["Expense"][:total],"$")))
-      concat( tot_row("Profit(+)/Loss(-)",to_money(report["Income"][:total] - report["Expense"][:total],"$")))
+      concat( tot_row("Total Expenses","",to_money(report["Expense"][:total],"$")))
+      concat( tot_row("Profit(+)/Loss(-)","",to_money(report["Income"][:total] - report["Expense"][:total],"$")))
     }
   end
 

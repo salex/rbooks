@@ -1,0 +1,18 @@
+div
+  strong AutoPickr  
+  i - Just enter a description to search
+  div[class="#{blueBox}"]
+    / just calling a helper blueBox to set tailwind classes for a simple button
+    div
+      / optional button target to confirm selection
+      span = link_to('Confirm Select  ->',nil,data:{autopickr_target:"button"}, 
+        class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
+
+      = text_field_tag(:input,nil,
+        data:{autopickr_target:"input", action:"autopickr#search" },
+      placeholder:"Search...",class:"w-48 px-1 my-2",autofocus:true)
+
+    div = hidden_field_tag('selected_id',nil,
+      data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
+    ul.text-black.bg-gray-100.max-h-72.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
+.

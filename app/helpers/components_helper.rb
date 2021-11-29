@@ -19,6 +19,10 @@ module ComponentsHelper
     btn + "bg-orange hover:text-yellow-200"
   end
 
+  def btnGreen
+    btn + "bg-green-500 hover:text-green-200"
+  end
+
   def btnDanger
     btn + "bg-red-500 hover:text-red-200"
   end

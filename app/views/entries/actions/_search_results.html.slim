@@ -1,4 +1,7 @@
 - @entries.each do |k,v|
   / li[role="option" data-action="click->autopickr#select" data-select-url="/entries/duplicate/#{v}"] = "#{k}"
+  / li[class="hover:bg-blue-100 p-1"  
+  /   data-action="click->autopickr#select" 
+  /   data-select-url="/entries/duplicate?id=#{v]}"] = k
 
-  li[role="option" data-autocomplete-value="#{v}"] = "#{k}"
+  li[class="hover:bg-blue-100 p-1" data-action="click->autopickr#select" data-select-url="/entries/duplicate/#{v}"] = "#{k}"

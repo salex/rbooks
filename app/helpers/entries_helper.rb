@@ -28,17 +28,24 @@ module EntriesHelper
       ['All',all.to_s]
 
     ]
+    date = bom
+    12.times do |i|
+      options << [date.to_formatted_s(:month_and_year),date.to_s]
+      date = date.last_month
+    end
+
     content_tag(:select,options_for_select(options),
-      class:'w3-select', id: :from_select,
+      class:'w-full rounded-none  px-2', id: :from_select,
       data:{
-        rangepicker_target:'fromOptions',
-        action:'change->rangepicker#fromOption',
+        dateRange_target:'fromOptions',
+        action:'change->dateRange#fromOption',
         date_id:date_id
       })
   end
 
   def to_period_select(date_id:nil)
     today = Date.today
+    bom = today.beginning_of_month
     eom = today.end_of_month
     eopm = (eom - 1.month).end_of_month
     eoq = today.end_of_quarter
@@ -67,58 +74,64 @@ module EntriesHelper
       ['Current Date',today.to_s]
 
     ]
+    date = bom
+    12.times do |i|
+      options << [date.end_of_month.to_formatted_s(:month_and_year),date.end_of_month.to_s]
+      date = date.last_month
+    end
+
     content_tag(:select,options_for_select(options),
-      class:'w3-select',id: :to_select,
+      class:'w-full rounded-none  px-2',id: :to_select,
         data:{
-          rangepicker_target:'toOptions',
-          action:'change->rangepicker#toOption',
+          dateRange_target:'toOptions',
+          action:'change->dateRange#toOption',
           date_id:date_id
         })
   end
 
 
-  def entry_row(date,numb,desc,fit_id)
+  # def entry_row(date,numb,desc,fit_id)
 
-    html = content_tag(:tr, class: 'entry-row') {
-      inst = content_tag(:div,"Accounts name are in reverse hierarchical order. Select a 
-        pulldown and start typing to lookup a name!",class:"annotate")
-      contents = ""
-      contents << content_tag(:td, date, class:"col-e")
-      contents << content_tag(:td, numb, class:"col-e")
-      contents << content_tag(:td, desc, class:"col-e")
-      contents << content_tag(:td, fit_id+inst, class:"col-e")
-      3.times do |i|
-        contents << content_tag(:td, nil, class:"col-e")  
-      end
-      contents.html_safe
-    }.html_safe
-    html
-  end
+  #   html = content_tag(:tr, class: 'entry-row') {
+  #     inst = content_tag(:div,"Accounts name are in reverse hierarchical order. Select a 
+  #       pulldown and start typing to lookup a name!",class:"annotate")
+  #     contents = ""
+  #     contents << content_tag(:td, date, class:"col-e")
+  #     contents << content_tag(:td, numb, class:"col-e")
+  #     contents << content_tag(:td, desc, class:"col-e")
+  #     contents << content_tag(:td, fit_id+inst, class:"col-e")
+  #     3.times do |i|
+  #       contents << content_tag(:td, nil, class:"col-e")  
+  #     end
+  #     contents.html_safe
+  #   }.html_safe
+  #   html
+  # end
 
-  def split_row(id,eid,action,desc,trans,r,debit,credit,amount,s_id,delete,rval)
-    html = content_tag(:tr, class: "split-row", id: "split_#{id}") {
-      contents = ""
-      contents << content_tag(:td, row_control(s_id,eid,delete), class:"col-hide")
-      contents << content_tag(:td, action, class:"col-s")
-      contents << content_tag(:td, desc, class:"col-s")
-      contents << content_tag(:td, trans, class:"col-s")
+  # def split_row(id,eid,action,desc,trans,r,debit,credit,amount,s_id,delete,rval)
+  #   html = content_tag(:tr, class: "split-row", id: "split_#{id}") {
+  #     contents = ""
+  #     contents << content_tag(:td, row_control(s_id,eid,delete), class:"col-hide")
+  #     contents << content_tag(:td, action, class:"col-s")
+  #     contents << content_tag(:td, desc, class:"col-s")
+  #     contents << content_tag(:td, trans, class:"col-s")
 
-      contents << content_tag(:td, ("<span>#{rval}</span>" + r).html_safe, class:"col-s w2  ",data:{action:'click->entryLedger#reconcile'})
-      contents << content_tag(:td, debit, class:"col-s")
-      contents << content_tag(:td, credit, class:"col-s")
-      contents << content_tag(:td, amount, class:"col-s w3-hide")
-      contents.html_safe
-    }.html_safe
-    html
-  end
+  #     contents << content_tag(:td, ("<span>#{rval}</span>" + r).html_safe, class:"col-s w2  ",data:{action:'click->entryLedger#reconcile'})
+  #     contents << content_tag(:td, debit, class:"col-s")
+  #     contents << content_tag(:td, credit, class:"col-s")
+  #     contents << content_tag(:td, amount, class:"col-s w3-hide")
+  #     contents.html_safe
+  #   }.html_safe
+  #   html
+  # end
 
-  def row_control(id_hidden,eid,delete)
-    if eid.present?
-      (id_hidden + delete +'<i class=" fas fa-minus-square">Del</i>'.html_safe).html_safe
-    else
-      (id_hidden + +'<span data-entryLedger="deletes"><i data-action="click->entryLedger#cutRow" class="fas fa-cut"></i></span>'.html_safe).html_safe
-    end
-  end
+  # def row_control(id_hidden,eid,delete)
+  #   if eid.present?
+  #     (id_hidden + delete +'<i class=" fas fa-minus-square">Del</i>'.html_safe).html_safe
+  #   else
+  #     (id_hidden + +'<span data-entryLedger="deletes"><i data-action="click->entryLedger#cutRow" class="fas fa-cut"></i></span>'.html_safe).html_safe
+  #   end
+  # end
 
 
 end
