@@ -101,6 +101,7 @@ class EntriesController < ApplicationController
 
     def set_entry
       @entry = current_book.entries.find_by(id:params[:id])
+      # puts "WAS CALLED #{@entry.blank?} #{params[:id]}"
       redirect_to( accounts_path, alert:'Entry not found for Current Book') if @entry.blank?
     end
 

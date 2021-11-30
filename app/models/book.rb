@@ -156,6 +156,20 @@ class Book < ApplicationRecord
     filter
   end
 
+  def autocomplete_search(params)
+      desc = params[:q]
+      entry_ids = self.entries.where(Entry.arel_table[:description].matches("#{desc}%"))
+      .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
+      filter = {}
+      entry_ids.each do |a|
+        description = a[0]
+        id = a[1]
+        filter[description] = id unless filter.has_key?(description)
+      end
+      filter
+    end
+
+
   def description_lookup(ago=6)
     from = Date.today.beginning_of_month - ago.months
     entry_ids = self.entries.where(Entry.arel_table[:post_date].gteq(from)).order(:id).reverse_order

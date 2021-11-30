@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     resources :filter, only: :index
     resources :filtered, only: :index
     resources :auto_search, only: :index
+    resources :autocomplete_search, only: :index
+
   end
 
   resources :entries

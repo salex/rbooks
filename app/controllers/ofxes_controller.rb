@@ -121,6 +121,7 @@ class OfxesController < ApplicationController
   end
 
   def matched
+    # puts "IN MATCJED #{params[:entry_id]}"
     match_entry = current_book.entries.find(params[:entry_id])
     if match_entry.splits.length > 2
       redirect_to latest_ofxes_path, alert:'Sorry, you can\'t duplicate entries with more than 2 splits from Bank Transactions. Deplicate it in the ledger.'
