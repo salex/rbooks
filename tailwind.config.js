@@ -20,6 +20,7 @@ module.exports = {
         'secondary': "#9db3b8",
         'w3green': "#4CAF50",
         'w3red': "#f44336",
+        'blue-link': "#00c",
         lime: {
           lightest: '#f1fff1',
           lighter: '#e2ffe2',

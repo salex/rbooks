@@ -143,20 +143,13 @@ tbody.split-rows {display:none}
   }
   
   .pl-col-11 {
-
     display: inline-block;
     width: calc( 12% * 1);
     text-align: right;
   }
   .pl-col-12 {
-
     display: inline-block;
     width: calc(12% * 2);
-    text-align: right;
-  }
-  .pl-col-22 {
-    display: inline-block;
-    width: calc(12% / 1);
     text-align: right;
   }
   .pl-col-13 {
@@ -164,23 +157,42 @@ tbody.split-rows {display:none}
     width: calc(12% * 3);
     text-align: right;
   }
-  .pl-col-23 {
+  .pl-col-14 {
+    display: inline-block;
+    width: calc(12% * 4);
+    text-align: right;
+  }
 
+  .pl-col-22 {
+    display: inline-block;
+    width: calc(12% / 1);
+    text-align: right;
+  }
+  .pl-col-23 {
     display: inline-block;
     width: calc(12% * 2);
     text-align: right;
   }
+  .pl-col-24 {
+    display: inline-block;
+    width: calc(12% * 3);
+    text-align: right;
+  }
   .pl-col-33 {
-
     display: inline-block;
     width: calc(12% * 1);
     text-align: right;
   }
+  .pl-col-34 {
+    display: inline-block;
+    width: calc(12% * 2);
+    text-align: right;
+  }
+
   .pl-col-tot {
     display: inline-block;
     width: 100% ;
     color:red;
-
     text-align: right;
   }
   .pl-col-tot-1 {
@@ -196,6 +208,11 @@ tbody.split-rows {display:none}
   .pl-col-tot-3 {
     display: inline-block;
     width: 75% ;
+    text-align: right;
+  }
+  .pl-col-tot-4 {
+    display: inline-block;
+    width: 85% ;
     text-align: right;
   }
 

@@ -8,6 +8,7 @@ export default class extends Controller {
     // dates are input objects, not value
     this.fromDate = this.from_dateTarget
     this.toDate =  this.to_dateTarget
+    console.log("Got a DateRange")
   }
 
   toOption(){
