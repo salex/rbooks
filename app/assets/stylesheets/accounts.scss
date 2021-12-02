@@ -90,13 +90,8 @@ table.gl-table {
     &.p5{ padding-left: 5rem;}
   }
 }
-
-.snowSelectedBackground,
-.snowSelectedBackground:nth-of-type(even),
-.snowSelectedBackground:nth-of-type(odd){
-  background-color:#F9F9F9;
-}
-tbody.split-rows {display:none}
+// split rows are intialy hidden if more that 2 splits
+tbody.split-rows {display:none} 
 
 
 .pl-row {

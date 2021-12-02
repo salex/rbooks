@@ -351,7 +351,9 @@ class Account < ApplicationRecord
         @eom = date.end_of_month
       end
       acct_trans =Ledger.ledger_entries(self.id,@bom..@eom)
-      @balance = balance_on(@bom)
+      # been wrong for a long time. Below is what once starting_balance_on
+      # if tranasction on 1st day, beginning was wrong
+      @balance = balance_on(@bom - 1.day)
       build_ledger(acct_trans)
     end
 
