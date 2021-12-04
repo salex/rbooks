@@ -1,5 +1,5 @@
 #about.w3-container.w3-white.min-height
-  .w3-row.about[data-controller="aboutPager"]
+  .w3-row.about.leading-tight[data-controller="aboutPager"]
     .w3-col.s10
       #page1.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s5
@@ -8,21 +8,21 @@
           = image_tag('assets.png',class:'image-fit')
         .w3-col.s7
           h4.strong Features
-          p Opening Accounts from the menu bar will open an abbreviated Accounts Index page. The page will have two columns with Accounts divided by Account types (Assets Equity Expenses Income Liabilities Orphan Imbalance). The image to the left only shows the Assets list.
-          P Once Accounts (or <strong>Chart of Accounts</strong> in accounting terms) are created, they are rarely modified. The abbreviated view is a shorter view of accounts that allow for quicker access the the Account Ledger. 
-          p 
+          p.m-1 Opening Accounts from the menu bar will open an abbreviated Accounts Index page. The page will have two columns with Accounts divided by Account types (Assets Equity Expenses Income Liabilities Orphan Imbalance). The image to the left only shows the Assets list.
+          P.m-1 Once Accounts (or <strong>Chart of Accounts</strong> in accounting terms) are created, they are rarely modified. The abbreviated view is a shorter view of accounts that allow for quicker access the the Account Ledger. 
+          p.m-1 
             |At the top of the index list will be a button link: 
             = link_to 'Account Table View', '#page1', class: :button
             |&nbsp; that provides a more detailed list of accounts and allows for CRUD actions.
-          p Clicking on the account name link will open an Account Ledger for that account defaulting to recent or latest entries/transactions. This is really the <strong>Show</strong> view of the account.
+          p.m-1 Clicking on the account name link will open an Account Ledger for that account defaulting to recent or latest entries/transactions. This is really the <strong>Show</strong> view of the account.
       #page2.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s8
           h4.strong Account Table View
           = image_tag('acct_table.png',class:'image-fit')
         .w3-col.s4
           h4.strong Features
-          p As in the abbreviated view, clicking on the account name link will open an Account Ledger. Most attributes for Account are displayed in the table. Those are described in the About Edit Page.
-          ul.list-disk
+          p.m-1 As in the abbreviated view, clicking on the account name link will open an Account Ledger. Most attributes for Account are displayed in the table. Those are described in the About Edit Page.
+          ul.classic.ml-4
             li Clicking on the account name or the  <i class="fas fa-eye"></i> icon will open the Account Ledger (show).
             li Clicking on the <i class="fas fa-edit"></i> will open the Edit form for the Account.
             li Clicking on the <i class="fas fa-plus-square"></i> will open the a New form for a new Account. There is not a direct 'Create' action. The new action will only create a new account that will be the child of the parent account selected.
@@ -46,14 +46,14 @@
             dd.indent Not used in RCash at this time, but this is the place to put classic account numbers.
 
     
-        .w3-col.s6
+        .w3-col.s6.leading-tight
           h4.strong Tree Structure
-          p The RCash account table can be thought of as an Ancestry tree. Trees have a trunk or root. Trunks can have Branches or Children. Branches can have other Branches. A Branch that does not have other branches can have leaves. Leaves belong to one branch. In RCash only leaves can have transactions or Entries.
-          p If you look back at the abbreviated account list
-          ul.list-disk
+          p.my-1 The RCash account table can be thought of as an Ancestry tree. Trees have a trunk or root. Trunks can have Branches or Children. Branches can have other Branches. A Branch that does not have other branches can have leaves. Leaves belong to one branch. In RCash only leaves can have transactions or Entries.
+          div.my-1 If you look back at the abbreviated account list
+          ul.classic.ml-4
             li Assets belong to the Root account and has two children. Current Assets has three children. 
             li Each Placeholder (has Children) can have a Family, which is just all of its children and their children until a child has no children. The Root account has a large family (all accounts!). Checking has a family that is only it's children. Current Assets is one level up from Checking and has a big family.
-          p 
+          p.m-1
             |When you open a ledger for a Placeholder, it display all entries for the entire family, usually filtered by some date range. You cannot enter new Entries for a Placeholder account. 
             span.annotate Note: GnuCash did not have this restriction. The demo imported transactions from GnuCash and placeholders may have entries. You can't add new Entries but there existence is accounted for in any balances. Optionally you can create a sub account and move those transactions to it.
       #page4.w3-row-padding.w3-show[data-aboutPager-target="page"]
@@ -62,11 +62,11 @@
             h4.strong Checking Ledger
             = image_tag('ledger.png',class:'image-fit')
           h5.strong Filters
-          p There are two forms of an Account ledger for PDF version, Abbreviated or Split
-          ul.list-disk
+          p.m-1 There are two forms of an Account ledger for PDF version, Abbreviated or Split
+          ul.classic.ml-4
             li The Abbreviated ledger only displays one Account transfer. If there is more than one transfer, the account transfer will be '--Split Transaction--'. Clicking on that will show all transfer for that entry.
             li The split ledger show all transfers.
-          p <strong>Date Picker - </strong> Ledgers display Entries by a date range (from..to). There are a number of ways to set that range.
+          p.m-1 <strong>Date Picker - </strong> Ledgers display Entries by a date range (from..to). There are a number of ways to set that range.
           .w3-row-padding[data-controller="rangepicker"]
             .s8.w3-col
               .strong Filter - Select Period or Pick Date for Report Options
@@ -76,7 +76,7 @@
                 .s7.w3-col.entry-select= to_period_select
                 .s5.w3-col= text_field_tag :to_date, nil,data:{controller:'flatpickr',rangepicker_target:'to_date'},placeholder:'Pick To Date'
 
-          ul.list-disk
+          ul.classic.ml-4
             li The Filter Date Picker has pull downs to select the From and To period. Periods are, months, quarters and years (current and previous). Selecting a From period will set the To period, but you can change the selection. Periods selected populate the Date text field.
             li The Date Picker text field allows you to enter any From and To Date
             li The Register and Split Register pull downs (HTML or PDF) can use the date picker dates
@@ -85,7 +85,7 @@
           
         .w3-col.s4
           h4.strong Features
-          ul.list-disk
+          ul.classic.ml-4
             li You can add a New Entry for an account from this page, unless the account is a placeholder
             li You can add or remove (toggle) the account to the Recent Ledgers link buttons in the Menu Bar
             li Click on Show/Hide Summary/Filers will open the summary area that displays a summary of the accounts family. You can use the name link in the summary to open one of the children's ledger.
@@ -98,7 +98,7 @@
 
         .w3-col.s4
           h5.strong Ledger Links
-          ul.list-disk
+          ul.classic.ml-4
             li 
               strong Date(Edit) Link. 
               |Clicking on the date will open the Split Entry Ledger

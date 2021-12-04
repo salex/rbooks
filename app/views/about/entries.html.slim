@@ -28,8 +28,8 @@
       .w3-row
 
         .w3-col.s6
-          p The Entry Ledger is the only way to edit or create Entries and their associated Splits. The form has numerous features to assure that the Entry is valid before saving it. The ledger updates both the Entry and any Splits for that entry. There are six sections in the form.
-          ul
+          p.m-1 The Entry Ledger is the only way to edit or create Entries and their associated Splits. The form has numerous features to assure that the Entry is valid before saving it. The ledger updates both the Entry and any Splits for that entry. There are six sections in the form.
+          ul.classic.ml-4
             li Button bar. The top bar button bar contains link buttons to preform some action
             li Ledger Table Header. Since that table contains attributes from both the Entry and the Splits, the column may contain different information on each row. The Transfer header my contain link to Helper actions.
             li Entry Attributes. The light blue shaded row that contains the Date, Number and Description attributes 
@@ -37,13 +37,13 @@
             li Deleted Splits. Any splits that will be removed from the database. 
             li Submit button and Balance status
         .w3-col.s6
-          p <strong>Button Bar</strong> Several buttons may appear in the Button Bar depending on the state of the Entry.
-          ul
+          p.m-1 <strong>Button Bar</strong> Several buttons may appear in the Button Bar depending on the state of the Entry.
+          ul.classic.ml-4
             li Validate - Button runs the validation check and is rarely used since validations are run if any required element is changed. Duplicating and entry from Bank Transactions, will be valid, but you must either change a required field (green shaded columns) or click the Validate button.
             li Delete Entry - You can delete an entry made in error if it has not been reconciled or cleared
             li Void Entry - You can void an entry if it has not been reconciled or cleared
             li Cancel - You can cancel an entry (new or edit) at any time, no changes will be make
-          p <strong>Submit</strong> The submit button is disabled if the entry is invalid (not balanced or missing a required field)
+          p.m-1 <strong>Submit</strong> The submit button is disabled if the entry is invalid (not balanced or missing a required field)
 
            
         
@@ -51,7 +51,7 @@
       .w3-row
         .w3-col.s6
           h6.strong Entry Section
-          p The entry section (light blue row background) contains three field
+          p.m-1 The entry section (light blue row background) contains three field
           dl.indent
             dt Date - required
             dd Entering the date field will bring up a Date Picker defaulting to the entry date. You can use the picker to change the date, enter the date with the keyboard in YYYY-MM-DD format, or pressing the + or - key to increment/decrement the date.
@@ -68,7 +68,7 @@
       .w3-row
         .w3-col.s6
           h6.strong Entry Splits Section 
-          p The Splits section (tan row background color) 6 data field and a field under the Date header that depends on the split state
+          p.m-1 The Splits section (tan row background color) 6 data field and a field under the Date header that depends on the split state
           ul
             li If the date field has a check box and a <i class=" fas fa-minus-square"></i> icon, the split exist and can be deleted. Checking the check box will move it the the Deleted Splits section. If a valid form is submitted, that split will be deleted. You can move the split back to the splits section by un-checking the check box.
             li If the date field has a scissors <i class=" fas fa-cut"></i> icon, the slit has not been saved and can be cut. Useful if you duplicate a entry with more than two splits, but some may not apply to this entry.
@@ -90,7 +90,7 @@
             dd Much like GnuCash, RCash will try to keep your entries balanced. (sum of increases is equal to the sum of decreases)
             dd There is a button in the transfer header that will clear all increases and decreases, again useful if you've duplicated an Entry
             dd 
-              ul
+              ul.classic.ml-4
                 li Entering a number in the decrease column  will enter the same number in the increase column on the next blank(scratch) or incomplete split line. Entered numbers will be converted to a fixed numbers and to pennies in a hidden field.
                 li An incomplete line is where the  account is set but increase and decrease fields are blank.
                 li A scratch line has no account but has a number

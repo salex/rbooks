@@ -1,9 +1,9 @@
 .w3-container.w3-white.min-height
   #reports.w3-row.w3-row-padding[data-controller="rangepicker" data-date="#{Date.today.to_s}"]
     .w3-col.s5
-      h5.strong Under Construction
-
+      h5.strong Classic Accounting Reports
       p Most reports have default options (from-to Dates,level,etc), but you can change those options using the filters provided.
+
       .w3-card-2.w3-bar-block.w70p
         .w3-bar-item
           button.lite-goldey.w100[data-action="click->rangepicker#selectSummary" data-url="#{summary_reports_path}"] Account Summary
@@ -21,15 +21,39 @@
  
     .s7.w3-col
       .strong Date Filter
-      .w3-row.w3-row-padding
-        .s6.w3-col
-          = from_period_select
-          |or 
-          = text_field_tag :from_date, nil,data:{controller:'flatpickr',rangepicker_target:'from_date'},placeholder:'Pick From Date'
-        .s6.w3-col
-          = to_period_select
-          |or 
-          = text_field_tag :to_date, nil,data:{controller:'flatpickr',rangepicker_target:'to_date'},placeholder:'Pick To Date'
+      .bg-blue-200.p-1[data-controller="dateRange" data-dateRange-url-value=""]
+          
+        div
+          div
+            div.strong Filter - Select Period or Pick Date for Report Options
+            div
+              .w-1/2.inline-block = from_period_select
+              | -or- 
+              .inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',rangepicker_target:'from_date', controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
+            div
+              .w-1/2.inline-block = to_period_select
+              | -or- 
+              .inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',rangepicker_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
+          / div
+          /   div.strong Display Filtered Ledger
+          /   = content_tag(:button,'Screen', class:"#{btnInfo} mr-2",
+          /     data:{action:"click->dateRange#assignDisplay"}) 
+          /   = content_tag(:button,'PDF', class:"#{btnInfo} mr-2",
+          /     data:{action:"click->dateRange#assignPdf"}) 
+
+          /   = content_tag(:button,'PDF Split', class:"#{btnInfo} mr-2",
+          /     data:{action:"click->dateRange#assignSplit"})                
+
+      / .w3-row.w3-row-padding
+      /   .s6.w3-col
+      /     = from_period_select
+      /     |or 
+      /     = text_field_tag :from_date, nil,data:{controller:'flatpickr',rangepicker_target:'from_date'},placeholder:'Pick From Date'
+      /   .s6.w3-col
+      /     = to_period_select
+      /     |or 
+      /     = text_field_tag :to_date, nil,data:{controller:'flatpickr',rangepicker_target:'to_date'},placeholder:'Pick To Date'
+
       .strong Level Filter
       .w3-row.w3-row-padding
         = content_tag(:select,options_for_select([['Select',''],1,2,3,4],1),id: :level_select,class:'w3-select',
