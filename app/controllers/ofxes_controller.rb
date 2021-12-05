@@ -8,10 +8,14 @@ class OfxesController < ApplicationController
   def latest
     @ofx = current_book.ofxes.where(reconciled_date:nil).order(:statement_date).last
     if @ofx.present?
-      @account = @ofx.ofx_account
-      render action: :show
+      if @ofx.ofx_data.blank?
+        redirect_to ofxes_path, alert:'You must upload the OFX file before you can link transactions'
+      else
+        @account = @ofx.ofx_account
+        render action: :show
+      end
     else
-      redirect_to root_path, alert:'OFX is dependent on Bank Statements. There are no Bank Statements'
+      redirect_to bank_statements_path, alert:'OFX is dependent on Bank Statements. There are no unreconciled Bank Statements'
     end
   end
 
@@ -30,7 +34,11 @@ class OfxesController < ApplicationController
 
   def show
     @ofx = current_book.ofxes.find(params[:id])
-    @account = @ofx.ofx_account
+    if @ofx.ofx_data.present?
+      @account = @ofx.ofx_account
+    else
+      redirect_to ofxes_path, alert:'You must upload the OFX file before you can link transactions'
+    end
   end
 
   def edit

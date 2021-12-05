@@ -5,7 +5,7 @@
       = form_with( url:'/entries/filtered',method: :get, html: {data: { type: "html", action: "ajax:success->entrySearch#onPostSuccess",entrySearch_target:'form' } }) do |form|
         .w3-row-padding
           .w3-col.m7
-            p You can search for entries descriptions and filter search by the radio buttons options. You can also search for a Entry number or search for a Split amount (in pennies!). Entries searches will defaut to the last match. Check the  <strong>Show All</strong> check box to all all matches for basic search without options.
+            p You can search for entries descriptions and filter search by the radio buttons options. You can also search for a Entry number or search for a Split amount (in pennies!). Entries searches will defaut to the last match. Check the  <strong>Show All</strong> check box to show all matches for basic search without options.
           .w3-col.m5
             .strong Options
             div
@@ -28,9 +28,9 @@
         span.strong.w3-margin &nbsp;&nbsp;
         = form.check_box(:show_all)
         span.w3-margin Show All
-        button = form.submit "Search Entries"
-        button = form.submit "Search Entry Number"
-        button = form.submit "Search Split Amount"
+        button.mr-2 = form.submit "Search Entries"
+        button.mr-2 = form.submit "Search Entry Number"
+        button.mr-2 = form.submit "Search Split Amount"
 
 
   .w3-row-padding[data-entrySearch-target="refresh"]

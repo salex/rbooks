@@ -23,7 +23,7 @@
           td.tright = ofx.hash_data[:balance].blank? ? 0 : Amount.money(ofx.hash_data[:balance])
           td = ofx.reconciled_date
           td.actions
-            = link_to 'Show', ofx
+            = link_to 'Show/Link', ofx
             = link_to 'Update/Upload', edit_ofx_path(ofx) if ofx.reconciled_date.blank?
 
   br

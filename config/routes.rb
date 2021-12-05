@@ -119,22 +119,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # namespace :vfw do
-  #   # resources :audit, only: :index
-  #   # resources :audit_pdf, only: :index
-  #   # resources :audit_config, only: [:index,:update]
-  #   resources :deposits do
-  #     collection do
-  #       get :weekly
-  #       get :month_summary
-  #     end
-  #     member do
-  #       get :edit_other
-  #       patch :update_other
-  #     end    
-  #   end
-  # end
-
   resources :bank_statements do
     member do
       get :reconcile

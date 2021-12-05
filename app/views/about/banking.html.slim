@@ -3,12 +3,12 @@
     #page1.w3-col.s10[data-aboutPager-target="page"]
 
       h5.strong About Banking
-      p.m-1 Banking is a semi-optional feature. If you do not reconcile your bank statements with your account in some fashion, you can skip this section. You might want to look at the Checking Balances area. If you do, there is a Bank Statement feature. Optionally, if your bank's on-line banking has a feature to download transaction using OFX (QuickBooks), there is a Bank Transactions feature.
-      p.m-1 By default, RCash assumes you Checking account name is <strong>Checking</strong>. You can set your account name (and ID) using a link on the Bank Statements index/list.
+      p.my-1.5 Banking is a semi-optional feature. If you do not reconcile your bank statements with your account in some fashion, you can skip this section. You might want to look at the Checking Balances area. If you do, there is a Bank Statement feature. Optionally, if your bank's on-line banking has a feature to download transaction using OFX (QuickBooks), there is a Bank Transactions feature.
+      p.my-1.5 By default, RCash assumes you Checking account name is <strong>Checking</strong>. You can set your account name (and ID) using a link on the Bank Statements index/list.
       .w3-row.w3-row-padding
         .w3-col.s4
           h6.strong Checking Balances
-          p.m-1 Is a single page that you access in the Links pull down in the title bar. Its primary purpose is to clear Entries. You can use your bank statement or just a current list of cleared transactions (on-line banking). The page displays the following information.
+          p.my-1.5 Is a single page that you access in the Links pull down in the title bar. Its primary purpose is to clear Entries. You can use your bank statement or just a current list of cleared transactions (on-line banking). The page displays the following information.
           ul.classic.ml-4
             li Date and Balance filter
             li Balances - Reconciled, Cleared, Uncleared, Ending, Bank/Closing, and Difference
@@ -21,20 +21,20 @@
 
         .w3-col.s4
           h6.strong Bank Statements
-          p.m-1 Bank Statements are stored in a database table as serialized attributes. The following fields are used:
+          p.my-1.5 Bank Statements are stored in a database table as serialized attributes. The following fields are used:
           ul.classic.ml-4
             li Key: BankStatement + Starting date of statement
             li Date: Ending date of statement
             ll Beginning Balance
             li Ending Balance
             li Dates defaults are computed as first weekend date before or on the first of the month and last workday of the month
-          p.m-1 There is a reconcile link on the Bank Statement list that will take you to the 'Reconcile' page.
-          p.m-1 Reconcile brings up a page similar to the Checking Balance.
+          p.my-1.5 There is a reconcile link on the Bank Statement list that will take you to the 'Reconcile' page.
+          p.my-1.5 Reconcile brings up a page similar to the Checking Balance.
           P If everything balances, and the current date is greater or equal to the statement date there is a Submit button to will set the reconcile state to 'y' for all cleared entries.
 
         .w3-col.s4
           h6.strong Bank Transactions(OFX)
-          p.m-1 Bank Transactions are stored in a database table as serialized attributes. The following process is used
+          p.my-1.5 Bank Transactions are stored in a database table as serialized attributes. The following process is used
           ul.classic.ml-4
             li Download the OFX file from your Bank.
             li Upload that file to the database. You can upload a new file, or update and existing file
@@ -46,7 +46,7 @@
 
       h5.strong About Balances
       = image_tag('balance.png',class:'image-fit')
-      p.m-1 This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
+      p.my-1.5 This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
       ul.classic.ml-4
        li Reconciled balance: The balance of all reconciled Checking account entries on the closure date.
        li Cleared Balance: The balance of all Checking account entries that have been cleared but not reconciled.
@@ -55,8 +55,8 @@
        li Bank/Closing balance:  The closing balance you optionally entered.
        li Difference: difference between the Closing balance and ending balance. Should be Zero if a Closing balance was entered.
 
-      p.m-1 All Cleared and Uncleared entries are listed in a table. The cleared table is scrollable
-      p.m-1 You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
+      p.my-1.5 All Cleared and Uncleared entries are listed in a table. The cleared table is scrollable
+      p.my-1.5 You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
     #page3.w3-col.s10[data-aboutPager-target="page"]
 
       h5.strong About Statements
@@ -77,7 +77,7 @@
       h5.strong About OFX Transactions
       .w3-row
         .w3-col.s8
-          p.m-1 OFX transactions can be linked to Entries using the unique_id of the transaction(fit_id).This page compares Bank Transactions against Entries and displays options in the Entry column on what can be done.
+          p.my-1.5 OFX transactions can be linked to Entries using the unique_id of the transaction(fit_id).This page compares Bank Transactions against Entries and displays options in the Entry column on what can be done.
 
           = image_tag('ofx_tran.png',class:'image-fit')
         .w3-col.s4
@@ -96,13 +96,13 @@
       h5.strong About Banking
       .w3-card-2.w3-bar-block.w100
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page1"] Banking
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page1"] Banking
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page2"] Balances
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page2"] Balances
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page3"] Statements
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page3"] Statements
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page4"] Transactions
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page4"] Transactions
 
         = render partial:'links'
 

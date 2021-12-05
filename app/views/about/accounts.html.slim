@@ -8,20 +8,20 @@
           = image_tag('assets.png',class:'image-fit')
         .w3-col.s7
           h4.strong Features
-          p.m-1 Opening Accounts from the menu bar will open an abbreviated Accounts Index page. The page will have two columns with Accounts divided by Account types (Assets Equity Expenses Income Liabilities Orphan Imbalance). The image to the left only shows the Assets list.
-          P.m-1 Once Accounts (or <strong>Chart of Accounts</strong> in accounting terms) are created, they are rarely modified. The abbreviated view is a shorter view of accounts that allow for quicker access the the Account Ledger. 
-          p.m-1 
+          p.my-1.5 Opening Accounts from the menu bar will open an abbreviated Accounts Index page. The page will have two columns with Accounts divided by Account types (Assets Equity Expenses Income Liabilities Orphan Imbalance). The image to the left only shows the Assets list.
+          P.my-1.5 Once Accounts (or <strong>Chart of Accounts</strong> in accounting terms) are created, they are rarely modified. The abbreviated view is a shorter view of accounts that allow for quicker access the the Account Ledger. 
+          p.my-1.5 
             |At the top of the index list will be a button link: 
             = link_to 'Account Table View', '#page1', class: :button
             |&nbsp; that provides a more detailed list of accounts and allows for CRUD actions.
-          p.m-1 Clicking on the account name link will open an Account Ledger for that account defaulting to recent or latest entries/transactions. This is really the <strong>Show</strong> view of the account.
+          p.my-1.5 Clicking on the account name link will open an Account Ledger for that account defaulting to recent or latest entries/transactions. This is really the <strong>Show</strong> view of the account.
       #page2.w3-row-padding.w3-hide[data-aboutPager-target="page"]
         .w3-col.s8
           h4.strong Account Table View
           = image_tag('acct_table.png',class:'image-fit')
         .w3-col.s4
           h4.strong Features
-          p.m-1 As in the abbreviated view, clicking on the account name link will open an Account Ledger. Most attributes for Account are displayed in the table. Those are described in the About Edit Page.
+          p.my-1.5 As in the abbreviated view, clicking on the account name link will open an Account Ledger. Most attributes for Account are displayed in the table. Those are described in the About Edit Page.
           ul.classic.ml-4
             li Clicking on the account name or the  <i class="fas fa-eye"></i> icon will open the Account Ledger (show).
             li Clicking on the <i class="fas fa-edit"></i> will open the Edit form for the Account.
@@ -53,7 +53,7 @@
           ul.classic.ml-4
             li Assets belong to the Root account and has two children. Current Assets has three children. 
             li Each Placeholder (has Children) can have a Family, which is just all of its children and their children until a child has no children. The Root account has a large family (all accounts!). Checking has a family that is only it's children. Current Assets is one level up from Checking and has a big family.
-          p.m-1
+          p.my-1.5
             |When you open a ledger for a Placeholder, it display all entries for the entire family, usually filtered by some date range. You cannot enter new Entries for a Placeholder account. 
             span.annotate Note: GnuCash did not have this restriction. The demo imported transactions from GnuCash and placeholders may have entries. You can't add new Entries but there existence is accounted for in any balances. Optionally you can create a sub account and move those transactions to it.
       #page4.w3-row-padding.w3-show[data-aboutPager-target="page"]
@@ -62,11 +62,11 @@
             h4.strong Checking Ledger
             = image_tag('ledger.png',class:'image-fit')
           h5.strong Filters
-          p.m-1 There are two forms of an Account ledger for PDF version, Abbreviated or Split
+          p.my-1.5 There are two forms of an Account ledger for PDF version, Abbreviated or Split
           ul.classic.ml-4
             li The Abbreviated ledger only displays one Account transfer. If there is more than one transfer, the account transfer will be '--Split Transaction--'. Clicking on that will show all transfer for that entry.
             li The split ledger show all transfers.
-          p.m-1 <strong>Date Picker - </strong> Ledgers display Entries by a date range (from..to). There are a number of ways to set that range.
+          p.my-1.5 <strong>Date Picker - </strong> Ledgers display Entries by a date range (from..to). There are a number of ways to set that range.
           .w3-row-padding[data-controller="rangepicker"]
             .s8.w3-col
               .strong Filter - Select Period or Pick Date for Report Options
@@ -114,13 +114,13 @@
       h5.strong About Accounts
       .w3-card-2.w3-bar-block.w100
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page1"] Accounts
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page1"] Accounts
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page2"] Account Table
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page2"] Account Table
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page3"] Attributes
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page3"] Attributes
         .w3-bar-item
-          button.lite-goldey.w100[data-action="click->aboutPager#goTo" data-url="page4"] Ledgers
+          button.lite-goldey.w100.p-1[data-action="click->aboutPager#goTo" data-url="page4"] Ledgers
         = render partial:'links'
 
       / .w3-row-padding
