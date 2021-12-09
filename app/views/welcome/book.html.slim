@@ -14,8 +14,12 @@
         label URL
         span = request.original_url
       .field
-        label Last Acct Update
+        label Last Account Update
         span = Time.parse(Rails.application.config.x.acct_updated).localtime
+      .field
+        label Application Updated
+        - appdir = Rails.root.join("app")
+        span.annotate = File.mtime(appdir)
 
     hr
     <script type="text/javascript" src="https://www.brainyquote.com/link/quotebr.js"></script>

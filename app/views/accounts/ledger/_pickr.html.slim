@@ -10,7 +10,7 @@ div
 
       = text_field_tag(:input,nil,
         data:{autopickr_target:"input", action:"autopickr#search" },
-      placeholder:"Search...",class:"w-48 px-1 my-2",autofocus:true)
+      placeholder:"Search...",class:"w-72 px-1 my-2",autofocus:true)
 
     div = hidden_field_tag('selected_id',nil,
       data:{autopickr_target:"hidden",action:"change->autopickr#selected"})

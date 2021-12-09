@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["input",'results','hidden','selected','button','contains']
+  static targets = ["input",'results','selected','button','contains']
   static values = { url: String ,slen: Number}
 
   connect() {
@@ -52,6 +52,8 @@ export default class extends Controller {
       let frag = document.createRange().createContextualFragment(data);
       this.clear_results()  // set result to no children
       this.resultsTarget.appendChild(frag) // rebuild the results
+    }else{
+      this.clear_results() // clear results on backspace
     }
   }
 }

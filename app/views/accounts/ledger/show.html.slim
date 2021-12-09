@@ -6,31 +6,18 @@ div.bg-gray-300.grid.grid-cols-4.p-1
       button[class="ml-4 #{btnInfo}"]= link_to 'New Entry', new_entry_path(account_id:@account.id)
     - else
       span.strong Placeholder Account
-        
-  div data-controller="modal" data-modal-allow-background-close="false" 
-    button[class="#{btnGreen}" data-action="click->modal#open"] Duplicate Entry Search by Desc
-    /! Modal Container
-    div[
-      class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
-      data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
-      data-modal-target="container"
-      style="z-index: 9999;" 
-      ]
-      /! Modal Inner Container
-      .max-h-screen.w-full.max-w-lg.relative
-        /! Modal Card
-        .m-1.bg-white.rounded.shadow
-          .p-8[data-autopickr-url-value="/entries/auto_search" 
-            data-controller="autopickr"
-            data-autopickr-slen-value="2"
-            data-autopickr-button-url-value="/demo/edit"]
-            = render partial:"accounts/ledger/pickr"
-            div
-              = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
-              span.ml-3.align-top Use Contains Search
+  div[ data-controller="toggleMenu"]
+    button[class="#{btnGreen}" data-action="click->toggleMenu#toggleMenu"] Duplicate Entry Search by Desc
+    div[class="z-10 absolute bg-green-200 w-1/3 px-2 hidden" data-toggleMenu-target="menu"]
+      div.p-4[data-autopickr-url-value="/entries/auto_search" 
+        data-controller="autopickr"
+        data-autopickr-slen-value="2"
+        ]
+        = render partial:"accounts/ledger/pickr"
+        div
+          = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+          span.ml-3.align-top Use Contains Search
 
-            .flex.justify-end.items-center.flex-wrap.mt-6
-              button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded data-action="click->modal#close"  Cancel
   div
     - if session[:recent][@account.id.to_s].present?
       i.fa.fa-toggle-on = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
