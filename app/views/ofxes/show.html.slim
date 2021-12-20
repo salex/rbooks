@@ -30,8 +30,11 @@
               data-action="click->ofx#dupSearched" 
               data-entryID="" data-fitID=""] Duplicate Match
               ul.w3-ul.w3-border[data-autocomplete-target="results"]
+          / div.my-4.ml-4
+          /   = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+          /   span.ml-3.align-top Use Contains Search
 
-          footer.w3-container.w3-teal
+          footer.w3-container.w3-teal.mt-8
             p Modal Footer
 
 

@@ -1,13 +1,17 @@
 import { Controller } from "stimulus"
 
+// Connects to data-controller="autopickr"
 export default class extends Controller {
-  static targets = ["input",'results','selected','button','contains']
+  static targets = ["input",'results','selected','button',"contains"]
   static values = { url: String ,slen: Number}
 
   connect() {
     // console.log("Hi autopickr")
     // console.log(`URL > ${this.urlValue}`)
     // console.log(`slen > ${this.slenValue}`)
+    // console.log(`contains > ${this.hasContainsTarget}`)
+
+    let checked = false// if a contains option is present, its in url regardless
 
     let slen  // slen is the number of charcters entered before we search/query
     if (this.hasSlenValue) {
@@ -20,15 +24,11 @@ export default class extends Controller {
 
   select(){
     const selected = event.target
-    // console.log(selected)
-    if (this.hasButtonTarget) {  // if there is a button target, display instead of following url
+    if (this.hasButtonTarget) {
       this.buttonTarget.classList.remove('hidden')
-      // console.log(`selected value ${selected.innerHTML}`)
-      this.inputTarget.value = selected.innerHTML
-      // console.log(`selected URL ${selected.dataset.selectUrl}`)
-      this.buttonTarget['href'] = selected.dataset.selectUrl
+      this.buttonTarget['href'] = selected.dataset.select
     }else{
-      location.assign(selected.dataset.selectUrl)
+      location.assign(selected.dataset.select)
     }
   }
 
@@ -43,17 +43,22 @@ export default class extends Controller {
   }
 
   async search(){
-    var len = this.inputTarget.value.length
-    // console.log(`contain > ${this.containsTarget.checked}`)
+    if (this.hasContainsTarget && this.containsTarget.checked) {
+      this.checked = true
+    }else{
+      this.checked = false
+    }
 
-    if (len >= this.slen) { 
-      let response = await fetch(this.urlValue+`?input=${this.inputTarget.value}&contains=${this.containsTarget.checked}`);
+    var len = this.inputTarget.value.length
+    if (len >= this.slen) {
+      let response = await fetch(this.urlValue+`?input=${this.inputTarget.value}&contains=${this.checked}`);
       let data = await response.text();
       let frag = document.createRange().createContextualFragment(data);
-      this.clear_results()  // set result to no children
-      this.resultsTarget.appendChild(frag) // rebuild the results
+      this.clear_results()
+      this.resultsTarget.appendChild(frag)
     }else{
-      this.clear_results() // clear results on backspace
+      this.clear_results() // clear results on backspace < slen
     }
+
   }
 }

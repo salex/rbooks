@@ -4,10 +4,13 @@ rails g scaffold User email:uniq username:uniq full_name roles password:digest d
 
 rails g scaffold Account uuid book:references name account_type code description placeholder:boolean contra:boolean parent_id:integer level:integer --no-scaffold-stylesheet
 
-rails g scaffold Entry book:references numb post_date:date description fit_id lock_version:integer --no-scaffold-stylesheet
+rails g scaffold Entry book:references numb post_date:date:index description:index fit_id lock_version:integer --no-scaffold-stylesheet
 
-rails g scaffold Split account:references entry:references memo action reconcile_state reconcile_date:date amount:integer lock_version:integer --no-scaffold-stylesheet
+rails g model Split account:references entry:references memo action reconcile_state reconcile_date:date amount:integer lock_version:integer --no-scaffold-stylesheet
+
+rails g scaffold bank_statements book:references statement_date:date beginning_balance:integer ending_balane:integer ofx_data:text hash_data:text reconciled_date:date --no-scaffold-stylesheet 
 
 rails g scaffold Deposit date:date sales_revenue:float other_revenue:float cash_sales:float credit_sales:float tips_paid:float sales_deposit:float other_deposit:float total_deposit:float cash_out:float
 
 rails g model Revenue deposit.references type item quanity:float amount:float remarks
+
