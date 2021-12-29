@@ -1,7 +1,7 @@
 /* 
   Rails.root/app/javascript/controllers/inventroy-controller.js
 */
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ 'bottles',"wbottles", "cbottles","cases",'total','size','percent','ckd']

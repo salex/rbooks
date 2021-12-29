@@ -1,9 +1,9 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="autopickr"
 export default class extends Controller {
   static targets = ["input",'results','selected','button',"contains"]
-  static values = { url: String ,slen: Number}
+  static values = { url: String ,slen: Number,refid: String}
 
   connect() {
     // console.log("Hi autopickr")
@@ -18,6 +18,13 @@ export default class extends Controller {
       this.slen = this.slenValue
     }else{
       this.slen = 1
+    }
+    let refid
+    if (this.hasRefidValue){
+      this.refid = this.refidValue 
+      this.url = this.urlValue + `?refid=${this.refid}`
+      console.log(`HAS refid ${this.refid} url ${this.url}`)
+
     }
     this.inputTarget.click() // activate the autofocus target
   }

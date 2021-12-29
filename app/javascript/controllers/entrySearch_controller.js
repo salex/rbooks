@@ -1,7 +1,7 @@
 // Visit The Stimulus Handbook for more details 
 // https://stimulusjs.org/handbook/introduction
 
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ "hidden",'showButton','refresh','form']

@@ -16,7 +16,7 @@
   .w3-row
     .s4.w3-col
       h5 Deposit Details
-      table.smalltable7
+      table.classic
         tr
           td.tright Date
           td = @deposit.date
@@ -61,7 +61,7 @@
       .w3-row-padding
         .s5.w3-col
           h5 Sales by Revenue Class
-          table.smalltable7
+          table.classic
             tr
               td Class
               td Quanity
@@ -78,7 +78,7 @@
               td
               td.tright.strong = dmoney tot
           h5 Cash Out
-          table.smalltable7
+          table.classic
             tr
               td Amount
               td Remarks
@@ -89,7 +89,7 @@
         .s7.w3-col
           h5 Other Revenue Details
           - tot = 0.0
-          table.smalltable7
+          table.classic
             tr
               td Item
               td Amount
@@ -110,7 +110,7 @@
           - ledger = @deposit.sales_ledger_deposit
           - debits = 0.0
           - credits = 0.0
-          table.smalltable7
+          table.classic
             tr
               th Account
               th Increase(d)
@@ -141,7 +141,7 @@
           - debits = 0.0
           - credits = 0.0
 
-          table.smalltable7
+          table.classic
             tr
               th Account
               th Increase(d)
@@ -169,7 +169,7 @@
           - debits = 0.0
           - credits = 0.0
 
-          table.smalltable7
+          table.classic
             tr
               th Account
               th Increase(d)

@@ -1,0 +1,32 @@
+.blue-background {
+   background-color: #0f3e61;
+}
+
+ .malty {
+   background-color: #991a1e;
+   color: #ddd;
+}
+
+ .lgoldey, .lite-goldey {
+   background-color: #cabc98;
+   color: #333;
+}
+
+ .goldey {
+   background-color: #a79055;
+   color: #f8f8f8;
+}
+
+.goldey:hover {
+  font-weight: bold;
+  background-color: #666;
+
+}
+
+ .strong {
+   font-weight: bold;
+}
+
+ 
+
+ 

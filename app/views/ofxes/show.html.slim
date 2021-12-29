@@ -9,30 +9,57 @@
             h2 About OFX Bank Transaction
           .w3-container
             p If your recongnize the Entry as a reapeating Entry, search for a matching name in the following search field and click the Duplicate Match button and it will duplicate a new Entry with the information from the bank statement. You can then save the Entry if it validates. You can also Cancel the Entry if you picked the wrong match.
-            div.w3-left[
-              data-controller="autocomplete" 
-              data-autocomplete-url="/entries/autocomplete_search" 
-              data-autocomplete-min-length="2"
+
+            div.p-4[data-autopickr-url-value="/entries/auto_search" 
+              data-controller="autopickr"
+              data-autopickr-slen-value="2"
               ]
-              input[type="text" 
-                data-autocomplete-target="input" 
-                placeholder="Entry Description Search" 
-                data-action="change->ofx#showSearched" 
-                style="width:300px;margin-right:8px;"]
-              input[type="hidden" name="entry_id" 
-                data-autocomplete-target="hidden" 
-                data-ofx-target="hidden" ]
-              input[type="hidden" name="fit_id" data-ofx-target="fitID" ]
+              = render partial:"ofxes/pickr"
+              div
+                = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+                span.ml-3.align-top Use Contains Search
 
 
-              .w3-right.lime-link-button.w3-hide[
-              data-ofx-target="showButton" 
-              data-action="click->ofx#dupSearched" 
-              data-entryID="" data-fitID=""] Duplicate Match
-              ul.w3-ul.w3-border[data-autocomplete-target="results"]
-          / div.my-4.ml-4
-          /   = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
-          /   span.ml-3.align-top Use Contains Search
+            / div[
+            /   data-autopickr-url-value="//entries/autocomplete_search"
+            /   data-autopickr-slen-value="1"
+            /   data-controller="autopickr"
+            /   class='greenBox z-10 px-2'
+            /   ]
+            /   div
+            /     = text_field_tag(:input,nil,
+            /       data:{autopickr_target:"input", action:"autopickr#search"},
+            /       placeholder:"Search...",class:"w-48",autofocus:true)
+            /     span = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
+
+            /   div = hidden_field_tag('selected_id',nil,
+            /     data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
+            /   ul.z-20.text-black.bg-white.max-h-52.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
+
+          /   div.w3-left[
+          /     data-controller="autocomplete" 
+          /     data-autocomplete-url="/entries/autocomplete_search" 
+          /     data-autocomplete-min-length="2"
+          /     ]
+          /     input[type="text" 
+          /       data-autocomplete-target="input" 
+          /       placeholder="Entry Description Search" 
+          /       data-action="change->ofx#showSearched" 
+          /       style="width:300px;margin-right:8px;"]
+          /     input[type="hidden" name="entry_id" 
+          /       data-autocomplete-target="hidden" 
+          /       data-ofx-target="hidden" ]
+          /     input[type="hidden" name="fit_id" data-ofx-target="fitID" ]
+
+
+          /     .w3-right.lime-link-button.w3-hide[
+          /     data-ofx-target="showButton" 
+          /     data-action="click->ofx#dupSearched" 
+          /     data-entryID="" data-fitID=""] Duplicate Match
+          /     ul.w3-ul.w3-border[data-autocomplete-target="results"]
+          / / div.my-4.ml-4
+          / /   = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+          / /   span.ml-3.align-top Use Contains Search
 
           footer.w3-container.w3-teal.mt-8
             p Modal Footer
@@ -41,7 +68,7 @@
 
 
       button = link_to 'List All',ofxes_path, class:'blue-link-button'
-      table.small-table7[data-controller="sortTable"]
+      table.classic[data-controller="sortTable"]
         - @ofx.update_data(true)
         - balance = @ofx.hash_data[:balance]
         - bbalance = @ofx.hash_data[:beginning_balance] ||= 0
@@ -50,7 +77,7 @@
         caption = "Bank Balances - Begining: #{to_money bbalance} | Ending:#{to_money balance} -  Posted on: #{posted_date}"
         thead#sort_header
           tr
-            th.strong.w8[data-action="click->sortTable#sortBy"]
+            th.strong.w-28[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Date
             th.strong[data-action="click->sortTable#sortBy"]
@@ -94,7 +121,20 @@
                   td 
                     / - params ={amount:bt.amount_in_pennies,date:bt.posted_at.to_date,description:bt.name,memo:bt.memo,numb:bt.check_number}
                     = link_to( "NewEntry", new_entry_ofx_path(id:bt.fit_id,amount:bt.amount_in_pennies,date:bt.posted_at.to_date,description:bt.name,memo:bt.memo,numb:bt.check_number,type_tran:bt.type),class:"lime-link-button")
-                    button.lime-link-button[data-action="click->ofx#openModal" data-fitid="#{bt.fit_id}"] Search Entries
+                    / button.lime-link-button[data-action="click->ofx#openModal" data-fitid="#{bt.fit_id}"] Search Entries
+                    span[ data-controller="toggleMenu"]
+                      button[class="#{btnGreen}" data-action="click->toggleMenu#toggleMenu"] Search Entries
+                      div[class="z-10 absolute bg-green-200 w-1/3 px-2 hidden" data-toggleMenu-target="menu"]
+                        div.p-4[data-autopickr-url-value="/entries/auto_search" 
+                          data-controller="autopickr"
+                          data-autopickr-slen-value="2"
+                          data-autopickr-refid-value="#{bt.fit_id}"
+                          ]
+                          = render partial:"ofxes/pickr"
+                          div
+                            = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+                            span.ml-3.align-top Use Contains Search
+
 
 
               td.tright = to_money(bt.amount_in_pennies)

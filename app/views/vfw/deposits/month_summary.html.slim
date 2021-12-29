@@ -9,7 +9,7 @@
 
     .s12.w3-col
         
-      table.smalltable7
+      table.classic
         caption.strong= "Month Deposits"
         tr
           th Date
@@ -58,7 +58,7 @@
     .s7.w3-col
       - obj = Vfw::OtherRevenue.fund_type_acct
       - other_sum = {}
-      table.smalltable7
+      table.classic
         caption Month Donations
         tr
           th Date
@@ -78,7 +78,7 @@
             td.w08 = arr.remarks
    
     .s5.w3-col
-      table.smalltable7
+      table.classic
         -tot = 0.0
         caption Month Donations Summary
         - other_sum.each do |k,v|
@@ -91,7 +91,7 @@
           td.strong.text-right = dmoney tot
 
 
-      table.smalltable7
+      table.classic
         caption Month Revenue Sales (Deposits)
         tr 
           th Dept

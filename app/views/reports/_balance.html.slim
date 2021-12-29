@@ -1,60 +1,57 @@
 / \[\:(\w+)\]
-div
-  span.indent
-    strong Reconciled:
-    = to_money(@checking_balance.reconciled_balance)
-  span.indent
-    strong Cleared:
-    = to_money(@checking_balance.cleared_balance)
-  span.indent
-    strong Uncleared:
-    = to_money(@checking_balance.uncleared_balance)
-  span.indent
-    strong Ending:
-    = to_money(@checking_balance.balance)
-  span.indent
-    strong Bank/Closing:
-    = to_money(@checking_balance.closing_balance)
-  span.indent
-    strong Difference:
-    = to_money(@checking_balance.closing_balance - @checking_balance.balance )
+=turbo_frame_tag "entries"
+  div
+    span.ml-4
+      strong Reconciled:
+      = to_money(@checking_balance.reconciled_balance)
+    span.ml-4
+      strong Cleared:
+      = to_money(@checking_balance.cleared_balance)
+    span.ml-4
+      strong Uncleared:
+      = to_money(@checking_balance.uncleared_balance)
+    span.ml-4
+      strong Ending:
+      = to_money(@checking_balance.balance)
+    span.ml-4
+      strong Bank/Closing:
+      = to_money(@checking_balance.closing_balance)
+    span.ml-4
+      strong Difference:
+      = to_money(@checking_balance.closing_balance - @checking_balance.balance )
+
+  .w3-row.w3-padding
+    .s6.w3-col.w3-padding
+      turbo-frame-tag id="cleared"
+        table.classic
+          caption Cleared Checking Account Transactions
+          - @checking_balance.cleared_entries.each do |x|
+            tr
+              td.w-28 = x.post_date
+              td.goldey.w-6.text-center  = button_to(x.reconciled,
+                split_unclear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance))
+
+              td = x.numb
+              td.w-22 = x.description
+              td.text-right = to_money(x.amount)
+          tr
+            td.strong.text-right[colspan="4"] Cleared Balance
+            td.strong.text-right = to_money(@checking_balance.cleared_balance)
+
+    .s6.w3-col.w3-padding
+      turbo-frame-tag id="uncleared"
+        table.classic
+          caption Uncleared Checking Account Transactions
+          - @checking_balance.uncleared_entries.each do |x|
+            tr
+              td.w-28 = x.post_date
+              td.goldey.w-6.text-center  = button_to(x.reconciled,
+                split_clear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance))
 
 
-.w3-row.w3-padding
-  .s6.w3-col.w3-padding
-    table.smalltable7
-      caption Cleared Checking Account Transactions
-      - @checking_balance.cleared_entries.each do |x|
-        tr
-          td = x.post_date
-          td.unclear-splits.malt  = link_to(x.reconciled,
-            split_unclear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance),
-            method: :patch,remote:true)
-
-          td = x.numb
-          td.w22 = x.description
-          td.tright = to_money(x.amount)
-      tr
-        td.strong.tright[colspan="4"] Cleared Balance
-        td.strong.tright = to_money(@checking_balance.cleared_balance)
-
- 
-
-  .s6.w3-col.w3-padding
-
-    table.smalltable7.wrb
-      caption Uncleared Checking Account Transactions
-      - @checking_balance.uncleared_entries.each do |x|
-        tr
-          td = x.post_date
-          td.clear-splits.malt  = link_to(x.reconciled,
-            split_clear_report_path(x,closing_date:@checking_balance.closing_date,closing_balance:@checking_balance.closing_balance),
-            method: :patch,remote:true)
-
-
-          td = x.numb
-          td.w22 = x.description
-          td.tright = to_money(x.amount)
-      tr
-        td.strong.tright[colspan="4"] Uncleared Balance
-        td.strong.tright = to_money(@checking_balance.uncleared_balance)
+              td = x.numb
+              td.w-22 = x.description
+              td.text-right = to_money(x.amount)
+          tr
+            td.strong.text-right[colspan="4"] Uncleared Balance
+            td.strong.text-right = to_money(@checking_balance.uncleared_balance)

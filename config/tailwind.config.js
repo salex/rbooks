@@ -1,15 +1,17 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  // mode: 'jit',
-  purge: [
-    './app/views/**/*.html.*',
+  content: [
     './app/helpers/**/*.rb',
-    './app/javascript/**/*.js'
+    './app/javascript/**/*.js',
+    './app/views/**/*',
+    './app/components/**/*.slim'
+
   ],
-  darkMode: false,
   theme: {
     extend: {
-      screens: {
-        print: {raw: 'print'},
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'orange': '#ffa500',
@@ -42,10 +44,9 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-
-  
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ]
 }

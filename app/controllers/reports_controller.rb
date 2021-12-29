@@ -73,14 +73,22 @@ class ReportsController < ApplicationController
     splits = entry.splits.where(reconcile_state:'c')
     splits.update_all(reconcile_state:'n')
     @checking_balance = Bank.new(params[:closing_date],params[:closing_balance]).checkbook_balance
-    render partial:'reports/balance'
+    # render action: :checking_balance
+    render turbo_stream: turbo_stream.replace(
+      'entries',
+      partial: '/reports/balance')
+
   end
   def split_clear
     entry = current_book.entries.find(params[:id])
     splits = entry.splits.where(reconcile_state:'n')
     splits.update_all(reconcile_state:'c')
     @checking_balance = Bank.new(params[:closing_date],params[:closing_balance]).checkbook_balance
-    render partial:'reports/balance'
+    # render action: :checking_balance
+    render turbo_stream: turbo_stream.replace(
+      'entries',
+      partial: '/reports/balance')
+
   end
 
 

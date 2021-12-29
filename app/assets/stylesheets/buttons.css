@@ -1,0 +1,164 @@
+button, [type="button"], [type="reset"], [type="submit"] {
+   -webkit-appearance: button;
+   -moz-appearance: button;
+   background: inherit;
+   border: none;
+   font-weight: bold;
+}
+ input[type="submit"], .button {
+   background-color: green;
+   color: white;
+   margin: 4px 0 4px 0;
+   padding: 8px;
+   border-radius: 4px;
+}
+ input[type="submit"]:hover, .button:hover {
+   background-color: lightgreen;
+   color: #333;
+}
+.cancel-button {
+   background-color: yellow;
+   border: solid 1px #b3b300;
+   color: black;
+   margin-right: 2px;
+   padding: 4px 8px;
+   font-size: 110%;
+   border-radius: 4px;
+   font-weight: bold;
+}
+.cancel-button:hover {
+   background-color: #b3b300;
+   color: #333;
+}
+.link-button {
+   background-color: lightgreen;
+   padding: 2px 8px;
+   text-decoration: none;
+   border: solid 1px green;
+   margin-right: 0 2px;
+   font-weight: bold;
+}
+.link-button:hover {
+   background-color: green;
+   color: #eee;
+}
+.action-button {
+   background-color: #4d4dff;
+   color: #eee;
+   padding: 4px 8px;
+   text-decoration: none;
+   margin-right: 2px;
+   font-weight: bold;
+   border-radius: 4px;
+}
+.action-button:hover {
+   background-color: #8080ff;
+   color: #333;
+}
+
+.lime-link-button {
+   background-color: #9f9;
+   padding: 2px 4px;
+   text-decoration: none;
+   margin-right: 4px;
+   font-weight: bold;
+}
+.lime-link-button:hover {
+   background-color: green;
+   color: #eee !important;
+}
+.lime-link-button.round {
+   border-radius: 4px;
+}
+.gold-link-button {
+   background-color: #a79055;
+   padding: 2px 4px;
+   text-decoration: none;
+   margin-right: 4px;
+   font-weight: bold;
+}
+.gold-link-button:hover {
+   background-color: green;
+   color: #eee !important;
+}
+.gold-link-button.round {
+   border-radius: 4px;
+}
+.grey-link-button {
+   background-color: #ddd;
+   padding: 2px 4px;
+   text-decoration: none;
+   margin-right: 4px;
+   font-weight: bold;
+}
+.grey-link-button:hover {
+   background-color: #999;
+   color: #eee !important;
+}
+.grey-link-button.round {
+   border-radius: 6px;
+}
+
+.blue-link-button {
+   background-color: #b0bbe8;
+   color: black;
+   padding: 2px 4px;
+   text-decoration: none;
+   margin-right: 4px;
+   font-weight: bold;
+}
+
+.blue-link-button:hover {
+   color: #ddd;
+   background-color: #6077d2;
+}
+
+.blue-link-button.round {
+   border-radius: 4px;
+}
+ 
+td.actions a, div.actions a {
+   padding-right: 14px;
+}
+
+.actions i {
+   padding-right: 8px;
+}
+ 
+.blue-link {
+   color: #00c;
+}
+
+.blue-link:hover {
+   color: green;
+}
+
+.secondary-link {
+   color: saddlebrown;
+}
+
+.secondary-link:hover {
+   color: green;
+}
+
+a.block-link {
+   display: block;
+   height: 100%;
+}
+ 
+.mbtn {
+    background-color: #de3b40!important;
+    color: #ddd!important;
+    margin-bottom: 2px;
+}
+.gbtn {
+    background-color: #a79055;
+    color: #fff;
+    padding:6px 16px;
+    margin-bottom: 2px;
+}
+
+.gbtn:hover {
+   color: #000;
+   background-color: #bbb;
+}

@@ -25,7 +25,8 @@ class Bank
     if closing_balance.blank?
       self.closing_balance = 0
     else
-      self.closing_balance = closing_balance.to_s.gsub(/\D/,'').to_i
+      # self.closing_balance = closing_balance.to_s.gsub(/\D/,'').to_i
+      self.closing_balance = Ledger.to_amount(closing_balance)
     end
     set_checking_ids
   end

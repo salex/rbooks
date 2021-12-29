@@ -1,22 +1,22 @@
 
 .w3-container.w3-white.min-height[data-controller="remoteUpdate"]
-  .w3-row[data-controller="toggle" data-toggle-class="w3-hide"]
-    .s4.w3-col
-      h4.strong
-        = "Checking Account(s) Balances"
+  .flex.gap-8.mt-2[data-controller="toggle" data-toggle-class="w3-hide"]
+    div
+      h4.strong.align-top
+        = "Checking Acct Balances"
         |&nbsp;&nbsp;
         span[data-action="click->toggle#toggle"]
           i.fa.fa-question-circle
           i Help
-    .s3.w3-col
+    div
       strong Closing Date 
       = text_field_tag :closing_date, @checking_balance.closing_date,placeholder:'Pick Date',
-        data:{controller:'flatpickr',target:'remoteUpdate.closing_date'}
-    .s4.w3-col
+        data:{controller:'flatpickr',target:'remoteUpdate.closing_date',class:"w100"}
+    div
       strong Closing Balance 
       = text_field_tag :closing_balance,to_money( @checking_balance.closing_balance),placeholder:'Enter Balance',
-        data:{remoteUpdate_target:'closing_balance'}
-    .s1.w3-col
+        data:{remoteUpdate_target:'closing_balance',class:"w100"}
+    div.text-right
       button.w3-button.w3-blue-gray[data-action="click->remoteUpdate#rebalance"] Refresh
 
     .w3-col.s12.w3-hide[data-toggle-target="content"]
@@ -32,5 +32,6 @@
       p All Cleared and Uncleared entries are listed in a table.
       p You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
   #ajax_balance
-    div[ data-remoteUpdate-target="refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
+    div 
+      / [ data-remoteUpdate-target="refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
       = render partial: 'reports/balance'

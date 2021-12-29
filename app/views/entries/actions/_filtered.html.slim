@@ -1,51 +1,52 @@
+#entries.mt-5
+  flex
+    table.classic
+      thead
+        tr
+          th.w10 Date(Edit)&nbsp;&nbsp;Dup
+          th.w3 Num
+          th.w25 Desc
+          th.w15.w3-right-align Account
+          th.w3.w3-right-align R
+          th.w3.w3-right-align Debits
+          th.w3.w3-right-align Credits
+          th.w3.w3-right-align Sum
+      - @lines.reverse.each do |row|
+        tr
+          td 
+            - if row[:id].present?
+              = link_to(row[:date], edit_entry_path(row[:id]),class:[:bbutton,:zmargin])
+              |&nbsp;&nbsp; 
 
-table.smalltable7
-  thead
-    tr
-      th.w10 Date(Edit)&nbsp;&nbsp;Dup
-      th.w3 Num
-      th.w25 Desc
-      th.w15.w3-right-align Account
-      th.w3.w3-right-align R
-      th.w3.w3-right-align Debits
-      th.w3.w3-right-align Credits
-      th.w3.w3-right-align Sum
-  - @lines.reverse.each do |row|
-    tr
-      td 
-        - if row[:id].present?
-          = link_to(row[:date], edit_entry_path(row[:id]),class:[:bbutton,:zmargin])
-          |&nbsp;&nbsp; 
-
-          = link_to entries_duplicate_path(row[:id],btran:params[:btran]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
-            i class="fas fa-copy"
-        - else
-          = row[:date]
+              = link_to entries_duplicate_path(row[:id],btran:params[:btran]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
+                i class="fas fa-copy"
+            - else
+              = row[:date]
 
 
-      td = row[:numb]
-      td = row[:desc] 
-      - if row[:memo] == "- Split Transaction -"
-        td.toggle-splits = "- Split Transaction -"
-        td = row[:r]
-      - else 
-        td = row[:memo]
-        td
-        td
-        td
-      - if row[:id].blank?
-        td.w3-right-align = to_money(row[:balance])
-      - else
-        td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance] )
-    tbody 
-      - row[:details].each do |d|
-        tr.snowSelectedBackground
-          td
-          td = d[:action]
-          td = d[:memo]
-          td = d[:name]
-          td = d[:r]
-          td.w3-right-align = d[:db].zero? ? nil : to_money(d[:db])
-          td.w3-right-align = d[:cr].zero? ? nil : to_money(d[:cr])
-          td
+          td = row[:numb]
+          td = row[:desc] 
+          - if row[:memo] == "- Split Transaction -"
+            td.toggle-splits = "- Split Transaction -"
+            td = row[:r]
+          - else 
+            td = row[:memo]
+            td
+            td
+            td
+          - if row[:id].blank?
+            td.w3-right-align = to_money(row[:balance])
+          - else
+            td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance] )
+        tbody 
+          - row[:details].each do |d|
+            tr.snowSelectedBackground
+              td
+              td = d[:action]
+              td = d[:memo]
+              td = d[:name]
+              td = d[:r]
+              td.w3-right-align = d[:db].zero? ? nil : to_money(d[:db])
+              td.w3-right-align = d[:cr].zero? ? nil : to_money(d[:cr])
+              td
 

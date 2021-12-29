@@ -4,8 +4,8 @@
   it will respond to account date changes or month select options generating ledger in account
   It will do the same in reports where the account is varialbe
 */
-import { Controller } from "stimulus"
-import Rails from "@rails/ujs";
+import { Controller } from "@hotwired/stimulus"
+// import Rails from "@rails/ujs";
 
 export default class extends Controller {
   static targets = [ "from_date" ,'to_date','toOptions','fromOptions','byRange','byDate','pdf','account','level']
@@ -117,12 +117,12 @@ export default class extends Controller {
   accountSet(){
     const item = event.target
     const id = item.value
-
-    Rails.ajax({
-      url: "/reports/set_acct",
-      type: "patch",
-      data: "id="+id,
-    })
+    // FIXME
+    // Rails.ajax({
+    //   url: "/reports/set_acct",
+    //   type: "patch",
+    //   data: "id="+id,
+    // })
   }
 
   getFromTo(){

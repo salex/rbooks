@@ -76,6 +76,30 @@ class BankStatementsController < ApplicationController
     session[:reconcile_id] = @bank_statement.id
     @reconcile = @bank_statement.reconcile
   end
+  # def split_unclear
+  #   entry = current_book.entries.find(params[:id])
+  #   splits = entry.splits.where(reconcile_state:'c')
+  #   splits.update_all(reconcile_state:'n')
+  #   @checking_balance = Bank.new(params[:closing_date],params[:closing_balance]).checkbook_balance
+  #   # render action: :checking_balance
+  #   render turbo_stream: turbo_stream.replace(
+  #     'entries',
+  #     partial: '/reports/balance')
+
+  # end
+  # def split_clear
+  #   entry = current_book.entries.find(params[:id])
+  #   splits = entry.splits.where(reconcile_state:'n')
+  #   splits.update_all(reconcile_state:'c')
+  #   @checking_balance = Bank.new(params[:closing_date],params[:closing_balance]).checkbook_balance
+  #   # render action: :checking_balance
+  #   render turbo_stream: turbo_stream.replace(
+  #     'entries',
+  #     partial: '/reports/balance')
+
+  # end
+
+
 
   def clear_splits
     @bank_statement = BankStatement.find(session[:reconcile_id])
@@ -83,7 +107,11 @@ class BankStatementsController < ApplicationController
     splits = entry.splits.where(reconcile_state:'n')
     splits.update_all(reconcile_state:'c')
     @reconcile = @bank_statement.reconcile
-    render partial: 'bank_statements/reconcile'
+    # render partial: 'bank_statements/reconcile'
+    render turbo_stream: turbo_stream.replace(
+      'entries',
+      partial: '/bank_statements/reconcile')
+
   end
 
   def unclear_splits
@@ -92,7 +120,10 @@ class BankStatementsController < ApplicationController
     splits = entry.splits.where(reconcile_state:'c')
     splits.update_all(reconcile_state:'n')
     @reconcile = @bank_statement.reconcile
-    render partial: 'bank_statements/reconcile'
+    # render partial: 'bank_statements/reconcile'
+    render turbo_stream: turbo_stream.replace(
+      'entries',
+      partial: '/bank_statements/reconcile')
   end
 
   def update_reconcile

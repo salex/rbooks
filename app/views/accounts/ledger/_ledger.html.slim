@@ -1,17 +1,18 @@
 - lines = account.placeholder ? account.children_ledger(from,to) : account.account_ledger(from,to)
 - caption = "#{account.account_type} Account #{account.name} Ledger from: #{from} to: #{to}"
 - summary = lines.pop
-table.small-table7
-  tr
-    th Range Summary
-    td.w3-right-align Total Debits(+):
-    td.tleft.under =to_money summary[:checking][:db]
-    td.w3-right-align Total Credits(-):
-    td.tleft.under =to_money summary[:checking][:cr]
-    td.w3-right-align Difference:
-    td.tleft.under =to_money summary[:balance]
+div.pt-1
+  table.classic
+    tr
+      th Range Summary
+      td.text-right Total Debits(+):
+      td.tleft.under =to_money summary[:checking][:db]
+      td.text-right Total Credits(-):
+      td.tleft.under =to_money summary[:checking][:cr]
+      td.text-right Difference:
+      td.tleft.under =to_money summary[:balance]
 
-table.small-table7[data-controller="sortTable toggleSplits"]
+table.classic[data-controller="sortTable toggleSplits"]
   caption
     .box = caption
   thead#sort_header
@@ -60,12 +61,12 @@ table.small-table7[data-controller="sortTable toggleSplits"]
       - else 
         td = params[:split_reg].present? ? nil : row[:memo]
         td = params[:split_reg].present? ? nil : row[:r] 
-      td.w3-right-align = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
-      td.w3-right-align = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
+      td.text-right = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
+      td.text-right = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
       - if row[:id].blank?
-        td.w3-right-align = to_money(row[:balance])
+        td.text-right = to_money(row[:balance])
       - else
-        td.w3-right-align = row[:balance].zero? ? nil : to_money(row[:balance])
+        td.text-right = row[:balance].zero? ? nil : to_money(row[:balance])
     - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
       tbody.split-rows[data-toggleSplits-target="tbody"]
         - row[:details].each do |d|
@@ -75,8 +76,8 @@ table.small-table7[data-controller="sortTable toggleSplits"]
             td = d[:memo]
             td = d[:name]
             td = d[:r]
-            td.w3-right-align = d[:db].zero? ? nil : to_money(d[:db])
-            td.w3-right-align = d[:cr].zero? ? nil : to_money(d[:cr])
+            td.text-right = d[:db].zero? ? nil : to_money(d[:db])
+            td.text-right = d[:cr].zero? ? nil : to_money(d[:cr])
             td
  
 br

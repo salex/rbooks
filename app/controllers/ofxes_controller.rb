@@ -88,6 +88,11 @@ class OfxesController < ApplicationController
 
   end
 
+  def search_entries
+  end
+
+
+
   def new_entry
     # authorize Entry, :trustee?
     # account = current_book.accounts.new

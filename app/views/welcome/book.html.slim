@@ -1,5 +1,6 @@
 / .w3-container.min-height
-.w3-row.min-height[style="background-color:#ffffdd"]
+.w3-row.min-height
+  / [style="background-color:#ffffdd"]
   .w3-twothird.w3-padding
     h2.text-lg.font-bold Welcome to RBooks
     .form-fields
@@ -27,29 +28,23 @@
       <a href="https://www.brainyquote.com/quotes_of_the_day.html" target="_blank" rel="nofollow">more Quotes</a>
     </i>
     </small>
-
-    / p = session_inspect
-   
-
-
-  .w3-third.w3-padding.min-height[style="background-color:#ffffbb"]
-    h3 Home Sidebar Links
-    .w3-card-4.w3-bar-block
-      = link_to "Bank Statements", bank_statements_path, class:"w3-bar-item w3-button gbtn" 
-      = link_to "Bank(OFX) Trans", latest_ofxes_path, class:"w3-bar-item w3-button gbtn" 
-      = link_to "Checking Balance", checking_balance_reports_path, class:"w3-bar-item w3-button gbtn" 
-      = link_to "Reports", reports_path, class:"w3-bar-item w3-button gbtn" 
-
-      = link_to "Entry Search",entries_filter_index_path, class:"w3-bar-item w3-button gbtn" 
-      / = link_to "Current Assets Summary",welcome_summary_path, class:"w3-bar-item w3-button gbtn" 
-      / = link_to "About", about_about_path, class:"w3-bar-item w3-button gbtn"
-      - if current_user.is_super?
-        = link_to "Users", users_path, class:"w3-bar-item w3-button gbtn" 
-
-      strong VFW
-      = link_to "Deposits",weekly_vfw_deposits_path, class:"w3-bar-item w3-button gbtn" 
-      = link_to "Sales Items/Inventory",vfw_sales_items_path, class:"w3-bar-item w3-button gbtn" 
-      = link_to "Menu","/vfw", class:"w3-bar-item w3-button gbtn" 
-
-
  
+
+  .w3-third
+
+    - links = [["Bank Statements", bank_statements_path],\
+                ["Bank(OFX) Trans", latest_ofxes_path ],\
+                ["Checking Balance", checking_balance_reports_path],\
+                ["Reports", reports_path ],\
+                ["Entry Search",entries_filter_index_path ]]
+    - if current_user.is_super?
+      - links << ["Users", users_path ]
+    = render(GoldMenu::Component.new(title:"Home Sidebar Links",links:links))
+    - links = [["Deposits", weekly_vfw_deposits_path],\
+                ["Sales Items/Inventory", vfw_sales_items_path ],\
+                ["Menu", vfw_path]]
+    = render(GoldMenu::Component.new(title:"VFW",links:links))
+
+
+
+

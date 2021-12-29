@@ -46,6 +46,22 @@ module Ledger
     date1.month == date2.month && date1.year == date2.year
   end
 
+  def self.to_amount(str)
+    # string represention on money may have $ , or . characters
+    # $1,999.23, 1,999.23, 1,999.237, 1999.2 1999
+
+    dollars,cents = str.split('.')
+    dollars = dollars.gsub(/\D/,'')
+    return dollars.to_i if cents.blank? # $1,999  no cents but maybe $ or ,
+    cents += '0' if cents.size == 1 # seen ofx have thing like 212.2 for 20 cents
+    if cents.size > 2
+      #integer round to 2 places
+      cents = (cents.to_i + 5).to_s[0..1]
+    end
+    amt = (dollars+cents).to_i
+  end
+
+
   def self.to_fixed(int)
     return '' if int.nil? || int.zero?
     dollars = int / 100

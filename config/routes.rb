@@ -46,7 +46,7 @@ Rails.application.routes.draw do
         get :edit_config
         patch :update_config
       end
-    end
+    end 
   end
 
 
@@ -55,8 +55,14 @@ Rails.application.routes.draw do
     resources :duplicate, only: [:show]
     resources :void, only: [:show, :update]
     resources :search, only: [:edit, :update]
-    resources :filter, only: :index
-    resources :filtered, only: :index
+    resources :filter, only: [:index] 
+    # do
+    #   member do 
+    #     post :filter
+    #     get :filtered
+    #   end
+    # end
+    resources :filtered, only: [:index,:update]
     resources :auto_search, only: :index
     resources :autocomplete_search, only: :index
 
@@ -114,8 +120,8 @@ Rails.application.routes.draw do
 
     end
     member do
-      patch :split_clear
-      patch :split_unclear
+      post :split_clear
+      post :split_unclear
     end
   end
 
@@ -123,8 +129,8 @@ Rails.application.routes.draw do
     member do
       get :reconcile
       get :update_reconcile
-      patch :clear_splits
-      patch :unclear_splits
+      post :clear_splits
+      post :unclear_splits
     end
   end
 
@@ -134,10 +140,12 @@ Rails.application.routes.draw do
       get :new_entry
       get :search
       patch :search
+      get :auto_search
     end
     collection do
       get :latest
       get :matched
+      get :search_entries
 
     end
   end

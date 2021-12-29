@@ -4,7 +4,7 @@
 // This example controller works with specially annotated HTML like:
 //
 
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ "page" ]

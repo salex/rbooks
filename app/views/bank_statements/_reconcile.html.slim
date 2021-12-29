@@ -1,63 +1,78 @@
-- @reconcile = reconcile if @reconcile.blank?
-.w3-row-padding
-  .s8.w3-col
-    - test_balance = @reconcile.checking_ending_balance  -  @reconcile.uncleared_balance - @reconcile.range_reconciled_balance
-    - difference = test_balance - @reconcile.bank_ending_balance
+=turbo_frame_tag "entries"
+  div.flex.gap-8
+    div
+      span.ml-4
+        strong Bank Balance->
+      span.ml-4
+        strong Begin: 
+        = to_money(@reconcile.bank_beginning_balance)
+      span.ml-4
+        strong End: 
+        = to_money(@reconcile.bank_ending_balance)
+    div
+      span.ml-4
+        strong Checkbook Balance->
+      span.ml-4
+        strong Begin: 
+        = to_money(@reconcile.checking_beginning_balance)
+      span.ml-4
+        strong End: 
+        = to_money(@reconcile.checking_ending_balance)
+    div
+      span.float-right
+        strong Closing Date:
+        = @reconcile.closing_date
 
-    .strong =  "Balances (Checkbook  + Uncleared + Reconciled - Bank)  = Difference "
-    .annotate Reconciled balance only applies to bank statements that have already been reconciled.
-    .strong=  "Balances (#{to_money @reconcile.checking_ending_balance} + (#{to_money @reconcile.uncleared_balance*-1}) + (#{to_money @reconcile.range_reconciled_balance*-1}) - #{to_money @reconcile.bank_ending_balance})  = #{to_money difference} "
-  .s4.w3-col
-      - if difference.zero? && Date.current >= @bank_statement.statement_date
-        button.w3-button.w3-blue-gray  = link_to 'Reconcile', update_reconcile_bank_statement_path(@bank_statement)
-      - else
-        .annotate Balance is either not zero or current date is less than the closing date
+  .w3-row-padding
+    .s8.w3-col
+      - test_balance = @reconcile.checking_ending_balance  -  @reconcile.uncleared_balance - @reconcile.range_reconciled_balance
+      - difference = test_balance - @reconcile.bank_ending_balance
 
-hr
-.w3-row-padding
-  .s6.w3-col.half-constrainer
-    p.wrap
-      strong Cleared Balance:
-      = to_money(@reconcile.cleared_balance)
+      .strong =  "Balances (Checkbook  + Uncleared + Reconciled - Bank)  = Difference "
+      .annotate Reconciled balance only applies to bank statements that have already been reconciled.
+      .strong=  "Balances (#{to_money @reconcile.checking_ending_balance} + (#{to_money @reconcile.uncleared_balance*-1}) + (#{to_money @reconcile.range_reconciled_balance*-1}) - #{to_money @reconcile.bank_ending_balance})  = #{to_money difference} "
+    .s4.w3-col
+        - if difference.zero? && Date.current >= @bank_statement.statement_date
+          button.w3-button.w3-blue-gray  = link_to 'Reconcile', update_reconcile_bank_statement_path(@bank_statement)
+        - else
+          .annotate Balance is either not zero or current date is less than the closing date
 
-    table.smalltable7
-      caption Cleared Checking Account Transactions
-      - @reconcile.cleared_entries.each do |x|
-        tr
-          td = x.post_date
-          td.unclear-splits.malt  = link_to(x.reconciled,
-            unclear_splits_bank_statement_path(x.id),
-            method: :patch,remote:true)
+  .w3-row-padding.mt-4.border-t
+    .s6.w3-col.half-constrainer
+      / p.wrap
+      /   strong Cleared Balance:
+      /   = to_money(@reconcile.cleared_balance)
 
-          td = x.numb
-          td.w22 = x.description
-          td.tright = to_money(x.amount)
+      table.classic
+        caption.strong =  "Cleared Checking Transactions - Balance: #{to_money(@reconcile.cleared_balance)}"
+        - @reconcile.cleared_entries.each do |x|
+          tr
+            td.w-28 = x.post_date
+            td.goldey.w-6.text-center  = button_to(x.reconciled,
+              unclear_splits_bank_statement_path(x))
+            td = x.numb
+            td = x.description
+            td.tright = to_money(x.amount)
 
-    p.wrap
-      strong Cleared Balance:
-      = to_money(@reconcile.cleared_balance)
+      p.wrap
+        strong Cleared Balance:
+        = to_money(@reconcile.cleared_balance)
 
-  .s6.w3-col.half-constrainer
-    p.wrap
-      strong Uncleared Balance:
-      = to_money(@reconcile.uncleared_balance)
+    .s6.w3-col.half-constrainer
+      / p.wrap
+      /   strong Uncleared Balance:
+      /   = to_money(@reconcile.uncleared_balance)
 
-    table.smalltable7.wrb
-      caption Uncleared Checking Account Transactions
-        - sum = 0
-      - @reconcile.uncleared_entries.each do |x|
-        / -sum += x.amount 
-        tr
-          td = x.post_date
-          td.clear-splits.malt  = link_to(x.reconciled,
-            clear_splits_bank_statement_path(x.id),
-            method: :patch,remote:true)
-
-          / td.clear-reconcile.malt
-          /   span[data-bankReconcile-target='reconcile' data-action="click->bankReconcile#clearSplits"] = x.reconciled
-          /   = hidden_field_tag(:entry_id,x.id)
-          td = x.numb
-          td.w22 = x.description
-          td.tright = to_money(x.amount)
+      table.classic.wrb
+        caption.strong =  "Uncleared Checking Transactions - Balance: #{to_money(@reconcile.uncleared_balance)}"
+        - @reconcile.uncleared_entries.each do |x|
+          / -sum += x.amount 
+          tr
+            td.w-28 = x.post_date
+            td.goldey.w-6.text-center  = button_to(x.reconciled,
+              clear_splits_bank_statement_path(x))
+            td = x.numb
+            td = x.description
+            td.tright = to_money(x.amount)
 
    

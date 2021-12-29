@@ -1,12 +1,12 @@
 
-import { Controller } from "stimulus"
-import Rails from '@rails/ujs';
+import { Controller } from "@hotwired/stimulus"
+// import Rails from '@rails/ujs';
 
 export default class extends Controller {
-  static targets = [ 'refresh','closing_date','closing_balance']
+  static targets = [ 'closing_date','closing_balance']
 
   connect() {
-    // console.log("opened remote update")
+    console.log("opened remote update")
   }
 
   rebalance(){
@@ -15,9 +15,9 @@ export default class extends Controller {
     location.assign(`/reports/checking_balance?closing_date=${date}&closing_balance=${bal}`)
   }
 
-  onSuccess(event) {
-    console.log("twas called")
-    let [data, status, xhr] = event.detail;
-    this.refreshTarget.innerHTML = xhr.response;
-  }
+  // onSuccess(event) {
+  //   console.log("twas called")
+  //   let [data, status, xhr] = event.detail;
+  //   this.refreshTarget.innerHTML = xhr.response;
+  // }
 }

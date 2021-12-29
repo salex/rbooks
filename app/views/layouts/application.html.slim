@@ -2,18 +2,22 @@ doctype html
 html
   head
     title RBooks
+    meta name="viewport" content="width=device-width,initial-scale=1"
+
     = csrf_meta_tags
     = csp_meta_tag
+    link rel="stylesheet" href="https://ga.jspm.io/npm:flatpickr@4.6.9/dist/flatpickr.min.css"
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" 
+    = stylesheet_link_tag "application", "data-turbo-track": "reload" 
+    script crossorigin="anonymous" src="https://kit.fontawesome.com/69f9b59efd.js" 
+
+    = javascript_importmap_tags
     
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 
     body
       header.noprint
         == render 'layouts/header'
       = render 'layouts/menubar'
 
-      .w3-container
+      main class="mx-5 "
         == yield
-

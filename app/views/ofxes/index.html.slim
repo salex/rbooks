@@ -17,7 +17,7 @@
     tbody
       - @ofxes.each do |ofx|
         tr
-          td = ofx.statement_date
+          td.w-28 = ofx.statement_date
           td = ofx.hash_data[:date_range] ||= ofx.hash_data[:tran_range]
           td = ofx.hash_data[:fit_range]
           td.tright = ofx.hash_data[:balance].blank? ? 0 : Amount.money(ofx.hash_data[:balance])

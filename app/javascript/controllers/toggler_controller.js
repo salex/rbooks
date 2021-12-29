@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 // simple controller that toggles the show/hide class of an element 
 export default class extends Controller {
 // this is a little overkill, but you can use it to toggle 1 to n elements with a class

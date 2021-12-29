@@ -28,7 +28,7 @@ div.bg-gray-300.grid.grid-cols-4.p-1
       |&nbsp;
       span[class="blue-link"] Toggle Summary
 
-div.bg-white
+div.bg-white.px-2
   span.indent
     strong Name: 
     = @account.name
@@ -48,7 +48,7 @@ div.bg-white
     strong Placeholder: 
     = @account.placeholder
 
-#summary.toggleMe.bg-white.pb-1
+#summary.toggleMe.bg-white.pb-1.px-2
   .grid.grid-cols-3
     .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
       .strong =  "Account Summary (#{@today})"
@@ -74,6 +74,6 @@ div.bg-white
           = content_tag(:button,'PDF Split', class:"#{btnInfo} mr-2",
             data:{action:"click->dateRange#assignSplit"})                
 
-#Ledger.bg-white.mt-1
+#Ledger.bg-white.mt-1.px-2
   = render partial: 'accounts/ledger/ledger', locals:{from:@from,to:@to,account:@account}
 
