@@ -21,9 +21,8 @@ export default class extends Controller {
     }
     let refid
     if (this.hasRefidValue){
-      this.refid = this.refidValue 
-      this.url = this.urlValue + `?refid=${this.refid}`
-      console.log(`HAS refid ${this.refid} url ${this.url}`)
+      this.refid = `?refid=${this.refidValue}`
+      console.log(`HAS refid ${this.refid}`)
 
     }
     this.inputTarget.click() // activate the autofocus target
@@ -33,9 +32,10 @@ export default class extends Controller {
     const selected = event.target
     if (this.hasButtonTarget) {
       this.buttonTarget.classList.remove('hidden')
-      this.buttonTarget['href'] = selected.dataset.select
+      this.buttonTarget['href'] = selected.dataset.selecturl + this.refid
+      this.inputTarget.value = selected.innerHTML
     }else{
-      location.assign(selected.dataset.select)
+      location.assign(selected.dataset.selecturl)
     }
   }
 

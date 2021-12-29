@@ -2,67 +2,67 @@
   .w3-row-padding-x
     #ledger.cell[data-controller="ofx"]
 
-      #id01.w3-modal[data-ofx-target="modal"]
-        .w3-modal-content.w3-card-4
-          header.w3-container.w3-teal
-            span.w3-button.w3-display-topright onclick="document.getElementById('id01').style.display='none'"  &times;
-            h2 About OFX Bank Transaction
-          .w3-container
-            p If your recongnize the Entry as a reapeating Entry, search for a matching name in the following search field and click the Duplicate Match button and it will duplicate a new Entry with the information from the bank statement. You can then save the Entry if it validates. You can also Cancel the Entry if you picked the wrong match.
+      / #id01.w3-modal[data-ofx-target="modal"]
+      /   .w3-modal-content.w3-card-4
+      /     header.w3-container.w3-teal
+      /       span.w3-button.w3-display-topright onclick="document.getElementById('id01').style.display='none'"  &times;
+      /       h2 About OFX Bank Transaction
+      /     .w3-container
+      /       p If your recongnize the Entry as a reapeating Entry, search for a matching name in the following search field and click the Duplicate Match button and it will duplicate a new Entry with the information from the bank statement. You can then save the Entry if it validates. You can also Cancel the Entry if you picked the wrong match.
 
-            div.p-4[data-autopickr-url-value="/entries/auto_search" 
-              data-controller="autopickr"
-              data-autopickr-slen-value="2"
-              ]
-              = render partial:"ofxes/pickr"
-              div
-                = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
-                span.ml-3.align-top Use Contains Search
-
-
-            / div[
-            /   data-autopickr-url-value="//entries/autocomplete_search"
-            /   data-autopickr-slen-value="1"
-            /   data-controller="autopickr"
-            /   class='greenBox z-10 px-2'
-            /   ]
-            /   div
-            /     = text_field_tag(:input,nil,
-            /       data:{autopickr_target:"input", action:"autopickr#search"},
-            /       placeholder:"Search...",class:"w-48",autofocus:true)
-            /     span = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
-
-            /   div = hidden_field_tag('selected_id',nil,
-            /     data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
-            /   ul.z-20.text-black.bg-white.max-h-52.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
-
-          /   div.w3-left[
-          /     data-controller="autocomplete" 
-          /     data-autocomplete-url="/entries/autocomplete_search" 
-          /     data-autocomplete-min-length="2"
-          /     ]
-          /     input[type="text" 
-          /       data-autocomplete-target="input" 
-          /       placeholder="Entry Description Search" 
-          /       data-action="change->ofx#showSearched" 
-          /       style="width:300px;margin-right:8px;"]
-          /     input[type="hidden" name="entry_id" 
-          /       data-autocomplete-target="hidden" 
-          /       data-ofx-target="hidden" ]
-          /     input[type="hidden" name="fit_id" data-ofx-target="fitID" ]
+      /       div.p-4[data-autopickr-url-value="/entries/auto_search" 
+      /         data-controller="autopickr"
+      /         data-autopickr-slen-value="2"
+      /         ]
+      /         = render partial:"ofxes/pickr"
+      /         div
+      /           = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+      /           span.ml-3.align-top Use Contains Search
 
 
-          /     .w3-right.lime-link-button.w3-hide[
-          /     data-ofx-target="showButton" 
-          /     data-action="click->ofx#dupSearched" 
-          /     data-entryID="" data-fitID=""] Duplicate Match
-          /     ul.w3-ul.w3-border[data-autocomplete-target="results"]
-          / / div.my-4.ml-4
-          / /   = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
-          / /   span.ml-3.align-top Use Contains Search
+      /       / div[
+      /       /   data-autopickr-url-value="//entries/autocomplete_search"
+      /       /   data-autopickr-slen-value="1"
+      /       /   data-controller="autopickr"
+      /       /   class='greenBox z-10 px-2'
+      /       /   ]
+      /       /   div
+      /       /     = text_field_tag(:input,nil,
+      /       /       data:{autopickr_target:"input", action:"autopickr#search"},
+      /       /       placeholder:"Search...",class:"w-48",autofocus:true)
+      /       /     span = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
 
-          footer.w3-container.w3-teal.mt-8
-            p Modal Footer
+      /       /   div = hidden_field_tag('selected_id',nil,
+      /       /     data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
+      /       /   ul.z-20.text-black.bg-white.max-h-52.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
+
+      /     /   div.w3-left[
+      /     /     data-controller="autocomplete" 
+      /     /     data-autocomplete-url="/entries/autocomplete_search" 
+      /     /     data-autocomplete-min-length="2"
+      /     /     ]
+      /     /     input[type="text" 
+      /     /       data-autocomplete-target="input" 
+      /     /       placeholder="Entry Description Search" 
+      /     /       data-action="change->ofx#showSearched" 
+      /     /       style="width:300px;margin-right:8px;"]
+      /     /     input[type="hidden" name="entry_id" 
+      /     /       data-autocomplete-target="hidden" 
+      /     /       data-ofx-target="hidden" ]
+      /     /     input[type="hidden" name="fit_id" data-ofx-target="fitID" ]
+
+
+      /     /     .w3-right.lime-link-button.w3-hide[
+      /     /     data-ofx-target="showButton" 
+      /     /     data-action="click->ofx#dupSearched" 
+      /     /     data-entryID="" data-fitID=""] Duplicate Match
+      /     /     ul.w3-ul.w3-border[data-autocomplete-target="results"]
+      /     / / div.my-4.ml-4
+      /     / /   = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+      /     / /   span.ml-3.align-top Use Contains Search
+
+      /     footer.w3-container.w3-teal.mt-8
+      /       p Modal Footer
 
 
 

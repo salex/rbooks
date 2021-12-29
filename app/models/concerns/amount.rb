@@ -34,7 +34,10 @@ class Amount
     amt = (dollars+cents).to_i
   end
 
-
+  def self.to_pennies(str)
+    self.to_amount(str)
+  end
+  
   def self.helper
     Helper.instance
   end
