@@ -1,24 +1,58 @@
-p#notice = notice
+- splits = @entry.splits
 
-p
-  strong Book:
-  = @entry.book
-p
-  strong Numb:
-  = @entry.numb
-p
-  strong Post date:
-  = @entry.post_date
-p
-  strong Description:
-  = @entry.description
-p
-  strong Fit:
-  = @entry.fit_id
-p
-  strong Lock version:
-  = @entry.lock_version
+.flex.gap-8
+  div 
+    .blue-link-button.m-2 =  link_to 'Edit', edit_entry_path(@entry)
+    .blue-link-button.m-2 = link_to 'Back', entries_path
 
-=> link_to 'Edit', edit_entry_path(@entry)
-'|
-=< link_to 'Back', entries_path
+  div
+    p
+      strong Book:
+      = @entry.book.name
+    p
+      strong Numb:
+      = @entry.numb
+    p
+      strong Post date:
+      = @entry.post_date
+    p
+      strong Description:
+      = @entry.description
+    p
+      strong Fit:
+      = @entry.fit_id
+    p
+      strong Lock version:
+      = @entry.lock_version
+
+table.gl-table
+  caption = "FIT_ID #{@entry.fit_id}"
+  thead
+    tr.header-row
+      td.font-bold.w-36 Date
+      td.font-bold.w-20 Numb &plusmn;
+      td.font-bold.w-1/4 Description
+
+      td.font-bold Transfers
+      td.font-bold R
+      td.font-bold Increase
+      td.font-bold Decrease
+      td.font-bold Amount
+  tbody id="entry"
+    tr.entry-row
+      td = @entry.post_date
+      td = @entry.numb
+      td = @entry.description
+      td[colspan="5"]
+    
+  tbody
+    - splits.each do |s|
+      tr
+        td = s.action
+        td  
+        td = s.memo
+        td = s.account.long_account_name
+        td = s.reconcile_state
+        td.text-right = to_money s.debit unless s.debit.zero?
+        td.text-right = to_money s.credit unless s.credit.zero?
+        td.text-right = s.amount

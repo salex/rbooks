@@ -1,29 +1,30 @@
-.w3-container.w3-white.min-height
-  p#notice = notice
+.flex.gap-8
+  div 
+    .blue-link-button.m-2 =  link_to 'Edit', edit_bank_statement_path(@bank_statement)
+    .blue-link-button.m-2 = link_to 'Back', bank_statements_path
 
-  p
-    strong Book:
-    = @bank_statement.book
-  p
-    strong Statement date:
-    = @bank_statement.statement_date
-  p
-    strong Beginning balance:
-    = @bank_statement.beginning_balance
-  p
-    strong Ending balance:
-    = @bank_statement.ending_balance
-  p
-    strong Ofx data:
-    = text_area_tag(nil,@bank_statement.ofx_data)
-    / = @bank_statement.ofx_data
-  p
-    strong Hash data:
-    = @bank_statement.hash_data
-  p
-    strong Reconciled date:
-    = @bank_statement.reconciled_date
+  div 
+    p
+      strong Book:
+      = @bank_statement.book.name
+    p
+      strong Statement date:
+      = @bank_statement.statement_date
+    p
+      strong Beginning balance:
+      = @bank_statement.beginning_balance
+    p
+      strong Ending balance:
+      = @bank_statement.ending_balance
+    p
+      strong Hash data:
+      = @bank_statement.hash_data
+    p
+      strong Reconciled date:
+      = @bank_statement.reconciled_date
+    p
+      strong Ofx data:
+    p= text_area_tag(nil,@bank_statement.ofx_data, class:"w-1/3")
+      / = @bank_statement.ofx_data
 
-  => link_to 'Edit', edit_bank_statement_path(@bank_statement), class: 'lime-link-button'
-  
-  =< link_to 'Back', bank_statements_path, class: 'blue-link-button'
+

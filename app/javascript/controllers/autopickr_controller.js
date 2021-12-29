@@ -22,8 +22,9 @@ export default class extends Controller {
     let refid
     if (this.hasRefidValue){
       this.refid = `?refid=${this.refidValue}`
-      console.log(`HAS refid ${this.refid}`)
-
+      // console.log(`HAS refid ${this.refid}`)
+    }else{
+      this.refid = ""
     }
     this.inputTarget.click() // activate the autofocus target
   }
