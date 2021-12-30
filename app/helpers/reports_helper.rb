@@ -100,7 +100,8 @@ module ReportsHelper
   def pl_row(name,amount)
     content_tag(:div,class:'pl-row') do
       concat(content_tag(:div,name,class: "pl-col-acct p#{@pad}"))
-      concat(content_tag(:div,to_money(amount,'$'),class: "pl-col-#{@pad}#{@level}"))
+      amt = amount.zero? ? '' : to_money(amount,'$')
+      concat(content_tag(:div,amt,class: "pl-col-#{@pad}#{@level}"))
      end
   end
 

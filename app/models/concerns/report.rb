@@ -43,8 +43,10 @@ class Report
     report = {"Income" => {amount:period_splits(i),total:0,children:{}}, 
     "Expense" =>  {amount:period_splits(e),total:0,children:{}},
     "options" => {level:level,from:@from,to:@to}}
+    @depth = 0
     tree(i,report['Income'])
     tree(e,report['Expense'])
+
     return report
   end
 
@@ -52,11 +54,15 @@ class Report
   private
 
   def tree(branch,hash)
-   branch.children.each do |c|
-     hash[:children][c.name] = {amount:period_splits(c),total:0,children: {}}
-     tree(c,hash[:children][c.name])
-     hash[:total] += (hash[:children][c.name][:amount] + hash[:children][c.name][:total])
+    @depth += 1  
+    branch.children.each do |c|
+      hash[:children][c.name] = {amount:period_splits(c),total:0,children: {},level:@depth}
+      tree(c,hash[:children][c.name])
+      hash[:total] += (hash[:children][c.name][:amount] + hash[:children][c.name][:total])
+      @depth -= 1 
    end
+    
+
   end
 
   def period_splits(acct)

@@ -4,8 +4,8 @@ module.exports = {
   content: [
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*',
-    './app/components/**/*.slim'
+    './app/views/**/*.html.*',
+    './app/components/**/*.html.*'
 
   ],
   theme: {

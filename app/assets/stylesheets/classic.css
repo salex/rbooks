@@ -113,6 +113,7 @@ table.gl-table {
    display: inline-block;
    width: 25%;
    text-align: left;
+   margin-right: 1rem;
 }
  .pl-row .pl-col-acct.p0 {
    padding-left: 0%;
@@ -132,6 +133,7 @@ table.gl-table {
  .pl-row .pl-col-acct.p5 {
    padding-left: 10%;
 }
+/*col-acct used in ledger summary*/
  .pl-row .col-acct {
    display: inline-block;
    width: 15%;
