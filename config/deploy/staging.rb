@@ -59,6 +59,9 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+# remove after test
+set :repo_url, "/Users/salex/sites/mybooks7/.git"
+# remove after test
 
 server "staging.local", user: "developer", roles: %w{app db web}
 
