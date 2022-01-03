@@ -18,7 +18,7 @@ module Vfw
       Recycle:{acct:'General:Income:Other Income'},
       Kitchen:{acct:'General:Income:Event'},
       Rental:{acct:'General:Income:Event'},
-      Donation:{acct:'General:Income:Donation'},
+      Donation:{acct:'General:Income:Donations'},
       General:{acct:'General:Income:Other Income'},
       Relief:{acct:'Relief:Income:Donations'},
       BuddyPoppy:{acct:'Relief:Income:Buddy Poppy'},

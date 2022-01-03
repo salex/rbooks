@@ -1,6 +1,6 @@
 .w3-card-2[class="bg-yellow-200"]
 
-  div[class="strong bg-yellow-50 text-lg pl-2"] = @title
+  div[class="strong bg-yellow-100 text-lg pl-2"] = @title
   - if @action == 'get'
     - @links.each do |l|
       .gbtn.w100.p-1= link_to( l[0], l[1])

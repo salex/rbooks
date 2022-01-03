@@ -54,17 +54,17 @@ div.bg-white.px-2
     .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
       .strong =  "Account Summary (#{@today})"
       = summary_list(@account)
-    .bg-blue-100.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
+    .bg-yellow-100.card-2.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
         
-      div.flex.flex-wrap
+      div.flex.flex-wrap.gap-4
         div
           div.strong Filter - Select Period or Pick Date for Report Options
           div
             .w-1/2.inline-block = from_period_select
-            .w-1/2.inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
+            .pl-2.w-1/2.inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
           div
             .w-1/2.inline-block = to_period_select
-            .w-1/2.inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
+            .pl-2.w-1/2.inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
         div
           div.strong Display Filtered Ledger
           = content_tag(:button,'Screen', class:"#{btnInfo} mr-2",
