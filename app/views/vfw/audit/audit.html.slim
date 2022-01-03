@@ -25,29 +25,29 @@
       - asset_obj.checking[:children].sort.each_with_index do |c,i|
         tr
           td = "#{i+1}. #{@summary[c][:description]}"
-          td.text-right = money(@summary[c][:beginning])
-          td.text-right = money(@summary[c][:debits])
-          td.text-right = money(@summary[c][:credits])
-          td.text-right = money(@summary[c][:ending])
+          td.tright = money(@summary[c][:beginning])
+          td.tright = money(@summary[c][:debits])
+          td.tright = money(@summary[c][:credits])
+          td.tright = money(@summary[c][:ending])
    
       tr
         td = "#{fc+1}. #{asset_obj.savings.description}"
-        td.text-right = money(asset_obj.savings.beginning)
-        td.text-right = money(asset_obj.savings.debits)
-        td.text-right = money(asset_obj.savings.credits)
-        td.text-right = money(asset_obj.savings.ending)
+        td.tright = money(asset_obj.savings.beginning)
+        td.tright = money(asset_obj.savings.debits)
+        td.tright = money(asset_obj.savings.credits)
+        td.tright = money(asset_obj.savings.ending)
       tr
         td = "#{fc+2}. #{asset_obj.pcash.description}"
-        td.text-right = money(asset_obj.pcash.beginning)
-        td.text-right = money(asset_obj.pcash.debits)
-        td.text-right = money(asset_obj.pcash.credits)
-        td.text-right = money(asset_obj.pcash.ending)
+        td.tright = money(asset_obj.pcash.beginning)
+        td.tright = money(asset_obj.pcash.debits)
+        td.tright = money(asset_obj.pcash.credits)
+        td.tright = money(asset_obj.pcash.ending)
       tr
-        td.text-right = "#{fc+7}. Totals - #{asset_obj.total.description}"
-        td.text-right = money(asset_obj.total.beginning)
-        td.text-right = money(asset_obj.total.debits)
-        td.text-right = money(asset_obj.total.credits)
-        td.text-right = "#{fc+8}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{money(asset_obj.total.ending)}".html_safe
+        td.tright = "#{fc+7}. Totals - #{asset_obj.total.description}"
+        td.tright = money(asset_obj.total.beginning)
+        td.tright = money(asset_obj.total.debits)
+        td.tright = money(asset_obj.total.credits)
+        td.tright = "#{fc+8}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{money(asset_obj.total.ending)}".html_safe
 
 
     div = "<strong>Notice: </strong>#{@config.notice}".html_safe
@@ -63,7 +63,7 @@
 
           tr
             td = r[0]
-            td.text-right = r[1]
+            td.tright = r[1]
  
 
   .w3-col.s6
@@ -79,35 +79,35 @@
         - tot_label = diff.zero? ? "Total" : "Out of Balance (#{money(diff)}) - Total"
         tr
           td Checking Account Balance
-          td.text-right = money @config.checking.balance
+          td.tright = money @config.checking.balance
           td 
         tr
           td Less Outstand Checks
-          td.text-right = money @config.checking.outstanding
+          td.tright = money @config.checking.outstanding
           td 
         tr
-          td.text-right(colspan="2") Actual Balance
-          td.text-right = money ab
+          td.tright(colspan="2") Actual Balance
+          td.tright = money ab
         
         tr
-          td.text-right(colspan="2") Savings Account Balance
-          td.text-right  = money 0
+          td.tright(colspan="2") Savings Account Balance
+          td.tright  = money 0
         tr
-          td.text-right(colspan="2") Cash on Hand
-          td.text-right =  money asset_obj.bcash
+          td.tright(colspan="2") Cash on Hand
+          td.tright =  money asset_obj.bcash
         tr
-          td.text-right(colspan="2") Total Current
-          td.text-right = money asset_obj.btotal
+          td.tright(colspan="2") Total Current
+          td.tright = money asset_obj.btotal
         tr
-          td.text-right(colspan="2") Bonds and Investments
-          td.text-right = money asset_obj.bsave
+          td.tright(colspan="2") Bonds and Investments
+          td.tright = money asset_obj.bsave
         tr
           - if diff.zero?
-            td.text-right(colspan="2") = tot_label
-            td.text-right = money t2
+            td.tright(colspan="2") = tot_label
+            td.tright = money t2
           - else
-            td.cred.text-right(colspan="2") = tot_label
-            td.cred.text-right = money t2
+            td.cred.tright(colspan="2") = tot_label
+            td.cred.tright = money t2
 
 
     .certify

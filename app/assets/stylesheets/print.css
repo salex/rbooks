@@ -1,0 +1,125 @@
+.print {
+   width: 9in;
+   margin: 0 auto;
+   font-size: 1.9rem;
+}
+ .print body {
+   background-color: inherit;
+}
+ .print h1, .print h2, .print h3, .print h4, .print h5, .print h6, .print p {
+   margin-bottom: 0.2rem;
+}
+ .print li {
+   font-size: 0.7rem;
+}
+ .print h1, .print h2, .print h3, .print h4, .print h5, .print h6, .print caption {
+   font-size: 1.2rem;
+}
+ .print td, .print th {
+   font-size: 0.7rem;
+   padding: 0.4rem;
+   margin: 0;
+   line-height: 1rem;
+   border: solid 1px #ccc;
+}
+ .fs8 {
+   font-size: 80%;
+}
+ @media print {
+   .page-break {
+     page-break-after: always !important;
+  }
+   .top, .header {
+     display: none;
+  }
+   fieldset {
+     border: none;
+  }
+   body {
+     font-size: 8pt !important;
+     background-color: #fff;
+  }
+   a[href]:after {
+     content: none !important;
+  }
+   .noprint {
+     display: none !important;
+  }
+}
+ @media print {
+   .page-break {
+     page-break-after: always;
+  }
+   table {
+     page-break-inside: auto;
+  }
+   tr {
+     page-break-inside: avoid;
+     page-break-after: auto;
+  }
+   p {
+     font-size: 7pt;
+     line-height: 8pt;
+  }
+   h1 {
+     font-size: 14pt !important;
+  }
+   h2 {
+     font-size: 13pt !important;
+  }
+   h3 {
+     font-size: 12pt !important;
+  }
+   h4 {
+     font-size: 11pt !important;
+  }
+   h5 {
+     font-size: 10pt !important;
+  }
+   h6 {
+     font-size: 9pt !important;
+  }
+   th, td {
+     font-size: 7pt;
+  }
+   .hshrink {
+     font-size: 5pt !important;
+  }
+}
+ .strong {
+   font-weight: bold;
+}
+ .hbox {
+   border-bottom: solid 1pt #ccc;
+   font-weight: bold;
+}
+ .hbox h5 {
+   font-weight: bold;
+}
+ table.pdf {
+   border-collapse: collapse;
+}
+ table.pdf td, table.pdf th {
+   padding: 0.2rem;
+   margin: 0;
+}
+ table.pdf tr:nth-of-type(even) {
+   background-color: #e9e9e9 !important;
+}
+ table.pdf th.w48 {
+   width: 48vw;
+}
+ table.pdf th.w13 {
+   width: 13vw;
+}
+ table.pdf th.hshrink, table.pdf td.hshrink {
+   font-size: 0.8vw;
+}
+ table.pdf.borders td, table.pdf.borders th {
+   border: solid 1px #ccc !important;
+}
+ .border {
+   border: solid 1px #ccc;
+   padding: 1px;
+}
+ 

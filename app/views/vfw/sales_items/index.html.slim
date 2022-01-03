@@ -64,7 +64,9 @@
           td 
             = link_to icon('fas fa-eye'),  vfw_sales_item_path(sales_item), title: 'Show it', class: 'btn-icon  w3-text-blue mr-4'
             = link_to icon('fas fa-edit'), edit_vfw_sales_item_path(sales_item), title: 'Edit it', class: 'btn-icon warning mr-4 w3-text-orange'
-            = link_to icon('fas fa-trash'),  vfw_sales_item_path(sales_item), title: 'Destroy it', class: ' btn-icon mr-4 w3-text-red', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+            = destroyConfirmTag(sales_item,
+              klass:"inline-block mr-4", 
+              prompt:tag.i(class:"fas fa-trash w3-text-red"))
             = link_to icon('far fa-shopping-cart'),buy_vfw_sales_item_path(sales_item),class: 'btn-icon  w3-text-blue mr-4'
   p.strong = "Total Cost/Inventory Value: #{tcost.round(2)}"
 

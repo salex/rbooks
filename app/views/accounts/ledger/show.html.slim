@@ -7,7 +7,8 @@ div.bg-gray-300.grid.grid-cols-4.p-1
     - else
       span.strong Placeholder Account
   div[ data-controller="toggleMenu"]
-    button[class="#{btnGreen}" data-action="click->toggleMenu#toggleMenu"] Duplicate Entry Search by Desc
+    button[class="#{btnGreen}" data-action="click->toggleMenu#toggleMenu"] 
+      i.fa.fa-toggle-off  Duplicate Entry Search by Desc
     div[class="z-10 absolute bg-green-200 w-1/3 px-2 hidden" data-toggleMenu-target="menu"]
       div.p-4[data-autopickr-url-value="/entries/auto_search" 
         data-controller="autopickr"
@@ -29,22 +30,22 @@ div.bg-gray-300.grid.grid-cols-4.p-1
       span[class="blue-link"] Toggle Summary
 
 div.bg-white.px-2
-  span.indent
+  span.px-4
     strong Name: 
     = @account.name
-  span.indent
+  span.px-4
     strong Account type: 
     = @account.account_type
-  span.indent
+  span.px-4
     strong Parent: 
     = @account.parent_id
-  span.indent
+  span.px-4
     strong Code: 
     = @account.code
-  span.indent
+  span.px-4
     strong Description: 
     = @account.description
-  span.indent
+  span.px-4
     strong Placeholder: 
     = @account.placeholder
 
@@ -53,7 +54,7 @@ div.bg-white.px-2
     .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
       .strong =  "Account Summary (#{@today})"
       = summary_list(@account)
-    .bg-blue-200.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
+    .bg-blue-100.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
         
       div.flex.flex-wrap
         div

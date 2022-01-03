@@ -45,8 +45,10 @@
               = link_to new_account_path(parent_id:account.id) do
                 i class="fas fa-plus-square"
               - if account.destroyable?
-                = link_to account_path(account), data: { confirm: 'Are you sure? ' }, method: :delete do
-                  i class="fas fa-trash w3-text-red"
+                = destroyConfirmTag(account,
+                  klass:"inline-block mr-4", 
+                  prompt:tag.i(class:"fas fa-trash w3-text-red"))
+
                 
 
 

@@ -131,7 +131,7 @@ module Vfw
     def destroy
       @sales_item.destroy
       respond_to do |format|
-        format.html { redirect_to sales_items_url, notice: 'Sales item was successfully destroyed.' }
+        format.html { redirect_to vfw_sales_items_path, notice: 'Sales item was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

@@ -10,7 +10,7 @@ class Accounts::LedgerController < AccountsController
 
 
   def donations
-    today = Date.today #- 1.year
+    today = Date.today - 1.year
     @range = today.beginning_of_year..today.end_of_year
     @lines = Ledger.donations(@range)
   end

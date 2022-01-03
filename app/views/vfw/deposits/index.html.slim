@@ -35,8 +35,12 @@
               i class="fas fa-eye blue-link"
             = link_to edit_vfw_deposit_path(deposit) do
               i class="fas fa-edit blue-link"
-            = link_to vfw_deposit_path(deposit), data: { confirm: 'Are you sure? ' }, method: :delete do
-              i class="fas fa-trash w3-text-red"
+            / = link_to vfw_deposit_path(deposit), data: { confirm: 'Are you sure? ' }, method: :delete do
+            /   i class="fas fa-trash w3-text-red"
+            = destroyConfirmTag(deposit,
+              klass:"inline-block mr-4", 
+              prompt:tag.i(class:"fas fa-trash w3-text-red"))
+
             / = link_to 'Show', deposit, class:'blue-link'
             / = link_to 'Edit', edit_vfw_deposit_path(deposit), class:'blue-link'
             / = link_to 'Destroy', deposit, data: { confirm: 'Are you sure?' }, method: :delete, class:'blue-link'

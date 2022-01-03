@@ -75,7 +75,7 @@ class AccountsController < ApplicationController
     def set_param_date
       # sets datas based on params or last transaction
       #  if params include a date from/to converted to beginning and end of month
-      #  if only front will set from and to (or today of to missing)
+      #  if only from will set from and to (or today of to missing)
       #  if parmans not present will get last transaction and set from to beginning of its month
       #  if from is in current month, may look back 7 days from from date
       @today = Date.today

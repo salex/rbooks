@@ -30,9 +30,11 @@
             = link_to edit_bank_statement_path(bank_statement) do
               i class="fas fa-edit"
             = link_to '<i class="far fa-credit-card" aria-hidden="true"></i>'.html_safe, reconcile_bank_statement_path(bank_statement) unless bank_statement.reconciled_date.present?
-            = link_to bank_statement, data: { confirm: 'Are you sure?' }, method: :delete do
-              i class="fas fa-trash w3-text-red"
-
+            = destroyConfirmTag(bank_statement,
+              klass:"inline-block", 
+              prompt:tag.i(class:"fas fa-trash w3-text-red"))
+            
+  
   br
 
   = link_to 'New Bank statement', new_bank_statement_path,class:'lime-link-button'

@@ -1,5 +1,5 @@
 div[data-controller="blueBackground"]
-div.mt-2.mx-2[data-controller="entryLedger"]
+div.mt-2.mx-2.h-full.pb-12[data-controller="entryLedger"]
   .flex.py-2.bg-gray-200.border.border-gray-400
     div.flex-none.px-2
       h5.font-bold.text-lg = header
@@ -9,7 +9,8 @@ div.mt-2.mx-2[data-controller="entryLedger"]
         class:"")
       - unless @entry.new_record? || @entry.reconciled?
         - confirm_msg = @entry.cleared? ? "Entry has been Cleared - Are you sure?" : 'Are you sure?'
-        button[class="#{btnDanger} mr-2"] = link_to 'Delete Entry',@entry, data: { confirm: confirm_msg }, method: :delete 
+        = destroyConfirmTag(@entry)
+
     div.mr-10.flex-none.px-2
       = content_tag(:button,'Add Split Row', class:"#{btnSuccess} mr-2" ,
         data:{action:"click->entryLedger#addSplit"}) 

@@ -3,7 +3,7 @@
   / [style="background-color:#ffffdd"]
   .w3-twothird.w3-padding
     h2.text-lg.font-bold Welcome to RBooks
-    .form-fields
+    .show-fields
       .field
         label Current Book
         span = Current.book.name
@@ -20,7 +20,10 @@
       .field
         label Application Updated
         - appdir = Rails.root.join("app")
-        span.annotate = File.mtime(appdir)
+        span = File.mtime(appdir)
+      .field
+        label Rails Version
+        span = Rails.version
 
     hr
     <script type="text/javascript" src="https://www.brainyquote.com/link/quotebr.js"></script>

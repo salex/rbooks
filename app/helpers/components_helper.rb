@@ -50,4 +50,20 @@ module ComponentsHelper
     end
   end
 
+  def destroyConfirmTag(model,confirm_msg:"",klass:"",prompt:"")
+    klass= "#{btnDanger} inline-block" if klass.blank?
+    confirm_msg = "Are You Sure?" if confirm_msg.blank?
+    prompt = "Delete #{model.class.name}" if prompt.blank?
+    node = content_tag(:div, class: klass,
+      data:{
+        controller:"destroyConfirm", 
+        action:"click->destroyConfirm#confirm",
+        destroyConfirm_cmsg_value:confirm_msg
+      }){
+      concat(tag.span(prompt))
+      concat(button_to( '',model, method: :delete,class:"hidden",data:{destroyConfirm_target:"submit"}))
+    }
+    node 
+  end
+
 end

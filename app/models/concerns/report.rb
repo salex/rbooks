@@ -10,7 +10,7 @@ class Report
     equity = book.equity_acct
     today = Date.today
 
-    puts "Where are going work #{assets.inspect}"
+    # puts "Where are going work #{assets.inspect}"
     # @from = options[:from].nil? ? today.beginning_of_year  : Ledger.set_date(options[:from])
     # @to = options[:to].nil? ? today.end_of_year  : Ledger.set_date(options[:to])
 
@@ -23,6 +23,8 @@ class Report
       "Equity" => {amount:period_splits(equity),total:0,children:{}}, 
       "options" => {level:level}
     }
+
+    @depth = 0
     tree(income,report['Income'])
     tree(expenses,report['Expense'])
     tree(assets,report['Assets'])

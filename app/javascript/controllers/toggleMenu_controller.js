@@ -9,6 +9,14 @@
      }
 
      toggleMenu() {
-         this.menuTarget.classList.toggle('hidden');
+         elem = this.menuTarget.classList.toggle('hidden');
+         // if( elem.classList.contains('fa-toggle-off')){
+         //   elem.classList.add('fa-toggle-on')
+         //   elem.classList.remove('fa-toggle-off')
+         // }else{
+         //   elem.classList.add('fa-toggle-off')
+         //   elem.classList.remove('fa-toggle-on')
+         // }
+
      }
  }

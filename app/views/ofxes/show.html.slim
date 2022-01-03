@@ -109,7 +109,7 @@
               / = entry.description if entry.present?
               - if bt.ref_number.present?
                 - entry = Entry.find(bt.ref_number)
-                td = link_to "#{entry.id} - #{entry.description}", entry_path(entry)
+                td = link_to "#{entry.id} - #{entry.description}", entry_path(entry),class:'blue-link'
               - else
                 - if bt.payee.present?
                   td
