@@ -66,7 +66,6 @@ set :user,            'developer'
 set :pty,             true
 set :stage,           :staging
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :branch, "rails7"
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
