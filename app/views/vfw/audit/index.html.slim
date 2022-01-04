@@ -1,24 +1,26 @@
 .w3-container.w3-white.min-height
   #reports.w3-row.w3-row-padding[data-controller="reports" data-date="#{Date.today.to_s}"]
     h5.strong Under Construction
-    .flex.gap-8
-      .w-1/2
+    div.grid.grid-cols-3.gap-4
+      div
 
         p <strong>VFW Reports</strong> are examples of creating custom reports for your operations. The Audit reports are nothing more than an expanded Bank Accounts balance with a checklist and checkoffs
-        hr
+        
 
         - links = [["Edit Audit Configuration", edit_config_vfw_audit_index_path ],\
                     ["Trustee Audit PDF", trustee_audit_vfw_audit_index_path],\
                     ["Trustee Audit HTML", audit_vfw_audit_index_path ]]
-        = render(GoldMenu::Component.new(title:"VFW Reports",links:links))
-
-      .w-1/2
+      div
+        = render(GoldMenu::Component.new(title:"VFW Audit Reports",links:links))
+    hr
+    div.grid.grid-cols-3.gap-4
+      div
 
         p  <strong>VFW Engine</strong> are Models/Views/Controller that are not part of the Book/Account/Entry/Split accounting system. They are still part of the financial requirements, but customized for each organization/user. After refactoring what was iCash the rCash, I wanted to accomplish this as a plugin/engine, but have not got there yet. Currently these models are namespaced or scoped.
-        hr 
         - links = [["Weekly Sales/Donations/Deposits", weekly_vfw_deposits_path ],\
                     ["Deposits List", vfw_deposits_path],\
                     ["Sales Items/Inventory", vfw_sales_items_path],\
                     ["Month Voucher", voucher_vfw_deposits_path ]]
-        = render(GoldMenu::Component.new(title:"VFW edit_config_vfw_audit_index_path",links:links))
+      div
+        = render(GoldMenu::Component.new(title:"VFW Engine Reports",links:links))
 

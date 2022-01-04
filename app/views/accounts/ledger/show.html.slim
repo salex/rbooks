@@ -16,7 +16,7 @@ div.bg-gray-300.grid.grid-cols-4.p-1
         ]
         = render partial:"accounts/ledger/pickr"
         div
-          = check_box_tag('contains','no', false,class:"w3-left", data:{autopickr_target:"contains"},class:'mt-1') 
+          = check_box_tag('contains','no', false,class:"w3-left mt-1", data:{autopickr_target:"contains"}) 
           span.ml-3.align-top Use Contains Search
 
   div
@@ -54,18 +54,18 @@ div.bg-white.px-2
     .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
       .strong =  "Account Summary (#{@today})"
       = summary_list(@account)
-    .bg-yellow-100.card-2.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
+    .card-2.bg-yellow-50.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
         
-      div.flex.flex-wrap.gap-4
+      div.flex.flex-wrap.gap-4.divide-x-2
         div
-          div.strong Filter - Select Period or Pick Date for Report Options
+          div.strong Filter - Select Period options or Pick Date(s)
           div
             .w-1/2.inline-block = from_period_select
             .pl-2.w-1/2.inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
           div
             .w-1/2.inline-block = to_period_select
             .pl-2.w-1/2.inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
-        div
+        div.pl-2
           div.strong Display Filtered Ledger
           = content_tag(:button,'Screen', class:"#{btnInfo} mr-2",
             data:{action:"click->dateRange#assignDisplay"}) 
