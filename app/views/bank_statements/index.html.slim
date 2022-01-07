@@ -2,7 +2,9 @@
   .w3-row
     h3.w3-col.s2 Bank Statements 
     - if @bank_statements.first.reconciled_date.present?
-      p.w3-col.s4 = link_to "New Bank Statement",new_bank_statement_path, class:'button'
+      / p.w3-col.s4 = link_to "New Bank Statement",new_bank_statement_path, class:'button'
+      button[class="m-2 #{btnGreen}"]= link_to 'New Bank Statement', new_bank_statement_path
+
   table.classic
     thead
       tr

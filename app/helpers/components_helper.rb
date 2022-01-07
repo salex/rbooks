@@ -12,7 +12,7 @@ module ComponentsHelper
   end
 
   def btnInfo
-    btn + "bg-blue-400 text-blue-link hover:text-blue-200"
+    btn + "bg-blue-400 text-blue-link hover:text-blue-100"
   end
 
   def btnWarn
@@ -20,7 +20,7 @@ module ComponentsHelper
   end
 
   def btnGreen
-    btn + "bg-green-500 hover:text-green-200"
+    btn + "bg-green-500 hover:text-green-100"
   end
 
   def btnDanger
