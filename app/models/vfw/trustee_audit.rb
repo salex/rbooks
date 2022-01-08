@@ -58,7 +58,7 @@ class Vfw::TrusteeAudit < Prawn::Document
     end
     grid([0,5], [3,23]).bounding_box do
       font_size(9)
-      move_down 5
+      move_down  16
 
       text "TRUSTEES' REPORT OF AUDIT of",style: :bold, size:14      # stroke_bounds
       move_down 6
