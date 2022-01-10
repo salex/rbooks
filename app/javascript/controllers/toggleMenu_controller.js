@@ -9,7 +9,7 @@
      }
 
      toggleMenu() {
-         elem = this.menuTarget.classList.toggle('hidden');
+         this.menuTarget.classList.toggle('hidden');
          // if( elem.classList.contains('fa-toggle-off')){
          //   elem.classList.add('fa-toggle-on')
          //   elem.classList.remove('fa-toggle-off')

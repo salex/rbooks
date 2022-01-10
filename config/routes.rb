@@ -64,7 +64,6 @@ Rails.application.routes.draw do
     # end
     resources :filtered, only: [:index,:update]
     resources :auto_search, only: :index
-    resources :autocomplete_search, only: :index
 
   end
 

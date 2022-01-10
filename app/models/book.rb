@@ -157,19 +157,19 @@ class Book < ApplicationRecord
     # filter = filtered.to_h
   end
 
-  def autocomplete_search(params)
-      desc = params[:q]
-      entry_ids = self.entries.where(Entry.arel_table[:description].matches("#{desc}%"))
-      .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
-      filter = entry_ids.uniq{|itm| itm.first}.to_h
-      # filter = {}
-      # entry_ids.each do |a|
-      #   description = a[0]
-      #   id = a[1]
-      #   filter[description] = id unless filter.has_key?(description)
-      # end
-      # filter
-    end
+  # def xxautocomplete_search(params)
+  #     desc = params[:q]
+  #     entry_ids = self.entries.where(Entry.arel_table[:description].matches("#{desc}%"))
+  #     .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
+  #     filter = entry_ids.uniq{|itm| itm.first}.to_h
+  #     # filter = {}
+  #     # entry_ids.each do |a|
+  #     #   description = a[0]
+  #     #   id = a[1]
+  #     #   filter[description] = id unless filter.has_key?(description)
+  #     # end
+  #     # filter
+  #   end
 
 
   def description_lookup(ago=6)
