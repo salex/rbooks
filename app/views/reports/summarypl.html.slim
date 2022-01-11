@@ -1,17 +1,16 @@
-.w3-white
-  .flex.gap-8
-    .fs8.w-5/12
+.wp90.w3-white
+  .w3-row-padding
+    .s6.w3-col.fs8
       .strong 
-        p= "Profit & Loss For Period Covering: "
-        p= " #{@from || params[:from] ||= Date.today.beginning_of_year} to #{@to || params[:to] ||= Date.today}"
+        = "Profit & Loss For Period Covering #{@from || params[:from] ||= Date.today.beginning_of_year} to #{@to || params[:to] ||= Date.today}"
         - unless @deposits.present?
           button.lime-link-button.w3-right.noprint[onclick="goBack()"] Back Page
 
       = profit_loss_report(@report)
 
 
-    div
-      table.classic.fs8
+    .s5.w3-col
+      table.classic.fs8.w-1/2.pr-10
         caption.fs7 = "Account Summary - From: #{@from || params[:from] || Date.today.beginning_of_year}  To: #{@to || params[:to] || Date.today}"
         tr
           td.strong Account
