@@ -139,8 +139,7 @@ class Book < ApplicationRecord
 
   def auto_search(params)
     desc = params[:input]
-    contains = params[:contains]
-    if contains == 'true'
+    if params[:contains].present? && params[:contains] == 'true'
       entry_ids = self.entries.where(Entry.arel_table[:description].matches("%#{desc}%"))
       .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
     else
@@ -148,13 +147,6 @@ class Book < ApplicationRecord
       .order(Entry.arel_table[:id]).reverse_order.pluck(:description,:id)
     end
     filter = entry_ids.uniq{|itm| itm.first}.to_h
-    # filter = {}
-    # entry_ids.each do |a|
-    #   description = a[0]
-    #   id = a[1]
-    #   filter[description] = id unless filter.has_key?(description)
-    # end
-    # filter = filtered.to_h
   end
 
   # def xxautocomplete_search(params)
@@ -171,7 +163,7 @@ class Book < ApplicationRecord
   #     # filter
   #   end
 
-
+  # TODO  this is no longer used, must be old version before auto search
   def description_lookup(ago=6)
     from = Date.today.beginning_of_month - ago.months
     entry_ids = self.entries.where(Entry.arel_table[:post_date].gteq(from)).order(:id).reverse_order
