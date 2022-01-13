@@ -111,7 +111,10 @@ table.gl-table {
  .show-fields label.half, .form-fields label.half, .field label.half {
    width: 40%;
 }
+.profit-loss{
+  font-size: 80%;
 
+}
 .pl-row .pl-col-acct {
    display: inline-block;
    width: 25%;
@@ -320,3 +323,8 @@ table.gl-table {
 .wp25 {width: 25%;}
 .wp30 {width: 30%;}
 .wp40 {width: 40%;}
+.wp50 {width: 50%;}
+.wp60 {width: 60%;}
+.wp70 {width: 70%;}
+.wp80 {width: 80%;}
+.wp90 {width: 90%;}

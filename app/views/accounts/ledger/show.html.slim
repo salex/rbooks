@@ -1,69 +1,72 @@
 div[data-controller="blueBackground"]
-div.bg-gray-300.grid.grid-cols-4.p-1
+.noprint
+  div.bg-gray-300.grid.grid-cols-4.p-1
 
-  div
-    - unless @account.placeholder.present?
-      button[class="ml-4 #{btnInfo}"]= link_to 'New Entry', new_entry_path(account_id:@account.id)
-    - else
-      span.strong Placeholder Account
-  div
-    = render partial:'shared/ledger_pickr'
+    div
+      - unless @account.placeholder.present?
+        button[class="ml-4 #{btnInfo}"]= link_to 'New Entry', new_entry_path(account_id:@account.id)
+      - else
+        span.strong Placeholder Account
+    div
+      = render partial:'shared/ledger_pickr'
 
-  div
-    - if session[:recent][@account.id.to_s].present?
-      i.fa.fa-toggle-on = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
-    - else
-      i.fa.fa-toggle-off = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
-  div
-    i.fa.fa-toggle-off[data-controller="toggler" data-action="click->toggler#toggleChild" data-childClass="toggleMe"]
-      |&nbsp;
-      span[class="blue-link"] Toggle Summary
+    div
+      - if session[:recent][@account.id.to_s].present?
+        i.fa.fa-toggle-on = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
+      - else
+        i.fa.fa-toggle-off = link_to("Toggle Recent Ledger",account_path(@account,toggle: true),class:'blue-link')
+    div
+      i.fa.fa-toggle-off[data-controller="toggler" data-action="click->toggler#toggleChild" data-childClass="toggleMe"]
+        |&nbsp;
+        span[class="blue-link"] Toggle Summary
 
-div.bg-white.px-2
-  span.px-4
-    strong Name: 
-    = @account.name
-  span.px-4
-    strong Account type: 
-    = @account.account_type
-  span.px-4
-    strong Parent: 
-    = @account.parent_id
-  span.px-4
-    strong Code: 
-    = @account.code
-  span.px-4
-    strong Description: 
-    = @account.description
-  span.px-4
-    strong Placeholder: 
-    = @account.placeholder
+  div.bg-white.px-2
+    span.px-4
+      strong Name: 
+      = @account.name
+    span.px-4
+      strong Account type: 
+      = @account.account_type
+    span.px-4
+      strong Parent: 
+      = @account.parent_id
+    span.px-4
+      strong Code: 
+      = @account.code
+    span.px-4
+      strong Description: 
+      = @account.description
+    span.px-4
+      strong Placeholder: 
+      = @account.placeholder
 
-#summary.toggleMe.bg-white.pb-1.px-2
-  .grid.grid-cols-3
-    .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
-      .strong =  "Account Summary (#{@today})"
-      = summary_list(@account)
-    .card-2.bg-yellow-50.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
-        
-      div.flex.flex-wrap.gap-4.divide-x-2
-        div
-          div.strong Filter - Select Period options or Pick Date(s)
+  #summary.toggleMe.bg-white.pb-1.px-2
+    .grid.grid-cols-3
+      .col-span-1.p-2[style="max-height:20vh;overflow:scroll;"]
+        .strong =  "Account Summary (#{@today})"
+        = summary_list(@account)
+      .card-2.bg-yellow-50.col-span-2.p-1[data-controller="dateRange" data-dateRange-url-value="accounts//#{@account.id}"]
+          
+        div.flex.flex-wrap.gap-4.divide-x-2
           div
-            .w-1/2.inline-block = from_period_select
-            .pl-2.w-1/2.inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
-          div
-            .w-1/2.inline-block = to_period_select
-            .pl-2.w-1/2.inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
-        div.pl-2
-          div.strong Display Filtered Ledger
-          = content_tag(:button,'Screen', class:"#{btnInfo} mr-2",
-            data:{action:"click->dateRange#assignDisplay"}) 
-          = content_tag(:button,'PDF', class:"#{btnInfo} mr-2",
-            data:{action:"click->dateRange#assignPdf"}) 
+            div.strong Filter - Select Period options or Pick Date(s)
+            div
+              .w-1/2.inline-block = from_period_select
+              .pl-2.w-1/2.inline-block = text_field_tag :from_date, nil,data:{dateRange_target:'from_date',controller:'flatpickr'},placeholder:'Pick From Date', class:'border '
+            div
+              .w-1/2.inline-block = to_period_select
+              .pl-2.w-1/2.inline-block = text_field_tag :to_date, nil,data:{dateRange_target:'to_date',controller:'flatpickr'},placeholder:'Pick To Date', class:'border'
+          div.pl-2
+            div.strong Display Filtered Ledger
+            = content_tag(:button,'Screen', class:"#{btnInfo} mr-2",
+              data:{action:"click->dateRange#assignDisplay"}) 
+            = content_tag(:button,'PDF', class:"#{btnInfo} mr-2",
+              data:{action:"click->dateRange#assignPdf"}) 
 
-          = content_tag(:button,'PDF Split', class:"#{btnInfo} mr-2",
-            data:{action:"click->dateRange#assignSplit"})                
+            = content_tag(:button,'PDF Split', class:"#{btnInfo} mr-2",
+              data:{action:"click->dateRange#assignSplit"})
+            = content_tag(:button,'Print', class:"#{btnInfo} mr-2",
+              onclick: "window.print();")
 
 #Ledger.bg-white.mt-1.px-2
   = render partial: 'accounts/ledger/ledger', locals:{from:@from,to:@to,account:@account}
