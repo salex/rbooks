@@ -42,11 +42,11 @@
               / = entry.description if entry.present?
               - if bt.ref_number.present?
                 - entry = Entry.find(bt.ref_number)
-                td = link_to "#{entry.id} - #{entry.description}", entry_path(entry),class:'blue-link'
+                td = link_to "#{entry.id} - #{entry.description}", entry_path(entry),class:'green-link'
               - else
                 - if bt.payee.present?
                   td
-                    |Possible Link(s)&nbsp;
+                    strong Possible Link(s)&nbsp;
                     - bt.payee[bt.fit_id].each do |e|
                       button[class="blue-link"]
                         = link_to "#{e[:enumb]} #{e[:description][0..19]} -#{e[:post_date]}",link_ofx_path(bt.fit_id, entry:e[:entry_id])

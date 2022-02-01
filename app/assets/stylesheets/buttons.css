@@ -133,6 +133,14 @@ td.actions a, div.actions a {
    color: green;
 }
 
+.green-link {
+   color: green;
+}
+
+.green-link:hover {
+   color: blue;
+}
+
 .secondary-link {
    color: saddlebrown;
 }
