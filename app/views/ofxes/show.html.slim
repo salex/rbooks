@@ -15,7 +15,7 @@
             th.strong.w-28[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Date
-            th.strong[data-action="click->sortTable#sortBy"]
+            th.numeric.strong[data-action="click->sortTable#sortBy"]
               i.fas.fa-sort
               |Numb
             th.strong.w25[data-action="click->sortTable#sortBy"]
@@ -25,7 +25,7 @@
               i.fas.fa-sort
               |FitId
             td.strong.w25 Entry
-            th.strong[data-action="click->sortTable#sortBy"] 
+            th.numeric.strong[data-action="click->sortTable#sortBy"] 
               i.fas.fa-sort
               |Amount
             td.strong Balance
@@ -57,12 +57,13 @@
                     = render partial:'shared/ofx_picker', locals:{bt:bt}
 
 
-              td.tright = to_money(bt.amount_in_pennies)
+              td.tright = to_money(bt.amount_in_pennies).tr(',','')
 
-              td.tright = to_money rbal
+              td.tright = to_money( rbal)
             - rbal -= bt.amount_in_pennies
+      table.classic
+        tbody
           tr
-            td.tright.strong[colspan="6"] Beginning Balance
-            td.tright = to_money bbalance
+            td.tright.strong[colspan="6"] = "Beginning Balance: #{to_money bbalance}"
 
   

@@ -3,6 +3,9 @@
 // 
 // This example controller works with specially annotated HTML like:
 //
+// <div data-controller="hello">
+//   <h1 data-target="hello.output"></h1>
+// </div>
 
 import { Controller } from "@hotwired/stimulus"
 
@@ -10,11 +13,13 @@ export default class extends Controller {
   static targets = [ ]
 
   connect() {
-    // console.log('Hello, sortTable!')
+  // console.log('Hello, sortTable!')
+    this.numeric = false
   }
 
   sortBy(){
     const th = event.target
+    this.numeric = th.classList.contains('numeric')
     const tr = th.closest('tr')
     const table = tr.closest('table')
     var idx = Array.from(tr.children).indexOf(th)
@@ -29,12 +34,14 @@ export default class extends Controller {
     dir = "asc"; 
     /* Make a loop that will continue until
     no switching has been done: */
+
     while (switching) {
       // Start by saying: no switching is done:
       switching = false;
       rows = table.rows;
       /* Loop through all table rows (except the
       first, which contains table headers): */
+
       for (i = 1; i < (rows.length - 1); i++) {
         // Start by saying there should be no switching:
         shouldSwitch = false;
@@ -47,14 +54,24 @@ export default class extends Controller {
         if ((x == undefined) || (y == undefined)){continue}
         /* Check if the two rows should switch place,
         based on the direction, asc or desc: */
+
+        // Check if numeric sort (th has class numeric)
+        if (!this.numeric) {
+          var compx = x.innerHTML.toLowerCase()
+          var compy = y.innerHTML.toLowerCase()
+        }else{
+          var compx = /\d/.test(x.innerHTML) ? parseFloat(x.innerHTML) : 0 
+          var compy = /\d/.test(y.innerHTML) ? parseFloat(y.innerHTML) : 0 
+        }
+        
         if (dir == "asc") {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          if (compx > compy) {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
         } else if (dir == "desc") {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          if (compx < compy) {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;

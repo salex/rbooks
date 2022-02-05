@@ -11,73 +11,112 @@ div.pt-1
       td.tleft.under =to_money summary[:checking][:cr]
       td.text-right Difference:
       td.tleft.under =to_money summary[:balance]
+div.md:hidden
+  .grid.grid-cols-3.gap-2
+    - lines.reverse.each_with_index do |row,i|
+      div.border-b.border-black.col-span-2 
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Date:
+          - if row[:id].present? && true
+            / policy(account).trustee?
+            = link_to(row[:date], edit_entry_path(row[:id]),class:['blue-link'])
+            |&nbsp;&nbsp; 
 
-table.classic[data-controller="sortTable toggleSplits"]
-  caption
-    .box = caption
-  thead#sort_header
-    tr
-      th.w10.sortable[data-action="click->sortTable#sortBy"]
-        i.fas.fa-sort.noprint
-        / - if policy(account).trustee?
-        - if true
-          |Date-
-          i class="fas fa-edit " 
-          |&nbsp;&nbsp;Dup
-        - else
-          |Date
-      th.sortable[data-action="click->sortTable#sortBy"]
-        i.fas.fa-sort.noprint
-        |Num
-      th.w30.sortable[data-action="click->sortTable#sortBy"]
-        i.fas.fa-sort.noprint
-        |Desc
-      th.w15r.sortable[data-action="click->sortTable#sortBy"]
-        i.fas.fa-sort.noprint
-        |Account
-      th.sortable[data-action="click->sortTable#sortBy"]
-        i.fas.fa-sort.noprint
-        |R
-      th Debits
-      th Credits
-      th Balance
-  - lines.reverse.each_with_index do |row,i|
-    tr
-      td 
-        - if row[:id].present? && true
-          / policy(account).trustee?
-          = link_to(row[:date], edit_entry_path(row[:id]),class:['blue-link'])
-          |&nbsp;&nbsp; 
+            = link_to entries_duplicate_path(row[:id]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
+              i class="fas fa-copy noprint blue-link"
+          - else
+            = row[:date]
 
-          = link_to entries_duplicate_path(row[:id]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
-            i class="fas fa-copy noprint blue-link"
-        - else
-          = row[:date]
-      td = row[:numb]
-      td = row[:desc] 
-      - if row[:memo] == "- Split Transaction -"
-        td.toggle-splits.blue-link[data-action="click->toggleSplits#toggle"] = "- Split Transaction -"
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Numb:
+          span = row[:numb]
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Desc:
+          span  = row[:desc]
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Acct:
+          span  = row[:memo]
+
+      div.border-b.border-black 
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 R:
+          span = row[:r]
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Debit:
+          span = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Credit:
+          span = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
+        div 
+          span.inline-block.font-bold.text-right.mr-2.w-16 Bal:
+          span  = to_money row[:balance]
+div.hidden.md:block
+  table.classic[data-controller="sortTable toggleSplits"]
+    caption
+      .box = caption
+    thead#sort_header
+      tr
+        th.w10.sortable[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          / - if policy(account).trustee?
+          - if true
+            |Date-
+            i class="fas fa-edit " 
+            |&nbsp;&nbsp;Dup
+          - else
+            |Date
+        th.sortable[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |Num
+        th.w30.sortable[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |Desc
+        th.w15r.sortable[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |Account
+        th.sortable[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          |R
+        th Debits
+        th Credits
+        th Balance
+    - lines.reverse.each_with_index do |row,i|
+      tr
         td 
-      - else 
-        td = params[:split_reg].present? ? nil : row[:memo]
-        td = params[:split_reg].present? ? nil : row[:r] 
-      td.text-right = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
-      td.text-right = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
-      - if row[:id].blank?
-        td.text-right = to_money(row[:balance])
-      - else
-        td.text-right = row[:balance].zero? ? nil : to_money(row[:balance])
-    - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
-      tbody.split-rows[data-toggleSplits-target="tbody"]
-        - row[:details].each do |d|
-          tr.snowSelectedBackground
-            td
-            td = d[:action]
-            td = d[:memo]
-            td = d[:name]
-            td = d[:r]
-            td.text-right = d[:db].zero? ? nil : to_money(d[:db])
-            td.text-right = d[:cr].zero? ? nil : to_money(d[:cr])
-            td
- 
+          - if row[:id].present? && true
+            / policy(account).trustee?
+            = link_to(row[:date], edit_entry_path(row[:id]),class:['blue-link'])
+            |&nbsp;&nbsp; 
+
+            = link_to entries_duplicate_path(row[:id]), data: { confirm: 'Duplicate Entry: Are you sure?' } do
+              i class="fas fa-copy noprint blue-link"
+          - else
+            = row[:date]
+        td = row[:numb]
+        td = row[:desc] 
+        - if row[:memo] == "- Split Transaction -"
+          td.toggle-splits.blue-link[data-action="click->toggleSplits#toggle"] = "- Split Transaction -"
+          td 
+        - else 
+          td = params[:split_reg].present? ? nil : row[:memo]
+          td = params[:split_reg].present? ? nil : row[:r] 
+        td.text-right = row[:checking][:db].zero? ? nil : to_money(row[:checking][:db])
+        td.text-right = row[:checking][:cr].zero? ? nil : to_money(row[:checking][:cr])
+        - if row[:id].blank?
+          td.text-right = to_money(row[:balance])
+        - else
+          td.text-right = row[:balance].zero? ? nil : to_money(row[:balance])
+      - if row[:memo] == "- Split Transaction -" || params[:split_reg].present?
+        tbody.split-rows[data-toggleSplits-target="tbody"]
+          - row[:details].each do |d|
+            tr.snowSelectedBackground
+              td
+              td = d[:action]
+              td = d[:memo]
+              td = d[:name]
+              td = d[:r]
+              td.text-right = d[:db].zero? ? nil : to_money(d[:db])
+              td.text-right = d[:cr].zero? ? nil : to_money(d[:cr])
+              td
+   
 br
