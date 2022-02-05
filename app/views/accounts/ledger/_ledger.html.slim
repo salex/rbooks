@@ -1,7 +1,7 @@
 - lines = account.placeholder ? account.children_ledger(from,to) : account.account_ledger(from,to)
 - caption = "#{account.account_type} Account #{account.name} Ledger from: #{from} to: #{to}"
 - summary = lines.pop
-div.pt-1
+div.pt-1.text-sm.md:text-base
   table.classic
     tr
       th Range Summary
@@ -12,7 +12,7 @@ div.pt-1
       td.text-right Difference:
       td.tleft.under =to_money summary[:balance]
 div.md:hidden
-  .grid.grid-cols-3.gap-2
+  .grid.grid-cols-3.gap-2.text-base.text-sm
     - lines.reverse.each_with_index do |row,i|
       div.border-b.border-black.col-span-2 
         div 
