@@ -1,6 +1,6 @@
 .w3-white
-  .w3-row-padding
-    .s6.w3-col
+  .grid.grid-cols-12
+    .col-span-7
       .strong.fs8
         = "Profit & Loss For Period Covering #{@from || params[:from] ||= Date.today.beginning_of_year} to #{@to || params[:to] ||= Date.today}"
         - unless @deposits.present?
@@ -9,7 +9,7 @@
         = profit_loss_report(@report)
 
 
-    .s6.w3-col
+    .col-span-5
       table.classic.fs8
         caption.fs7 = "Account Summary - From: #{@from || params[:from] || Date.today.beginning_of_year}  To: #{@to || params[:to] || Date.today}"
         tr

@@ -82,7 +82,7 @@ module ReportsHelper
       concat(content_tag(:span,name,class:"inline-block  w-56 px-2 "))
       cnt = 1
       while cnt < @level
-        concat(content_tag(:span,'',class:"inline-block  w-24 text-right"))
+        concat(content_tag(:span,"&nbsp;".html_safe,class:"inline-block  w-24 "))
         cnt += 1
       end
       if extra.present?
@@ -96,7 +96,7 @@ module ReportsHelper
   def acct_row(name,amount,indent)
     content_tag(:div,class:'border-b') do
       concat(content_tag(:span,name,class: "inline-block w-56 pr-2 indent-#{(indent - 1) * 4}"))
-      amt = amount.zero? ? '' : to_money(amount,'$')
+      amt = amount.zero? ? "&nbsp;".html_safe : to_money(amount,'$')
       (@level - indent).times do | i|
         concat(content_tag(:span,'',class:'inline-block w-24'))
       end
