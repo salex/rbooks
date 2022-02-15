@@ -1,7 +1,7 @@
 .w3-white
   .w3-row-padding
-    .s6.w3-col.fs8
-      .strong 
+    .s6.w3-col
+      .strong.fs8
         = "Profit & Loss For Period Covering #{@from || params[:from] ||= Date.today.beginning_of_year} to #{@to || params[:to] ||= Date.today}"
         - unless @deposits.present?
           button.lime-link-button.w3-right.noprint[onclick="goBack()"] Back Page

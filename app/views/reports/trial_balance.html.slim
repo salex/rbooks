@@ -11,8 +11,11 @@
       button.lime-link-button.noprint.fs8.w3-right[onclick="goBack()"] Back Page
 
 
-  .w3-col.s7
-    = trial_balance_report(@report)
+  .w3-col.s6
+    span.indent-4.indent-8.indent-12.indent-16.indent-20.indent-24.indent-28.indent-32
+    / above span to full tailwind not picking up classes in helpers
+
+    .fs8 = trial_balance_report(@report)
 javascript:
   function goBack() {
     window.history.back();

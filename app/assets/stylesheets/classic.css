@@ -1,6 +1,10 @@
 .w100 {width:100%;}
 .tright {text-align: right!important;}
 
+.fs8 {
+  font-size: 80%;
+}
+
 ul.classic {
   list-style-type: disc;
   padding-left: 1rem;

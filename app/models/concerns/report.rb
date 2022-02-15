@@ -2,7 +2,8 @@ class Report
 
   def trial_balance(options={})
     book = Current.book
-    level = options[:level] ||= 2
+    @max_level = book.accounts.maximum(:level)
+    level = options[:level] ||= @max_level
     assets = book.assets_acct
     liabilities = book.liabilities_acct
     income = book.income_acct
@@ -40,15 +41,19 @@ class Report
     @from = options[:from].nil? ? today.beginning_of_year  : Ledger.set_date(options[:from])
     @to = options[:to].nil? ? today.end_of_year  : Ledger.set_date(options[:to])
     level = options[:level] ||= 2
+    max_level = book.accounts.maximum(:level)
     i = book.income_acct
     e = book.expenses_acct
     report = {"Income" => {amount:period_splits(i),total:0,children:{}}, 
-    "Expense" =>  {amount:period_splits(e),total:0,children:{}},
-    "options" => {level:level,from:@from,to:@to}}
+      "Expense" =>  {amount:period_splits(e),total:0,children:{}},
+      "options" => {level:level,from:@from,to:@to,max_level:max_level}
+    }
+    @max_level = 0
     @depth = 0
     tree(i,report['Income'])
+    @depth = 0
     tree(e,report['Expense'])
-
+    report['options'][:max_level] -= 1  # last inc not used
     return report
   end
 
@@ -56,9 +61,10 @@ class Report
   private
 
   def tree(branch,hash)
+    @max_level = @depth if @depth > @max_level
     @depth += 1  
     branch.children.each do |c|
-      hash[:children][c.name] = {amount:period_splits(c),total:0,children: {},level:@depth}
+      hash[:children][c.name] = {amount:period_splits(c),total:0,children: {},level:@depth+1}
       tree(c,hash[:children][c.name])
       hash[:total] += (hash[:children][c.name][:amount] + hash[:children][c.name][:total])
       @depth -= 1 

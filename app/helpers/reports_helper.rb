@@ -17,55 +17,48 @@ module ReportsHelper
   end
 
   def profit_loss_report(report)
-    @level = report['options'][:level].to_i
-    content_tag(:div,class:'') { 
-      @pad = 0
-      concat( tot_row("Income",'',"Increase"))
-      @pad = 1
-      children(report["Income"][:children])
-      concat(tot_row("Total Income","",to_money(report["Income"][:total],"$")))
-      @pad = 0
-      concat( tot_row("Expenses",'','Decrease'))
-      @pad = 1
-      children(report["Expense"][:children])
-      concat( tot_row("Total Expenses","",to_money(report["Expense"][:total],"$")))
-      concat( tot_row("Profit(+)/Loss(-)","",to_money(report["Income"][:total] - report["Expense"][:total],"$")))
-    }
+    if report['options'][:level].to_i > report['options'][:max_level].to_i
+      @level = report['options'][:max_level].to_i
+    else
+      @level = report['options'][:level].to_i
+    end
+    @level = 2 if @level == 1
+    content_tag(:div,class:'') {
+        concat( tot_row("Income",'',"Increase"))
+        children(report["Income"][:children])
+        concat(tot_row("Total Income",to_money(report["Income"][:total],"$")))
+        concat(tot_row("&nbsp;".html_safe,""))
+        concat( tot_row("Expenses",'','Decrease'))
+        children(report["Expense"][:children])
+        concat( tot_row("Total Expenses",to_money(report["Expense"][:total],"$")))
+        concat( tot_row("Profit(+)/Loss(-)",to_money(report["Income"][:total] - report["Expense"][:total],"$")))
+      }
   end
 
   def trial_balance_report(report)
     @level = report['options'][:level].to_i
-    content_tag(:div) { 
-      @pad = 0
+    content_tag(:div,class:"") { 
+
       concat( tot_row("Assets",'',"Increase"))
-      @pad = 1
       children(report["Assets"][:children])
       concat(tot_row("Total Assest",to_money(report["Assets"][:total],"$")))
 
-      @pad = 0
       concat( tot_row("Liabilities",'',"Increase"))
-      @pad = 1
       children(report["Liabilities"][:children])
       concat(tot_row("Total Liabilities",to_money(report["Liabilities"][:total],"$")))
 
-
-      @pad = 0
       concat( tot_row("Income",'',"Increase"))
-      @pad = 1
       children(report["Income"][:children])
       concat(tot_row("Total Income",to_money(report["Income"][:total],"$")))
 
-      @pad = 0
       concat( tot_row("Expenses",'','Decrease'))
-      @pad = 1
       children(report["Expense"][:children])
       concat( tot_row("Total Expenses",to_money(report["Expense"][:total],"$")))
 
-      @pad = 0
       concat( tot_row("Equity",'','Decrease'))
-      @pad = 1
       children(report["Equity"][:children])
       concat( tot_row("Total Equity",to_money(report["Equity"][:total],"$")))
+
       assets = to_money(report["Assets"][:total])
       liabilities = to_money(report["Liabilities"][:total] * -1)
       equity = to_money(report["Equity"][:total])
@@ -73,58 +66,65 @@ module ReportsHelper
       expenses = to_money(report["Expense"][:total])
       left = report["Assets"][:total] + report["Liabilities"][:total]
       right = report["Equity"][:total] + report["Income"][:total] - report["Expense"][:total]
+      concat(tag.div(class:'grid grid-cols-1 mt-4'){
 
-      concat( content_tag(:h4,"Assets - Liabilities = Equity + (Income - Expenses)",class:'strong'))
-      concat( content_tag(:h4,"#{assets} - (#{liabilities}) = #{equity} + (#{income} - #{expenses})",class:'strong'))
-      concat( content_tag(:h4,"#{to_money(left)} =  #{to_money(right)}",class:'strong'))
+        concat( content_tag(:div,"Assets - Liabilities = Equity + (Income - Expenses)",class:'strong justify-self-center'))
+        concat( content_tag(:div,"#{assets} - (#{liabilities}) = #{equity} + (#{income} - #{expenses})",class:'strong justify-self-center'))
+        concat( content_tag(:div,"#{to_money(left)} =  #{to_money(right)}",class:'strong justify-self-center'))
+        }
+      )
 
-
-
-      # concat( tot_row("Profit(+)/Loss(-)",to_money(report["Income"][:total] - report["Expense"][:total],"$")))
     }
   end
 
-
   def tot_row(name,amount, extra=nil)
-    content_tag(:div,class:'pl-row strong') do
-        concat(content_tag(:div,name,class:"pl-col-acct p#{@pad}"))
-        if extra.present?
-          concat(content_tag(:div,extra,class:"pl-col-1#{@level}"))
-        else
-          concat(content_tag(:div,'',class:"pl-col-1#{@level}"))
-        end
-        concat(content_tag(:div,amount,class:"pl-col-tot-#{@level}"))
+    content_tag(:div,class:' strong border-b') do
+      concat(content_tag(:span,name,class:"inline-block  w-56 px-2 "))
+      cnt = 1
+      while cnt < @level
+        concat(content_tag(:span,'',class:"inline-block  w-24 text-right"))
+        cnt += 1
       end
+      if extra.present?
+        concat(content_tag(:span,extra,class:"inline-block  px-2 w-24 text-right"))
+      else
+        concat(content_tag(:span,amount,class:"inline-block  px-2 w-24 text-right"))
+      end
+    end
   end
 
-  def pl_row(name,amount)
-    content_tag(:div,class:'pl-row') do
-      concat(content_tag(:div,name,class: "pl-col-acct p#{@pad}"))
+  def acct_row(name,amount,indent)
+    content_tag(:div,class:'border-b') do
+      concat(content_tag(:span,name,class: "inline-block w-56 pr-2 indent-#{(indent - 1) * 4}"))
       amt = amount.zero? ? '' : to_money(amount,'$')
-      concat(content_tag(:div,amt,class: "pl-col-#{@pad}#{@level}"))
+      (@level - indent).times do | i|
+        concat(content_tag(:span,'',class:'inline-block w-24'))
+      end
+      concat(content_tag(:span,amt,class: "inline-block w-24 text-right px-2"))
      end
   end
 
   def children(kids)
     kids.each do |k,v|
+      indent = v[:level]
       if v[:children].blank?
-        concat(pl_row(k,v[:amount])) unless v[:amount].zero?
+        concat(acct_row(k,v[:amount],indent)) unless v[:amount].zero?
       else
-        if @pad == @level
+        if indent == @level
           unless v[:total].zero?
-            concat(pl_row(k,(v[:amount] + v[:total])))
+            concat(acct_row(k,(v[:amount] + v[:total]),indent))
           end
         else
+
           unless v[:total].zero?
-            concat(pl_row(k,v[:amount]))
-            @pad += 1
+            concat(acct_row(k,v[:amount],indent))
             children(v[:children])
-            @pad -= 1
-            concat(pl_row("Total "+k,v[:amount]+ v[:total]))
-          end    
-        end
+            concat(acct_row("Total "+k,v[:amount]+ v[:total],indent))
+          end
+        end  
       end
     end
   end
+
 
 end
