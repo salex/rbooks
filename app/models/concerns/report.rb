@@ -27,9 +27,13 @@ class Report
 
     @depth = 0
     tree(income,report['Income'])
+    @depth = 0
     tree(expenses,report['Expense'])
+    @depth = 0
     tree(assets,report['Assets'])
+    @depth = 0
     tree(liabilities,report['Liabilities'])
+    @depth = 0
     tree(equity,report['Equity'])
     return report
   end

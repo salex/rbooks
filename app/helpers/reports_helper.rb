@@ -37,27 +37,33 @@ module ReportsHelper
 
   def trial_balance_report(report)
     @level = report['options'][:level].to_i
+    @level = 2 if @level == 1
     content_tag(:div,class:"") { 
 
       concat( tot_row("Assets",'',"Increase"))
       children(report["Assets"][:children])
       concat(tot_row("Total Assest",to_money(report["Assets"][:total],"$")))
+      concat(tot_row("&nbsp;".html_safe,""))
 
       concat( tot_row("Liabilities",'',"Increase"))
       children(report["Liabilities"][:children])
       concat(tot_row("Total Liabilities",to_money(report["Liabilities"][:total],"$")))
+      concat(tot_row("&nbsp;".html_safe,""))
 
       concat( tot_row("Income",'',"Increase"))
       children(report["Income"][:children])
       concat(tot_row("Total Income",to_money(report["Income"][:total],"$")))
+      concat(tot_row("&nbsp;".html_safe,""))
 
       concat( tot_row("Expenses",'','Decrease'))
       children(report["Expense"][:children])
       concat( tot_row("Total Expenses",to_money(report["Expense"][:total],"$")))
+      concat(tot_row("&nbsp;".html_safe,""))
 
       concat( tot_row("Equity",'','Decrease'))
       children(report["Equity"][:children])
       concat( tot_row("Total Equity",to_money(report["Equity"][:total],"$")))
+      concat(tot_row("&nbsp;".html_safe,""))
 
       assets = to_money(report["Assets"][:total])
       liabilities = to_money(report["Liabilities"][:total] * -1)
@@ -78,11 +84,11 @@ module ReportsHelper
   end
 
   def tot_row(name,amount, extra=nil)
-    content_tag(:div,class:' strong border-b') do
+    content_tag(:div,class:' strong ') do
       concat(content_tag(:span,name,class:"inline-block  w-56 px-2 "))
       cnt = 1
       while cnt < @level
-        concat(content_tag(:span,"&nbsp;".html_safe,class:"inline-block  w-24 "))
+        concat(content_tag(:span,"&nbsp;".html_safe,class:"inline-block w-24 "))
         cnt += 1
       end
       if extra.present?
@@ -95,7 +101,7 @@ module ReportsHelper
 
   def acct_row(name,amount,indent)
     content_tag(:div,class:'border-b') do
-      concat(content_tag(:span,name,class: "inline-block w-56 pr-2 indent-#{(indent - 1) * 4}"))
+      concat(content_tag(:span,name,class: "inline-block w-56 pr-2  indent-#{(indent - 1) * 4}"))
       amt = amount.zero? ? "&nbsp;".html_safe : to_money(amount,'$')
       (@level - indent).times do | i|
         concat(content_tag(:span,'',class:'inline-block w-24'))
@@ -107,8 +113,9 @@ module ReportsHelper
   def children(kids)
     kids.each do |k,v|
       indent = v[:level]
+      # puts "#{k} L #{v[:level]} @L #{@level} A #{v[:amount]} T #{v[:total]}"
       if v[:children].blank?
-        concat(acct_row(k,v[:amount],indent)) unless v[:amount].zero?
+        concat(acct_row(k,v[:amount],indent)) unless v[:amount].zero? # || v[:level] > @level
       else
         if indent == @level
           unless v[:total].zero?

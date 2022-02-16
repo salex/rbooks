@@ -1,11 +1,11 @@
 .w3-container.w3-white.min-height
+  / .grid.grid-cols-12
+  /   .col-span-7
 
-  .w3-row
-    .w3-col.s7
-      .strong.fs8 
-        = "Profit & Loss For Period Covering #{params[:from] ||= Date.today.beginning_of_year} to #{params[:to] ||= Date.today}"
-        button.lime-link-button.noprint.w3-right[onclick="goBack()"] Back Page
-      .fs8.profit-loss = profit_loss_report(@report)
+  .strong.fs8 
+    = "Profit & Loss For Period Covering #{params[:from] ||= Date.today.beginning_of_year} to #{params[:to] ||= Date.today}"
+    button.lime-link-button.noprint.w3-right[onclick="goBack()"] Back Page
+  .profit-loss = profit_loss_report(@report)
 javascript:
   function goBack() {
     window.history.back();
