@@ -35,7 +35,7 @@
         - if difference.zero? && Date.current >= @bank_statement.statement_date
           button.w3-button.w3-blue-gray  = link_to 'Reconcile', update_reconcile_bank_statement_path(@bank_statement, turbo_frame: "_top")
         - else
-          .annotate Balance is either not zero or current date is less than the closing date
+          .annotate.text-red-700 Balance is either not zero or current date is less than the closing date
 
   .w3-row-padding.mt-4.border-t
     .s6.w3-col.half-constrainer

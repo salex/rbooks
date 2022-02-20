@@ -1,11 +1,11 @@
 
-.w3-container.w3-white.min-height[data-controller="remoteUpdate"]
-  .flex.gap-8.mt-2[data-controller="toggle" data-toggle-class="w3-hide"]
+.w3-container.w3-white.min-height[data-controller="remoteUpdate toggle" data-toggle-class="w3-hide"]
+  .flex.gap-8.mt-2
     div
       h4.strong.align-top
         = "Checking Acct Balances"
         |&nbsp;&nbsp;
-        span[data-action="click->toggle#toggle"]
+        span.blue-link[data-action="click->toggle#toggle"]
           i.fa.fa-question-circle
           i Help
     div
@@ -19,18 +19,18 @@
     div.text-right
       button.w3-button.w3-blue-gray[data-action="click->remoteUpdate#rebalance"] Refresh
 
-    .w3-col.s12.w3-hide[data-toggle-target="content"]
-      p This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
-      ul
-        li Reconciled balance: The balance of all reconciled Checking account entries on the closure date.
-        li Cleared Balance: The balance of all Checking account entries that have been cleared but not reconciled.
-        li Uncleared Balance: The balance of all Checking account entries that have not been cleared (new).
-        li Ending Balance: Your checking account balance on the Closing date. Sum of the Reconciled, Cleared and Uncleared balances.
-        li Bank/Closing balance:  The closing balance you optionally entered.
-        li Difference: difference between the Closing balance and ending balance. Should be Zero if a Closing balance was entered.
+  .w3-hide.p-2[data-toggle-target="content"]
+    p This page will display balances on a closing date (any input date or defaults to Today). You can use it to periodically check you checkbook balance with the bank balance. If you enter a Closing Balance it will display any difference. If you don't enter a closing balance it will display a negative balance that should be your bank balance on that date.
+    ul.classic.ml-4
+      li Reconciled balance: The balance of all reconciled Checking account entries on the closure date.
+      li Cleared Balance: The balance of all Checking account entries that have been cleared but not reconciled.
+      li Uncleared Balance: The balance of all Checking account entries that have not been cleared (new).
+      li Ending Balance: Your checking account balance on the Closing date. Sum of the Reconciled, Cleared and Uncleared balances.
+      li Bank/Closing balance:  The closing balance you optionally entered.
+      li Difference: difference between the Closing balance and ending balance. Should be Zero if a Closing balance was entered.
 
-      p All Cleared and Uncleared entries are listed in a table.
-      p You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
+    p All Cleared and Uncleared entries are listed in a table.
+    p You can Clear or Unclear any Entry by clicking on the 'n' in uncleared table and 'c' in the cleared table.
   #ajax_balance
     div 
       / [ data-remoteUpdate-target="refresh" data-action="ajax:success->remoteUpdate#onSuccess"]
