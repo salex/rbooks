@@ -1,14 +1,10 @@
-// Visit The Stimulus Handbook for more details 
-// https://stimulusjs.org/handbook/introduction
-// 
 
 import { Controller } from "@hotwired/stimulus"
-// import Rails from '@rails/ujs';
 
 
 export default class extends Controller {
-  static targets = [ "splitsTbody","deletesTbody","numb" ,'description','date','transfer','debit',
-  'credit','amount','balanced','submit',"theForm",'errors','deletes']
+  static targets = [ "splitsTbody","deletesTbody","numb" ,'description','date',
+  'transfer','debit','credit','amount','balanced','submit',"theForm",'errors','deletes']
 
   connect() {
     let currSplits
@@ -28,6 +24,7 @@ export default class extends Controller {
   }
 
   getSplits() {
+    // create split object that maps form to js object
     let transfers = this.transferTargets
     let debits = this.debitTargets
     let credits = this.creditTargets
@@ -38,26 +35,28 @@ export default class extends Controller {
     for (var i = 0;  i < numbSplits; i++) {
       let split = {}
       split.sindex = i 
-      // node elem
+      // get rid of any spaces or commas
+      if (debits[i].value != '') {
+        debits[i].value = debits[i].value.replace(/[\s,]/g, '') 
+      }
+      if (credits[i].value != '') {
+        credits[i].value = credits[i].value.replace(/[\s,]/g, '')
+      }
+      // node/form elements
       split.$cr = credits[i]
       split.$db = debits[i]
       split.$amount = amounts[i]
       split.$acct = transfers[i]
-      // do addbits on db and cr
-      if (debits[i].value != '') {
-        debits[i].value = this.addbits(debits[i].value)
-      }
-      if (credits[i].value != '') {
-        credits[i].value = this.addbits(credits[i].value)
-      }
+
       // set numbers
       split.acct = Number(transfers[i].value)
       split.db = Number(debits[i].value)
       split.cr = Number(credits[i].value)
       split.amount = Number(amounts[i].value)
+
+      // set default states
       split.is_deleted = deletes[i].checked
       if (split.is_deleted === undefined){ split.is_deleted = false}
-
       split.valid = false
       split.blank = false
       split.incomplete = false
@@ -71,12 +70,7 @@ export default class extends Controller {
     // console.log(this.currSplits)
   }
 
-  /*
-   * decaffeinate suggestions:
-   * DS101: Remove unnecessary use of Array.from
-   * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
-   */
-  getStatus = function(splits) {
+    getStatus = function(splits) {
     // status changes after any of the 4 attributes are changed
     let status = {
       blank_row: null,
@@ -87,13 +81,11 @@ export default class extends Controller {
       sbalance: 0,
       valid: true
     };
-    // console.log(`get rid of array from ${splits.length}`)
-    // for (var s = 0;  s < splits.length; i++) {
-    for (let s of Array.from(splits)) {
+
+    splits.forEach(s => {
       this.set_split(s);
       if (s.blank) { status.blank_rows += 1; }
       if ((status.blank_row === null) && s.blank) { status.blank_row = s.sindex; }
-
       if ((status.incomplete_row === null) && s.incomplete && !s.is_deleted) { status.incomplete_row = s.sindex; }
       if ((status.scratch_row === null) && s.scratch) { status.scratch_row = s.sindex; }
 
@@ -104,9 +96,10 @@ export default class extends Controller {
         this.clear_split(s)
       }
       if (s.scratch) { status.sbalance += s.amount; }
-    }
+    })
     this.currStatus = status
-  };
+  }
+
 
   cutRow(){
     const tr = event.target.closest('tr')
@@ -265,6 +258,11 @@ export default class extends Controller {
   }
 
   addSplit() {
+    /*
+      this will clone to last split tr 
+      it then extracts the idx from the tr.id
+      then change the index on any form fields
+    */
     var splits = this.splitsTbodyTarget
     var new_tr = splits.lastChild.cloneNode(true)
     var new_tr_id  = new_tr.getAttribute('id')
@@ -273,7 +271,6 @@ export default class extends Controller {
     new_tr.setAttribute('id',new_tr_id.replace(old_numb,new_numb))
     var inputs = new_tr.querySelectorAll("input")
     var selects = new_tr.querySelectorAll("select")
-    new_tr.setAttribute('id',new_tr_id.replace(old_numb,new_numb))
     var i
     for (i = 0; i < inputs.length; i++) {
       var iid = inputs[i].getAttribute('id')
@@ -481,7 +478,7 @@ export default class extends Controller {
     return console.log(s);
   };
 
-  addbits = s => // some code I found that does math calculation
-    (s.replace(/\s/g, '').match(/[+\-]?([0-9\.]+)/g) || []).reduce((sum, value) => parseFloat(sum) + parseFloat(value));
-
+  // addbits = s => // some code I found that does math calculation
+  //   (s.replace(/\s/g, '').match(/[+\-]?([0-9\.]+)/g) || []).reduce((sum, value) => parseFloat(sum) + parseFloat(value));
+  // // s.match(/[+\-0-9\.]+/g)[0]
 }

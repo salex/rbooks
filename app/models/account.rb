@@ -308,7 +308,8 @@ class Account < ApplicationRecord
     def summary(from,to)
       from = Ledger.set_date(from)
       to = Ledger.set_date(to)
-      beginning = self.balance_on(from) * self.flipper
+      # another forever error on beginning balance
+      beginning = self.balance_on(from -1.day) * self.flipper
       splits = self.splits.joins(:entry).where(entries: {post_date:[from..to]})
       debits = splits.where(splits.arel_table[:amount].gt(0)).sum(:amount) 
       diff = splits.sum(:amount) * self.flipper

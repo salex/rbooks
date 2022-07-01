@@ -1,4 +1,4 @@
-rails g scaffold Book name root assets equity liabilities income expenses checking savings settings:text --no-scaffold-stylesheet
+rails g scaffold Book client:references name root assets equity liabilities income expenses checking savings settings:text --no-scaffold-stylesheet
 
 rails g scaffold User email:uniq username:uniq full_name roles password:digest default_book:integer --no-scaffold-stylesheet
 

@@ -54,33 +54,34 @@ div.mt-2.mx-2.h-full.pb-12[data-controller="entryLedger"]
               td
           tbody[data-entryLedger-target='splitsTbody']
             - rid = 0
-            = f.fields_for :splits do |f|
+            = f.fields_for :splits do |s|
+              - puts "SPL IX #{s.index}"
               tr[id="split_#{rid}"]
-                - if f.object.id.present?
+                - if s.object.id.present?
                   td 
-                    = f.hidden_field(:id) 
-                    = f.check_box(:_destroy,class:'s-delete',data:{entryLedger_target:'deletes',
+                    = s.hidden_field(:id) 
+                    = s.check_box(:_destroy,class:'s-delete',data:{entryLedger_target:'deletes',
                       action:"click->entryLedger#deleteRow"})
                     i.fas.fa-minus-square Del
                 - else
                   td 
-                    = f.hidden_field(:id)
+                    = s.hidden_field(:id)
                     span[data-entryLedger-target='deletes']
                       i.fas.fa-cut[data-action="click->entryLedger#cutRow"] 
-                td = f.text_field(:action,class:'w-full')
-                td = f.text_field(:memo,class:'w-full')
-                td = f.select(:account_id,options_for_select(current_book.settings[:acct_sel_opt_rev],
-                  selected: f.object.account_id,disabled:current_book.settings[:dis_opt],include_blank: ''),
+                td = s.text_field(:action,class:'w-full')
+                td = s.text_field(:memo,class:'w-full')
+                td = s.select(:account_id,options_for_select(current_book.settings[:acct_sel_opt_rev],
+                  selected: s.object.account_id,disabled:current_book.settings[:dis_opt],include_blank: ''),
                   {},class:'w-full',dir:"ltr",data:{entryLedger_target:'transfer',
                   action:"change->entryLedger#changed"})
                 td 
-                  span[data-action='click->entryLedger#reconcile'] = (f.object.reconcile_state ||='n')
-                  div = f.hidden_field(:reconcile_state,value:f.object.reconcile_state ||='n', class:'w1 hidden')
-                td = f.text_field(:debit,value:Ledger.to_fixed(f.object.debit),class:'w-full text-right',
+                  span[data-action='click->entryLedger#reconcile'] = (s.object.reconcile_state ||='n')
+                  div = s.hidden_field(:reconcile_state,value:s.object.reconcile_state ||='n', class:'w1 hidden')
+                td = s.text_field(:debit,value:Ledger.to_fixed(s.object.debit),class:'w-full text-right',
                 data:{entryLedger_target:'debit',action:"click->entryLedger#selectit change->entryLedger#changed" })
-                td = f.text_field(:credit,value:Ledger.to_fixed(f.object.credit),class:'w-full text-right',
+                td = s.text_field(:credit,value:Ledger.to_fixed(s.object.credit),class:'w-full text-right',
                 data:{entryLedger_target:'credit',action:"click->entryLedger#selectit change->entryLedger#changed"})
-                td.hidden = f.hidden_field(:amount,class:'',data:{entryLedger_target:'amount'})
+                td.hidden = s.hidden_field(:amount,class:'',data:{entryLedger_target:'amount'})
               - rid += 1
         hr.underline
         div style="float:right;"

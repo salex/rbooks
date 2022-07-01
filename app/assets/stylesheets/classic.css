@@ -5,6 +5,9 @@
   font-size: 80%;
 }
 
+.nopointer {  pointer-events: none; }
+/* noointer disables sort icon from generating click event, bubbles to parent*/
+
 ul.classic {
   list-style-type: disc;
   padding-left: 1rem;
