@@ -6,6 +6,12 @@ class Hash
   end
 end
 
+Hash.class_eval do
+  def to_struct
+    Struct.new(*keys.map(&:to_sym)).new(*values)
+  end
+end
+
 require 'bigdecimal'
 
 # A monkey patch to fix ofx:
@@ -14,3 +20,9 @@ class BigDecimal
     BigDecimal(*arguments)
   end
 end
+
+# Integer.class_eval do
+#   def to_sym
+#     to_s.to_sym
+#   end
+# end

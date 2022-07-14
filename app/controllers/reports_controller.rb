@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
   def profit_loss
     @report = Report.new.profit_loss({from:params[:from],to:params[:to],level:params[:level]})
     # render  layout: 'print'
+    render template: "reports/profit_loss_arr"
   end
 
   def trial_balance

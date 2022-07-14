@@ -1,3 +1,3 @@
 def current_book
-  books(:one)
+  books(:b1)
 end

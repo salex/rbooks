@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/annacruz/ofx.git
-  revision: 065299c8cc8d337048efaa1326130e00bdd9f3ab
-  branch: master
+  revision: 7743e69ad6d62928539acac6d7c91f234defcbc6
+  branch: main
   specs:
-    ofx (0.3.2)
-      nokogiri
+    ofx (0.3.3)
+      nokogiri (~> 1.13.1)
 
 GEM
   remote: https://rubygems.org/

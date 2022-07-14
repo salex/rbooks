@@ -28,8 +28,8 @@ tbody.split-rows {display:none}
 
 table.classic {
   border-collapse: collapse;
-  width: 100%;
-}
+/*  width: 100%;
+*/}
 
 table.classic tr:nth-of-type(even) {
   background-color: #f0ece2;
@@ -58,6 +58,39 @@ table.classic td.p4 {
   padding-left: 4rem;
 }
 table.classic td.p5 {
+  padding-left: 5rem;
+}
+
+table.pl {
+  border-collapse: collapse;
+/*  width: 100%;
+*/}
+
+table.pl tr:nth-of-type(even) {
+  background-color: #f0ece2;
+}
+table.pl td, table.pl th {
+  border: solid 1px #aaa;
+}
+table.pl td.actions a {
+  padding-right: 2rem !important;
+}
+table.pl td.p0 {
+  padding-left: 0rem;
+}
+table.pl td.p1 {
+  padding-left: 1rem;
+}
+table.pl td.p2 {
+  padding-left: 2rem;
+}
+table.pl td.p3 {
+  padding-left: 3rem;
+}
+table.pl td.p4 {
+  padding-left: 4rem;
+}
+table.pl td.p5 {
   padding-left: 5rem;
 }
 

@@ -79,14 +79,12 @@ group :test do
 
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # my stuff
 gem 'slim-rails'
 gem 'prawn'
 gem 'prawn-table'
-gem 'ofx', '~> 0.3.2' , github: 'annacruz/ofx', branch: 'master'
+gem 'ofx', '~> 0.3.2' , github: 'annacruz/ofx', branch: 'main'
 # gem 'pundit'
 gem 'view_component'
 

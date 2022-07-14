@@ -1,5 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+--- !omap
 a1:
   uuid: 7bb50f3e-038b-48f2-9052-081023ecc13b
   book: b1
@@ -17,7 +17,6 @@ a2:
   placeholder: true
   level: 1
 a3:
-  id: 3
   uuid: 395990a7-0fe4-49fb-8921-586d28792a8a
   book: b1
   parent: a1
@@ -26,7 +25,6 @@ a3:
   placeholder: true
   level: 1
 a4:
-  id: 4
   uuid: 20161b79-c6d3-43f4-9ce2-af0f69233185
   book: b1
   parent: a1
@@ -35,7 +33,6 @@ a4:
   placeholder: true
   level: 1
 a5:
-  id: 5
   uuid: ff5b3fab-4e1c-42c0-9082-57240e98860a
   book: b1
   parent: a1
@@ -44,7 +41,6 @@ a5:
   placeholder: true
   level: 1
 a6:
-  id: 6
   uuid: 3f162bb2-bed5-47eb-8f58-16b87d163912
   book: b1
   parent: a1
@@ -53,7 +49,6 @@ a6:
   placeholder: true
   level: 1
 a7:
-  id: 7
   uuid: c8c3096e-d58d-477b-a896-56208e3c2601
   book: b1
   parent: a2
@@ -62,7 +57,6 @@ a7:
   placeholder: false
   level: 2
 a8:
-  id: 8
   uuid: a1958d82-89a0-42bf-b593-1e0a353b7401
   book: b1
   parent: a2
@@ -71,63 +65,3 @@ a8:
   placeholder: false
   level: 2
 
-# one:
-#   uuid: root
-#   book: one
-#   name: MyStringRoot
-#   account_type: ROOT
-#   code: MyString
-#   description: MyString
-#   placeholder: false
-#   contra: false
-#   parent_id: nil
-#   level: 0
-
-# one1:
-#   uuid: MyString1
-#   book: one
-#   name: MyString1
-#   account_type: ASSET
-#   code: MyString
-#   description: MyString
-#   placeholder: false
-#   contra: false
-#   parent_id: one
-#   level: 1
-
-# one2:
-#   uuid: MyString2
-#   book: one
-#   name: MyString2
-#   account_type: ASSET
-#   code: MyString
-#   description: MyString
-#   placeholder: false
-#   contra: false
-#   parent_id: one1
-#   level: 2
-
-# one3:
-#   uuid: MyString3
-#   book: one
-#   name: MyString3
-#   account_type: ASSET
-#   code: MyString
-#   description: MyString
-#   placeholder: false
-#   contra: false
-#   parent_id: 1
-#   level: 3
-
-
-# two:
-#   uuid: MyString4
-#   book: two
-#   name: MyString4
-#   account_type: EXPENSE
-#   code: MyString
-#   description: MyString
-#   placeholder: false
-#   contra: false
-#   parent_id: 1
-#   level: 1
