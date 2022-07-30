@@ -46,7 +46,7 @@ module BooksHelper
 
   def amt_to_pennies(amt)
     d,c = amt.split('.')
-    puts "$ #{d} C #{c}"
+    # puts "$ #{d} C #{c}"
     if c.present?
       if c.length == 1
         c = c+'0'

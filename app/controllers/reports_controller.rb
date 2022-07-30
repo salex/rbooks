@@ -16,8 +16,11 @@ class ReportsController < ApplicationController
   end
 
   def trial_balance
-    @report = Report.new.trial_balance({level:params[:level]})
-    # render layout: 'print'
+    if params[:from].present?
+      @report = Report.new.trial_balance({level:params[:level],from:params[:from],to:params[:to]})
+    else
+      @report = Report.new.trial_balance({level:params[:level]})
+    end
   end
 
   def summary

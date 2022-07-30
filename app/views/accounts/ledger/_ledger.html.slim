@@ -2,7 +2,7 @@
 - caption = "#{account.account_type} Account #{account.name} Ledger from: #{from} to: #{to}"
 - summary = lines.pop
 div.pt-1.text-sm.md:text-base
-  table.classic
+  table.classic.w-full
     tr
       th Range Summary
       td.text-right Total Debits(+):
@@ -51,7 +51,7 @@ div.md:hidden
           span.inline-block.font-bold.text-right.mr-2.w-16 Bal:
           span  = to_money row[:balance]
 div.hidden.md:block
-  table.classic[data-controller="sortTable toggleSplits"]
+  table.classic.w-full[data-controller="sortTable toggleSplits"]
     caption
       .box = caption
     thead#sort_header

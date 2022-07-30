@@ -4,6 +4,15 @@
 .fs8 {
   font-size: 80%;
 }
+.pdf-report {
+  width: 7in;
+}
+.w2in {
+  width: 2.1in;
+}
+.w1in {
+  width: 1.1in;
+}
 
 .nopointer {  pointer-events: none; }
 /* noointer disables sort icon from generating click event, bubbles to parent*/

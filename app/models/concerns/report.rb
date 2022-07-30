@@ -12,9 +12,10 @@ class Report
     today = Date.today
 
     # puts "Where are going work #{assets.inspect}"
-    # @from = options[:from].nil? ? today.beginning_of_year  : Ledger.set_date(options[:from])
-    # @to = options[:to].nil? ? today.end_of_year  : Ledger.set_date(options[:to])
-
+    if options[:from].present?
+      @from = options[:from].nil? ? today.beginning_of_year  : Ledger.set_date(options[:from])
+      @to = options[:to].nil? ? today.end_of_year  : Ledger.set_date(options[:to])
+    end
 
     report = {
       "Assets" => {amount:period_splits(assets),total:0,children:{}},
@@ -22,9 +23,8 @@ class Report
       "Income" => {amount:period_splits(income),total:0,children:{}}, 
       "Expense" =>  {amount:period_splits(expenses),total:0,children:{}},
       "Equity" => {amount:period_splits(equity),total:0,children:{}}, 
-      "options" => {level:level}
+      "options" => {level:level,from:@from,to:@to}
     }
-
     @depth = 0
     tree(income,report['Income'])
     @depth = 0

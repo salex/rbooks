@@ -70,11 +70,6 @@ class Book < ApplicationRecord
   def get_settings
     return {}.with_indifferent_access if self.settings[:skip].present? # on create new book
     reset = (Rails.application.config.x.acct_updated > self.updated_at.to_s || self.settings.blank?)
-    # puts "DEBUG conf #{Rails.application.config.x.acct_updated}"
-    # puts "DEBUG at #{self.updated_at.to_s}"
-    # puts "DEBUG blank #{self.settings.blank?}"
-    # puts "DEBUG reset #{reset}"
-
     if reset
       checking = checking_acct
       new_settings = {}.with_indifferent_access
