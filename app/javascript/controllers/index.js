@@ -12,5 +12,5 @@ eagerLoadControllersFrom("controllers", application)
 import Flatpickr from 'stimulus-flatpickr'
 application.register('flatpickr', Flatpickr)
 
-import { Autocomplete } from 'stimulus-autocomplete'
-application.register('autocomplete', Autocomplete)
+// import { Autocomplete } from 'stimulus-autocomplete'
+// application.register('autocomplete', Autocomplete)

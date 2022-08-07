@@ -38,7 +38,7 @@ module RBooks
     # config.eager_load_paths << Rails.root.join("extras")
     config.after_initialize do
       # Psych Allow YAML Classes
-      config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, ActiveSupport::HashWithIndifferentAccess, ActiveModel::Attribute.const_get(:FromDatabase), User, Time]
+      config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Date, Range, ActiveSupport::HashWithIndifferentAccess, ActiveModel::Attribute.const_get(:FromDatabase), User, Time]
     end
 
   end
