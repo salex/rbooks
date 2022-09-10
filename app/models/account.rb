@@ -338,7 +338,7 @@ class Account < ApplicationRecord
       end
       @kid_ids = leaf
       acct_trans =Ledger.ledger_entries(@kid_ids,@bom..@eom)
-      @balance = family_balance_on(@bom)
+      @balance = family_balance_on(@bom - 1.day)
       lines = build_ledger(acct_trans)
     end
 
@@ -362,6 +362,7 @@ class Account < ApplicationRecord
       bal = @balance ||= 0
       kids  = @kid_ids ||= [self.id]
       debits = credits = diff = 0
+      # the first line if popped off and contains beginning balance
       lines = [{id: nil,date: @bom.strftime("%m/%d/%Y"),numb:nil,desc:"Beginning Balance",
           checking:{db:0,cr:0},details:[], memo:nil,r:nil,balance:bal}]
       acct_trans.each do |t|
