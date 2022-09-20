@@ -55,7 +55,7 @@ div.mt-2.mx-2.h-full.pb-12[data-controller="entryLedger"]
           tbody[data-entryLedger-target='splitsTbody']
             - rid = 0
             = f.fields_for :splits do |s|
-              - puts "SPL IX #{s.index}"
+              / - puts "SPL IX #{s.index}"
               tr[id="split_#{rid}"]
                 - if s.object.id.present?
                   td 

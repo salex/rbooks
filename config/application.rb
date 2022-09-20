@@ -36,10 +36,12 @@ module RBooks
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.after_initialize do
+    # config.after_initialize do
       # Psych Allow YAML Classes
-      config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Date, Range, ActiveSupport::HashWithIndifferentAccess, ActiveModel::Attribute.const_get(:FromDatabase), User, Time]
-    end
+    config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Date, Range, 
+      ActiveSupport::HashWithIndifferentAccess]
+      # , ActiveModel::Attribute.const_get(:FromDatabase), User, Time]
+    # end
 
   end
 end

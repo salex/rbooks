@@ -68,26 +68,26 @@ class Book < ApplicationRecord
 
 
   def get_settings
-    return {}.with_indifferent_access if self.settings[:skip].present? # on create new book
+    # return {} if self.settings['skip'].present? # on create new book
     reset = (Rails.application.config.x.acct_updated > self.updated_at.to_s || self.settings.blank?)
     if reset
       checking = checking_acct
-      new_settings = {}.with_indifferent_access
+      new_settings = {}
       accts = build_tree
       id_trans = accts.pluck(:id,:transfer)
       if checking.present?
-        new_settings[:checking_acct_id] = checking.id 
-        new_settings[:checking_ids] = checking.leaf
+        new_settings['checking_acct_id'] = checking.id 
+        new_settings['checking_ids'] = checking.leaf
       end
-      new_settings[:transfers] = id_trans.to_h
-      new_settings[:tree_ids] = new_settings[:transfers].keys
-      new_settings[:acct_sel_opt] = id_trans.map{|i| i.reverse}.prepend(['',0])
-      new_settings[:dis_opt] = accts.select{|a| a.placeholder}.pluck(:id)
-      new_settings[:acct_sel_opt_rev] = new_settings[:acct_sel_opt].
-        select{|i| i  unless new_settings[:dis_opt].include?(i[1])}.
+      new_settings['transfers'] = id_trans.to_h
+      new_settings['tree_ids'] = new_settings['transfers'].keys
+      new_settings['acct_sel_opt'] = id_trans.map{|i| i.reverse}.prepend(['',0])
+      new_settings['dis_opt'] = accts.select{|a| a.placeholder}.pluck(:id)
+      new_settings['acct_sel_opt_rev'] = new_settings['acct_sel_opt'].
+        select{|i| i  unless new_settings['dis_opt'].include?(i[1])}.
         map{|i|[ i[0].split(':').reverse.join(':'),i[1]]}.
         sort_by { |word| word[0].downcase }
-      self.settings = new_settings
+      self.update(settings: new_settings)
       self.touch
       self.save!
     end
